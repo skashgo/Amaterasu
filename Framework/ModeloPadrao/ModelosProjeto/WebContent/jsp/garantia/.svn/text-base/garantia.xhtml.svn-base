@@ -1,0 +1,1136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/jsp/include/template.xhtml">
+	<ui:define name="breadcrumb">
+		<h:panelGroup id="pnlBread">
+			<h:outputLabel value="#{msgGarantia['bread']}" />
+		</h:panelGroup>
+	</ui:define>
+	<ui:define name="conteudo">
+		<div id="conteudo">
+			<!--[if IE]><iframe id="iFrameMenu"></iframe><![endif]-->
+			<a4j:keepAlive beanName="garantiaMB" />
+			<a4j:form id="formGarantia">						
+				<rich:panel id="pnlConteudo">
+					<br />
+					<h:panelGroup
+						rendered="#{garantiaMB.showTitleIncluir}"
+						style="float:left">
+						<h:graphicImage
+							value="/images/icon_dados.jpg"
+							style="vertical-align: bottom;" />
+						<h:outputText
+							value="#{msgGarantia['TITLE.panelIncluir']}"
+							styleClass="tituloPagina" />
+					</h:panelGroup>
+					<h:panelGroup rendered="#{garantiaMB.showTitleAlterar}">
+						<h:graphicImage
+							value="/images/icon_dados.jpg"
+							style="vertical-align: bottom;" />
+						<h:outputText
+							value="#{msgGarantia['TITLE.panelAlterar']}"
+							styleClass="tituloPagina" />
+					</h:panelGroup>
+					<h:panelGroup rendered="#{garantiaMB.showTitleVisualizar}">
+						<h:graphicImage
+							value="/images/icon_dados.jpg"
+							style="vertical-align: bottom;" />
+						<h:outputText
+							value="#{msgGarantia['TITLE.panelVisualizar']}"
+							styleClass="tituloPagina" />
+					</h:panelGroup>
+					<h:commandButton
+						id="btnBuscarContratoCad"
+						styleClass="rich-button"
+						style="margin-left:10px; float: right; width: 150px; margin-bottom:5px"
+						rendered="#{garantiaMB.showButtonSelecionaContrato}"
+						value="#{msgGarantia['ACTION.selecionaContrato']}"
+						action="#{garantiaMB.toSelecionaContrato}" />
+					<div class="clear" />
+					<rich:panel
+						styleClass="panel-externo"
+						id="pnlConsultarSimples"
+						rendered="#{garantiaMB.showConsultarSimples}">
+						<div
+							class="span-23 clear last"
+							id="pnlGridFiltroGarantia"
+							style="padding: 5px; margin-left: 16px; line-height: 2;">
+							<div class="span-3 clear">
+								<h:graphicImage
+									value="/images/icon_search.gif"
+									style="vertical-align: top;" />
+								<h:outputText
+									style="margin-left: 4px;"
+									id="lblGarantiaFiltro"
+									value="#{msgGarantia['LABEL.pesquisa']}"
+									styleClass="rotulos" />
+							</div>
+							<div class="span-14">
+								<h:inputText
+									id="inputGarantiaNomeFiltro"
+									value="#{garantiaMB.pesquisaString}"
+									styleClass="forms_input"
+									style=" width: 510px; horizontal-align: left; font-size: 13px;" />
+							</div>
+							<div class="span-3">
+								<a4j:commandButton
+									id="btnfiltrarGarantiaFiltro"
+									styleClass="rich-button"
+									value="#{msgGarantia['ACTION.filtrar']}"
+									actionListener="#{garantiaMB.doConsultarClick}"
+									reRender="conteudo, CEFMessagePanel, tableGarantia, pnlBread"
+									status="sts" />
+							</div>
+							<div class="span-3 last">
+								<a4j:commandButton
+									id="btnCadastrarGarantia"
+									styleClass="rich-button"
+									immediate="true"
+									rendered="#{garantiaMB.showButtonNovo}"
+									value="#{msgGarantia['ACTION.cadastrar']}"
+									actionListener="#{garantiaMB.doCadastrarClick}"
+									reRender="conteudo, pnlBread, formGarantia"
+									status="sts" />
+							</div>
+
+							<h:panelGrid columns="2">
+								<h:column>
+									<div class="span-14 clear prepend-3">
+										<div style="margin-top: 10px">
+											<h:selectBooleanCheckbox styleClass="rotulos"
+												id="inputGarantiaMostraInativosFiltro"
+												value="#{garantiaMB.pesquisaMostraInativos}" />
+											<h:outputLabel value="#{msgGarantia['LABEL.showInativos']}"
+												for="inputGarantiaMostraInativosFiltro" class="rotulos"
+												style="margin-left: 5px;" />
+										</div>
+									</div>
+								</h:column>
+								<h:column>
+									<div class="span-6 last">
+										<div style="margin-top: 10px">
+											<h:graphicImage value="/images/icon_plus.gif" />
+											<a4j:commandLink
+												actionListener="#{garantiaMB.doConsultarAvancado}"
+												value="#{msgGarantia['LABEL.filtroAvancado']}"
+												styleClass="rotulos" reRender="pnlConteudo"
+												style="margin-left: 3px;" />
+										</div>
+									</div>
+								</h:column>
+							</h:panelGrid>
+						</div>
+						<br clear="all" />
+						<br clear="all" />
+					</rich:panel>
+					<rich:panel
+						id="pnlConsultarAvancado"
+						styleClass="panel-externo"
+						rendered="#{garantiaMB.showConsultarAvancado}">
+						<rich:jQuery id="mskDatePesq" selector=".maskDate" timing="onload" query="mask('99/99/9999')" />
+						<h:panelGrid
+							id="pnlGridFiltroGarantiaFiltro"
+							columns="5">
+							<rich:spacer
+								height="15"
+								width="15" />
+							<h:outputText
+								id="lblGarantiacontratonuUnidadeFiltro"
+								value="#{msgGarantia['LABEL.contrato.nuUnidade']}:"
+								styleClass="rotulos" />
+							<h:panelGrid columns="2">
+								<h:inputText
+									styleClass="forms_input"
+									id="inputUnidade"
+									style="width: 130px;width: 182px;"
+									value="#{garantiaMB.nuUnidade}"
+									onfocus="#{rich:component('cbGarantiacontratonuUnidadeFiltro')}.callSuggestion(true)">
+									<rich:jQuery
+										id="mascaraCodUnidade"
+										selector="#inputUnidade"
+										query="mask('9999')"
+										timing="onload" />
+									<a4j:support actionListener="#{garantiaMB.fakeSetaNuUnidade}" event="onchange"></a4j:support>
+								</h:inputText>
+								<h:graphicImage
+									styleClass="forms_input"
+									value="/images/icon_combobox.bmp"
+									style="vertical-align: -5px; *margin-left:-2px"
+									onclick="#{rich:component('cbGarantiacontratonuUnidadeFiltro')}.callSuggestion(true)" />
+								<rich:suggestionbox
+									id="cbGarantiacontratonuUnidadeFiltro"
+									height="200"
+									width="130"
+									usingSuggestObjects="true"
+									suggestionAction="#{garantiaMB.selectItemContratoNuUnidade}"
+									var="unid"
+									for="inputUnidade"
+									fetchValue="#{unid[0]}">
+									<f:facet name="nothingLabel">
+										<h:outputText value="Unidade inexistente" />
+									</f:facet>
+									<h:column>
+										<h:outputText value="#{unid[0]} - #{unid[1]}" />
+									</h:column>
+								</rich:suggestionbox>
+							</h:panelGrid>
+							<h:outputText
+								id="lblGarantiacontratonuContratoFiltro"
+								value="#{msgGarantia['LABEL.contrato.nuContrato']}:"
+								styleClass="rotulos" />
+							<h:panelGrid columns="2">
+								<h:inputText
+									styleClass="forms_input"
+									id="inputContratoFiltro"
+									style="width: 130px;width: 182px;"
+									value="#{garantiaMB.garantia.contrato.coContrato}"
+									onfocus="#{rich:component('cbGarantiacontratocoContratoFiltro')}.callSuggestion(true)" />
+								<h:graphicImage
+									styleClass="forms_input"
+									value="/images/icon_combobox.bmp"
+									style="vertical-align: -5px;*margin-left:-2px"
+									onclick="#{rich:component('cbGarantiacontratocoContratoFiltro')}.callSuggestion(true)" />
+								<rich:suggestionbox
+									id="cbGarantiacontratocoContratoFiltro"
+									height="200"
+									width="130"
+									usingSuggestObjects="true"
+									suggestionAction="#{garantiaMB.selectItemContratoCoContrato}"
+									var="c"
+									for="inputContratoFiltro"
+									fetchValue="#{c}">
+									<f:facet name="nothingLabel">
+										<h:outputText value="Contrato inexistente" />
+									</f:facet>
+									<h:column>
+										<h:outputText value="#{c}" />
+									</h:column>
+								</rich:suggestionbox>
+							</h:panelGrid>
+							<rich:spacer height="30" />
+							<h:outputText
+								id="lblGarantianuTipoGarantiaProdutoFiltro"
+								value="#{msgGarantia['LABEL.nuTipoGarantiaProduto']}:"
+								styleClass="rotulos" />
+							<h:selectOneMenu
+								id="cbGarantianuTipoGarantiaProdutoFiltro"
+								value="#{garantiaMB.garantia.tipoGarantia.nuTipoGarantia}"
+								styleClass="forms_input"
+								style="margin-right: 10px;width: 200px;">
+								<f:selectItems value="#{garantiaMB.selectItemNuTipoGarantia}" />
+							</h:selectOneMenu>
+							<h:outputText
+								id="lblGarantiacoGarantiaFiltro"
+								value="#{msgGarantia['LABEL.coGarantia']}:"
+								styleClass="rotulos" />
+							<h:inputText
+								id="inputGarantiacoGarantiaFiltro"
+								value="#{garantiaMB.garantia.coGarantia}"
+								styleClass="forms_input"
+								style="margin-right: 10px;width: 200px;"
+								maxlength="10"
+								onfocus="type_masktype(false)">
+								<rich:jQuery
+									id="mascaraCodGarantiFiltro"
+									selector="#inputGarantiacoGarantiaFiltro"
+									query="mask('9999999999')"
+									timing="onload" />
+							</h:inputText>
+							<rich:spacer height="30" />
+							<h:outputText
+								id="lblGarantiavrGarantiaDEFiltro"
+								value="VALOR DE:"
+								styleClass="rotulos" />
+							<h:inputText
+								id="inputGarantiavrGarantiaDEFiltro"
+								value="#{garantiaMB.valor[0]}"
+								styleClass="forms_input"
+								maxlength="23"
+								converterMessage="Valor informado inválido."
+								style="margin-right: 10px;width: 200px;"
+								onkeydown="maxSize(this, 23)"
+								onfocus="inicial(this)"
+								onkeyup="formata(this)"
+								onblur="limpa(this)"
+								converter="#{converterMonetario}"
+								>
+							</h:inputText>
+							<h:outputText
+								id="lblGarantiavrGarantiaAFiltro"
+								value="A:"
+								style="margin-left: 100px;"
+								styleClass="rotulos" />
+							<h:inputText
+								id="inputGarantiavrGarantiaAFiltro"
+								value="#{garantiaMB.valor[1]}"
+								styleClass="forms_input"
+								maxlength="23"
+								converterMessage="Valor informado inválido."
+								style="margin-right: 10px;width: 200px;"
+								onkeydown="maxSize(this, 23)"
+								onfocus="inicial(this)"
+								onkeyup="formata(this)"
+								onblur="limpa(this)"
+								converter="#{converterMonetario}"
+								>
+							</h:inputText>
+							<rich:spacer height="30" />
+							<h:outputText
+								id="lblGarantiaicUltimaLocalizacaoFiltro"
+								value="#{msgGarantia['LABEL.icUltimaLocalizacao']}:"
+								styleClass="rotulos" />
+							<h:selectOneMenu
+								id="cbGarantiaicUltimaLocalizacaoFiltro"
+								value="#{garantiaMB.garantia.icUltimaLocalizacao}"
+								styleClass="forms_input"
+								style="margin-right: 10px;width: 200px;">
+								<f:selectItems value="#{garantiaMB.selectItemIcUltimaLocalizacao}" />
+							</h:selectOneMenu>
+							<h:outputText
+								id="lblGarantiaicLocalizacaoUltimoInventariFiltro"
+								value="#{msgGarantia['LABEL.icLocalizacaoUltimoInventari']}:"
+								styleClass="rotulos" />
+							<h:selectOneMenu
+								id="cbGarantiaicLocalizacaoUltimoInventariFiltro"
+								value="#{garantiaMB.garantia.icLocalizacaoUltimoInventari}"
+								styleClass="forms_input"
+								style="margin-right: 10px;width: 200px;">
+								<f:selectItems value="#{garantiaMB.selectItemIcLocalizacaoUltimoInventari}" />
+							</h:selectOneMenu>
+							<rich:spacer height="30" />
+							<h:outputText
+								id="lblGarantiadtUltimoInventarioGarantiaFiltro"
+								value="#{msgGarantia['LABEL.dtUltimoInventarioGarantia']}:"
+								styleClass="rotulos" />
+							<rich:calendar
+								id="dtGarantiadtUltimoInventarioGarantiaFiltro"
+								value="#{garantiaMB.garantia.dtUltimoInventarioGarantia}"
+								firstWeekDay="0"
+								enableManualInput="true"
+								oninputblur="validaData(this)"									
+								inputSize="25"
+								inputClass="forms_input maskDate"
+								style="margin-right: 10px"
+								datePattern="dd/MM/yyyy" />
+							<h:panelGroup>
+								<h:selectBooleanCheckbox
+									id="checkInclusiveExcluidas"
+									style="margin-right:10px;"
+									value="#{garantiaMB.pesquisaMostraInativos}" />
+								<h:outputLabel
+									value="#{msgGarantia['LABEL.showInativos']}"
+									styleClass="rotulos"
+									for="checkInclusiveExcluidas" />
+							</h:panelGroup>
+
+						</h:panelGrid>
+						<h:panelGroup
+								layout="block"
+								style="float:right">
+								<h:panelGroup>
+									<h:graphicImage
+										value="/images/icon_minus.gif"
+										rendered="#{garantiaMB.showLinkConsultarSimples}" />
+									<a4j:commandLink
+										actionListener="#{garantiaMB.doConsultarSimples}"
+										value="#{msgGarantia['LABEL.filtroSimples']}"
+										rendered="#{garantiaMB.showLinkConsultarSimples}"
+										styleClass="rotulos"
+										reRender="pnlConteudo"
+										style="margin-left: 3px;" />
+								</h:panelGroup>
+								
+								<a4j:commandButton
+									id="btnfiltrarGarantiaFiltroAvancado"
+									styleClass="rich-button"
+									rendered="#{garantiaMB.showButtonConsultarAvancado}"
+									value="#{msgGarantia['ACTION.filtrar']}"
+									actionListener="#{garantiaMB.doConsultarClick}"
+									reRender="conteudo, CEFMessagePanel, tableGarantia, pnlBread"
+									status="sts" />
+								<rich:spacer width="20"></rich:spacer>
+								<a4j:commandButton
+									id="btnCadastrarGarantiaAvancado"
+									rendered="#{garantiaMB.showButtonNovoAvancado}"
+									styleClass="rich-button"
+									immediate="true"
+									value="#{msgGarantia['ACTION.cadastrar']}"
+									actionListener="#{garantiaMB.doCadastrarClick}"
+									reRender="conteudo, pnlBread, formGarantia"
+									status="sts" />
+								<rich:spacer width="20"></rich:spacer>
+								<a4j:commandButton
+									rendered="#{garantiaMB.showButtonConsultarAvancado}"
+									id="btnLimparFiltro"
+									styleClass="rich-button-cinza rich-button"
+									value="#{msgGarantia['ACTION.limpar']}"
+									actionListener="#{garantiaMB.doLimpar}"
+									reRender="pnlConsultarAvancado, pnlBread"
+									status="sts" />
+							</h:panelGroup>
+							<br/><br/>
+					</rich:panel>
+					<!-- FIM pnlConsulta -->
+					<!-- INICIO pnlCadastro -->
+					<h:panelGroup
+						id="pnlCadastrarExterno"
+						rendered="#{garantiaMB.showPanelCadastro}">
+						<rich:panel
+							id="pnlCadastrarInterno"
+							styleClass="panel-externo">
+							<rich:jQuery id="mskDateCont" selector=".maskDate" timing="onload" query="mask('99/99/9999')" />
+							<h:panelGrid
+								id="pnlGridCadastroGarantiaCad"
+								columns="5">
+								<rich:spacer
+									height="15"
+									width="15" />
+								<h:outputLabel
+									id="lblGarantiacontratonuContratoCad"
+									for="inputGarantiacontratonuContratoCad"
+									value="#{msgGarantia['LABEL.contrato.nuContrato']}:"
+									styleClass="rotulos" />
+								<h:outputText
+									id="inputGarantiacontratonuContratoCad"
+									value="#{garantiaMB.garantia.contrato.coContrato}"
+									style="margin-right: 10px;" />
+								<h:outputText
+									id="lblGarantiacontratonuUnidadeCad"
+									value="#{msgGarantia['LABEL.contrato.nuUnidade']}:"
+									styleClass="rotulos" />
+								<h:outputText
+									id="inputGarantiacontratonuUnidadeCad"
+									value="#{garantiaMB.unidadeFormatada}"
+									style="margin-right: 10px;" />
+								<rich:spacer height="30" />
+								<h:outputText
+									id="lblGarantiacontratodtContratoCad"
+									value="#{msgGarantia['LABEL.contrato.dtContrato']}:"
+									styleClass="rotulos" />
+								<h:outputText
+									id="dtGarantiacontratodtContratoCad"
+									value="#{garantiaMB.dataContratoFormatada}"
+									style="margin-right: 10px" />
+								<h:outputText
+									id="lblGarantiacontratovrNominalContratoCad"
+									value="#{msgGarantia['LABEL.contrato.vrNominalContrato']}:"
+									styleClass="rotulos" />
+								<h:outputText
+									id="inputGarantiacontratovrNominalContratoCad"
+									value="#{garantiaMB.garantia.contrato.vrNominalContrato}"
+									style="margin-right: 10px;"
+									converter="#{converterMonetario}"
+									>
+								</h:outputText>
+								<rich:spacer height="30" />
+								<h:outputText
+									id="lblGarantiacoGarantiaCad"
+									value="#{msgGarantia['LABEL.coGarantia']}:"
+									styleClass="rotulos" />
+								<h:inputText
+									id="inputGarantiacoGarantiaCad"
+									value="#{garantiaMB.garantia.coGarantia}"
+									styleClass="forms_input"
+									disabled="#{garantiaMB.disabledCodGarantia}"
+									style="margin-right: 10px;width: 200px;"
+									maxlength="9"
+									onfocus="type_masktype(false)">
+									<rich:jQuery
+										id="mascaraCodGarantiCad"
+										selector="#inputGarantiacoGarantiaCad"
+										query="mask('999999999')"
+										timing="onload" />
+									<rich:jQuery
+										selector="#inputGarantiacoGarantiaCad"
+										timing="onload"
+										query="focus()" />
+								</h:inputText>
+								<h:outputText
+									id="lblGarantiacoResponsavelInventarioCad"
+									value="#{msgGarantia['LABEL.coResponsavelInventario']}:"
+									styleClass="rotulos"
+									rendered="#{garantiaMB.showPanelAlteracao}" />
+								<h:inputText
+									id="inputGarantiacoResponsavelInventarioCad"
+									value="#{garantiaMB.garantia.coResponsavelInventario}"
+									styleClass="forms_input"
+									maxlength="7"
+									disabled="true"
+									style="margin-right: 10px;width: 200px;"
+									rendered="#{garantiaMB.showPanelAlteracao}" />
+								<rich:spacer 
+									height="30" 
+									rendered="#{garantiaMB.showPanelAlteracao}" />
+								<h:outputText
+									id="lblGarantianuTipoGarantiaProdutoCad"
+									value="#{msgGarantia['LABEL.nuTipoGarantiaProduto']}:"
+									styleClass="rotulos" />
+								<h:selectOneMenu
+									id="cbGarantianuTipoGarantiaProdutoCad"
+									value="#{garantiaMB.garantia.tipoGarantia.nuTipoGarantia}"
+									styleClass="forms_input"
+									style="margin-right: 10px;width: 200px;">
+									<f:selectItems value="#{garantiaMB.selectItemNuTipoGarantia}" />
+								</h:selectOneMenu>
+								<rich:spacer 
+									height="30" 
+									rendered="#{!garantiaMB.showPanelAlteracao}" />
+								<h:outputText
+									id="lblGarantiavrGarantiaCad"
+									value="#{msgGarantia['LABEL.vrGarantia']}:"
+									styleClass="rotulos" />
+								<h:inputText
+									id="inputGarantiavrGarantiaCad"
+									value="#{garantiaMB.garantia.vrGarantia}"
+									styleClass="forms_input"
+									maxlength="23"
+									converterMessage="Valor informado para Garantia inválido."
+									style="margin-right: 10px;width: 200px;"
+									onkeydown="maxSize(this, 23)"
+									onfocus="inicial(this)"
+									onkeyup="formata(this)"
+									onblur="limpa(this)"
+										converter="#{converterMonetario}"
+									>
+								</h:inputText>
+								<rich:spacer 
+									height="30" 
+									rendered="#{garantiaMB.showPanelAlteracao}" />
+								<h:outputText
+									id="lblGarantiaicUltimaLocalizacaoCad"
+									value="#{msgGarantia['LABEL.icUltimaLocalizacao']}:"
+									styleClass="rotulos" />
+								<h:selectOneMenu
+									id="cbGarantiaicUltimaLocalizacaoCad"
+									value="#{garantiaMB.garantia.icUltimaLocalizacao}"
+									styleClass="forms_input"
+									style="margin-right: 10px;width: 200px;">
+									<f:selectItems value="#{garantiaMB.selectItemIcUltimaLocalizacao}" />
+								</h:selectOneMenu>
+								<rich:spacer 
+									height="30" 
+									rendered="#{!garantiaMB.showPanelAlteracao}" />
+								<h:outputText
+									id="lblGarantiadtUltimaLocalizacaoCad"
+									value="#{msgGarantia['LABEL.dtUltimaLocalizacao']}:"
+									styleClass="rotulos" />
+								<rich:calendar
+									id="dtGarantiadtUltimaLocalizacaoCad"
+									value="#{garantiaMB.garantia.dtUltimaLocalizacao}"
+									firstWeekDay="0"
+									style="margin-right: 10px"
+									inputSize="25"
+									datePattern="dd/MM/yyyy"
+									enableManualInput="true"
+									oninputblur="validaData(this)"										
+									inputClass="forms_input maskDate" />
+								<rich:spacer 
+									height="30" 
+									rendered="#{garantiaMB.showPanelAlteracao}" />
+								<h:outputText
+									id="lblGarantiaicLocalizacaoUltimoInventariCad"
+									value="#{msgGarantia['LABEL.icLocalizacaoUltimoInventari']}:"
+									styleClass="rotulos"
+									rendered="#{garantiaMB.showPanelAlteracao}" />
+								<h:selectOneMenu
+									id="cbGarantiaicLocalizacaoUltimoInventariCad"
+									value="#{garantiaMB.garantia.icLocalizacaoUltimoInventari}"
+									styleClass="forms_input"
+									disabled="#{garantiaMB.disabledLocalizacaoUltimoInventario}"
+									style="margin-right: 10px;width: 200px;"
+									rendered="#{garantiaMB.showPanelAlteracao}">
+									<f:selectItems value="#{garantiaMB.selectItemIcLocalizacaoUltimoInventari}" />
+								</h:selectOneMenu>
+								<h:outputText
+									id="lblGarantiadtUltimoInventarioGarantiaCad"
+									value="#{msgGarantia['LABEL.dtUltimoInventarioGarantia']}:"
+									styleClass="rotulos"
+									rendered="#{garantiaMB.showPanelAlteracao}" />
+								<rich:calendar
+									id="dtGarantiadtUltimoInventarioGarantiaCad"
+									value="#{garantiaMB.garantia.dtUltimoInventarioGarantia}"
+									firstWeekDay="0"
+									style="margin-right: 10px"
+									datePattern="dd/MM/yyyy"
+									inputSize="25"
+									disabled="true"
+									enableManualInput="true"
+									oninputblur="validaData(this)"										
+									inputClass="forms_input maskDate"
+									rendered="#{garantiaMB.showPanelAlteracao}" />
+								<rich:spacer height="30" rendered="#{garantiaMB.showPanelAlteracao}"/>
+								<h:outputText
+									id="lblGarantiacoUsuarioSolicitanteCad"
+									value="#{msgGarantia['LABEL.coUsuarioSolicitante']}:"
+									styleClass="rotulos"
+									/>
+								<h:inputText
+									id="inputGarantiacoUsuarioSolicitanteCad"
+									value="#{garantiaMB.garantia.coUsuarioSolicitante}"
+									styleClass="forms_input"
+									maxlength="7"
+									style="margin-right: 10px;width: 200px;"
+									onfocus="type_masktype(false)"
+									>
+									<rich:jQuery
+										id="mascaraMatriculaCad"
+										selector="#inputGarantiacoUsuarioSolicitanteCad"
+										query="mask('a999999')"
+										timing="onload" />
+								</h:inputText>
+								<rich:spacer />
+								<rich:spacer />
+								<rich:spacer height="20" />
+							</h:panelGrid>
+							<h:panelGrid columns="2">
+								<h:panelGroup
+									layout="block"
+									style="vertical-align: text-top; margin-left:15px">
+									<h:outputText
+										id="lblGarantiadeGarantiaCad"
+										value="#{msgGarantia['LABEL.deGarantia']}:"
+										style="vertical-align: 50px;"
+										styleClass="rotulos" />
+								</h:panelGroup>
+								<h:inputTextarea
+									id="inputGarantiadeGarantiaCad"
+									value="#{garantiaMB.garantia.deGarantia}"
+									styleClass="forms_input"
+									style="width : 750px; height: 50px; horizontal-align: left; font-size: 12px; margin-left: 3px;" />
+								<rich:spacer height="30" />
+							</h:panelGrid>
+						</rich:panel>
+						<h:panelGroup
+							id="pnlActionCadByContrato"
+							layout="block"
+							style="text-align:right"
+							rendered="#{garantiaMB.showCadastraGarantiaByContrato}">
+							<h:commandButton
+								id="btnGravarAlteraGarantiaCadByContrato"
+								styleClass="rich-button"
+								value="#{msgGarantia['ACTION.salvar']}"
+								action="#{garantiaMB.doGravaAlteracaoByContrato}"
+								rendered="#{garantiaMB.showPanelAlteracao}"
+								onclick="if(!confirm('#{msgsCef['MA003']}')) {return false;}" />
+							<h:commandButton
+								id="btnGravarNovoGarantiaCadByContrato"
+								styleClass="rich-button"
+								value="#{msgGarantia['ACTION.salvar']}"
+								action="#{garantiaMB.doGravaNovoByContrato}"
+								rendered="#{!garantiaMB.showPanelAlteracao}"
+								onclick="if(!confirm('#{msgsCef['MA002']}')) {return false;}" />
+							<rich:spacer
+								width="15"
+								height="20" />
+							<h:commandButton
+								id="btnCancelarGarantiaCadByContrato"
+								styleClass="rich-button-cinza rich-button"
+								value="#{msgGarantia['ACTION.cancelar']}"
+								action="#{garantiaMB.doCancelarByContrato}"
+								immediate="true" />
+						</h:panelGroup>
+						<h:panelGroup
+							id="pnlActionCad"
+							layout="block"
+							style="text-align:right"
+							rendered="#{!garantiaMB.showCadastraGarantiaByContrato}">
+							<a4j:commandButton
+								id="btnGravarNovoGarantiaCad"
+								styleClass="rich-button"
+								value="#{msgGarantia['ACTION.salvar']}"
+								actionListener="#{garantiaMB.doGravaNovo}"
+								reRender="conteudo, CEFMessagePanel, pnlBread"
+								status="sts"
+								rendered="#{!garantiaMB.showPanelAlteracao}"
+								onclick="if(!confirm('#{msgsCef['MA002']}')) {return false;}" />
+							<a4j:commandButton
+								id="btnGravarAlteraGarantiaCad"
+								styleClass="rich-button"
+								value="#{msgGarantia['ACTION.salvar']}"
+								actionListener="#{garantiaMB.doGravaAlteracao}"
+								reRender="conteudo, CEFMessagePanel, pnlBread"
+								status="sts"
+								rendered="#{garantiaMB.showPanelAlteracao}"
+								onclick="if(!confirm('#{msgsCef['MA003']}')) {return false;}" />
+							<rich:spacer
+								width="15"
+								height="20" />
+							<h:commandButton
+								id="btnCancelarGarantiaCad"
+								styleClass="rich-button-cinza rich-button"
+								value="#{msgGarantia['ACTION.cancelar']}"
+								action="#{garantiaMB.doCancelar}"
+								immediate="true" />
+						</h:panelGroup>
+					</h:panelGroup>
+					<!-- FIM pnlCadastro -->
+					<!-- INICIO pnlVisualizacao -->
+					<h:panelGroup
+						id="panelVisualiza"
+						rendered="#{garantiaMB.showPanelVisualizacao}">
+						<rich:panel
+							id="pnlVisualizaGarantiaView"
+							styleClass="panel-externo">
+							<h:panelGrid
+								id="pnlGridVisualizaGarantiaView"
+								columns="5">
+								<rich:spacer height="30" />
+								<h:outputText
+									id="lblGarantiacontratonuContratoView"
+									value="#{msgGarantia['LABEL.contrato.nuContrato']}:"
+									styleClass="rotulos" />
+								<h:outputText
+									id="cbGarantiacontratonuContratoView"
+									value="#{garantiaMB.garantia.contrato.coContrato}"
+									style="margin-right: 10px;"
+									styleClass="span-6" />
+								<h:outputText
+									id="lblGarantiacontratonuUnidadeView"
+									value="#{msgGarantia['LABEL.contrato.nuUnidade']}:"
+									styleClass="rotulos" />
+								<h:outputText
+									id="cbGarantiacontratonuUnidadeView"
+									value="#{garantiaMB.unidadeFormatada}"
+									style="margin-right: 10px;" />
+								<rich:spacer height="30" />
+								<h:outputText
+									id="lblGarantiacontratodtContratoView"
+									value="#{msgGarantia['LABEL.contrato.dtContrato']}:"
+									styleClass="rotulos" />
+								<h:outputText
+									id="dtGarantiacontratodtContratoView"
+									value="#{garantiaMB.dataContratoFormatada}"
+									style="margin-right: 10px;" />
+								<h:outputText
+									id="lblGarantiacontratovrNominalContratoView"
+									value="#{msgGarantia['LABEL.contrato.vrNominalContrato']}:"
+									styleClass="rotulos" />
+								<h:outputText
+									id="inputGarantiacontratovrNominalContratoView"
+									value="#{garantiaMB.garantia.contrato.vrNominalContrato}"
+									style="margin-right: 10px;"
+									converter="#{converterMonetario}"
+									>
+								</h:outputText>
+								<rich:spacer height="30" />
+								<h:outputText
+									id="lblGarantiacoGarantiaView"
+									value="#{msgGarantia['LABEL.coGarantia']}:"
+									styleClass="rotulos" />
+								<h:outputText
+									id="inputGarantiacoGarantiaView"
+									value="#{garantiaMB.garantia.coGarantia}"
+									style="margin-right: 10px;" />
+								<h:outputText
+									id="lblGarantianuTipoGarantiaProdutoView"
+									value="#{msgGarantia['LABEL.nuTipoGarantiaProduto']}:"
+									styleClass="rotulos" />
+								<h:outputText
+									id="cbGarantianuTipoGarantiaProdutoView"
+									value="#{garantiaMB.garantia.tipoGarantia.noTipoGarantia}"
+									style="margin-right: 10px;" />
+								<rich:spacer height="30" />
+								<h:outputText
+									id="lblGarantiavrGarantiaView"
+									value="#{msgGarantia['LABEL.vrGarantia']}:"
+									styleClass="rotulos" />
+								<h:outputText
+									id="inputGarantiavrGarantiaView"
+									value="#{garantiaMB.garantia.vrGarantia}"
+									style="margin-right: 10px;"
+									converter="#{converterMonetario}"
+									>
+								</h:outputText>
+								<h:outputText
+									id="lblGarantiaicUltimaLocalizacaoView"
+									value="#{msgGarantia['LABEL.icUltimaLocalizacao']}:"
+									styleClass="rotulos" />
+								<h:outputText
+									id="cbGarantiaicUltimaLocalizacaoView"
+									value="#{garantiaMB.icUltimaLocalizacaoFormatada}"
+									style="margin-right: 10px;" />
+								<rich:spacer height="30" />
+								<h:outputText
+									id="lblGarantiadtUltimaLocalizacaoView"
+									value="#{msgGarantia['LABEL.dtUltimaLocalizacao']}:"
+									styleClass="rotulos" />
+								<h:outputText
+									id="dtGarantiadtUltimaLocalizacaoView"
+									value="#{garantiaMB.dataUltimaLocalizacaoFormatada}"
+									style="margin-right: 10px;" />
+								<h:outputText
+									id="lblGarantiaicLocalizacaoUltimoInventariView"
+									value="#{msgGarantia['LABEL.icLocalizacaoUltimoInventari']}:"
+									styleClass="rotulos" />
+								<h:outputText
+									id="cbGarantiaicLocalizacaoUltimoInventariView"
+									value="#{garantiaMB.icLocalizacaoUltimoInventarioFormatada}"
+									style="margin-right: 10px;" />
+								<rich:spacer height="30" />
+								<h:outputText
+									id="lblGarantiadtUltimoInventarioGarantiaView"
+									value="#{msgGarantia['LABEL.dtUltimoInventarioGarantia']}:"
+									styleClass="rotulos" />
+								<h:outputText
+									id="dtGarantiadtUltimoInventarioGarantiaView"
+									value="#{garantiaMB.dataInventarioFormatada}"
+									style="margin-right: 10px;" />
+								<h:outputText
+									id="lblGarantiacoResponsavelInventarioView"
+									value="#{msgGarantia['LABEL.coResponsavelInventario']}:"
+									styleClass="rotulos" />
+								<h:outputText
+									id="inputGarantiacoResponsavelInventarioView"
+									value="#{garantiaMB.garantia.coResponsavelInventario}"
+									style="margin-right: 10px;" />
+								<rich:spacer height="15" />
+							</h:panelGrid>
+							<h:panelGrid columns="2">
+								<h:panelGroup
+									layout="block"
+									style="vertical-align: text-top;">
+									<h:outputText
+										id="lblGarantiadeGarantiaView"
+										value="#{msgGarantia['LABEL.deGarantia']}:"
+										styleClass="rotulos" />
+								</h:panelGroup>
+								<h:outputText
+									id="inputGarantiadeGarantiaView"
+									value="#{garantiaMB.garantia.deGarantia}"
+									style="margin-right: 10px;" />
+							</h:panelGrid>
+						</rich:panel>
+						<br />
+						<h:panelGroup
+							id="pnlActionView"
+							layout="block"
+							style="text-align:right"
+							rendered="#{garantiaMB.showPanelVisualizacao}">
+							<h:commandButton
+								id="btnCancelarGarantiaView"
+								styleClass="rich-button-cinza rich-button"
+								value="#{msgGarantia['ACTION.voltar']}"
+								action="#{garantiaMB.doCancelar}"
+								immediate="true" />
+							<br />
+						</h:panelGroup>
+					</h:panelGroup>
+					<!-- FIM pnlVisualizacao -->
+					<!-- INICIO pnlGrid -->
+					<h:panelGroup
+						id="pnlGridExterno"
+						rendered="#{garantiaMB.showPanelLista}">
+						<rich:panel
+							id="pnlTitleGrid"
+							style="vertical-align: bottom; padding:6px 0px; text-align:left;"
+							rendered="#{garantiaMB.showDataTable}">
+							<h:graphicImage
+								value="/images/icon_estagiarios_.gif"
+								style="vertical-align: bottom;" />
+							<h:outputText
+								value="#{msgGarantia['TITLE.panelLista']}"
+								styleClass="tituloPagina" />
+							<a4j:commandButton
+								id="btnRealizarInventarioFiltro"
+								styleClass="rich-button"
+								style="margin-left:10px; width: 200px"
+								rendered="#{garantiaMB.showButtonRealizarInventario}"
+								value="#{msgGarantia['ACTION.realizar.inventario']}"
+								actionListener="#{garantiaMB.toRealizarInventario}"
+								reRender="formGarantia, CEFMessagePanel"
+								status="sts" />
+						</rich:panel>
+						<!-- FIM pnlTitleGrid -->
+						<rich:dataTable
+							id="tableGarantia"
+							value="#{garantiaMB.listGarantia}"
+							var="row"
+							rows="10"
+							width="100%"
+							cellspacing="0"
+							cellpadding="0"
+							border="1"
+							rowClasses="tabela-row-1, tabela-row-2"
+							onRowMouseOver="this.style.backgroundColor = '#A2B6E5'"
+							onRowMouseOut="this.style.backgroundColor = ''">
+							<rich:column
+								id="colGarantiacontratocheck"
+								style="text-align:center;">
+								<f:facet name="header">
+								</f:facet>
+								<h:panelGroup rendered="#{garantiaMB.showCheckbox}">
+									<h:selectBooleanCheckbox
+										id="checkGarantiaInventario"
+										value="#{row.checkInventario}">
+									</h:selectBooleanCheckbox>
+								</h:panelGroup>
+							</rich:column>
+							<rich:column
+								id="colGarantiacontratonuUnidade"
+								style="text-align:center"
+								sortBy="#{garantiaMB.unidadeFormatadaGrid}">
+								<f:facet name="header">
+									<h:outputText
+										value="#{msgGarantia['COLUMN.contrato.unid']}"
+										styleClass="rotulosPro" />
+								</f:facet>
+								<h:commandLink
+									actionListener="#{garantiaMB.toVisualizar}"
+									id="lblcontratonuUnidade"
+									value="#{garantiaMB.unidadeFormatadaGrid}" />
+							</rich:column>
+							<rich:column
+								id="colGarantiacontratocoContrato"
+								style="text-align:left;"
+								sortBy="#{row.contrato.coContrato}">
+								<f:facet name="header">
+									<h:outputText
+										value="#{msgGarantia['COLUMN.contrato.contratoconta']}"
+										styleClass="rotulosPro" />
+								</f:facet>
+								<h:commandLink
+									actionListener="#{garantiaMB.toVisualizar}"
+									id="lblcontratocoContrato"
+									value="#{row.contrato.coContrato}" />
+							</rich:column>
+							<rich:column
+								id="colGarantiacoGarantia"
+								style="text-align:left;"
+								sortBy="#{row.coGarantia}"
+								width="80">
+								<f:facet name="header">
+									<h:outputText
+										value="#{msgGarantia['COLUMN.coGarantia']}"
+										styleClass="rotulosPro" />
+								</f:facet>
+								<h:commandLink
+									actionListener="#{garantiaMB.toVisualizar}"
+									id="lblcoGarantia"
+									value="#{row.coGarantia}" />
+							</rich:column>
+							<rich:column
+								id="colGarantianuTipoGarantiaProduto"
+								style="text-align:left;"
+								sortBy="#{garantiaMB.tipoGarantiaFormatadaGrid}">
+								<f:facet name="header">
+									<h:outputText
+										value="#{msgGarantia['COLUMN.tipoGarantia']}"
+										styleClass="rotulosPro" />
+								</f:facet>
+								<h:commandLink
+									actionListener="#{garantiaMB.toVisualizar}"
+									id="lblnuTipoGarantiaProduto"
+									value="#{garantiaMB.tipoGarantiaFormatadaGrid}"
+									title="#{row.tipoGarantia.noTipoGarantia}" />
+							</rich:column>
+							<rich:column
+								id="colGarantiadeGarantia"
+								style="text-align:left;"
+								sortBy="#{row.deGarantia}">
+								<f:facet name="header">
+									<h:outputText
+										value="#{msgGarantia['COLUMN.descGarantia']}"
+										styleClass="rotulosPro" />
+								</f:facet>
+								<h:commandLink
+									actionListener="#{garantiaMB.toVisualizar}"
+									id="lbldeGarantia"
+									value="#{garantiaMB.descricaoFormatadaGrid}"
+									title="#{row.deGarantia}" />
+							</rich:column>
+							<rich:column
+								id="colGarantiavrGarantia"
+								style="text-align:left;"
+								sortBy="#{row.vrGarantia}">
+								<f:facet name="header">
+									<h:outputText
+										value="#{msgGarantia['COLUMN.valor']}"
+										styleClass="rotulosPro" />
+								</f:facet>
+								<h:commandLink
+									actionListener="#{garantiaMB.toVisualizar}"
+									id="lblvrGarantia">
+									<h:outputText value="#{row.vrGarantia}" converter="#{converterMonetario}">
+									</h:outputText>
+								</h:commandLink>
+							</rich:column>
+							<rich:column
+								id="colGarantiaView"
+								width="50px"
+								headerClass="th-text-center"
+								styleClass="iconesCentro">
+								<f:facet name="header">
+									<h:outputText
+										style="text-align:center"
+										value="#{msgGarantia['COLUMN.acao']}"
+										styleClass="rotulosPro" />
+								</f:facet>
+								<h:commandLink
+									id="lnkUpdate"
+									rendered="#{garantiaMB.showButtonAlterar}"
+									actionListener="#{garantiaMB.toAlterar}"
+									style="border-style:none;border-width:0;">
+									<h:graphicImage
+										id="imgAlterarProduto"
+										styleClass="action-icon"
+										alt="Alterar"
+										title="Alterar"
+										value="/images/icon_editar.gif" />
+								</h:commandLink>
+								<h:commandLink
+									id="lnkDelete"
+									rendered="#{garantiaMB.showButtonExcluir}"
+									actionListener="#{garantiaMB.doInativar}"
+									onclick="if(!confirm('#{msgsCef['MA005']}')) {return false;}"
+									style="border-style:none;border-width:0;">
+									<h:graphicImage
+										id="imgInativarProduto"
+										styleClass="action-icon"
+										alt="Excluir"
+										title="Excluir"
+										value="/images/icon_-delete.gif" />
+								</h:commandLink>
+							</rich:column>
+							<f:facet name="footer">
+								<rich:datascroller
+									fastControls="false"
+									inactiveStyleClass="classe-datascroller classe-datascroller-unselected"
+									selectedStyleClass="classe-datascroller classe-datascroller-selected"
+									id="dataFooterGarantia"
+									page="#{garantiaMB.page}"
+									renderIfSinglePage="false">
+									<f:facet name="first">
+										<h:graphicImage value="/images/tabela/seta_primeiro.gif" />
+									</f:facet>
+									<f:facet name="first_disabled">
+										<h:graphicImage value="/images/tabela/seta_primeiro.gif" />
+									</f:facet>
+									<f:facet name="last">
+										<h:graphicImage value="/images/tabela/seta_ultimo.gif" />
+									</f:facet>
+									<f:facet name="last_disabled">
+										<h:graphicImage value="/images/tabela/seta_ultimo.gif" />
+									</f:facet>
+									<f:facet name="previous">
+										<h:graphicImage value="/images/tabela/seta_anterior.gif" />
+									</f:facet>
+									<f:facet name="previous_disabled">
+										<h:graphicImage value="/images/tabela/seta_anterior.gif" />
+									</f:facet>
+									<f:facet name="next">
+										<h:graphicImage value="/images/tabela/seta_proximo.gif" />
+									</f:facet>
+									<f:facet name="next_disabled">
+										<h:graphicImage value="/images/tabela/seta_proximo.gif" />
+									</f:facet>
+								</rich:datascroller>
+							</f:facet>
+						</rich:dataTable>
+					</h:panelGroup>
+					<!-- FIM pnlGrid -->
+					<br />
+					<h:panelGroup
+						id="pnlRealizaInventario"
+						rendered="#{garantiaMB.showPanelRealizaInventario}">
+						<h:graphicImage
+							value="/images/icon_estagiarios_.gif"
+							style="vertical-align: bottom;" />
+						<h:outputText
+							id="lbl_titlePanelRealizaInventario"
+							value="#{msgGarantia['TITLE.panelInventario']}"
+							styleClass="tituloPagina" />
+						<br />
+						<rich:spacer height="10" />
+						<rich:panel
+							id="pnlRealizaInventario2"
+							styleClass="panel-externo">
+							<rich:jQuery id="mskDateCad" selector=".maskDate" timing="onload" query="mask('99/99/9999')" />							
+							<h:panelGrid
+								id="pnlGridRealizaInventario"
+								columns="4">
+								
+								<h:outputText
+									id="lblRespUltimoInventario"
+									value="#{msgGarantia['LABEL.inventario.respUltimo']}:"
+									styleClass="rotulos" />
+								<h:inputText
+									id="inputResponsavelInventario"
+									value="#{garantiaMB.respUltimoInventario}"
+									styleClass="forms_input"
+									style="width: 85px;"
+									disabled="true"/>
+								<h:column></h:column>
+								<h:column></h:column>
+								
+								<h:outputText
+									id="lblDtUltimoInventario"
+									value="#{msgGarantia['LABEL.inventario.dtUltimo']}:"
+									style="line-height: 2.7; *line-height: 2.3;"
+									styleClass="rotulos" />
+								<h:panelGroup
+									layout="block"
+									id="pnlDtLocUltInv"
+									style="width:110px">
+									<rich:calendar
+										id="dtUltimoInventario"
+										value="#{garantiaMB.dtUltimoInventario}"
+										firstWeekDay="0"
+										enableManualInput="true"
+										oninputblur="validaData(this)"											
+										inputStyle="width: 85px"
+										inputClass="forms_input maskDate"
+										datePattern="dd/MM/yyyy" />
+								</h:panelGroup>
+								<h:outputText
+									id="lblLocUltimoInventario"
+									value="#{msgGarantia['LABEL.inventario.locUltimo']}:"
+									style="margin-left: 20px;"
+									styleClass="rotulos" />
+								<h:selectOneMenu
+									id="cbicLocalizacaoUltimoInventario"
+									value="#{garantiaMB.locUltimoInventario}"
+									styleClass="forms_input"
+									style="width: 230px;">
+									<f:selectItems value="#{garantiaMB.selectItemIcLocalizacaoUltimoInventari}" />
+								</h:selectOneMenu>
+							</h:panelGrid>
+						</rich:panel>
+						<h:panelGroup
+							id="pnlActionInventario"
+							layout="block"
+							style="text-align:right">
+							<a4j:commandButton
+								id="btnGravarInventario"
+								styleClass="rich-button"
+								value="#{msgGarantia['ACTION.salvar']}"
+								actionListener="#{garantiaMB.doGravaInventario}"
+								reRender="conteudo, CEFMessagePanel, pnlBread"
+								status="sts"
+								onclick="if(!confirm('#{msgsCef['MA003']}')) {return false;}" />
+							<rich:spacer
+								width="15"
+								height="20" />
+							<h:commandButton
+								id="btnCancelarInventario"
+								styleClass="rich-button-cinza rich-button"
+								value="#{msgGarantia['ACTION.cancelar']}"
+								action="#{garantiaMB.doCancelar}"
+								immediate="true" />
+						</h:panelGroup>
+					</h:panelGroup>
+				</rich:panel>
+				<rich:spacer
+					height="0"
+					width="175" />
+			</a4j:form>
+			<!-- FIM pnlConteudo -->
+		</div>
+	</ui:define>
+</ui:composition>
+</html>

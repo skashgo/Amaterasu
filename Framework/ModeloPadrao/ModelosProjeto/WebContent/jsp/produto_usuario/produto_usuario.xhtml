@@ -1,0 +1,283 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/jsp/include/template.xhtml">
+	<ui:define name="breadcrumb">
+		<h:panelGroup id="pnlBread">
+			<h:outputLabel value="#{msgsProdutoUsuario['BREAD']}" />
+		</h:panelGroup>
+	</ui:define>
+	<ui:define name="conteudo">
+		<div id="conteudo">
+			<a4j:keepAlive beanName="produtoUsuarioMB" />
+			<rich:panel style="vertical-align: bottom; padding:0px 0px 0px 0px; text-align:left;">
+				<br clear="all" />
+				<rich:spacer height="10" />
+				<h:graphicImage
+					value="/images/icon_dados.jpg"
+					style="vertical-align: bottom;" />
+				<h:outputText
+					rendered="#{produtoUsuarioMB.showTitleAlterar}"
+					value="#{msgsProdutoUsuario['TITLE.panelAlterar']}"
+					styleClass="tituloPagina" />
+				<h:outputText
+					rendered="#{produtoUsuarioMB.showTitleVisualizar}"
+					value="#{msgsProdutoUsuario['TITLE.panelVisualizar']}"
+					styleClass="tituloPagina" />
+			</rich:panel>
+			<a4j:form>
+				<rich:panel styleClass="panel-externo">
+					<h:panelGrid
+						columns="3"
+						style="width: 100%; padding: 8px;"
+						rowClasses="panel-grid-dados-usuario">
+						<h:panelGrid columns="3">
+							<h:outputLabel
+								value="#{msgsProdutoUsuario['LABEL.matricula']}"
+								styleClass="rotulos"
+								style="text-transform: uppercase;" />
+							<h:outputText value="#{produtoUsuarioMB.matricula} - #{produtoUsuarioMB.unidade}" />
+							<rich:spacer/>
+							
+							<h:outputLabel
+								value="#{msgsProdutoUsuario['LABEL.perfil']}"
+								styleClass="rotulos"
+								style="text-transform: uppercase;" />
+							<h:outputText
+								value="#{produtoUsuarioMB.noPerfil}"
+								rendered="#{produtoUsuarioMB.showPerfil}" />
+							<h:selectOneMenu
+								id="cmbProdutoUsuarioProdutoUsurio"
+								value="#{produtoUsuarioMB.nuPerfil}"
+								styleClass="forms_input"
+								style="text-transform: uppercase"
+								rendered="#{produtoUsuarioMB.showComboPerfis}"
+								tabindex="1">
+								<f:selectItems
+									id="selectItemPerfis"
+									value="#{produtoUsuarioMB.selectItemPerfis}"
+									style="text-transform: uppercase" />
+								<rich:jQuery
+									selector="#cmbProdutoUsuarioProdutoUsurio"
+									timing="onload"
+									query="focus()" />
+							</h:selectOneMenu>	
+							<rich:spacer/>		
+							
+							<h:outputLabel
+								value="#{msgsProdutoUsuario['LABEL.unidade']}"
+								styleClass="rotulos"
+								style="text-transform: uppercase;" />
+							<h:column>
+								<h:inputText id="editUnidadeUsuario"
+									value="#{produtoUsuarioMB.nuUnidade}" style="width:60px;"
+									styleClass="forms_input" maxlength="4" tabindex="7"
+									requiredMessage="Campo Obrigatório"
+									onfocus="type_masktype(false)" size="7"
+									onkeyup="formataNumero(this)"
+									rendered="#{!produtoUsuarioMB.showPerfil}">
+									<a4j:support actionListener="#{produtoUsuarioMB.doBuscaNomeUnidade}"
+										event="onblur"
+										status="sts"
+										reRender="lblNoUnidadeUsuario, CEFMessagePanel">
+									</a4j:support>
+								</h:inputText>
+								<h:outputText style="padding-left: 10px;" rendered="#{!produtoUsuarioMB.showPerfil}" id="lblNoUnidadeUsuario"
+									value="#{produtoUsuarioMB.noUnidade}" />
+								<h:outputText rendered="#{produtoUsuarioMB.showPerfil}" value="#{produtoUsuarioMB.unidade}" />
+							</h:column>
+						</h:panelGrid>
+						<h:panelGrid columns="2">
+							<h:outputLabel
+								value="#{msgsProdutoUsuario['LABEL.nome']}"
+								styleClass="rotulos"
+								style="text-transform: uppercase;" />
+							<h:outputText value="#{produtoUsuarioMB.nome}" />
+							<h:outputLabel
+								value="#{msgsProdutoUsuario['LABEL.situacao']}"
+								styleClass="rotulos"
+								style="text-transform: uppercase;" />
+							<h:panelGroup rendered="#{produtoUsuarioMB.showSituacaoAtivo}">
+								<h:graphicImage
+									value="/images/icon_ativo.gif"
+									style="vertical-align: middle;" />
+								<h:outputText value=" - Ativo" />
+							</h:panelGroup>
+							<h:panelGroup rendered="#{produtoUsuarioMB.showSituacaoInativo}">
+								<h:graphicImage
+									value="/images/icon_-delete.gif"
+									style="vertical-align: middle;" />
+								<h:outputText value=" - Inativo" />
+							</h:panelGroup>
+						</h:panelGrid>
+						<h:panelGrid columns="3">
+							
+						</h:panelGrid>
+					</h:panelGrid>
+				</rich:panel>
+				<br clear="all" />
+				<h:graphicImage
+					value="/images/icon_estagiarios_.gif"
+					style="vertical-align: bottom;" />
+				<h:outputText
+					value="#{msgsProdutoUsuario['PANEL.titulo']}"
+					styleClass="tituloPagina" />
+				<br clear="all" />
+				<rich:spacer height="10" />
+				<rich:panel id="painelAlteracao">
+					<rich:panel
+						styleClass="panel-externo"
+						style="height: 55px"
+						rendered="#{produtoUsuarioMB.showPanelProdutos}"
+						rows="10" id="panel-consulta">
+						<div style="width: 80%; float: left; padding-left: 8px;">
+							<h:outputLabel
+								value="#{msgsProdutoUsuario['LABEL.produtos']}"
+								styleClass="rotulos"
+								style="text-transform: uppercase;" />
+							<rich:spacer width="25" />
+							<h:selectOneMenu
+								id="comboProdutos"
+								value="#{produtoUsuarioMB.codProduto}"
+								styleClass="forms_input"
+								style="width: 50%"
+								disabled="#{produtoUsuarioMB.todos}"
+								tabindex="2">
+								<f:selectItem
+									itemValue=""
+									itemLabel="Selecione..." />
+								<f:selectItems value="#{produtoUsuarioMB.selectItemProdutos}" />
+							</h:selectOneMenu>
+							<h:selectBooleanCheckbox id="ckAdicionarTodos"
+								value="#{produtoUsuarioMB.todos}" styleClass="rotulos"
+								style="margin-left: 20px;">
+								<a4j:support event="onclick"
+									reRender="painelAlteracao"
+									actionListener="#{produtoUsuarioMB.doCheckTodos}" />
+							</h:selectBooleanCheckbox>
+							<h:outputLabel id="lblCheckBoxProduto" for="ckAdicionarTodos"
+								styleClass="rotulos" value="#{msgsUsuario['LABEL.todos']}" />
+						</div>
+						<div style="width: 15%; float: right;">
+							<a4j:commandButton
+								rendered="#{!produtoUsuarioMB.todos}"
+								actionListener="#{produtoUsuarioMB.incluirProduto}"
+								reRender="tbProdutoAssociados, comboProdutos, CEFMessagePanel, panel-consulta, painelAlteracao"
+								value="#{msgsProdutoUsuario['ACTION.incluir']}"
+								styleClass="rich-button"
+								style="float: right;"
+								tabindex="4" />
+						</div>
+					</rich:panel>
+					<rich:panel>
+						<h:outputLabel id="msgListaVazia" styleClass="rotulos" style="font-weight: normal; font-style: italic;" value="#{msgsProdutoUsuario['LABEL.todosProdutos']}" rendered="#{produtoUsuarioMB.possuiTodosProdutos}"/>
+						<rich:dataTable
+							id="tbProdutoAssociados"
+							value="#{produtoUsuarioMB.produtosAssociados}"
+							var="item"
+							rowClasses="tabela-row-1, tabela-row-2"
+							rows="10"
+							onRowMouseOver="this.style.backgroundColor = '#A2B6E5'"
+							onRowMouseOut="this.style.backgroundColor = ''"
+							width="100%">
+							<rich:column
+								width="15%"
+								sortBy="#{item.produto.coProduto}">
+								<f:facet name="header">
+									<h:outputText value="#{msgsProdutoUsuario['TABLE.codigo']}" />
+								</f:facet>
+								<h:outputText value="#{item.produto.coProduto}" />
+							</rich:column>
+							<rich:column
+								width="75%"
+								sortBy="#{item.produto.noProduto}">
+								<f:facet name="header">
+									<h:outputText value="#{msgsProdutoUsuario['TABLE.nome']}" />
+								</f:facet>
+								<h:outputText value="#{item.produto.noProduto}" />
+							</rich:column>
+							<rich:column
+								width="10%"
+								headerClass="th-text-center"
+								styleClass="iconesCentro"
+								rendered="#{produtoUsuarioMB.showRemoverProduto}">
+								<f:facet name="header">
+									<h:outputText value="#{msgsProdutoUsuario['TABLE.acao']}" />
+								</f:facet>
+								<a4j:commandLink
+									actionListener="#{produtoUsuarioMB.removerProduto}"
+									reRender="tbProdutoAssociados, comboProdutos"
+									tabindex="5">
+									<h:graphicImage value="/images/icon_-delete.gif" />
+								</a4j:commandLink>
+							</rich:column>
+							<f:facet name="footer">
+								<rich:datascroller
+									fastControls="false"
+									inactiveStyleClass="classe-datascroller classe-datascroller-unselected"
+									selectedStyleClass="classe-datascroller classe-datascroller-selected"
+									id="dataFooterUsuario"
+									renderIfSinglePage="false">
+									<f:facet name="first">
+										<h:graphicImage value="/images/tabela/seta_primeiro.gif" />
+									</f:facet>
+									<f:facet name="first_disabled">
+										<h:graphicImage value="/images/tabela/seta_primeiro.gif" />
+									</f:facet>
+									<f:facet name="last">
+										<h:graphicImage value="/images/tabela/seta_ultimo.gif" />
+									</f:facet>
+									<f:facet name="last_disabled">
+										<h:graphicImage value="/images/tabela/seta_ultimo.gif" />
+									</f:facet>
+									<f:facet name="previous">
+										<h:graphicImage value="/images/tabela/seta_anterior.gif" />
+									</f:facet>
+									<f:facet name="previous_disabled">
+										<h:graphicImage value="/images/tabela/seta_anterior.gif" />
+									</f:facet>
+									<f:facet name="next">
+										<h:graphicImage value="/images/tabela/seta_proximo.gif" />
+									</f:facet>
+									<f:facet name="next_disabled">
+										<h:graphicImage value="/images/tabela/seta_proximo.gif" />
+									</f:facet>
+								</rich:datascroller>
+							</f:facet>
+						</rich:dataTable>
+					</rich:panel>
+				</rich:panel>
+				<rich:panel style="height:30px;">
+					<h:commandButton
+						action="#{produtoUsuarioMB.doVoltar}"
+						value="#{msgsProdutoUsuario['ACTION.voltar']}"
+						styleClass="rich-button-cinza rich-button"
+						style="float: right;"
+						rendered="#{produtoUsuarioMB.showAlterar}" />
+					<h:commandButton
+						action="#{produtoUsuarioMB.doCancelar}"
+						value="#{msgsProdutoUsuario['ACTION.cancelar']}"
+						styleClass="rich-button-cinza rich-button"
+						style="float: right;"
+						rendered="#{produtoUsuarioMB.showSalvar}" />
+					<rich:spacer
+						width="1%"
+						style="float: right" />
+					<h:commandButton
+						action="#{produtoUsuarioMB.doSalvar}"
+						onclick="if(!confirm('#{msgsCef['MA003']}')) {return false;}"
+						value="#{msgsProdutoUsuario['ACTION.salvar']}"
+						styleClass="rich-button"
+						style="float: right;"
+						rendered="#{produtoUsuarioMB.showSalvar}" />
+				</rich:panel>
+			</a4j:form>
+		</div>
+	</ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,45 @@
+BREAD=Parecer
+
+TITLE.panelCadastro=Pareceres
+TITLE.modal=Reenvia Parecer
+TITLE.modalDetalhes=Detalhes Parecer
+
+LABEL.unidade=UNIDADE
+LABEL.unidadeVerificacao=UNIDADE DE VERIFICA\u00C7\u00C3O
+LABEL.produto=PRODUTO
+LABEL.parecer=Parecer
+LABEL.periodoVerificacao=PER\u00CDODO DE VERIFICA\u00C7\u00C3O
+LABEL.contrato=CONTRATO/CONTA
+LABEL.a=A
+LABEL.dataEnvio=Data do Envio
+LABEL.categoria=CATEGORIA
+LABEL.canalComercializacao=CANAL DE COMERCIALIZACAO
+LABEL.usuarioResp=USU\u00C1RIO RESPONS\u00C1VEL
+LABEL.conveniado=CONVENIADO
+LABEL.pesquisaAvancada = Pesquisa Avan\u00E7ada
+LABEL.pesquisaSimples= Pesquisa Simples
+LABEL.pesquisa = Pesquisa
+LABEL.somenteErro=SOMENTE COM ERRO
+LABEL.de=De
+LABEL.para=Para
+LABEL.copia=C\u00F3pia
+LABEL.assunto=Assunto
+LABEL.anexos=Anexos
+LABEL.situacao=Situa\u00E7\u00E3o
+
+ACTION.filtrar=Pesquisar
+ACTION.voltar=VOLTAR
+ACTION.cancelar=Cancelar
+ACTION.limpar=Limpar
+ACTION.pesquisaSimples=Pesquisa Simples
+ACTION.reenviar=Reenviar
+
+COLUMN.parecer=PARECER
+COLUMN.assunto=ASSUNTO
+COLUMN.responsavel=RESPONS.
+COLUMN.unidade=UNID
+COLUMN.produto=PRODUTO
+COLUMN.contrato=CONTRATO
+COLUMN.data=DATA
+COLUMN.acao=A\u00C7\u00C3O
+

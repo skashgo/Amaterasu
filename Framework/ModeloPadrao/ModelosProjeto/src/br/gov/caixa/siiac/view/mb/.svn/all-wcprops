@@ -1,0 +1,197 @@
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/gsgroup/!svn/ver/11383/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/view/mb
+END
+EscolheVerificacaoMB.java
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/gsgroup/!svn/ver/11369/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/view/mb/EscolheVerificacaoMB.java
+END
+ServicoProdutoMB.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/gsgroup/!svn/ver/10674/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/view/mb/ServicoProdutoMB.java
+END
+GenericStateMB.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/gsgroup/!svn/ver/7995/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/view/mb/GenericStateMB.java
+END
+ItemVerificacaoMB.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/gsgroup/!svn/ver/11105/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/view/mb/ItemVerificacaoMB.java
+END
+ApontamentoMB.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/gsgroup/!svn/ver/10645/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/view/mb/ApontamentoMB.java
+END
+BlocoChecklistMB.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/gsgroup/!svn/ver/8875/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/view/mb/BlocoChecklistMB.java
+END
+RelatorioVerificacaoMB.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/gsgroup/!svn/ver/11288/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/view/mb/RelatorioVerificacaoMB.java
+END
+TesteMB.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/gsgroup/!svn/ver/8037/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/view/mb/TesteMB.java
+END
+ChecklistAlteraMB.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/gsgroup/!svn/ver/11381/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/view/mb/ChecklistAlteraMB.java
+END
+UsuarioMB.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/gsgroup/!svn/ver/11313/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/view/mb/UsuarioMB.java
+END
+EfetuaVerificacaoMB.java
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/gsgroup/!svn/ver/11369/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/view/mb/EfetuaVerificacaoMB.java
+END
+PreferenciaUsuarioMB.java
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/gsgroup/!svn/ver/11258/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/view/mb/PreferenciaUsuarioMB.java
+END
+RestricaoMB.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/gsgroup/!svn/ver/8875/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/view/mb/RestricaoMB.java
+END
+ChecklistMB.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/gsgroup/!svn/ver/11381/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/view/mb/ChecklistMB.java
+END
+AbstractMB.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/gsgroup/!svn/ver/11255/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/view/mb/AbstractMB.java
+END
+ContratoMB.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/gsgroup/!svn/ver/11318/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/view/mb/ContratoMB.java
+END
+TipoGarantiaMB.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/gsgroup/!svn/ver/8875/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/view/mb/TipoGarantiaMB.java
+END
+ProdutoMB.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/gsgroup/!svn/ver/11321/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/view/mb/ProdutoMB.java
+END
+InformacaoMB.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/gsgroup/!svn/ver/11299/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/view/mb/InformacaoMB.java
+END
+ProdutoUsuarioMB.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/gsgroup/!svn/ver/11303/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/view/mb/ProdutoUsuarioMB.java
+END
+TemplateParecerMB.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/gsgroup/!svn/ver/11383/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/view/mb/TemplateParecerMB.java
+END
+IMessageCEF.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/gsgroup/!svn/ver/10651/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/view/mb/IMessageCEF.java
+END
+ApplicationMB.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/gsgroup/!svn/ver/11369/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/view/mb/ApplicationMB.java
+END
+AgendaMB.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/gsgroup/!svn/ver/11247/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/view/mb/AgendaMB.java
+END
+ServicoVerificacaoMB.java
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/gsgroup/!svn/ver/10594/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/view/mb/ServicoVerificacaoMB.java
+END
+LoginMB.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/gsgroup/!svn/ver/10594/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/view/mb/LoginMB.java
+END
+LogParecerMB.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/gsgroup/!svn/ver/11369/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/view/mb/LogParecerMB.java
+END
+GarantiaMB.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/gsgroup/!svn/ver/11374/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/view/mb/GarantiaMB.java
+END
+VerificacaoPreventivaMB.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/gsgroup/!svn/ver/11306/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/view/mb/VerificacaoPreventivaMB.java
+END
+CategoriaProdutoMB.java
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/gsgroup/!svn/ver/10410/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/view/mb/CategoriaProdutoMB.java
+END
+TemplateNotificacaoMB.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/gsgroup/!svn/ver/11299/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/view/mb/TemplateNotificacaoMB.java
+END
+CabecalhoDetalhesVerificacaoMB.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/gsgroup/!svn/ver/10809/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/view/mb/CabecalhoDetalhesVerificacaoMB.java
+END

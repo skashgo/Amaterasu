@@ -1,0 +1,905 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/jsp/include/template.xhtml">
+	<ui:define name="breadcrumb">
+		<h:panelGroup id="pnlBread">
+			<h:outputLabel
+				value="#{msgsChecklist['BREAD']}" />
+		</h:panelGroup>
+	</ui:define>
+	<ui:define name="conteudo">			
+		<script type="text/javascript">
+			jQuery.fn.enterSubmit = function(){
+				jQuery(this).live("keypress", function(e) {
+			        /* ENTER PRESSED*/
+			        if (e.keyCode == 13) {
+				        this.value = this.value.replace(/_/g, "");
+			        	jQuery(".btn-consultar").click();
+			        	return false;
+			        }
+			        return true;
+			    });
+			};
+
+			function checkForConfirmation(existe) {
+				if(existe)
+				{
+					if(confirm('#{msgsCef['MA010']}'))
+					{
+						jsReplaceChecklist();
+					} else {
+						return false;
+					}
+				}
+				else 
+				{
+					jsSaveChecklist();
+				}
+			}
+		</script>
+		<h:form id="formChecklist">		
+			<a4j:keepAlive beanName="checklistMB" />
+				<rich:panel id="pnlConteudo">
+					<rich:spacer height="10px" width="1px" />
+					<rich:panel
+						styleClass="panel-externo"
+						id="pnlConsultarSimples"
+						rendered="#{checklistMB.showConsultarSimples}">
+						<div class="span-23 clear last"
+							id="pnlGridFiltroChecklist"
+							style="padding:5px; margin-left: 16px; line-height: 2;">
+							<div class="span-3 clear">
+								<h:graphicImage
+									value="/images/icon_search.gif"
+									style="vertical-align: top;"/>
+								<h:outputText
+									style="margin-left: 4px;"
+									id="lblChecklistFiltro"
+									value="#{msgsChecklist['LABEL.pesquisa']}"
+									styleClass="rotulos"/>
+							</div>
+							<div class="span-14">
+								<h:inputText
+										id="inputChecklistNomeFiltro"
+										value="#{checklistMB.pesquisaSimples}"
+										styleClass="forms_input"
+										style=" width: 510px; horizontal-align: left; font-size: 13px;" >
+									<rich:jQuery
+										selector="#inputChecklistNomeFiltro"
+										query="enterSubmit()"
+										timing="onload" />
+								</h:inputText>
+							</div>
+							<div class="span-3">
+								<a4j:commandButton
+									id="btnfiltrarChecklistFiltro"
+									styleClass="rich-button btn-consultar"
+									value="#{msgsChecklist['ACTION.filtrar']}"
+									actionListener="#{checklistMB.doConsultarClick}"
+									reRender="conteudo, CEFMessagePanel, tableChecklist, pnlBread"
+									status="sts" />
+							</div>		
+							<div class="span-3 last">
+								<a4j:commandButton
+									id="btnCadastrarChecklist"
+									styleClass="rich-button"
+									immediate="true"
+									value="#{msgsChecklist['ACTION.cadastrar']}"
+									actionListener="#{checklistMB.doCadastrar}"
+									reRender="conteudo, pnlBread, formChecklist"
+									status="sts" />
+							</div>
+							<div class="span-6 prepend-17 last">
+								<div style="margin-top: 10px">
+									<h:graphicImage value="/images/icon_plus.gif" />
+									<a4j:commandLink actionListener="#{checklistMB.doConsultarAvancado}" value="#{msgsChecklist['LABEL.filtroAvancado']}"
+												   styleClass="rotulos" reRender="pnlConteudo, pnlConsultarAvancado,"
+												   style="margin-left: 3px;" />
+								</div>
+							</div>
+							<br/>
+						</div>
+						<br clear="all" />					
+						<br clear="all" />					
+					</rich:panel>
+					<rich:panel
+						id="pnlConsultarAvancado"
+						styleClass="panel-externo"
+						rendered="#{checklistMB.showConsultarAvancado}">
+						<rich:jQuery id="mskDatePesq" selector=".maskDate" timing="onload" query="mask('99/99/9999')" />
+						<table
+ 							cellpadding="0" 
+ 							cellspacing="0"							 
+							id="tabelaConsulta"
+							class="estiloTabelaPadrao">
+							<tr>
+								<td width="50px">
+									<h:outputLabel
+										id="lblPesqOperacao"
+										styleClass="rotulosPro"
+										value="#{msgsChecklist['LABEL.operacao']} " />
+								</td>
+								<td width="60px">
+									<h:inputText
+										value="#{checklistMB.operacao}"
+										styleClass="forms_input pressEnter"
+										style="width: 100px;"
+										tabindex="1"
+										id="edtCampoOperacao"
+										maxlength="4"
+										size="4"
+										onfocus="type_masktype(false)">
+										<rich:jQuery
+											id="mascaraOperacao"
+											selector="#edtCampoOperacao"
+											query="mask('9999')"
+											timing="onload" />											
+										<rich:jQuery
+											selector="#edtCampoOperacao"
+											query="enterSubmit()"
+											timing="onload" />
+										<a4j:support event="onblur" reRender="selectProduto"/>
+									</h:inputText>
+								</td>
+								<td colspan="3" width="50px">
+									<h:outputLabel
+										id="lblPesqSituacao"
+										styleClass="rotulosPro"
+										value="#{msgsChecklist['LABEL.situacao']} " />
+								</td>
+								<td style="width:170px; *width: 163px">
+									<h:selectOneMenu value="#{checklistMB.situacao}"
+										id="selectSituacao"
+										tabindex="2"
+										styleClass="forms_input"
+										style="width: 290px;">
+										<f:selectItem
+											itemLabel="Selecione..."
+											itemValue="" />
+										<f:selectItems
+											id="selectItems_Situacao"
+											value="#{checklistMB.listSituacoes}" />
+									</h:selectOneMenu>								
+								</td>
+								<td style="width:60px;">
+									<div style="width:90px;">
+										<h:outputLabel
+											id="lblPesqDataInicio"
+											styleClass="rotulosPro"
+											value="#{msgsChecklist['LABEL.datainicio']} " />
+									</div>
+								</td>
+								<td style="width: 120px;">
+									<div style="*width:170px;">
+										<rich:calendar
+											id="calendDataIni"
+											enableManualInput="true"
+											oninputblur="validaData(this)"											
+											tabindex="3"
+											inputClass="forms_input maskDate"
+											datePattern="dd/MM/yyyy"
+											inputSize="12"
+											firstWeekDay="0"
+											value="#{checklistMB.dataInicio}">
+										</rich:calendar>
+									</div>
+								</td>
+							</tr>	
+							<tr>
+								<td>
+									<h:outputLabel
+										id="lblPesqProduto"
+										styleClass="rotulosPro"
+										value="#{msgsChecklist['LABEL.produto']} " />
+								</td>
+								<td>
+									<h:inputText
+										value="#{checklistMB.filtroProduto}"
+										styleClass="forms_input pressEnter"
+										style="width: 100px;"
+										id="lblPesqCampoNome"
+										maxlength="30"
+										tabindex="4"
+										size="8" >										
+										<rich:jQuery
+											selector="#lblPesqCampoNome"
+											query="enterSubmit()"
+											timing="onload" />
+										<a4j:support event="onblur" reRender="selectProduto" />
+									</h:inputText>
+								</td>
+								<td colspan="4" style=" width : 467px;">	
+									<h:selectOneMenu value="#{checklistMB.codProduto}"
+										id="selectProduto"
+										tabindex="4"
+										styleClass="forms_input pressEnter"
+										style=" width : 385px;">
+										<f:selectItem itemLabel="Selecione..."
+											itemValue="" />
+										<f:selectItems
+											id="selectItemsProduto"
+											value="#{checklistMB.listProdutos}" />				
+										<rich:jQuery
+											selector="#selectProduto"
+											query="enterSubmit()"
+											timing="onload" />
+										<a4j:support event="onchange" reRender="selectServico" ajaxSingle="true" />
+									</h:selectOneMenu>
+								</td>
+								<td>
+									<h:outputLabel
+										id="lblPesqDataFim"
+										styleClass="rotulosPro"
+										value="#{msgsChecklist['LABEL.datafim']} " />
+								</td>
+								<td>
+									<rich:calendar
+										id="calendDataFim"
+										inputClass="forms_input maskDate"
+										enableManualInput="true"
+										oninputblur="validaData(this)"
+										tabindex="5"
+										inputSize="12"
+										firstWeekDay="0"
+										datePattern="dd/MM/yyyy"
+										value="#{checklistMB.dataFim}">
+									</rich:calendar>
+								</td>
+
+							</tr>
+							<tr>
+								<td colspan="2">
+									<h:outputLabel
+										id="lblPesqServicoVerif"
+										styleClass="rotulosPro"
+										value="#{msgsChecklist['LABEL.servicoverificacao']} " />
+								</td>	
+								<td colspan="4">
+									<h:selectOneMenu value="#{checklistMB.codServicoVerificacao}"
+										id="selectServico"
+										tabindex="6"
+										styleClass="forms_input"
+										readonly="false"
+										style="width: 385px; ">
+										<f:selectItem
+											itemLabel="Selecione..."
+											itemValue="" />
+										<f:selectItems
+											id="selectItems_ServicoVerif"
+											value="#{checklistMB.listServicoVerificacao}" />
+									</h:selectOneMenu>								
+								</td>	
+							
+								<td colspan="2">
+									<h:selectBooleanCheckbox value="#{checklistMB.revogado}" tabindex="7"/>
+									<h:outputText value="#{msgsChecklist['LABEL.inclusiveRevogados']}" 
+										styleClass="rotulos" />
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2">
+									<h:outputLabel value="#{msgsChecklist['LABEL.tipoCanalComercializacao']}:" 
+										styleClass="rotulosPro"/>
+								</td>
+								<td colspan="4">
+									<h:selectOneMenu value="#{checklistMB.nuCanal}" tabindex="8" 
+										styleClass="forms_input" style="width: 385px">
+										<f:selectItem itemLabel="Selecione..." itemValue="" />
+										<f:selectItems value="#{checklistMB.listTipoCanalComercializacao}" />
+									</h:selectOneMenu>
+								</td>
+								<td colspan="2">
+									
+								</td>
+							</tr>
+							<tr>
+								<td colspan="5"></td>
+								<td colspan="3" style="text-align: right;">
+									<h:graphicImage value="/images/icon_minus.gif" />
+									<a4j:commandLink actionListener="#{checklistMB.doConsultarSimples}" value="#{msgsChecklist['LABEL.filtroSimples']}"
+												   styleClass="rotulos" reRender="pnlConteudo"
+												   style="margin-left: 3px;" />
+									<rich:spacer width="20px;"></rich:spacer>
+									<a4j:commandButton
+										id="btnfiltrarChecklistFiltroAvancado"
+										tabindex="9"
+										styleClass="rich-button btn-consultar"
+										value="#{msgsChecklist['ACTION.filtrar']}"
+										actionListener="#{checklistMB.doConsultarClick}"
+										reRender="conteudo, CEFMessagePanel, tableChecklist, pnlBread"
+										status="sts" />
+									
+									<rich:spacer width="20px"></rich:spacer>
+									<a4j:commandButton
+										id="btnCadastrarChecklistAvancado"
+										styleClass="rich-button"
+										immediate="true"
+										tabindex="10"
+										value="#{msgsChecklist['ACTION.cadastrar']}"
+										actionListener="#{checklistMB.doCadastrar}"
+										reRender="conteudo, pnlBread, formChecklist"
+										status="sts" />
+										
+									<rich:spacer width="20px;"></rich:spacer>
+									<a4j:commandButton
+										tabindex="17"
+										id="btnLimparFiltro"
+										styleClass="rich-button-cinza rich-button"
+										value="#{msgsChecklist['ACTION.limpar']}"
+										actionListener="#{checklistMB.doLimpar}"
+										reRender="conteudo, pnlConsultarAvancado, pnlBread, tabelaConsulta"
+										status="sts" />
+								</td>
+							</tr>
+						</table>
+					</rich:panel> <!-- do pnlConsulta -->
+					<rich:panel
+						id="pnlTituloCadastro"
+						style="vertical-align: bottom; padding:6px 0px; text-align:left;"
+						rendered="#{checklistMB.showNovo}">
+						<h:graphicImage
+							value="/images/icon_dados.jpg"
+							style="vertical-align: bottom;" />
+						<h:outputText
+							value="#{msgsChecklist['TITLE.panelIncluir']}"
+							styleClass="tituloPagina" />
+					</rich:panel>
+					<!-- FIM pnlTituloCadastro -->
+					<rich:panel
+						id="pnlCadastro"
+						styleClass="panel-externo"
+						rendered="#{checklistMB.showNovo}">
+							<rich:jQuery id="mskDateCad" selector=".maskDate" timing="onload" query="mask('99/99/9999')" />
+							<table
+	 							cellpadding="0" 
+	 							cellspacing="0"							 
+								id="tabelaCadastro"
+								class="estiloTabelaPadrao">
+								<tr>
+									<td width="40px">
+										<h:outputLabel
+											id="lblCadProduto"
+											styleClass="rotulosPro"
+											value="#{msgsChecklist['LABEL.produto']} " />
+									</td>	
+									<td width="85px">
+										<h:inputText
+											value="#{checklistMB.checklistVO.filtroProduto}"
+											styleClass="forms_input"
+											style="width: 125px; *width: 123px;"
+											id="lblCampoNome"
+											maxlength="30"
+											tabindex="1"
+											size="8">
+											<a4j:support event="onblur" reRender="selectCadProduto" ajaxSingle="true" />
+										</h:inputText>
+									</td>
+									<td  style="width:300px; *width:280px;" colspan="4">
+										<h:selectOneMenu value="#{checklistMB.checklistVO.codProduto}"
+											id="selectCadProduto"
+											tabindex="1"
+											styleClass="forms_input"
+											style="width: 460px; *width: 420px;">
+											<f:selectItem itemLabel="Selecione..."
+												itemValue="" />
+											<f:selectItems
+												id="selectCadItems_Produto"
+												value="#{checklistMB.listProdutos}" />
+											<a4j:support event="onchange" reRender="selectCadServico" ajaxSingle="true" />
+										</h:selectOneMenu>						
+									</td>	
+									<td style="width:60px;">
+										<h:outputLabel
+											id="lblCadSituacao"
+											styleClass="rotulosPro"
+											value="#{msgsChecklist['LABEL.situacao']} " />
+									</td>
+									<td style="width:100px; *width:130px;">
+										<h:selectOneMenu
+											value="#{checklistMB.checklistVO.situacao}"
+											disabled="#{checklistMB.showNovo}"
+											id="selectCadSituacao"
+											tabindex="5"
+											styleClass="forms_input"
+											style="width: 120px; ">
+											<f:selectItem
+												itemLabel="Selecione..."
+												itemValue="" />
+											<f:selectItems
+												id="selectCadItems_Situacao"
+												value="#{checklistMB.listSituacoes}" />
+										</h:selectOneMenu>								
+									</td>
+								</tr>	
+								<tr>
+									<td colspan="2">
+										<h:outputLabel
+											id="lblCadServicoVerif"
+											styleClass="rotulosPro"
+											value="#{msgsChecklist['LABEL.servicoverificacao']} " />
+									</td>	
+									<td colspan="4">
+										<h:selectOneMenu value="#{checklistMB.checklistVO.codServicoVerificacao}"
+											id="selectCadServico"
+											tabindex="3"
+											styleClass="forms_input"
+											readonly="false"
+											style="width: 460px; *width: 420px;">
+											<f:selectItem
+												itemLabel="Selecione..."
+												itemValue="" />
+											<f:selectItems
+												id="selectCadItems_ServicoVerif"
+												value="#{checklistMB.listServicoVerificacao}" />
+										</h:selectOneMenu>								
+									</td>	
+									<td>
+										<div style="width:90px;">
+											<h:outputLabel
+												id="lblCadDataInicio"
+												styleClass="rotulosPro"
+												value="#{msgsChecklist['LABEL.datainicio']} " />
+										</div>
+									</td>
+									<td>
+										<div style="*width:120px;">
+											<rich:calendar
+												id="calendCadDataIni"
+												inputClass="forms_input maskDate"
+												enableManualInput="true"
+												oninputblur="validaData(this)"												
+												tabindex="2"
+												datePattern="dd/MM/yyyy"
+												inputSize="12"
+												firstWeekDay="0"
+												value="#{checklistMB.checklistVO.dataInicio}">
+											</rich:calendar>
+										</div>
+									</td>
+	
+								</tr>
+								<tr>
+									<td colspan="2">
+										<h:outputLabel value="#{msgsChecklist['LABEL.tipoCanalComercializacao']}:" 
+											styleClass="rotulosPro"/>
+									</td>
+									<td colspan="4">
+										<h:selectOneMenu value="#{checklistMB.checklistVO.nuCanal}" 
+											styleClass="forms_input" 
+											style="width: 460px; *width: 420px;">
+											<f:selectItem itemLabel="Selecione..." itemValue="" />
+											<f:selectItems value="#{checklistMB.listTipoCanalComercializacao}" />
+										</h:selectOneMenu>
+									</td>
+									
+									<td>
+										<h:outputLabel
+											id="lblCadDataFim"
+											styleClass="rotulosPro"
+											value="#{msgsChecklist['LABEL.datafim']} " />
+									</td>
+									<td>
+										<div style="*width:120px;">
+											<rich:calendar
+												id="calendCadDataFim"
+												inputClass="forms_input maskDate"
+												enableManualInput="true"
+												oninputblur="validaData(this)"													
+												tabindex="4"
+												datePattern="dd/MM/yyyy"
+												inputSize="12"
+												firstWeekDay="0"
+												value="#{checklistMB.checklistVO.dataFim}">
+											</rich:calendar>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="8" style="text-align:right">
+										<a4j:commandButton
+											id="botaoCarregaImporta"
+											tabindex="1"
+											style="margin-right:6px; *margin-right:10px; width: auto; *width: 205px"
+											actionListener="#{checklistMB.doTrySave}"
+											value="#{msgsChecklist['ACTION.carregar']}"
+											oncomplete="#{rich:component('PanelModal')}.show(); return false;"
+											styleClass="rich-button">
+										</a4j:commandButton>
+										<h:commandButton
+											id="botaoCadastrarChecklist"
+											tabindex="6"
+											onclick="if(confirm('#{msgsCef['MA002']}')) {jsTrySave(); return false;} else {return false;}"
+											value="#{msgsChecklist['ACTION.salvar']}"
+											styleClass="rich-button"
+											style="margin-right:6px; *margin-right:10px; margin-left: 15px; "
+											reRender="CEFMessagePanel,tableChecklist" />								
+										<h:commandButton
+											id="btnCancelarChecklistCad"
+											styleClass="rich-button-cinza rich-button"
+											value="#{msgsChecklist['ACTION.cancelar']}"
+											action="#{checklistMB.doCancelar}"
+											reRender="conteudo, CEFMessagePanel, pnlBread"
+											style="margin-left: 15px;"
+											immediate="true"
+											status="sts" />
+									</td>
+								</tr>
+							</table>
+							<a4j:jsFunction name="jsTrySave"	
+								actionListener="#{checklistMB.doTrySave}"
+								data="#{checklistMB.existeChecklist}"
+								oncomplete="checkForConfirmation(data)" />
+							
+							<a4j:jsFunction name="jsReplaceChecklist"
+								action="#{checklistMB.doReplaceChecklist}" reRender="CEFMessagePanel" />
+								
+							<a4j:jsFunction name="jsSaveChecklist"
+								action="#{checklistMB.doSave}" reRender="CEFMessagePanel" />
+					</rich:panel> <!-- do pnlCadastrar -->
+					<rich:panel
+						id="pnlTituloGrid"
+						style="vertical-align: bottom; padding:6px 0px; text-align:left;"
+						rendered="#{checklistMB.showDataTable}">
+						<h:graphicImage
+							value="/images/icon_estagiarios_.gif"
+							style="vertical-align: bottom;" />
+						<h:outputText
+							value="#{msgsChecklist['TITLE.listachecklist']}"
+							styleClass="tituloPagina" />
+					</rich:panel><!-- do pnlTituloGrid -->
+					<rich:dataTable
+						id="tableChecklist"
+						value="#{checklistMB.listChecklists}"
+						var="checklist"
+						rows="10"
+						width="100%"
+						cellspacing="0"
+						cellpadding="0"
+						border="1"
+						rowClasses="tabela-row-1, tabela-row-2"
+						onRowMouseOver="this.style.backgroundColor = '#A2B6E5'"
+						onRowMouseOut="this.style.backgroundColor = ''"
+						rendered="#{checklistMB.showDataTable}">
+						<rich:column
+							id="colCodigoProduto"
+							style="text-align:center;"
+							width="10%"
+							sortBy="#{checklist.servicoVerificacaoProduto.produto.coProduto}">
+							<f:facet name="header">
+								<h:outputText
+									id="lblCodigoProduto"
+									styleClass="rotulosPro"
+									value="#{msgsChecklist['COLUMN.codigo']}" />
+							</f:facet>
+							<h:commandLink
+								action="#{checklistMB.doVisualizaClick}"
+								id="lblNuProduto"
+								value="#{checklist.servicoVerificacaoProduto.produto.codigoFormatado}" />
+						</rich:column>
+						<rich:column
+							id="colNomeProduto"
+							style="text-align:left;"
+							sortBy="#{checklist.servicoVerificacaoProduto.produto.noProduto}">
+							<f:facet name="header">
+								<h:outputText
+									id="lblNomeProduto"
+									styleClass="rotulosPro"
+									value="#{msgsChecklist['COLUMN.nomeproduto']}" />
+							</f:facet>
+							<h:commandLink
+								action="#{checklistMB.doVisualizaClick}"
+								id="lblNoProduto"
+								value="#{checklist.servicoVerificacaoProduto.produto.noProduto}" />
+						</rich:column>
+						<rich:column
+							id="colServicoVerificacao"
+							style="text-align:left;"
+							sortBy="#{checklist.servicoVerificacaoProduto.servicoVerificacao.noServicoVerificacao}">
+							<f:facet name="header">
+								<h:outputText
+									id="lblServicoVerif"
+									styleClass="rotulosPro"
+									value="#{msgsChecklist['COLUMN.servicoverificacao']}" />
+							</f:facet>
+							<h:commandLink
+								action="#{checklistMB.doVisualizaClick}"
+								id="txtServicoVerif"
+								value="#{checklist.servicoVerificacaoProduto.servicoVerificacao.noServicoVerificacao}" />
+						</rich:column>
+						<rich:column
+							id="colSituacao"
+							style="text-align:left;"
+							sortBy="#{checklist.icSituacao}">
+							<f:facet name="header">
+								<h:outputText
+									id="lblSituacao"
+									styleClass="rotulosPro"
+									value="#{msgsChecklist['COLUMN.situacao']}" />
+							</f:facet>
+							<h:commandLink
+								action="#{checklistMB.doVisualizaClick}"
+								id="txtSituacao"
+								value="#{checklist.icSituacao}" />
+						</rich:column>
+						<rich:column
+							id="colRevogado"
+							style="text-align:left;"
+							sortBy="#{checklist.icRevogado}">
+							<f:facet name="header">
+								<h:outputText
+									id="lblRevogado"
+									styleClass="rotulosPro"
+									value="#{msgsChecklist['COLUMN.revogado']}" />
+							</f:facet>
+							<h:commandLink action="#{checklistMB.doVisualizaClick}"
+								 value="#{checklistMB.revogadoFormatado}" />
+						</rich:column>
+						<rich:column
+							id="colAcaoChecklist"
+							headerClass="th-text-center"
+							width="50px"
+							styleClass="iconesCentro">
+							<f:facet name="header">
+								<h:outputText
+									id="lblAcaoChecklist"
+									styleClass="rotulosTabela"
+									value="#{msgsChecklist['ACTION.acao']}" />
+							</f:facet>
+							<h:panelGroup rendered="#{checklistMB.showColumnAlterar}">
+								<a4j:commandLink
+									id="lnkAlteraChecklist"
+									action="#{checklistMB.doAlteraClick}"
+									tabindex="1"
+									style="border-style:none;border-width:0;">
+									<h:graphicImage
+										id="imgAlterarChecklist"
+										styleClass="action-icon"
+										alt="Alterar"
+										title="Alterar"
+										value="/images/icon_editar.gif" />
+								</a4j:commandLink>
+							</h:panelGroup>
+							<a4j:commandLink
+								id="lnkDeleteChecklist"
+								onclick="if(!confirm('#{msgsCef['MA005']}')) {return false;}"
+								action="#{checklistMB.doExcluirClick}"
+								style="border-style:none;border-width:0;"
+								rendered="#{checklist.showAcaoExcluir}"
+								reRender="tableChecklist, CEFMessagePanel, pnlConteudo"
+								tabindex="2"
+								status="sts">
+								<h:graphicImage
+									id="imgExcluirChecklist"
+									styleClass="action-icon"
+									alt="Excluir"
+									title="Excluir"
+									value="/images/icon_-delete.gif" />
+							</a4j:commandLink>
+							<a4j:jsFunction id="jsAtualizaListaCheckList" name="jsAtualizaListaCheckList" reRender="tableChecklist, CEFMessagePanel"></a4j:jsFunction>
+							<rich:spacer width="20" rendered="#{!checklist.showAcaoExcluir}"/>
+						</rich:column>
+						<f:facet name="footer">
+							<rich:datascroller
+								fastControls="false"
+								inactiveStyleClass="classe-datascroller classe-datascroller-unselected"
+								selectedStyleClass="classe-datascroller classe-datascroller-selected"
+								id="dataFooterChecklist"
+								renderIfSinglePage="false">
+								<f:facet name="first">
+									<h:graphicImage value="/images/tabela/seta_primeiro.gif" />
+								</f:facet>
+								<f:facet name="first_disabled">
+									<h:graphicImage value="/images/tabela/seta_primeiro.gif" />
+								</f:facet>
+								<f:facet name="last">
+									<h:graphicImage value="/images/tabela/seta_ultimo.gif" />
+								</f:facet>
+								<f:facet name="last_disabled">
+									<h:graphicImage value="/images/tabela/seta_ultimo.gif" />
+								</f:facet>
+								<f:facet name="previous">
+									<h:graphicImage value="/images/tabela/seta_anterior.gif" />
+								</f:facet>
+								<f:facet name="previous_disabled">
+									<h:graphicImage value="/images/tabela/seta_anterior.gif" />
+								</f:facet>
+								<f:facet name="next">
+									<h:graphicImage value="/images/tabela/seta_proximo.gif" />
+								</f:facet>
+								<f:facet name="next_disabled">
+									<h:graphicImage value="/images/tabela/seta_proximo.gif" />
+								</f:facet>
+							</rich:datascroller>
+						</f:facet>
+					</rich:dataTable>
+					<br />
+					<rich:spacer
+						height="0"
+						width="175" />
+				</rich:panel> <!-- do pnlConteudo -->			
+		</h:form>
+
+		<h:form id="formModal">
+			<rich:modalPanel
+				id="PanelModal"
+				resizeable="false"
+				autosized="true"
+				style="width:auto; height:auto" 
+				moveable="true">
+				<f:facet name="header">  
+		            <h:panelGroup>  
+						<h:outputText value="  #{msgsChecklist['TITLE.importacao']}" />
+		            </h:panelGroup>  
+		        </f:facet> 
+		        <rich:panel styleClass="body3"> 
+					<rich:dataTable
+						id="tableImportChecklist"
+						value="#{checklistMB.listImportacao}"
+						var="checklist"
+						rows="10"
+						width="790px;"
+						cellspacing="0"
+						cellpadding="0"
+						border="1"
+						rowClasses="tabela-row-1, tabela-row-2"
+						onRowMouseOver="this.style.backgroundColor = '#A2B6E5'"
+						onRowMouseOut="this.style.backgroundColor = ''">
+						<rich:column
+							id="colCodigoImportProduto"
+							style="text-align:center;"
+							width="10%"
+							sortBy="#{checklist.servicoVerificacaoProduto.produto.coProduto}">
+							<f:facet name="header">
+								<h:outputText
+									id="lblCodigoImportProduto"
+									styleClass="rotulosPro"
+									value="#{msgsChecklist['COLUMN.codigo']}" />
+							</f:facet>
+							<h:outputText
+								id="lblImportNuProduto"
+								value="#{checklist.servicoVerificacaoProduto.produto.codigoFormatado}" />
+						</rich:column>
+						<rich:column
+							id="colImportNomeProduto"
+							style="text-align:left;"
+							sortBy="#{checklist.servicoVerificacaoProduto.produto.noProduto}">
+							<f:facet name="header">
+								<h:outputText
+									id="lblImportNomeProduto"
+									styleClass="rotulosPro"
+									value="#{msgsChecklist['COLUMN.nomeproduto']}" />
+							</f:facet>
+							<h:outputText
+								id="lblImportNoProduto"
+								value="#{checklist.servicoVerificacaoProduto.produto.noProduto}" />
+						</rich:column>
+						<rich:column
+							id="colImportServicoVerificacao"
+							style="text-align:left;"
+							sortBy="#{checklist.servicoVerificacaoProduto.servicoVerificacao.noServicoVerificacao}">
+							<f:facet name="header">
+								<h:outputText
+									id="lblImportServicoVerif"
+									styleClass="rotulosPro"
+									value="#{msgsChecklist['COLUMN.servicoverificacao']}" />
+							</f:facet>
+							<h:outputText
+								id="txtImportServicoVerif"
+								value="#{checklist.servicoVerificacaoProduto.servicoVerificacao.noServicoVerificacao}" />
+						</rich:column>
+						<rich:column
+							id="colImportSituacao"
+							style="text-align:left;"
+							sortBy="#{checklist.icSituacao}">
+							<f:facet name="header">
+								<h:outputText
+									id="lblImportSituacao"
+									styleClass="rotulosPro"
+									value="#{msgsChecklist['COLUMN.situacao']}" />
+							</f:facet>
+							<h:outputText
+								id="txtImportSituacao"
+								value="#{checklist.icSituacao}" />
+						</rich:column>
+						<rich:column
+							id="colImportaDataInicio"
+							style="text-align:left;"
+							sortBy="#{checklist.dataInicio}">
+							<f:facet name="header">
+								<h:outputText
+									id="lblImportaDataInicio"
+									styleClass="rotulosPro"
+									value="#{msgsChecklist['COLUMN.dataInicio']}" />
+							</f:facet>
+							<h:outputText
+								id="txtImportaDataInicio"
+								value="#{checklist.dataInicio}" >
+								<f:convertDateTime pattern="dd/MM/yyyy"/>
+							</h:outputText>
+						</rich:column>
+						<rich:column
+							id="colImportaDataFim"
+							style="text-align:left;"
+							sortBy="#{checklist.dataFim}">
+							<f:facet name="header">
+								<h:outputText
+									id="lblImportaDataFim"
+									styleClass="rotulosPro"
+									value="#{msgsChecklist['COLUMN.dataFim']}" />
+							</f:facet>
+							<h:outputText
+								id="txtImportaDataFim"
+								value="#{checklist.dataFim}" >
+								<f:convertDateTime pattern="dd/MM/yyyy"/>
+							</h:outputText>
+						</rich:column>
+						<rich:column
+							id="colImportaChecklist"
+							width="40px"
+							styleClass="iconesCentro">
+							<h:commandLink
+								id="lnkImportarChecklist"
+								action="#{checklistMB.doImportarClick}"
+								tabindex="1"
+								style="border-style:none;border-width:0;">
+								<h:graphicImage
+									id="imgImportarChecklist"
+									alt="Importar"
+									title="Importar"
+									value="/images/icon_import.png" />
+							</h:commandLink>
+						</rich:column>
+						<f:facet name="footer">
+							<rich:datascroller
+								fastControls="false"
+								inactiveStyleClass="classe-datascroller classe-datascroller-unselected"
+								selectedStyleClass="classe-datascroller classe-datascroller-selected"
+								id="dataFooterChecklist"
+								renderIfSinglePage="false">
+								<f:facet name="first">
+									<h:graphicImage value="/images/tabela/seta_primeiro.gif" />
+								</f:facet>
+								<f:facet name="first_disabled">
+									<h:graphicImage value="/images/tabela/seta_primeiro.gif" />
+								</f:facet>
+								<f:facet name="last">
+									<h:graphicImage value="/images/tabela/seta_ultimo.gif" />
+								</f:facet>
+								<f:facet name="last_disabled">
+									<h:graphicImage value="/images/tabela/seta_ultimo.gif" />
+								</f:facet>
+								<f:facet name="previous">
+									<h:graphicImage value="/images/tabela/seta_anterior.gif" />
+								</f:facet>
+								<f:facet name="previous_disabled">
+									<h:graphicImage value="/images/tabela/seta_anterior.gif" />
+								</f:facet>
+								<f:facet name="next">
+									<h:graphicImage value="/images/tabela/seta_proximo.gif" />
+								</f:facet>
+								<f:facet name="next_disabled">
+									<h:graphicImage value="/images/tabela/seta_proximo.gif" />
+								</f:facet>
+							</rich:datascroller>
+						</f:facet>
+					</rich:dataTable>
+				</rich:panel>
+				<br />
+				<rich:panel style="text-align:center">
+					<a4j:commandButton
+						id="btnImportaVoltar"
+						value="#{msgsChecklist['ACTION.cancelar']}"
+						styleClass="rich-button-cinza rich-button"
+						onclick="#{rich:component('PanelModal')}.hide()" />
+				</rich:panel>
+			</rich:modalPanel>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

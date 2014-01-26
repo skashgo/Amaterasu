@@ -1,0 +1,128 @@
+/**
+ * Copyright (c) 2009-2011 Caixa Econômica Federal. Todos os direitos
+ * reservados.
+ * 
+ * Caixa Econômica Federal - SIIAC - Sistema Integrado de Acompanhamento da Conformidade
+ * 
+ * Este programa de computador foi desenvolvido sob demanda da CAIXA e está
+ * protegido por leis de direitos autorais e tratados internacionais. As
+ * condições de cópia e utilização do todo ou partes dependem de autorização da
+ * empresa. Cópias não são permitidas sem expressa autorização. Não pode ser
+ * comercializado ou utilizado para propósitos particulares.
+ * 
+ * Uso exclusivo da Caixa Econômica Federal. A reprodução ou distribuição não
+ * autorizada deste programa ou de parte dele, resultará em punições civis e
+ * criminais e os infratores incorrem em sanções previstas na legislação em
+ * vigor.
+ * 
+ * Histórico do Subversion:
+ * 
+ * LastChangedRevision:  
+ * LastChangedBy:  
+ * LastChangedDate: 
+ * 
+ * HeadURL: 
+ * 
+ */
+package br.gov.caixa.siiac.persistence.dao.impl;
+
+import java.io.Serializable;
+import java.util.List;
+
+import org.hibernate.Criteria;
+import org.hibernate.Hibernate;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import br.gov.caixa.siiac.persistence.dao.IGenericDAO;
+
+
+public abstract class GenericDAO<T> implements IGenericDAO<T> 
+{
+	private transient Class<T> persistenceClass;
+	
+	private transient SessionFactory sessionFactory;
+	
+	private Session session;
+	
+	public 	GenericDAO(Class<T> persistenceClass)
+	{
+		this.persistenceClass=persistenceClass;
+	}
+	
+	@Autowired
+	public void setSessionFactory(SessionFactory sessionFactory)
+	{
+		this.sessionFactory=sessionFactory;
+	}
+
+	@Autowired
+	public SessionFactory getSessionFActory() {
+		return this.sessionFactory;
+	}
+	
+	public Criteria getCriteria()
+	{
+		return this.sessionFactory.getCurrentSession().createCriteria(persistenceClass);
+	}
+	
+	public T findById(Object id) 
+	{
+		return (T) sessionFactory.getCurrentSession().get(persistenceClass,(Serializable) id);
+	}
+
+	public List<T> findAll() 
+	{
+		Criteria crit=this.sessionFactory.getCurrentSession().createCriteria(persistenceClass);
+		return crit.list();
+	}
+
+	public List<T> findByCriteria(Criteria crit) 
+	{
+		return crit.list();
+	}
+
+	public T merge(T object) 
+	{
+		return (T) this.sessionFactory.getCurrentSession().merge(object);
+	}
+
+	public void delete(T object)
+	{
+		this.sessionFactory.getCurrentSession().delete(object);
+	}
+
+	public void refresh(T object)
+	{
+		this.sessionFactory.getCurrentSession().refresh(object);
+	}
+
+	public void detached(T object) 
+	{
+		this.sessionFactory.getCurrentSession().evict(object);
+	}
+
+	public void save(T object) 
+	{
+		this.sessionFactory.getCurrentSession().save(object);
+	}
+
+	public void saveOrUpdate(T object) 
+	{
+		this.sessionFactory.getCurrentSession().saveOrUpdate(object);
+	}
+
+	public void initialize(Object object) 
+	{
+		Hibernate.initialize(object);
+	}
+
+	public Session getSession(){
+		return sessionFactory.getCurrentSession();
+	}
+	
+	public void flush(){
+		this.getSession().flush();
+	}
+}

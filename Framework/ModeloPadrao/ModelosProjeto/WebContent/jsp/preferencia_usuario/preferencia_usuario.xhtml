@@ -1,0 +1,878 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/jsp/include/template.xhtml">
+	<ui:define name="breadcrumb">
+		<h:panelGroup id="pnlBread">
+			<h:outputLabel
+				style="vertical-align: top;"
+				value="#{msgsPreferencia['BREAD']}" />
+		</h:panelGroup>
+	</ui:define>
+	<ui:define name="conteudo">
+		<script>
+			jQuery.fn.enterSubmit = function(){
+				jQuery('#formPreferencia\\:inputMatricula').live("keypress", function(e) {
+			        /* ENTER PRESSED*/
+			        if (e.keyCode == 13) {
+			        	jQuery("#formPreferencia\\:btnConsultar").click();
+			        	return false;
+			        }
+			        return true;
+			    });
+			};
+		</script>
+		<div id="conteudo">
+			<a4j:keepAlive beanName="preferenciaUsuarioMB" />
+			<div style="margin-bottom: 10px;">
+				<rich:spacer height="10"></rich:spacer>
+				<br clear="all" />
+				<h:graphicImage
+					value="/images/icon_dados.jpg"
+					style="vertical-align: text-bottom;" />
+				<h:outputText
+					value="#{msgsPreferencia['TITLE.titulo']}"
+					styleClass="tituloPagina" />
+			</div>
+			<a4j:form id="formPreferencia">
+				<rich:panel id="panelConteudo" styleClass="panel-externo">
+					<h:panelGrid
+						columns="3"
+						style="width: 100%; padding-left: 8px;">
+						<h:panelGrid
+							columns="2"
+							rowClasses="panel-grid-dados-usuario">
+							<h:outputLabel
+								value="#{msgsPreferencia['LABEL.matricula']}"
+								styleClass="rotulos"
+								style="text-transform: uppercase;" />
+							<h:outputText
+								value="#{preferenciaUsuarioMB.matricula}"
+								rendered="#{preferenciaUsuarioMB.showOutputMatricula}"
+								style="vertical-align: 1px; *vertical-align:7px;" />
+							<h:inputText
+								value="#{preferenciaUsuarioMB.matricula}"
+								id="inputMatricula"
+								tabindex="1"
+								styleClass="forms_input"
+								style="width:60px;"
+								rendered="#{preferenciaUsuarioMB.showInputMatricula}"
+								onfocus="type_masktype(false)">
+								<rich:jQuery
+									id="mascaraUnidade"
+									selector="#inputMatricula"
+									query="mask('a999999')"
+									timing="onload" />
+								<rich:jQuery
+									id="enterSubmit"
+									selector="#inputMatricula"
+									query="enterSubmit()"
+									timing="onload" />
+								<rich:jQuery
+									selector="#inputMatricula"
+									timing="onload"
+									query="focus()" />
+							</h:inputText>
+							<h:outputLabel
+								value="#{msgsPreferencia['LABEL.perfil']}"
+								styleClass="rotulos"
+								style="text-transform: uppercase;" />
+							<h:outputText
+								value="#{preferenciaUsuarioMB.perfil}"
+								style="vertical-align: 1px; *vertical-align:7px;" />
+						</h:panelGrid>
+						<h:panelGrid
+							columns="2"
+							rowClasses="panel-grid-dados-usuario">
+							<h:outputLabel
+								value="#{msgsPreferencia['LABEL.nome']}"
+								styleClass="rotulos"
+								style="text-transform: uppercase;" />
+							<h:outputText
+								value="#{preferenciaUsuarioMB.nome}"
+								style="vertical-align: 1px; *vertical-align:7px;" />
+							<h:outputLabel
+								value="#{msgsPreferencia['LABEL.situacao']}"
+								styleClass="rotulos"
+								style="text-transform: uppercase;" />
+							<h:panelGroup rendered="#{preferenciaUsuarioMB.showSituacaoAtivo}">
+								<h:graphicImage
+									value="/images/icon_ativo.gif"
+									style="vertical-align: middle;" />
+								<h:outputText value=" - Ativo" />
+							</h:panelGroup>
+							<h:panelGroup rendered="#{preferenciaUsuarioMB.showSituacaoInativo}">
+								<h:graphicImage
+									value="/images/icon_-delete.gif"
+									style="vertical-align: middle;" />
+								<h:outputText value=" - Inativo" />
+							</h:panelGroup>
+						</h:panelGrid>
+						<h:panelGrid
+							columns="1"
+							rowClasses="panel-grid-dados-usuario">
+							<h:column>
+								<h:outputLabel
+									value="#{msgsPreferencia['LABEL.unidade']}"
+									styleClass="rotulos"
+									style="text-transform: uppercase;" />
+								<rich:spacer width="20" />
+								<h:outputText
+									value="#{preferenciaUsuarioMB.unidade}"
+									style="vertical-align: 1px; *vertical-align:3px;" />
+							</h:column>
+							<rich:spacer height="1" />
+							<h:commandButton
+								value="#{msgsPreferencia['ACTION.consultarOutroUsuario']}"
+								styleClass="rich-button"
+								rendered="#{preferenciaUsuarioMB.showConsultarOutroUsuario}"
+								actionListener="#{preferenciaUsuarioMB.doConsultarOutroUsuario}"
+								style="width: 200px"
+								tabindex="2" />
+							<h:commandButton
+								value="#{msgsPreferencia['ACTION.consultar']}"
+								styleClass="rich-button"
+								id="btnConsultar"
+								rendered="#{preferenciaUsuarioMB.showConsultar}"
+								actionListener="#{preferenciaUsuarioMB.doConsultar}"
+								style="width: 200px"
+								tabindex="3" >
+								<a4j:support event="oncomplete"
+									reRender="showConsultar"/>									
+							</h:commandButton>
+							<rich:spacer
+								height="20"
+								rendered="#{preferenciaUsuarioMB.showLabelVazia}">
+								<h:outputLabel
+									value=""
+									rendered="#{preferenciaUsuarioMB.showLabelVazia}" />
+							</rich:spacer>
+						</h:panelGrid>
+					</h:panelGrid>
+				</rich:panel>
+				<br clear="all" />
+				<h:panelGroup rendered="#{preferenciaUsuarioMB.showLabelPreferencia}">
+					<div style="margin-bottom: 10px;">
+						<h:graphicImage
+							value="/images/icon_estagiarios_.gif"
+							style="vertical-align: text-bottom;" />
+						<h:outputText
+							value="#{msgsPreferencia['LABEL.preferencias']}"
+							styleClass="tituloPagina" />
+					</div>
+				</h:panelGroup>
+				<rich:panel id="showConsultar" rendered="#{preferenciaUsuarioMB.isShowConsulta}">
+					<h:graphicImage value="/images/icon_estagiarios_.gif"
+						style="vertical-align: bottom;" />
+					<h:outputText value="#{msgsProdutoUsuario['LABEL.categoria']}"
+						styleClass="tituloPagina" /><br/>
+					<h:outputLabel styleClass="rotulos" style="font-weight: normal; font-style: italic;" value="#{msgsProdutoUsuario['LABEL.todosCategorias']}" rendered="#{preferenciaUsuarioMB.possuiTodasCategorias}"/>
+					<rich:dataTable
+						id="tableCategoriasAssociadas"
+						value="#{preferenciaUsuarioMB.listaCategorias}"
+						var="item"
+						width="100%"
+						rows="10"
+						rowClasses="tabela-row-1, tabela-row-2"
+						onRowMouseOver="this.style.backgroundColor = '#A2B6E5'"
+						onRowMouseOut="this.style.backgroundColor = ''">
+						<rich:column
+							width="15%"
+							sortBy="#{item.categoriaProduto.sgCategoria}"
+							headerClass="table-produto-codigo">
+							<f:facet name="header">
+								<h:outputText value="#{msgsPreferencia['TABLE.siglaCategoria']}" />
+							</f:facet>
+							<h:outputText value="#{item.categoriaProduto.sgCategoria}" />
+						</rich:column>
+						<rich:column
+							width="75%"
+							sortBy="#{item.categoriaProduto.noCategoriaProduto}"
+							sortOrder="ASCENDING"
+							headerClass="table-produto-nome">
+							<f:facet name="header">
+								<h:outputText value="#{msgsPreferencia['TABLE.nomeCategoria']}" />
+							</f:facet>
+							<h:outputText value="#{item.categoriaProduto.noCategoriaProduto}" />
+						</rich:column>
+						
+						<f:facet name="footer">
+							<rich:datascroller
+								fastControls="false"
+								inactiveStyleClass="classe-datascroller classe-datascroller-unselected"
+								selectedStyleClass="classe-datascroller classe-datascroller-selected"
+								id="dataFooterUsuario"
+								renderIfSinglePage="false">
+								<f:facet name="first">
+									<h:graphicImage value="#{applicationMB.contexto}/images/tabela/seta_primeiro.gif" />
+								</f:facet>
+								<f:facet name="first_disabled">
+									<h:graphicImage value="#{applicationMB.contexto}/images/tabela/seta_primeiro.gif" />
+								</f:facet>
+								<f:facet name="last">
+									<h:graphicImage value="#{applicationMB.contexto}/images/tabela/seta_ultimo.gif" />
+								</f:facet>
+								<f:facet name="last_disabled">
+									<h:graphicImage value="#{applicationMB.contexto}/images/tabela/seta_ultimo.gif" />
+								</f:facet>
+								<f:facet name="previous">
+									<h:graphicImage value="#{applicationMB.contexto}/images/tabela/seta_anterior.gif" />
+								</f:facet>
+								<f:facet name="previous_disabled">
+									<h:graphicImage value="#{applicationMB.contexto}/images/tabela/seta_anterior.gif" />
+								</f:facet>
+								<f:facet name="next">
+									<h:graphicImage value="#{applicationMB.contexto}/images/tabela/seta_proximo.gif" />
+								</f:facet>
+								<f:facet name="next_disabled">
+									<h:graphicImage value="#{applicationMB.contexto}/images/tabela/seta_proximo.gif" />
+								</f:facet>
+							</rich:datascroller>
+						</f:facet>
+					</rich:dataTable>
+					
+					<br/><br/>				
+					<h:graphicImage value="/images/icon_estagiarios_.gif"
+						style="vertical-align: bottom;" />
+					<h:outputText value="#{msgsProdutoUsuario['PANEL.titulo']}"
+						styleClass="tituloPagina" /><br/>
+					<h:outputLabel styleClass="rotulos" style="font-weight: normal; font-style: italic;" value="#{msgsProdutoUsuario['LABEL.todosProdutos']}" rendered="#{preferenciaUsuarioMB.possuiTodosProdutos}"/>
+					<rich:dataTable
+						id="tbProdutoAssociados"
+						value="#{preferenciaUsuarioMB.listaProdutos}"
+						var="item"
+						rowClasses="tabela-row-1, tabela-row-2"
+						rows="10"
+						onRowMouseOver="this.style.backgroundColor = '#A2B6E5'"
+						onRowMouseOut="this.style.backgroundColor = ''"
+						width="100%">
+						<rich:column
+							width="15%"
+							sortBy="#{item.produto.coProduto}">
+							<f:facet name="header">
+								<h:outputText value="#{msgsProdutoUsuario['TABLE.codigo']}" />
+							</f:facet>
+							<h:outputText value="#{item.produto.coProduto}" />
+						</rich:column>
+						<rich:column
+							width="75%"
+							sortBy="#{item.produto.noProduto}">
+							<f:facet name="header">
+								<h:outputText value="#{msgsProdutoUsuario['TABLE.nome']}" />
+							</f:facet>
+							<h:outputText value="#{item.produto.noProduto}" />
+						</rich:column>
+						<f:facet name="footer">
+							<rich:datascroller
+								fastControls="false"
+								inactiveStyleClass="classe-datascroller classe-datascroller-unselected"
+								selectedStyleClass="classe-datascroller classe-datascroller-selected"
+								id="dataFooterUsuario"
+								renderIfSinglePage="false">
+								<f:facet name="first">
+									<h:graphicImage value="/images/tabela/seta_primeiro.gif" />
+								</f:facet>
+								<f:facet name="first_disabled">
+									<h:graphicImage value="/images/tabela/seta_primeiro.gif" />
+								</f:facet>
+								<f:facet name="last">
+									<h:graphicImage value="/images/tabela/seta_ultimo.gif" />
+								</f:facet>
+								<f:facet name="last_disabled">
+									<h:graphicImage value="/images/tabela/seta_ultimo.gif" />
+								</f:facet>
+								<f:facet name="previous">
+									<h:graphicImage value="/images/tabela/seta_anterior.gif" />
+								</f:facet>
+								<f:facet name="previous_disabled">
+									<h:graphicImage value="/images/tabela/seta_anterior.gif" />
+								</f:facet>
+								<f:facet name="next">
+									<h:graphicImage value="/images/tabela/seta_proximo.gif" />
+								</f:facet>
+								<f:facet name="next_disabled">
+									<h:graphicImage value="/images/tabela/seta_proximo.gif" />
+								</f:facet>
+							</rich:datascroller>
+						</f:facet>
+					</rich:dataTable>
+					
+					<br/><br/>
+					<h:graphicImage value="/images/icon_estagiarios_.gif"
+						style="vertical-align: bottom;" />
+					<h:outputText value="#{msgsServicoVerificacao['PANEL.titulo']}"
+						styleClass="tituloPagina" /><br/>
+					<h:outputLabel styleClass="rotulos" style="font-weight: normal; font-style: italic;" value="#{msgsProdutoUsuario['LABEL.todosServicos']}" rendered="#{preferenciaUsuarioMB.possuiTodosServicos}"/>
+					<rich:dataTable
+						id="tbServicosAssociados"
+						value="#{preferenciaUsuarioMB.listaServicos}"
+						var="item"
+						rowClasses="tabela-row-1, tabela-row-2"
+						rows="10"
+						onRowMouseOver="this.style.backgroundColor = '#A2B6E5'"
+						onRowMouseOut="this.style.backgroundColor = ''"
+						width="100%">
+						<rich:column
+							width="15%"
+							sortBy="#{item.produto.coProduto}">
+							<f:facet name="header">
+								<h:outputText value="#{msgsProdutoUsuario['TABLE.codigo']}" />
+							</f:facet>
+							<h:outputText value="#{item.servicoVerificacao.nuServicoVerificacao}" />
+						</rich:column>
+						<rich:column
+							width="75%"
+							sortBy="#{item.produto.noProduto}">
+							<f:facet name="header">
+								<h:outputText value="#{msgsProdutoUsuario['TABLE.nome']}" />
+							</f:facet>
+							<h:outputText value="#{item.servicoVerificacao.noServicoVerificacao}" />
+						</rich:column>
+						<f:facet name="footer">
+							<rich:datascroller
+								fastControls="false"
+								inactiveStyleClass="classe-datascroller classe-datascroller-unselected"
+								selectedStyleClass="classe-datascroller classe-datascroller-selected"
+								id="dataFooterUsuarioServicos"
+								renderIfSinglePage="false">
+								<f:facet name="first">
+									<h:graphicImage value="/images/tabela/seta_primeiro.gif" />
+								</f:facet>
+								<f:facet name="first_disabled">
+									<h:graphicImage value="/images/tabela/seta_primeiro.gif" />
+								</f:facet>
+								<f:facet name="last">
+									<h:graphicImage value="/images/tabela/seta_ultimo.gif" />
+								</f:facet>
+								<f:facet name="last_disabled">
+									<h:graphicImage value="/images/tabela/seta_ultimo.gif" />
+								</f:facet>
+								<f:facet name="previous">
+									<h:graphicImage value="/images/tabela/seta_anterior.gif" />
+								</f:facet>
+								<f:facet name="previous_disabled">
+									<h:graphicImage value="/images/tabela/seta_anterior.gif" />
+								</f:facet>
+								<f:facet name="next">
+									<h:graphicImage value="/images/tabela/seta_proximo.gif" />
+								</f:facet>
+								<f:facet name="next_disabled">
+									<h:graphicImage value="/images/tabela/seta_proximo.gif" />
+								</f:facet>
+							</rich:datascroller>
+						</f:facet>
+					</rich:dataTable>
+				</rich:panel>
+				<rich:panel id="categoriasPreferenciais" rendered="#{!preferenciaUsuarioMB.isShowConsulta}">
+					<rich:panel
+						id="panel-insert-categoria"
+						styleClass="panel-externo"
+						style="height: 25px; padding: 10px;"
+						rendered="#{preferenciaUsuarioMB.showCadastrarCategoria}">
+						<div style="width: 80%; float: left;">
+							<div style="float: left; width: 76px;">
+								<h:outputText
+									value="#{msgsPreferencia['LABEL.categoria']}:"
+									styleClass="rotulos"
+									style="text-transform: uppercase; vertical-align: 2px; *vertical-align: 6px;" />
+							</div>
+							<rich:spacer
+								height="1"
+								width="25" />
+							<h:selectOneMenu
+								value="#{preferenciaUsuarioMB.itemCategoria}"
+								styleClass="forms_input"
+								id="cmbCategorias"
+								disabled="#{preferenciaUsuarioMB.todasCategorias}"
+								style="vertical-align: 1px; *vertical-align: 2px; width: 500px;"
+								tabindex="4">
+								<f:selectItem
+									itemValue="0"
+									itemLabel="Selecione..." />
+								<f:selectItems value="#{preferenciaUsuarioMB.selectItemCategorias}" />
+								
+							</h:selectOneMenu>
+							
+							<h:selectBooleanCheckbox id="ckAdicionarTodasCategorias"
+								value="#{preferenciaUsuarioMB.todasCategorias}" styleClass="rotulos"
+								style="margin: 7px 2px; margin-left: 20px;">
+								<a4j:support event="onclick"
+									reRender="categoriasPreferenciais"
+									actionListener="#{preferenciaUsuarioMB.doCheckTodasCategorias}" />
+							</h:selectBooleanCheckbox> 
+							<h:outputLabel id="lblCheckBoxCategorias" for="ckAdicionarTodasCategorias"
+								styleClass="rotulos" value="#{msgsUsuario['LABEL.todos']}" />
+								
+							<rich:spacer
+								height="1"
+								width="25" />
+							
+						</div>
+						<div style="width: 15%; float: right;">
+							<a4j:commandButton
+								rendered="#{!preferenciaUsuarioMB.todasCategorias}"
+								actionListener="#{preferenciaUsuarioMB.doIncluirCategoria}"
+								reRender="tableCategoriasPreferenciais, panel-insert-categoria, CEFMessagePanel"
+								value="#{msgsPreferencia['ACTION.incluir']}"
+								styleClass="rich-button"
+								style="float: right;"
+								tabindex="6" />
+						</div>
+					</rich:panel>
+					<br clear="all" />
+					<rich:dataTable
+						id="tableCategoriasPreferenciais"
+						value="#{preferenciaUsuarioMB.listaCategorias}"
+						var="item"
+						width="100%"
+						rows="10"
+						rendered="#{preferenciaUsuarioMB.showListaCategorias}"
+						rowClasses="tabela-row-1, tabela-row-2"
+						onRowMouseOver="this.style.backgroundColor = '#A2B6E5'"
+						onRowMouseOut="this.style.backgroundColor = ''">
+						<rich:column
+							width="13%"
+							sortBy="#{item.categoriaProduto.sgCategoria}"
+							headerClass="table-produto-codigo">
+							<f:facet name="header">
+								<h:outputText value="#{msgsPreferencia['TABLE.siglaCategoria']}" />
+							</f:facet>
+							<h:outputText value="#{item.categoriaProduto.sgCategoria}" />
+						</rich:column>
+						<rich:column
+							width="82%"
+							sortBy="#{item.categoriaProduto.noCategoriaProduto}"
+							sortOrder="ASCENDING"
+							headerClass="table-produto-nome">
+							<f:facet name="header">
+								<h:outputText value="#{msgsPreferencia['TABLE.nomeCategoria']}" />
+							</f:facet>
+							<h:outputText value="#{item.categoriaProduto.noCategoriaProduto}" />
+						</rich:column>
+						<rich:column
+							width="5%"
+							rendered="#{preferenciaUsuarioMB.showRemoverCategoria}"
+							styleClass="table-produto-acao">
+							<f:facet name="header">
+								<h:outputText value="#{msgsPreferencia['TABLE.acao']}" />
+							</f:facet>
+							<center>
+								<a4j:commandLink
+									actionListener="#{preferenciaUsuarioMB.doRemoverCategoria}"
+									reRender="tableCategoriasPreferenciais, panel-insert-categoria"
+									tabindex="7">
+									<h:graphicImage value="/images/icon_-delete.gif" />
+								</a4j:commandLink>
+							</center>
+						</rich:column>
+						<f:facet name="footer">
+							<rich:datascroller
+								fastControls="false"
+								inactiveStyleClass="classe-datascroller classe-datascroller-unselected"
+								selectedStyleClass="classe-datascroller classe-datascroller-selected"
+								id="dataFooterUsuario"
+								renderIfSinglePage="false">
+								<f:facet name="first">
+									<h:graphicImage value="#{applicationMB.contexto}/images/tabela/seta_primeiro.gif" />
+								</f:facet>
+								<f:facet name="first_disabled">
+									<h:graphicImage value="#{applicationMB.contexto}/images/tabela/seta_primeiro.gif" />
+								</f:facet>
+								<f:facet name="last">
+									<h:graphicImage value="#{applicationMB.contexto}/images/tabela/seta_ultimo.gif" />
+								</f:facet>
+								<f:facet name="last_disabled">
+									<h:graphicImage value="#{applicationMB.contexto}/images/tabela/seta_ultimo.gif" />
+								</f:facet>
+								<f:facet name="previous">
+									<h:graphicImage value="#{applicationMB.contexto}/images/tabela/seta_anterior.gif" />
+								</f:facet>
+								<f:facet name="previous_disabled">
+									<h:graphicImage value="#{applicationMB.contexto}/images/tabela/seta_anterior.gif" />
+								</f:facet>
+								<f:facet name="next">
+									<h:graphicImage value="#{applicationMB.contexto}/images/tabela/seta_proximo.gif" />
+								</f:facet>
+								<f:facet name="next_disabled">
+									<h:graphicImage value="#{applicationMB.contexto}/images/tabela/seta_proximo.gif" />
+								</f:facet>
+							</rich:datascroller>
+						</f:facet>
+					</rich:dataTable>
+				</rich:panel>
+				
+				<rich:panel id="produtosPreferenciais" rendered="#{!preferenciaUsuarioMB.isShowConsulta}">
+					<rich:panel
+						id="panel-insert-produto"
+						styleClass="panel-externo"
+						style="height: 20px; padding: 10px;"
+						rendered="#{preferenciaUsuarioMB.showCadastrarProduto}">
+						<div style="width: 80%; float: left;">
+							<h:outputText
+								value="#{msgsPreferencia['LABEL.produto']}"
+								styleClass="rotulos"
+								style="text-transform: uppercase; vertical-align: 2px; *vertical-align: 6px;" />
+							<rich:spacer
+								height="1"
+								width="25" />
+							<h:selectOneMenu
+								value="#{preferenciaUsuarioMB.itemProduto}"
+								styleClass="forms_input"
+								id="cmbProdutos"
+								disabled="#{preferenciaUsuarioMB.todosProdutos}"
+								style="vertical-align: 1px; *vertical-align: 2px; width: 500px;"
+								tabindex="4">
+								<f:selectItem
+									itemValue="0"
+									itemLabel="Selecione..." />
+								<f:selectItems value="#{preferenciaUsuarioMB.selectItemProdutos}" />
+								
+							</h:selectOneMenu>
+							
+							<h:selectBooleanCheckbox id="ckAdicionarTodosProdutos"
+								value="#{preferenciaUsuarioMB.todosProdutos}" styleClass="rotulos"
+								style="margin: 7px 2px; margin-left: 20px;">
+								<a4j:support event="onclick"
+									reRender="produtosPreferenciais"
+									actionListener="#{preferenciaUsuarioMB.doCheckTodosProdutos}" />
+							</h:selectBooleanCheckbox> 
+							<h:outputLabel id="lblCheckBoxProduto" for="ckAdicionarTodos"
+								styleClass="rotulos" value="#{msgsUsuario['LABEL.todos']}" />
+								
+							<rich:spacer
+								height="1"
+								width="25" />
+							
+						</div>
+						<div style="width: 15%; float: right;">
+							<a4j:commandButton
+								rendered="#{!preferenciaUsuarioMB.todosProdutos}"
+								actionListener="#{preferenciaUsuarioMB.doIncluirProduto}"
+								reRender="tableProdutosPreferenciais, panel-insert-produto, CEFMessagePanel"
+								value="#{msgsPreferencia['ACTION.incluir']}"
+								styleClass="rich-button"
+								style="float: right;"
+								tabindex="6" />
+						</div>
+					</rich:panel>
+					<br clear="all" />
+					<rich:dataTable
+						id="tableProdutosPreferenciais"
+						value="#{preferenciaUsuarioMB.listaProdutos}"
+						var="item"
+						width="100%"
+						rows="10"
+						rendered="#{preferenciaUsuarioMB.showListaProdutos}"
+						rowClasses="tabela-row-1, tabela-row-2"
+						onRowMouseOver="this.style.backgroundColor = '#A2B6E5'"
+						onRowMouseOut="this.style.backgroundColor = ''">
+						<rich:column
+							width="13%"
+							sortBy="#{item.produto.coProduto}"
+							headerClass="table-produto-codigo">
+							<f:facet name="header">
+								<h:outputText value="#{msgsPreferencia['TABLE.codigoProduto']}" />
+							</f:facet>
+							<h:outputText value="#{item.produto.coProduto}" />
+						</rich:column>
+						<rich:column
+							width="82%"
+							sortBy="#{item.produto.noProduto}"
+							headerClass="table-produto-nome">
+							<f:facet name="header">
+								<h:outputText value="#{msgsPreferencia['TABLE.nomeProduto']}" />
+							</f:facet>
+							<h:outputText value="#{item.produto.noProduto}" />
+						</rich:column>
+						<rich:column
+							width="5%"
+							rendered="#{preferenciaUsuarioMB.showRemoverProduto}"
+							styleClass="table-produto-acao">
+							<f:facet name="header">
+								<h:outputText value="#{msgsPreferencia['TABLE.acao']}" />
+							</f:facet>
+							<center>
+								<a4j:commandLink
+									actionListener="#{preferenciaUsuarioMB.doRemoverProduto}"
+									reRender="tableProdutosPreferenciais, panel-insert-produto"
+									tabindex="7">
+									<h:graphicImage value="/images/icon_-delete.gif" />
+								</a4j:commandLink>
+							</center>
+						</rich:column>
+						<f:facet name="footer">
+							<rich:datascroller
+								fastControls="false"
+								inactiveStyleClass="classe-datascroller classe-datascroller-unselected"
+								selectedStyleClass="classe-datascroller classe-datascroller-selected"
+								id="dataFooterUsuario"
+								renderIfSinglePage="false">
+								<f:facet name="first">
+									<h:graphicImage value="#{applicationMB.contexto}/images/tabela/seta_primeiro.gif" />
+								</f:facet>
+								<f:facet name="first_disabled">
+									<h:graphicImage value="#{applicationMB.contexto}/images/tabela/seta_primeiro.gif" />
+								</f:facet>
+								<f:facet name="last">
+									<h:graphicImage value="#{applicationMB.contexto}/images/tabela/seta_ultimo.gif" />
+								</f:facet>
+								<f:facet name="last_disabled">
+									<h:graphicImage value="#{applicationMB.contexto}/images/tabela/seta_ultimo.gif" />
+								</f:facet>
+								<f:facet name="previous">
+									<h:graphicImage value="#{applicationMB.contexto}/images/tabela/seta_anterior.gif" />
+								</f:facet>
+								<f:facet name="previous_disabled">
+									<h:graphicImage value="#{applicationMB.contexto}/images/tabela/seta_anterior.gif" />
+								</f:facet>
+								<f:facet name="next">
+									<h:graphicImage value="#{applicationMB.contexto}/images/tabela/seta_proximo.gif" />
+								</f:facet>
+								<f:facet name="next_disabled">
+									<h:graphicImage value="#{applicationMB.contexto}/images/tabela/seta_proximo.gif" />
+								</f:facet>
+							</rich:datascroller>
+						</f:facet>
+					</rich:dataTable>
+				</rich:panel>
+				
+				<br clear="all" />
+				<rich:panel id="servicosPreferenciais"  rendered="#{!preferenciaUsuarioMB.isShowConsulta}">
+					<rich:panel
+						id="panel-insert-servico"
+						styleClass="panel-externo"
+						style="height: 20px; padding: 10px;"
+						rendered="#{preferenciaUsuarioMB.showCadastrarServico}">
+						<div style="width: 80%; float: left;">
+							<h:outputText
+								value="#{msgsPreferencia['LABEL.servicos']}"
+								styleClass="rotulos"
+								style="text-transform: uppercase;vertical-align: middle; *vertical-align: 5px;" />
+							<rich:spacer
+								height="1"
+								width="25" />
+							<h:selectOneMenu
+								value="#{preferenciaUsuarioMB.itemServico}"
+								id="cmbServicos"
+								styleClass="forms_input"
+								style="vertical-align: 1px; *vertical-align: 2px; width: 500px;"
+								disabled="#{preferenciaUsuarioMB.todosServicos}"
+								tabindex="8">
+								<f:selectItem
+									itemValue="0"
+									itemLabel="Selecione..." />
+								<f:selectItems value="#{preferenciaUsuarioMB.selectItemServicos}" />
+							</h:selectOneMenu>	
+							
+							<h:selectBooleanCheckbox id="ckAdicionarTodosServicos"
+								value="#{preferenciaUsuarioMB.todosServicos}" styleClass="rotulos"
+								style="margin: 7px 2px; margin-left: 20px;">
+								<a4j:support event="onclick"
+									reRender="servicosPreferenciais, tableServicosPreferenciais"
+									actionListener="#{preferenciaUsuarioMB.doCheckTodosServicos}" />
+							</h:selectBooleanCheckbox> 
+							<h:outputLabel id="lblCheckBoxServicos" for="ckAdicionarTodosServicos"
+								styleClass="rotulos" value="#{msgsUsuario['LABEL.todos']}" />			
+						</div>
+						<div style="width: 15%; float: right; margin-left: 20px;">
+							<a4j:commandButton
+								rendered="#{!preferenciaUsuarioMB.todosServicos}"
+								actionListener="#{preferenciaUsuarioMB.doIncluirServico}"
+								reRender="tableServicosPreferenciais, panel-insert-servico, CEFMessagePanel"
+								value="#{msgsPreferencia['ACTION.incluir']}"
+								styleClass="rich-button"
+								style="float: right;"
+								tabindex="10" />
+						</div>
+					</rich:panel>
+					<br clear="all" />
+					<rich:dataTable
+						id="tableServicosPreferenciais"
+						value="#{preferenciaUsuarioMB.listaServicos}"
+						var="item"
+						width="100%"
+						rows="10"
+						rendered="#{preferenciaUsuarioMB.showListaServicos}"
+						rowClasses="tabela-row-1, tabela-row-2"
+						onRowMouseOver="this.style.backgroundColor = '#A2B6E5'"
+						onRowMouseOut="this.style.backgroundColor = ''">
+						<rich:column
+							width="95%"
+							sortBy="#{item.servicoVerificacao.noServicoVerificacao}"
+							headerClass="table-servico-nome">
+							<f:facet name="header">
+								<h:outputText value="#{msgsPreferencia['TABLE.servicos']}" />
+							</f:facet>
+							<h:outputText
+								value="#{item.servicoVerificacao.noServicoVerificacao}" />
+						</rich:column>
+						<rich:column
+							width="5%"
+							rendered="#{preferenciaUsuarioMB.showRemoverServico}"
+							headerClass="table-servico-acao">
+							<f:facet name="header">
+								<h:outputText value="#{msgsPreferencia['TABLE.acao']}" />
+							</f:facet>
+							<center>
+								<a4j:commandLink
+									actionListener="#{preferenciaUsuarioMB.doRemoverServico}"
+									reRender="tableServicosPreferenciais, panel-insert-servico"
+									tabindex="11">
+									<h:graphicImage value="/images/icon_-delete.gif" />
+								</a4j:commandLink>
+							</center>
+						</rich:column>
+						<f:facet name="footer">
+							<rich:datascroller
+								fastControls="false"
+								inactiveStyleClass="classe-datascroller classe-datascroller-unselected"
+								selectedStyleClass="classe-datascroller classe-datascroller-selected"
+								id="dataFooterUsuario"
+								renderIfSinglePage="false">
+								<f:facet name="first">
+									<h:graphicImage value="#{applicationMB.contexto}/images/tabela/seta_primeiro.gif" />
+								</f:facet>
+								<f:facet name="first_disabled">
+									<h:graphicImage value="#{applicationMB.contexto}/images/tabela/seta_primeiro.gif" />
+								</f:facet>
+								<f:facet name="last">
+									<h:graphicImage value="#{applicationMB.contexto}/images/tabela/seta_ultimo.gif" />
+								</f:facet>
+								<f:facet name="last_disabled">
+									<h:graphicImage value="#{applicationMB.contexto}/images/tabela/seta_ultimo.gif" />
+								</f:facet>
+								<f:facet name="previous">
+									<h:graphicImage value="#{applicationMB.contexto}/images/tabela/seta_anterior.gif" />
+								</f:facet>
+								<f:facet name="previous_disabled">
+									<h:graphicImage value="#{applicationMB.contexto}/images/tabela/seta_anterior.gif" />
+								</f:facet>
+								<f:facet name="next">
+									<h:graphicImage value="#{applicationMB.contexto}/images/tabela/seta_proximo.gif" />
+								</f:facet>
+								<f:facet name="next_disabled">
+									<h:graphicImage value="#{applicationMB.contexto}/images/tabela/seta_proximo.gif" />
+								</f:facet>
+							</rich:datascroller>
+						</f:facet>
+					</rich:dataTable>
+				</rich:panel>
+				<br clear="all" />
+				<rich:panel id="gerentesPreferenciais"  rendered="#{!preferenciaUsuarioMB.isShowConsulta}">
+				<rich:panel
+						id="panel-insert-gerente"
+						styleClass="panel-externo"
+						style="height: 20px; padding: 10px;"
+						
+						>
+						<div style="width: 80%; float: left;">
+							<h:outputText
+								value="#{msgsPreferencia['LABEL.gestores']}"
+								styleClass="rotulos"
+								style="text-transform: uppercase;vertical-align: middle; *vertical-align: 5px;" />
+							<rich:spacer
+								height="1"
+								width="25" />
+							<h:selectOneMenu
+								value="#{preferenciaUsuarioMB.itemGerente}"
+								id="cmbGerentes"
+								styleClass="forms_input"
+								style="vertical-align: 1px; *vertical-align: 2px; width: 500px;"
+								disabled="#{preferenciaUsuarioMB.disableGerentes}"
+								tabindex="8">
+								<f:selectItem
+									itemValue="0"
+									itemLabel="Selecione..." />
+								<f:selectItems value="#{preferenciaUsuarioMB.selectItemGerentes}" />
+							</h:selectOneMenu>	
+							
+							</div>
+							<a4j:commandButton
+								value="#{msgsPreferencia['ACTION.incluir']}"
+								actionListener="#{preferenciaUsuarioMB.doIncluirGerente}"
+								disabled="#{preferenciaUsuarioMB.disableGerentes}"
+								reRender="tableGerentesPreferenciais, CEFMessagePanel, panel-insert-gerente"
+								styleClass="rich-button"
+								style="float: right;"
+								tabindex="10" />
+							
+						
+					</rich:panel>
+					<br clear="all" />
+					<rich:dataTable
+						id="tableGerentesPreferenciais"
+						value="#{preferenciaUsuarioMB.listaGerentes}"
+						var="itemGerente"
+						width="100%"
+						rows="10"
+						
+						rowClasses="tabela-row-1, tabela-row-2"
+						onRowMouseOver="this.style.backgroundColor = '#A2B6E5'"
+						onRowMouseOut="this.style.backgroundColor = ''">
+						
+						<rich:column
+							width="12%"
+							sortBy="#{item.servicoVerificacao.noServicoVerificacao}"
+							headerClass="table-produto-codigo">
+							<f:facet name="header">
+								<h:outputText value="#{msgsPreferencia['TABLE.codigoGerente']}" />
+							</f:facet>
+							<h:outputText
+								value="#{preferenciaUsuarioMB.matriculaGerente}" />
+						</rich:column>
+						
+						<rich:column
+							width="73%"
+							sortBy="#{item.produto.noProduto}"
+							headerClass="table-produto-nome">
+							<f:facet name="header">
+								<h:outputText value="#{msgsPreferencia['TABLE.nomeGerente']}" />
+							</f:facet>
+							<h:outputText
+								value="#{preferenciaUsuarioMB.nomeGerente}" />
+						</rich:column>
+						
+						<rich:column
+							width="5%"
+							
+							headerClass="table-servico-acao">
+							<f:facet name="header">
+								<h:outputText value="#{msgsPreferencia['TABLE.acao']}" />
+							</f:facet>
+							<center>
+								<a4j:commandLink
+									actionListener="#{preferenciaUsuarioMB.doRemoverGerente}"
+									reRender="tableGerentesPreferenciais, panel-insert-gerente"
+									tabindex="11">
+									<h:graphicImage value="/images/icon_-delete.gif" />
+								</a4j:commandLink>
+							</center>
+						</rich:column>
+						</rich:dataTable>
+					</rich:panel>
+					<br clear="all" />
+				<h:commandButton
+					action="#{preferenciaUsuarioMB.doSalvar}"
+					onclick="if(!confirm('#{msgsCef['MA003']}')) {return false;}"
+					value="#{msgsPreferencia['ACTION.salvar']}"
+					rendered="#{preferenciaUsuarioMB.showSalvar}"
+					styleClass="rich-button"
+					style="float: right;"
+					tabindex="13" />
+				<h:commandButton
+					action="#{preferenciaUsuarioMB.doVoltar}"
+					value="#{msgsPreferencia['ACTION.voltar']}"
+					rendered="#{preferenciaUsuarioMB.showVoltar}"
+					styleClass="rich-button rich-button-cinza"
+					style="float: right;"
+					tabindex="12" />
+			</a4j:form>
+		</div>
+	</ui:define>
+</ui:composition>
+</html>

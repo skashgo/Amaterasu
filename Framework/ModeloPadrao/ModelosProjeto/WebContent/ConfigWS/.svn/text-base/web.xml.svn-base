@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="2.5"
+ xmlns="http://java.sun.com/xml/ns/javaee"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+ <display-name>SIIAC-WS</display-name>
+ <!-- Teste para WebService Parâmetros da aplicação -->
+ <context-param>
+  <param-name>contextConfigLocation</param-name>
+  <param-value>/WEB-INF/app-config.xml</param-value>
+ </context-param>
+ <!-- Registro dos listeners -->
+ <listener>
+  <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+ </listener>
+ <listener>
+  <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+ </listener>
+ <!-- Registro dos servlets -->
+ <servlet>
+  <servlet-name>AcessoPentahoWS</servlet-name>
+  <servlet-class>br.gov.caixa.siiac.ws.AcessoPentahoWS</servlet-class>
+  <load-on-startup>1</load-on-startup>
+ </servlet>
+ <servlet>
+  <servlet-name>EnviaParecerWS</servlet-name>
+  <servlet-class>br.gov.caixa.siiac.ws.EnviaParecerWS</servlet-class>
+  <load-on-startup>1</load-on-startup>
+ </servlet>
+ <servlet>
+  <servlet-name>CheckEstadoAgenda</servlet-name>
+  <servlet-class>br.gov.caixa.siiac.ws.CheckEstadoAgenda</servlet-class>
+  <load-on-startup>1</load-on-startup>
+ </servlet>
+ <servlet-mapping>
+  <servlet-name>AcessoPentahoWS</servlet-name>
+  <url-pattern>/AcessoPentahoWS</url-pattern>
+ </servlet-mapping>
+ <servlet-mapping>
+  <servlet-name>EnviaParecerWS</servlet-name>
+  <url-pattern>/EnviaParecerWS</url-pattern>
+ </servlet-mapping>
+ <servlet-mapping>
+  <servlet-name>CheckEstadoAgenda</servlet-name>
+  <url-pattern>/CheckEstadoAgenda</url-pattern>
+ </servlet-mapping>
+ <!-- Tempo de expiração da session -->
+ <session-config>
+  <session-timeout>90</session-timeout>
+ </session-config>
+</web-app>

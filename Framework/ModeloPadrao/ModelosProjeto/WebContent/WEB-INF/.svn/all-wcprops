@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/gsgroup/!svn/ver/11369/SIIAC/trunk/implementacao/fontes/java/SIIAC/WebContent/WEB-INF
+END
+faces-config.xml
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/gsgroup/!svn/ver/11369/SIIAC/trunk/implementacao/fontes/java/SIIAC/WebContent/WEB-INF/faces-config.xml
+END
+app-config.xml
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/gsgroup/!svn/ver/11369/SIIAC/trunk/implementacao/fontes/java/SIIAC/WebContent/WEB-INF/app-config.xml
+END
+jboss-web.xml
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/gsgroup/!svn/ver/7995/SIIAC/trunk/implementacao/fontes/java/SIIAC/WebContent/WEB-INF/jboss-web.xml
+END
+app-config-test.xml
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/gsgroup/!svn/ver/10666/SIIAC/trunk/implementacao/fontes/java/SIIAC/WebContent/WEB-INF/app-config-test.xml
+END
+.faces-config.xml.jsfdia
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/gsgroup/!svn/ver/10405/SIIAC/trunk/implementacao/fontes/java/SIIAC/WebContent/WEB-INF/.faces-config.xml.jsfdia
+END
+facelets.taglib.xml
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/gsgroup/!svn/ver/7995/SIIAC/trunk/implementacao/fontes/java/SIIAC/WebContent/WEB-INF/facelets.taglib.xml
+END
+web.xml
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/gsgroup/!svn/ver/11369/SIIAC/trunk/implementacao/fontes/java/SIIAC/WebContent/WEB-INF/web.xml
+END

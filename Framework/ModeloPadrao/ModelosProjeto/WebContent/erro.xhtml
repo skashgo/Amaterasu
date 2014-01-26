@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<head>
+<title>${msgs['APPLICATION.nomeTituloBrowser']}</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="cache-control" content="NO-CACHE" />
+<meta http-equiv="PRAGMA" content="NO-CACHE" />
+<script type="text/javascript"
+	src="${applicationMB.contexto}/js/caixa.js"></script>
+<!-- Framework CSS -->
+<link rel="stylesheet"
+	href="${applicationMB.contexto}/css/base/screen.css" type="text/css"
+	media="screen, projection" />
+<link rel="stylesheet"
+	href="${applicationMB.contexto}/css/base/print.css" type="text/css"
+	media="print" />
+<!--[if lt IE 8]>
+<link rel="stylesheet" href="${applicationMB.contexto}/css/base/ie.css" type="text/css" media="screen, projection"/>
+<![endif]-->
+<link rel="stylesheet" href="${applicationMB.contexto}/css/base/cef.css"
+	type="text/css" media="screen, projection" />
+<link rel="stylesheet" href="${applicationMB.contexto}/css/estilos.css"
+	type="text/css" media="screen, projection" />
+<link rel="stylesheet" href="/SIIAC/css/superfish.css" type="text/css"
+	media="screen, projection" />
+<link href="${applicationMB.contexto}/images/favicon.ico"
+	type="image/x-icon" rel="shortcut icon"></link>
+</head>
+<body class="showgrid"
+	onload="document.getElementById('botao').focus();">
+	<h:form>
+		<f:view>
+			<div id="conteudo">
+				<div class="container cabecalho">
+					<div id="tituloSistema" class="container titulo">
+						<ui:insert name="titulo">
+							<div class="span-6">
+								<h1 class="logo">
+									<a href="#">Caixa Econômica Federal </a>
+								</h1>
+							</div>
+							<div class="span-18 last">
+								<h2 class="logo">
+									<h:outputText id="tituloSistema"
+										value="#{msgs['APPLICATION.nomeCompleto']}" />
+								</h2>
+							</div>
+						</ui:insert>
+					</div>
+					<div class="container saudacao">
+						<span class="span-9"> <span class="esquerda-10"> </span> </span> <span
+							class="span-5"> </span> <span class="span-7"> </span> <span
+							class="span-1"> </span> <span class="span-2 last"> </span>
+					</div>
+					<center style="height: 100%">
+						<rich:spacer width="1" height="66" />
+						<div class="panel-erro">
+							<rich:spacer width="1" height="25" />
+							<center>
+								<h:graphicImage
+									value="${applicationMB.contexto}/images/erroSistema.png" />
+								<br/>
+								<h:outputText value="#{msgs['LABEL.erro.title']}"
+									styleClass="panel-login-title" />
+								<br clear="all" /> <br />
+								<h:outputText value="#{msgs['LABEL.erroSistema']}"
+									style="color: red; font-weight: bold; " />
+								<br /> <br /> <br /> 
+								<h:outputLink value="${applicationMB.contexto}/jsp/index.jsf" styleClass="rich-button" style="margin-bottom: 24px; *width: 160px; text-decoration: none; color: white;">
+									#{msgs['BOTAO.voltarSistema']}
+								</h:outputLink>
+								
+							</center>
+						</div>
+					</center>
+				</div>
+			</div>
+			<rich:spacer width="1" height="174" />
+			<div
+				id="rodape"
+				class="container rodape">
+				<ui:insert name="rodape">
+					<span
+						class="span-30"
+						style="margin: 0;"> <h:outputText
+							value="#{version['copyright']} - #{version['anoInicio']} - #{applicationMB.year} - Versão: #{version['version']}" />
+					</span>
+				</ui:insert>
+			</div>
+		</f:view>
+	</h:form>
+</body>
+</html>

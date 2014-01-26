@@ -1,0 +1,203 @@
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/gsgroup/!svn/ver/11226/SIIAC/trunk/implementacao/fontes/java/SIIAC/test/br/gov/caixa/siiac/bo/impl
+END
+ServicoVerificacaoProdutoBOTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/gsgroup/!svn/ver/10593/SIIAC/trunk/implementacao/fontes/java/SIIAC/test/br/gov/caixa/siiac/bo/impl/ServicoVerificacaoProdutoBOTest.java
+END
+AgendaBOTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/gsgroup/!svn/ver/8112/SIIAC/trunk/implementacao/fontes/java/SIIAC/test/br/gov/caixa/siiac/bo/impl/AgendaBOTest.java
+END
+ServicoVerificacaoBOTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/gsgroup/!svn/ver/7995/SIIAC/trunk/implementacao/fontes/java/SIIAC/test/br/gov/caixa/siiac/bo/impl/ServicoVerificacaoBOTest.java
+END
+GarantiaBOTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/gsgroup/!svn/ver/7995/SIIAC/trunk/implementacao/fontes/java/SIIAC/test/br/gov/caixa/siiac/bo/impl/GarantiaBOTest.java
+END
+ResultadoApontamentoProdutoTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/gsgroup/!svn/ver/11226/SIIAC/trunk/implementacao/fontes/java/SIIAC/test/br/gov/caixa/siiac/bo/impl/ResultadoApontamentoProdutoTest.java
+END
+PreferenciasUsuarioBOTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/gsgroup/!svn/ver/10593/SIIAC/trunk/implementacao/fontes/java/SIIAC/test/br/gov/caixa/siiac/bo/impl/PreferenciasUsuarioBOTest.java
+END
+InsereLogBOTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/gsgroup/!svn/ver/10180/SIIAC/trunk/implementacao/fontes/java/SIIAC/test/br/gov/caixa/siiac/bo/impl/InsereLogBOTest.java
+END
+ItemVerificacaoBOTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/gsgroup/!svn/ver/7995/SIIAC/trunk/implementacao/fontes/java/SIIAC/test/br/gov/caixa/siiac/bo/impl/ItemVerificacaoBOTest.java
+END
+ApontamentoBOTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/gsgroup/!svn/ver/8974/SIIAC/trunk/implementacao/fontes/java/SIIAC/test/br/gov/caixa/siiac/bo/impl/ApontamentoBOTest.java
+END
+BlocoChecklistBOTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/gsgroup/!svn/ver/10593/SIIAC/trunk/implementacao/fontes/java/SIIAC/test/br/gov/caixa/siiac/bo/impl/BlocoChecklistBOTest.java
+END
+EnviaNotificacaoBOTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/gsgroup/!svn/ver/10332/SIIAC/trunk/implementacao/fontes/java/SIIAC/test/br/gov/caixa/siiac/bo/impl/EnviaNotificacaoBOTest.java
+END
+UsuarioADBOTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/gsgroup/!svn/ver/10593/SIIAC/trunk/implementacao/fontes/java/SIIAC/test/br/gov/caixa/siiac/bo/impl/UsuarioADBOTest.java
+END
+UsuarioBOTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/gsgroup/!svn/ver/10593/SIIAC/trunk/implementacao/fontes/java/SIIAC/test/br/gov/caixa/siiac/bo/impl/UsuarioBOTest.java
+END
+EfetuaVerificacaoBOTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/gsgroup/!svn/ver/9411/SIIAC/trunk/implementacao/fontes/java/SIIAC/test/br/gov/caixa/siiac/bo/impl/EfetuaVerificacaoBOTest.java
+END
+UnidadeBOTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/gsgroup/!svn/ver/10593/SIIAC/trunk/implementacao/fontes/java/SIIAC/test/br/gov/caixa/siiac/bo/impl/UnidadeBOTest.java
+END
+ParecerBOTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/gsgroup/!svn/ver/9311/SIIAC/trunk/implementacao/fontes/java/SIIAC/test/br/gov/caixa/siiac/bo/impl/ParecerBOTest.java
+END
+VinculacoesChecklistBOTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/gsgroup/!svn/ver/10593/SIIAC/trunk/implementacao/fontes/java/SIIAC/test/br/gov/caixa/siiac/bo/impl/VinculacoesChecklistBOTest.java
+END
+VerificacaoContratoBOTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/gsgroup/!svn/ver/11226/SIIAC/trunk/implementacao/fontes/java/SIIAC/test/br/gov/caixa/siiac/bo/impl/VerificacaoContratoBOTest.java
+END
+RestricaoBOTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/gsgroup/!svn/ver/7995/SIIAC/trunk/implementacao/fontes/java/SIIAC/test/br/gov/caixa/siiac/bo/impl/RestricaoBOTest.java
+END
+TestWithSpring.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/gsgroup/!svn/ver/10332/SIIAC/trunk/implementacao/fontes/java/SIIAC/test/br/gov/caixa/siiac/bo/impl/TestWithSpring.java
+END
+VerificacaoContratoParecerBOTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/gsgroup/!svn/ver/11226/SIIAC/trunk/implementacao/fontes/java/SIIAC/test/br/gov/caixa/siiac/bo/impl/VerificacaoContratoParecerBOTest.java
+END
+BlocoChecklistProdutoBOTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/gsgroup/!svn/ver/7995/SIIAC/trunk/implementacao/fontes/java/SIIAC/test/br/gov/caixa/siiac/bo/impl/BlocoChecklistProdutoBOTest.java
+END
+AllTests.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/gsgroup/!svn/ver/7995/SIIAC/trunk/implementacao/fontes/java/SIIAC/test/br/gov/caixa/siiac/bo/impl/AllTests.java
+END
+ThreadTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/gsgroup/!svn/ver/10593/SIIAC/trunk/implementacao/fontes/java/SIIAC/test/br/gov/caixa/siiac/bo/impl/ThreadTest.java
+END
+ContratoBOTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/gsgroup/!svn/ver/10593/SIIAC/trunk/implementacao/fontes/java/SIIAC/test/br/gov/caixa/siiac/bo/impl/ContratoBOTest.java
+END
+ProdutoBOTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/gsgroup/!svn/ver/10593/SIIAC/trunk/implementacao/fontes/java/SIIAC/test/br/gov/caixa/siiac/bo/impl/ProdutoBOTest.java
+END
+AtualizaPrazoVerificacaoBOTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/gsgroup/!svn/ver/10195/SIIAC/trunk/implementacao/fontes/java/SIIAC/test/br/gov/caixa/siiac/bo/impl/AtualizaPrazoVerificacaoBOTest.java
+END
+GeraAgendaBOTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/gsgroup/!svn/ver/10189/SIIAC/trunk/implementacao/fontes/java/SIIAC/test/br/gov/caixa/siiac/bo/impl/GeraAgendaBOTest.java
+END
+ProdutoUsuarioBOTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/gsgroup/!svn/ver/10593/SIIAC/trunk/implementacao/fontes/java/SIIAC/test/br/gov/caixa/siiac/bo/impl/ProdutoUsuarioBOTest.java
+END
+ExecuteActionPentahoTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/gsgroup/!svn/ver/8603/SIIAC/trunk/implementacao/fontes/java/SIIAC/test/br/gov/caixa/siiac/bo/impl/ExecuteActionPentahoTest.java
+END
+ResourcePropertiesTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/gsgroup/!svn/ver/7995/SIIAC/trunk/implementacao/fontes/java/SIIAC/test/br/gov/caixa/siiac/bo/impl/ResourcePropertiesTest.java
+END
+PreferenciaUsuarioServicoBOTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/gsgroup/!svn/ver/10593/SIIAC/trunk/implementacao/fontes/java/SIIAC/test/br/gov/caixa/siiac/bo/impl/PreferenciaUsuarioServicoBOTest.java
+END
+TemplateParecerBOTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/gsgroup/!svn/ver/8713/SIIAC/trunk/implementacao/fontes/java/SIIAC/test/br/gov/caixa/siiac/bo/impl/TemplateParecerBOTest.java
+END

@@ -1,0 +1,31 @@
+BREAD=Prefer\u00EAncias
+
+TITLE.titulo=Usu\u00E1rio
+
+ACTION.salvar=Salvar
+ACTION.voltar=Voltar
+ACTION.incluir=Incluir
+ACTION.consultar=Consultar
+ACTION.consultarOutroUsuario=Consultar Outro Usu\u00E1rio
+ACTION.todos=Todos
+LABEL.preferencias=Prefer\u00EAncias de visualiza\u00E7\u00E3o da agenda
+LABEL.gestores=Gestores\:
+LABEL.matricula=Matr\u00EDcula\:
+LABEL.perfil=Perfil\:
+LABEL.nome=Nome\:
+LABEL.categoria=CATEGORIA PRODUTO
+LABEL.todos=Todos
+LABEL.situacao=Situa\u00E7\u00E3o\:
+LABEL.unidade=Unidade\:
+LABEL.produto=Produto\: 
+LABEL.servicos=Servi\u00E7os\:
+TABLE.codigoGerente=C\u00F3digo
+TABLE.nomeGerente=Nome
+TABLE.codigoProduto=C\u00F3digo
+TABLE.nomeProduto=Nome
+TABLE.acao=A\u00E7\u00E3o
+TABLE.servicos=Servi\u00E7os
+
+TABLE.codigoCategoria=C\u00F3digo
+TABLE.nomeCategoria=Nome
+TABLE.siglaCategoria=Sigla

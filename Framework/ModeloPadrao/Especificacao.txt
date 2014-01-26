@@ -1,0 +1,6 @@
+JSF 1.2.x
+Hibernate 3.3
+RichFaces 3.4
+Spring (CDI, Transaction)
+JUnit 4.0
+MAVEN 3.3

@@ -1,0 +1,55 @@
+Logo Caixa;{<img src="../../images/logo_v2.png" alt="" width="120px" height="28px"/>};Logo da Caixa
+Sigla do tipo de unidade do Empregado responsável pelo parecer;<sigla_tipo_unidade_responsavel_parecer>;SN
+Nome da Unidade do Empregado responsável pelo parecer;<nome_unidade_responsavel_parecer>;Retaguarda Norte de Goiás, GO
+Código da Unidade do Empregado responsável pelo parecer;<codigo_unidade_responsavel_parecer>;3264
+Número do parecer;<numero_parecer>;1442
+Ano do parecer;<ano_parecer>;2012
+Data da Contratação;<data_contratacao>;19/03/2012
+Nome da cidade da unidade do Empregado responsável pelo parecer;<nome_cidade_unidade_responsavel_parecer>;Goiânia
+Data do parecer com máscara;<data_parecer>;18 mar 2012
+Sigla do tipo de unidade da unidade responsável pelo contrato;<sigla_tipo_unidade_responsavel_contrato>;SR
+Nome da unidade destinatária;<nome_unidade_destinataria>;Planalto,DF
+Assunto do parecer;<assunto_parecer>;Assunto do Parecer
+Referência do parecer;<referencia_parecer>;Referência do Parecer
+Nome da função do responsável da unidade destinatária;<nome_funcao_responsavel_unidade_destinataria>;Gerente
+Nome do Produto;<nome_produto>;0001-001 Conta Corrente PF - conta individual
+Código do Contrato;<codigo_contrato>;0012.110.0099999-99
+Número da avaliação SIRIC;<numero_avaliacao_siric>;4123241232
+Código do Cliente;<codigo_cliente>;14141242121
+Nome do Cliente;<nome_cliente>;Cliente José da Silva
+Número do Identificador do Cliente;<numero_identificador_cliente>;319.319.412-32
+Nome do empregado responsável pelo parecer;<nome_empregado_responsavel_parecer>;Empregado Joaquim
+Nome da função ou cargo do empregado responsável pelo parecer;<nome_funcao_responsavel_parecer>;Superintendente
+Código do Tomador;<codigo_tomador>;56856418849
+Nome do Tomador;<nome_tomador>;Tomador João Souza
+Número do Identificador do Tomador;<numero_identificador_tomador>;645.231.532-57
+Número da avaliação SIRIC do Tomador;<numero_avaliacao_siric_tomador>;4897804620
+Lista de documentos com apontamento inconforme;<lista_documentos_apontamento_inconforme>;<ul style='list-style-type: disc'><li><span>Bloco 18</span><br/><i>Obs: asddad</i><ul style='list-style-type: circle'><li><span>DOCUMENTO FORA DOS PADRÕES</span><ul style='list-style-type: square'><li><span>CPF INVALIDO</span></li></ul></li></ul></li></ul>
+Lista de documentos conformes mas com observação;<lista_documentos_conformes_com_observacao>;<ul style='list-style-type: disc'><li><span>Bloco 18</span><br/><i>Obs: asddad</i><ul style='list-style-type: circle'></li></ul>
+Nome do Gestor para assinatura do parecer;<nome_gestor_assinatura_parecer>;Gestor Luis
+Nome da função do gerente que assina o parecer;<nome_funcao_gestor_assinatura_parecer>;Gerente Unidade
+Data de validade da avaliação da Operação com máscara;<data_validade_avaliacao_operacao>;18/07/2012
+Data de validade da avaliação do Tomador com máscara;<data_validade_avaliacao_tomador>;18/07/2012
+Nome da unidade de alienação de bens móveis e imóveis de vinculação da unidade responsável pelo contrato;<nome_unidade_alienacao_bens_imoveis>;Alienar Bens Móveis e Imóveis Goiânia, GO
+Código da unidade de alienação de bens móveis e imóveis de vinculação da unidade responsável pelo contrato;<codigo_unidade_alienacao_bens_imoveis>;2316, GO
+Nome da unidade responsável pelo contrato;<nome_unidade_responsavel_contrato>;Sul de Goiás, GO
+Código da unidade responsável pelo contrato;<codigo_unidade_responsavel_contrato>;2014
+Nome da unidade superior hierárquica da unidade responsável pelo contrato;<nome_unidade_superior_hierarquica_responsavel_contrato>;Sul de Goiás, GO
+Código da unidade superior hierárquica da unidade responsável pelo contrato;<codigo_unidade_superior_hierarquica_responsavel_contrato>;3102
+Nome do conveniado responsável pelo contrato;<nome_conveniado_responsavel_contrato>;Nome Conveniado
+Sigla do tipo de unidade da unidade de alienação de bens móveis e imóveis de vinculação da unidade responsável pelo contrato;<sigla_tipo_unidade_bens_imoveis_vinculacao_responsavel>;GI
+Sigla do tipo de unidade da unidade superior hierárquica da unidade responsável pelo contrato;<sigla_tipo_unidade_superior_hierarquica_responsavel_contrato>;SR
+Número Identificador Empreendimento;<numero_identificador_empreendimento>;2809
+Nome Empreendimento;<nome_empreendimento>;Empreendimento Piloto
+Número Identificador Vendedor;<numero_identificador_vendedor>;2809
+Valor do Contrato / Operação;<valor_contrato>;2500.00
+Nome Vendedor;<nome_vendedor>;Vendedor de Teste
+Lista de documentos com data de validade;<lista_documentos_item_data_validade>;Comprovante de Domicílio
+Data do ressarcimento do DAMP;<data_damp>;20/05/2012
+Nome do 1º co-obrigado;<nome_primeiro_co_obrigado>;Nome Primeiro Co Obrigado
+Nome do 2º co-obrigado;<nome_segundo_co_obrigado>;Nome Segundo Co Obrigado
+Número do DAMP;<numero_damp>;13265
+Número do Identificador 1º co-obrigado;<cod_primeiro_co_obrigado>;2809
+Número do Identificador 2º co-obrigado;<cod_segundo_co_obrigado>;2204
+Valor do Ressarcimento;<valor_ressarcimento>;R$ 3.653,20
+Código do Contrato, com máscara de conta;<codigo_contrato_mascara>;0099.0110.99999999-1

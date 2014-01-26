@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/jsp/include/template.xhtml">
+	<ui:define name="breadcrumb">
+		<h:panelGroup id="pnlBread">
+			<h:outputLabel value="#{msgsEfetuaVerificacao['BREAD']}" />
+		</h:panelGroup>
+	</ui:define>
+	<ui:define name="conteudo">
+		<style type="text/css">
+			.dr-stglpnl-h{background:none !important;border-style: none !important;} 
+			.rich-stglpanel-header{background:none !important;}
+			.dr-stglpnl{background:none !important;} 
+			.rich-stglpanel{background:none !important;}
+			.dr-mpnl-pnl {overflow:auto!important}		
+		</style>
+		<br />
+		<ui:include src="/jsp/include/cabecalho_verificacao.xhtml" />
+		
+		<h:form id="formServicosVerificacao">
+			<a4j:keepAlive beanName="escolheVerificacaoMB" />
+			<br />
+			<br />
+			<h:panelGroup>
+				<h:graphicImage value="/images/icon_estagiarios_.gif"
+					style="vertical-align: bottom;" />
+				<h:outputText
+					value="#{msgEscolheVerificacao['TITLE.tbServicosVerificacao']}"
+					styleClass="tituloPagina" />
+			</h:panelGroup>
+			<rich:spacer height="10" />
+			<rich:dataTable id="tableGarantia"
+				value="#{escolheVerificacaoMB.listVerificacaoVO}" var="row"
+				rows="10" width="100%" cellspacing="0" cellpadding="0" border="1"
+				rowClasses="tabela-row-1, tabela-row-2"
+				onRowMouseOver="this.style.backgroundColor = '#A2B6E5'"
+				onRowMouseOut="this.style.backgroundColor = ''">
+				<rich:column id="colNoServico" style="width: 32%"
+					sortBy="#{row.noServicoVerificacao}">
+					<f:facet name="header">
+						<h:outputText
+							value="#{msgEscolheVerificacao['COLUMN.noServicoVerificacao']}" />
+					</f:facet>
+					<h:outputText id="lblNoServicoVerificacao"
+						value="#{row.noServicoVerificacao}"
+						title="#{row.noServicoVerificacao}" />
+				</rich:column>
+				<rich:column id="colSituacaoServico"
+					style="text-align:center; white-space: nowrap;" width="14%"
+					sortBy="#{row.icEstadoVerificacao}">
+					<f:facet name="header">
+						<h:outputText
+							value="#{msgEscolheVerificacao['COLUMN.situacaoServico']}" />
+					</f:facet>
+					<h:outputText id="lblSituacaoServico"
+						value="#{escolheVerificacaoMB.situacaoFormatada}" />
+				</rich:column>
+				<rich:column id="colDataLimiteVerificacao"
+					style="text-align:center;" width="13%"
+					sortBy="#{row.dtLimiteVerificacao}">
+					<f:facet name="header">
+						<h:outputText style="text-align:center"
+							value="#{msgEscolheVerificacao['COLUMN.dataLimiteVerificacao']}" />
+					</f:facet>
+					<h:outputText id="lblDataLimiteVerificacao"
+						value="#{row.dtLimiteVerificacao}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText>
+				</rich:column>
+				<rich:column id="colDataVerificacao" style="text-align:center;"
+					width="13%" sortBy="#{row.dtVerificacao}">
+					<f:facet name="header">
+						<h:outputText
+							value="#{msgEscolheVerificacao['COLUMN.dataVerificacao']}" />
+					</f:facet>
+					<h:outputText value="#{row.dtVerificacao}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText>
+				</rich:column>
+				<rich:column id="colResponsavelVerificacao"
+					style="text-align:center;" width="15%"
+					sortBy="#{row.coRspnlVerificacao}">
+					<f:facet name="header">
+						<h:outputText
+							value="#{msgEscolheVerificacao['COLUMN.responsavelVerificacao']}" />
+					</f:facet>
+					<h:outputText id="lblResponsavelVerificacao"
+						value="#{row.coRspnlVerificacao}" />
+				</rich:column>
+				<rich:column id="colAcao" style="text-align:center;"
+					headerClass="th-text-center">
+					<f:facet name="header">
+						<h:outputText value="#{msgEscolheVerificacao['COLUMN.acao']}"
+							style="text-align: center" />
+					</f:facet>
+					<table width="70px">
+						<tr>
+							<td style="width: 25px;"><h:panelGroup
+									rendered="#{escolheVerificacaoMB.showChecklist}">
+									<h:commandLink id="lkEfetuaVerificacao"
+										action="#{escolheVerificacaoMB.doEfetuaVerificacao}">
+										<h:graphicImage value="/images/icon_frequencia.gif"
+											title="#{msgEscolheVerificacao['HINT.checklist']}" />
+									</h:commandLink>
+								</h:panelGroup>
+							</td>
+							<td style="width: 25px;"><h:panelGroup
+									rendered="#{escolheVerificacaoMB.showHistorico}">
+									<a4j:commandLink id="lkHistoricoParecer"
+										actionListener="#{escolheVerificacaoMB.doHistoricoParecer}"
+										status="sts" reRender="CEFMessagePanel, modalHistoricoParecer"
+										oncomplete="Richfaces.showModalPanel('modalHistoricoParecer')">
+										<h:graphicImage width="18" border="0" height="18"
+											value="/images/historico_parecer0.gif"
+											title="#{msgEscolheVerificacao['HINT.historico']}" />
+									</a4j:commandLink>
+								</h:panelGroup>
+							</td>
+							<td style="width: 25px;"><h:panelGroup
+									rendered="#{escolheVerificacaoMB.showParecer}">
+									<h:commandLink id="lkVisualizaParecer"
+										action="#{escolheVerificacaoMB.doVisualizaParecer}"
+										status="sts" reRender="CEFMessagePanel">
+										<h:graphicImage value="/images/report1.gif"
+											title="#{msgEscolheVerificacao['HINT.parecer']}" />
+									</h:commandLink>
+								</h:panelGroup>
+							</td>
+						</tr>
+					</table>
+				</rich:column>
+				<f:facet name="footer">
+					<rich:datascroller fastControls="false"
+						inactiveStyleClass="classe-datascroller classe-datascroller-unselected"
+						selectedStyleClass="classe-datascroller classe-datascroller-selected"
+						id="dataFooterGarantia" renderIfSinglePage="false">
+						<f:facet name="first">
+							<h:graphicImage value="/images/tabela/seta_primeiro.gif" />
+						</f:facet>
+						<f:facet name="first_disabled">
+							<h:graphicImage value="/images/tabela/seta_primeiro.gif" />
+						</f:facet>
+						<f:facet name="last">
+							<h:graphicImage value="/images/tabela/seta_ultimo.gif" />
+						</f:facet>
+						<f:facet name="last_disabled">
+							<h:graphicImage value="/images/tabela/seta_ultimo.gif" />
+						</f:facet>
+						<f:facet name="previous">
+							<h:graphicImage value="/images/tabela/seta_anterior.gif" />
+						</f:facet>
+						<f:facet name="previous_disabled">
+							<h:graphicImage value="/images/tabela/seta_anterior.gif" />
+						</f:facet>
+						<f:facet name="next">
+							<h:graphicImage value="/images/tabela/seta_proximo.gif" />
+						</f:facet>
+						<f:facet name="next_disabled">
+							<h:graphicImage value="/images/tabela/seta_proximo.gif" />
+						</f:facet>
+					</rich:datascroller>
+				</f:facet>
+			</rich:dataTable>
+			<br/>
+			<div style="width: 100%; float: left;">
+				<h:commandButton
+					id="bntBack"
+					rendered="#{escolheVerificacaoMB.exibeBotaoVoltar}"
+					value="#{msgsEfetuaVerificacao['ACTION.voltar']}"
+					action="#{escolheVerificacaoMB.doVoltar}"
+					styleClass="rich-button-cinza rich-button" />
+			</div>
+		</h:form>
+		<h:form id="formModalHistoricoParecer">
+			<rich:modalPanel id="modalHistoricoParecer" width="700"
+				resizeable="true" height="250">
+				<f:facet name="header">
+					<h:outputText
+						value="#{msgEscolheVerificacao['TITLE.historicoParecer']}" />
+				</f:facet>
+
+				<rich:dataTable id="tableHistoricoParecer"
+					value="#{escolheVerificacaoMB.listHistoricoParecerVO}" var="row"
+					rows="10" width="100%" cellspacing="0" cellpadding="0" border="1"
+					rowClasses="tabela-row-1, tabela-row-2"
+					onRowMouseOver="this.style.backgroundColor = '#A2B6E5'"
+					onRowMouseOut="this.style.backgroundColor = ''">
+					<rich:column id="colNoServico" style="width: 32%" sortBy="#{row.descricaoParecer}">
+						<f:facet name="header">
+							<h:outputText
+								value="#{msgEscolheVerificacao['COLUMN.noServicoVerificacao']}" />
+						</f:facet>
+						<h:outputText id="lblNoServicoVerificacao"
+							value="#{row.descricaoParecer}" title="#{row.descricaoParecer}" />
+					</rich:column>
+					<rich:column id="colDtVerificacao" sortBy="#{row.dtVerificacao}">
+						<f:facet name="header">
+							<h:outputText
+								value="#{msgEscolheVerificacao['COLUMN.dataVerificacao']}" />
+						</f:facet>
+						<h:outputText value="#{row.dtVerificacao}">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
+					</rich:column>
+					<rich:column id="colIcEstadoVerificacao" sortBy="#{row.icEstadoVerificacaoFormatado}">
+						<f:facet name="header">
+							<h:outputText
+								value="#{msgEscolheVerificacao['COLUMN.situacaoServico']}" />
+						</f:facet>
+						<h:outputText value="#{row.icEstadoVerificacaoFormatado}" />
+					</rich:column>
+					<rich:column id="colResponsavelVerificacao" style="width: 32%" sortBy="#{row.coResponsavelVerificacao}">
+						<f:facet name="header">
+							<h:outputText
+								value="#{msgEscolheVerificacao['COLUMN.responsavelVerificacao']}" />
+						</f:facet>
+						<h:outputText value="#{row.coResponsavelVerificacao}" />
+					</rich:column>
+					<rich:column id="colAcaoHistoricoParecer"
+						style="text-align:center;"
+						headerClass="th-text-center">
+						<f:facet name="header">
+							<h:outputText
+								value="#{msgEscolheVerificacao['COLUMN.acao']}" />
+						</f:facet>
+						<h:commandLink id="lkVisualizaParecerFromHistorico"
+							action="#{escolheVerificacaoMB.doVisualizaParecerFromHistorico}"
+							status="sts" reRender="CEFMessagePanel">
+							<h:graphicImage value="/images/report1.gif"
+								styleClass="action-icon"
+								title="#{msgEscolheVerificacao['HINT.parecer']}" />
+						</h:commandLink>
+					</rich:column>
+					<f:facet name="footer">
+						<rich:datascroller fastControls="false"
+							inactiveStyleClass="classe-datascroller classe-datascroller-unselected"
+							selectedStyleClass="classe-datascroller classe-datascroller-selected"
+							id="dataFooterGarantia" renderIfSinglePage="false">
+							<f:facet name="first">
+								<h:graphicImage value="/images/tabela/seta_primeiro.gif" />
+							</f:facet>
+							<f:facet name="first_disabled">
+								<h:graphicImage value="/images/tabela/seta_primeiro.gif" />
+							</f:facet>
+							<f:facet name="last">
+								<h:graphicImage value="/images/tabela/seta_ultimo.gif" />
+							</f:facet>
+							<f:facet name="last_disabled">
+								<h:graphicImage value="/images/tabela/seta_ultimo.gif" />
+							</f:facet>
+							<f:facet name="previous">
+								<h:graphicImage value="/images/tabela/seta_anterior.gif" />
+							</f:facet>
+							<f:facet name="previous_disabled">
+								<h:graphicImage value="/images/tabela/seta_anterior.gif" />
+							</f:facet>
+							<f:facet name="next">
+								<h:graphicImage value="/images/tabela/seta_proximo.gif" />
+							</f:facet>
+							<f:facet name="next_disabled">
+								<h:graphicImage value="/images/tabela/seta_proximo.gif" />
+							</f:facet>
+						</rich:datascroller>
+					</f:facet>
+				</rich:dataTable>
+				
+				<br clear="all" />
+				<a4j:commandButton value="#{msgEscolheVerificacao['ACTION.voltar']}"
+								 styleClass="rich-button rich-button-cinza"
+								 onclick="Richfaces.hideModalPanel('modalHistoricoParecer')" />
+				<br clear="all" />
+			</rich:modalPanel>
+			
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+</html>

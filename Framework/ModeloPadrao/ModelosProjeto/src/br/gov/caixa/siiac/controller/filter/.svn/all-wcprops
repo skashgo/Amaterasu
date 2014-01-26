@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/gsgroup/!svn/ver/10671/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/controller/filter
+END
+AuthFilter.java
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/gsgroup/!svn/ver/10671/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/controller/filter/AuthFilter.java
+END
+DomainFilter.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/gsgroup/!svn/ver/7995/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/controller/filter/DomainFilter.java
+END

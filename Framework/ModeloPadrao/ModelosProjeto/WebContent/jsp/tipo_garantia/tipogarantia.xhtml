@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/jsp/include/template.xhtml">
+	<ui:define name="breadcrumb">
+		<h:panelGroup id="pnlBread">
+			<h:outputLabel value="#{msgtipogarantia['BREAD']}" />
+		</h:panelGroup>
+	</ui:define>
+	<ui:define name="conteudo">
+		<h:form>
+			<a4j:keepAlive beanName="tipoGarantiaMB" />
+			<rich:panel id="conteudo">
+				<h:panelGroup id="panelCadastro"
+					rendered="#{tipoGarantiaMB.showPanelCadastro}">
+					<br />
+					<rich:spacer height="10" />
+					<h:graphicImage value="/images/icon_dados.jpg"
+						style="vertical-align: bottom;" />
+					<h:outputText id="lbl_titlePanelCadTipoGarantiaCad"
+						value="#{msgtipogarantia['TITLE.panelIncluir']}"
+						rendered="#{tipoGarantiaMB.showTitleIncluir}"
+						styleClass="tituloPagina" />
+					<h:outputText id="lbl_titlePanelCadTipoGarantiaAlt"
+						value="#{msgtipogarantia['TITLE.panelAlterar']}"
+						rendered="#{tipoGarantiaMB.showTitleAlterar}"
+						styleClass="tituloPagina" />
+					<br />
+					<rich:spacer height="10" />
+					<rich:panel id="pnlCadastroTipoGarantiaCad"
+						styleClass="panel-externo">
+						<h:panelGrid id="pnlGridCadastroTipoGarantiaCad" columns="2"
+							style="padding: 8px;">
+							<h:outputText id="lblTipoGarantianoTipoGarantiaCad"
+								value="#{msgtipogarantia['noTipoGarantia']}:"
+								styleClass="rotulos" />
+							<h:inputText id="inputTipoGarantianoTipoGarantiaCad"
+								value="#{tipoGarantiaMB.tipoGarantia.noTipoGarantia}"
+								styleClass="forms_input" maxlength="70" size="70" />
+						</h:panelGrid>
+					</rich:panel>
+					<br />
+					<h:panelGroup id="pnlActionCad" layout="block"
+						style="text-align:right">
+						<a4j:commandButton id="btnGravarTipoGarantiaCad"
+							styleClass="rich-button"
+							value="#{msgtipogarantia['ACTION.gravar']}"
+							actionListener="#{tipoGarantiaMB.doGravar}"
+							reRender="conteudo, CEFMessagePanel, pnlBread" status="sts"
+							onclick="if(!confirm('#{tipoGarantiaMB.labelConfirm}')) {return false;}" />
+						<rich:spacer width="15" />
+						<a4j:commandButton id="btnCancelarTipoGarantiaCad"
+							styleClass="rich-button-cinza rich-button"
+							value="#{msgtipogarantia['ACTION.cancelar']}"
+							actionListener="#{tipoGarantiaMB.doCancelar}"
+							reRender="conteudo, CEFMessagePanel" immediate="true"
+							status="sts" />
+					</h:panelGroup>
+				</h:panelGroup>
+				<h:panelGroup id="panelVisualiza"
+					rendered="#{tipoGarantiaMB.showPanelVisualizacao}">
+					<br/>
+					<rich:spacer height="10px"/>
+					<h:graphicImage value="/images/icon_estagiarios_.gif"
+						style="vertical-align: bottom;" />
+					<h:outputText id="lbl_titlePanelViewTipoGarantiaView"
+						value="#{msgtipogarantia['TITLE.panelVisualizar']}"
+						styleClass="tituloPagina" />
+					<br />
+					<rich:spacer height="10" />
+					<rich:panel
+						id="pnlVisualizaTipoGarantiaView"
+						styleClass="panel-externo">
+						<h:panelGrid
+							columns="2"
+							columnClasses="coltop, coltop">
+							<h:column>
+								<h:panelGroup
+									id="pnlDescricaoItemVerificacao"
+									layout="block"
+									style="width: 580px; margin: 0 20px 0 20px;">									
+									<h:outputLabel id="lblTipoGarantianoTipoGarantiaView"
+										value="#{msgtipogarantia['noTipoGarantia']}:"
+										styleClass="rotulos" />
+									<h:outputText id="inputTipoGarantianoTipoGarantiaView"
+										value="#{tipoGarantiaMB.tipoGarantia.noTipoGarantia}"
+										style="margin:3px;" />
+								</h:panelGroup>
+							</h:column>
+							<h:column>
+								<h:panelGroup>
+									<h:outputLabel
+										id="lblTipoGarantiaIcAtivoView"
+										value="#{msgtipogarantia['situacao']}:"
+										styleClass="rotulos"
+										style="vertical-align:-1px; *vertical-align:-5px;" />
+									<h:panelGroup id="pnlSituacao" rendered="#{tipoGarantiaMB.tipoGarantia.icAtivo}">
+										<h:graphicImage
+											value="/images/icon_ativo.gif"
+											style="vertical-align: bottom;" />
+										<h:outputText 
+											value=" - Ativo"
+											style="vertical-align: -1px; *vertical-align:-5px;" />
+									</h:panelGroup>
+									<h:panelGroup id="pnlGroupInativo" rendered="#{!tipoGarantiaMB.tipoGarantia.icAtivo}">
+										<h:graphicImage
+											value="/images/icon_-delete.gif"
+											style="vertical-align: bottom;" />
+										<h:outputText
+											value=" - Inativo"
+											style="vertical-align: -1px; *vertical-align:-5px;" />
+									</h:panelGroup>							
+								</h:panelGroup>								
+							</h:column>
+						</h:panelGrid>
+					</rich:panel>
+					<h:panelGroup id="pnlActionView" layout="block"
+						style="text-align:right">
+						<a4j:commandButton id="btnCancelarTipoGarantiaView"
+							styleClass="rich-button-cinza rich-button"
+							value="#{msgtipogarantia['ACTION.voltar']}"
+							actionListener="#{tipoGarantiaMB.doCancelar}"
+							reRender="conteudo, pnlBread" immediate="true" status="sts" />
+					</h:panelGroup>
+				</h:panelGroup>
+				<h:panelGroup id="panelFiltro"
+					rendered="#{tipoGarantiaMB.showPanelFiltro}">
+					<rich:spacer height="10" />
+					<rich:panel id="pnlFiltroTipoGarantiaFiltro"
+						styleClass="panel-externo">
+						<div class="span-23 clear last"
+							id="pnlGridFiltroTipoGarantia"
+							style="padding:5px; margin-left: 16px; line-height: 2;">
+							<div class="span-3 clear">
+								<h:graphicImage
+									value="/images/icon_search.gif"
+									style="vertical-align: top;"/>
+								<h:outputText
+									style="margin-left: 4px;"
+									id="lblTipoGarantiaFiltro"
+									value="#{msgtipogarantia['LABEL.pesquisa']}"
+									styleClass="rotulos"/>
+							</div>
+							<div class="span-14">
+								<h:inputText
+										id="inputTipoGarantiaNomeFiltro"
+										value="#{tipoGarantiaMB.pesquisaString}"
+										styleClass="forms_input"
+										style=" width: 510px; horizontal-align: left; font-size: 13px;" />
+								<br/>
+								<div style="margin-top: 10px">
+									<h:selectBooleanCheckbox styleClass="rotulos"
+										id="inputTipoGarantiaMostraInativosFiltro"
+										value="#{tipoGarantiaMB.pesquisaMostraInativos}" />
+									<h:outputLabel value="#{msgtipogarantia['LABEL.showInativos']}"
+										for="inputTipoGarantiaMostraInativosFiltro"
+										class="rotulos"
+										style="margin-left: 5px;" />
+								</div>
+							</div>
+							<div class="span-3">
+								<a4j:commandButton
+									id="btnfiltrarTipoGarantiaFiltro"
+									styleClass="rich-button"
+									value="#{msgtipogarantia['ACTION.filtrar']}"
+					 				actionListener="#{tipoGarantiaMB.doFiltrar}"
+									reRender="conteudo, CEFMessagePanel, tableTipoGarantia, pnlBread"
+									status="sts" />
+							</div>		
+							<div class="span-3 last">
+								<a4j:commandButton
+									id="btnCadastrarTipoGarantia"
+									styleClass="rich-button"
+									immediate="true"
+									rendered="#{tipoGarantiaMB.showPanelButtonCadastrar}"
+									value="#{msgtipogarantia['ACTION.cadastrar']}"
+									actionListener="#{tipoGarantiaMB.doCadastrar}"
+									reRender="conteudo, pnlBread"
+									status="sts" />
+							</div>
+							<br/>
+						</div>
+						<br clear="all" />
+						<br clear="all" />
+					</rich:panel>
+					<br />
+				</h:panelGroup>
+				<rich:panel id="panelLista"
+					rendered="#{tipoGarantiaMB.showPanelLista}">
+					<h:graphicImage value="/images/icon_estagiarios_.gif"
+						style="vertical-align: bottom;" />
+					<h:outputText id="lbl_titlePanelListTipoGarantia"
+						value="#{msgtipogarantia['TITLE.panelLista']}"
+						styleClass="tituloPagina" />
+					<br />
+					<rich:spacer height="10" />
+					<rich:dataTable id="tableTipoGarantia"
+						value="#{tipoGarantiaMB.listTipoGarantia}" var="row" rows="10"
+						width="100%" cellspacing="0" cellpadding="0" border="1"
+						rowClasses="tabela-row-1, tabela-row-2"
+						onRowMouseOver="this.style.backgroundColor = '#A2B6E5'"
+						onRowMouseOut="this.style.backgroundColor = ''">
+						<rich:column id="colTipoGarantianoTipoGarantia"
+							style="text-align:left;" sortBy="#{row.noTipoGarantia}">
+							<f:facet name="header">
+								<h:outputText value="#{msgtipogarantia['noTipoGarantia']}"
+									styleClass="rotulos" />
+							</f:facet>
+							<h:commandLink id="lblnoTipoGarantia" actionListener="#{tipoGarantiaMB.doVisualizar}"
+								value="#{row.noTipoGarantia}" />
+						</rich:column>
+						<rich:column id="colTipoGarantiaUpdate" style="text-align:center;"
+							headerClass="th-text-center"
+							width="50">
+							<f:facet name="header">
+								<h:outputText value="#{msgtipogarantia['ACTION.acao']}" />
+							</f:facet>
+							<h:commandLink id="lnkUpdate"
+								actionListener="#{tipoGarantiaMB.doAtualizar}"
+								style="border-style:none;border-width:0;">
+								<h:graphicImage id="imgUpdate" alt="Alterar" title="Alterar"
+									styleClass="action-icon"
+									value="/images/icon_editar.gif" />
+							</h:commandLink>
+							<h:commandLink id="lnkEnable"
+								rendered="#{tipoGarantiaMB.pesquisaMostraInativos}"
+								actionListener="#{tipoGarantiaMB.doDesabilitar}"
+								style="border-style:none;border-width:0;"
+								onclick="if(!confirm('#{msgsCef['MA006']}')) {return false;}">
+								<h:graphicImage id="imgEnable" alt="Ativar" title="Ativar"
+									styleClass="action-icon"
+									value="/images/icon_ativo.gif" />
+							</h:commandLink>
+							<h:commandLink id="lnkDisable"
+								rendered="#{!tipoGarantiaMB.pesquisaMostraInativos}"
+								actionListener="#{tipoGarantiaMB.doDesabilitar}"
+								style="border-style:none;border-width:0;"
+								onclick="if(!confirm('Confirma a inativação?')) {return false;}">
+								<h:graphicImage id="imgDisable" alt="Inativar" title="Inativar"
+									styleClass="action-icon"
+									value="/images/icon_-delete.gif" />
+							</h:commandLink>
+						</rich:column>
+						<f:facet name="footer">
+							<rich:datascroller fastControls="false"
+								inactiveStyleClass="classe-datascroller classe-datascroller-unselected"
+								selectedStyleClass="classe-datascroller classe-datascroller-selected"
+								id="dataFooterTipoGarantia" renderIfSinglePage="false">
+								<f:facet name="first">
+									<h:graphicImage value="/images/tabela/seta_primeiro.gif" />
+								</f:facet>
+								<f:facet name="first_disabled">
+									<h:graphicImage value="/images/tabela/seta_primeiro.gif" />
+								</f:facet>
+								<f:facet name="last">
+									<h:graphicImage value="/images/tabela/seta_ultimo.gif" />
+								</f:facet>
+								<f:facet name="last_disabled">
+									<h:graphicImage value="/images/tabela/seta_ultimo.gif" />
+								</f:facet>
+								<f:facet name="previous">
+									<h:graphicImage value="/images/tabela/seta_anterior.gif" />
+								</f:facet>
+								<f:facet name="previous_disabled">
+									<h:graphicImage value="/images/tabela/seta_anterior.gif" />
+								</f:facet>
+								<f:facet name="next">
+									<h:graphicImage value="/images/tabela/seta_proximo.gif" />
+								</f:facet>
+								<f:facet name="next_disabled">
+									<h:graphicImage value="/images/tabela/seta_proximo.gif" />
+								</f:facet>
+							</rich:datascroller>
+						</f:facet>
+					</rich:dataTable>
+				</rich:panel>
+			</rich:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

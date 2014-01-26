@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/jsp/include/template.xhtml">
+	<ui:define name="breadcrumb">
+		<h:panelGroup id="pnlBread">
+			<h:outputLabel value="#{msgsAgenda['BREAD']}" />
+		</h:panelGroup>
+	</ui:define>
+	<ui:define name="conteudo">
+		<h:form id="formAgenda">
+			<a4j:keepAlive beanName="agendaMB" />
+			<rich:panel id="conteudo">
+				<h:panelGroup
+					id="panelCadastro"
+					layout="block">
+					<br />
+					<h:panelGroup
+						layout="block"
+						style="float:left;">
+						<h:panelGroup
+							layout="block"
+							style="float:right;">
+							<h:selectBooleanCheckbox
+								id="ckFiltrarPreferenciais"
+								value="#{agendaMB.filtrarPreferenciais}"
+								styleClass="rotulos"
+								style="margin: 7px 2px;">
+								<a4j:support
+									event="onclick"
+									reRender="panelLista"
+									status="sts"
+									actionListener="#{agendaMB.doCheckPreferenciais}" />
+							</h:selectBooleanCheckbox>
+							<h:outputLabel
+								id="lb_ckFiltrarPreferenciais"
+								for="ckFiltrarPreferenciais"
+								value="#{msgsAgenda['filtrar.preferenciais']}"
+								styleClass="rotulos" />
+						</h:panelGroup>
+					</h:panelGroup>
+					<h:panelGroup
+						layout="block"
+						style="float:right;">
+						<h:graphicImage
+							value="/images/legenda_vermelha.gif"
+							title="Fora do Prazo"
+							style="vertical-align: text-bottom; margin: 0 5px 0 20px;" />
+						<h:outputText
+							value="#{msgsAgenda['ICO.foraprazo']}"
+							styleClass="tituloPagina" />
+						<h:graphicImage
+							value="/images/legenda_amarela.gif"
+							title="A Verificar"
+							style="vertical-align: text-bottom; margin: 0 5px 0 20px;" />
+						<h:outputText
+							value="#{msgsAgenda['ICO.averificar']}"
+							styleClass="tituloPagina" />
+						<h:graphicImage
+							value="/images/icon_pend.gif"
+							title="Verificação Parcial"
+							style="vertical-align: text-text-bottom; margin: 0 5px 0 20px;" />
+						<h:outputText
+							value="#{msgsAgenda['ICO.verificacaoparcial']}"
+							styleClass="tituloPagina" />
+					</h:panelGroup>
+					<br clear="all" />
+					<br clear="all" />
+				</h:panelGroup>
+				<h:panelGroup
+					id="panelLista"
+					layout="block">
+					<rich:dataTable
+						id="tableAgendaAgenda"
+						value="#{agendaMB.dataModel}"
+						binding="#{agendaMB.dataTable}"
+						var="row"
+						rows="30"
+						width="100%"
+						cellspacing="0"
+						cellpadding="0"
+						border="1"
+						rowClasses="tabela-row-1, tabela-row-2"
+						onRowMouseOver="this.style.backgroundColor = '#A2B6E5'"
+						onRowMouseOut="this.style.backgroundColor = ''">
+						<rich:column
+							id="colEstado"
+							style="text-align:left;"
+							width="20">
+							<f:facet name="header">
+							</f:facet>
+							<h:graphicImage
+								value="/images/legenda_vermelha.gif"
+								rendered="#{agendaMB.showForaPrazoIco}"
+								title="Fora do Prazo"
+								style="vertical-align: text-bottom;" />
+							<h:graphicImage
+								value="/images/legenda_amarela.gif"
+								rendered="#{agendaMB.showAVeriricarIco}"
+								title="A Verificar"
+								style="vertical-align: text-bottom;" />
+						</rich:column>
+						<rich:column
+							id="colSigla"
+							style="text-align:left;"
+							width="20">
+							<f:facet name="header">
+								<a4j:commandLink
+									styleClass="rotulos"
+									status="sts"
+									style="color: #002884 !important;"
+									actionListener="#{agendaMB.sortSgContrato}"
+									reRender="panelLista">
+									<h:graphicImage
+										rendered="#{empty agendaMB.order['sgContrato']}"
+										styleClass="dr-table-header-sort-img"
+										value="/a4j/g/3_3_1.GAorg.richfaces.renderkit.html.iconimages.DataTableIconSortNone/DATB/eAFjYGD4!!8!AAYAAv4_.jsf" />
+									<h:graphicImage
+										rendered="#{agendaMB.order['sgContrato'] == 1}"
+										styleClass="dr-table-header-sort-img"
+										value="/a4j/g/3_3_1.GAorg.richfaces.renderkit.html.iconimages.DataTableIconSortAsc/DATB/eAFjYGD4!!8!AAYAAv4_.jsf" />
+									<h:graphicImage
+										rendered="#{agendaMB.order['sgContrato'] == 2}"
+										styleClass="dr-table-header-sort-img"
+										value="/a4j/g/3_3_1.GAorg.richfaces.renderkit.html.iconimages.DataTableIconSortDesc/DATB/eAFjYGD4!!8!AAYAAv4_.jsf" />
+								</a4j:commandLink>
+							</f:facet>
+							<h:outputText
+								value="#{row.produto.categoriaProduto.sgCategoria}"
+								title="#{row.produto.categoriaProduto.noCategoriaProduto}"
+								style="color:#38599C; font-weight:bold; text-transform: uppercase;" />
+						</rich:column>
+						<rich:column
+							id="colPrazo"
+							style="text-align:left;"
+							width="80">
+							<f:facet name="header">
+								<a4j:commandLink
+									value="#{msgsAgenda['col_prazo']}"
+									styleClass="rotulos"
+									status="sts"
+									style="color: #002884 !important;"
+									actionListener="#{agendaMB.sortPrazo}"
+									reRender="panelLista">
+									<h:graphicImage
+										rendered="#{empty agendaMB.order['prazo']}"
+										styleClass="dr-table-header-sort-img"
+										value="/a4j/g/3_3_1.GAorg.richfaces.renderkit.html.iconimages.DataTableIconSortNone/DATB/eAFjYGD4!!8!AAYAAv4_.jsf" />
+									<h:graphicImage
+										rendered="#{agendaMB.order['prazo'] == 1}"
+										styleClass="dr-table-header-sort-img"
+										value="/a4j/g/3_3_1.GAorg.richfaces.renderkit.html.iconimages.DataTableIconSortAsc/DATB/eAFjYGD4!!8!AAYAAv4_.jsf" />
+									<h:graphicImage
+										rendered="#{agendaMB.order['prazo'] == 2}"
+										styleClass="dr-table-header-sort-img"
+										value="/a4j/g/3_3_1.GAorg.richfaces.renderkit.html.iconimages.DataTableIconSortDesc/DATB/eAFjYGD4!!8!AAYAAv4_.jsf" />
+								</a4j:commandLink>
+							</f:facet>
+							<h:outputText
+								value="#{agendaMB.qtPrazoVerificacao}"
+								style="#{agendaMB.styleColPrazo}" />
+						</rich:column>
+						<rich:column
+							id="colProdutoAgenda"
+							style="text-align:left;"
+							width="55">
+							<f:facet name="header">
+								<a4j:commandLink
+									value="#{msgsAgenda['produto']}"
+									styleClass="rotulos"
+									status="sts"
+									style="color: #002884 !important;"
+									actionListener="#{agendaMB.sortProduto}"
+									reRender="panelLista">
+									<h:graphicImage
+										rendered="#{empty agendaMB.order['produto']}"
+										styleClass="dr-table-header-sort-img"
+										value="/a4j/g/3_3_1.GAorg.richfaces.renderkit.html.iconimages.DataTableIconSortNone/DATB/eAFjYGD4!!8!AAYAAv4_.jsf" />
+									<h:graphicImage
+										rendered="#{agendaMB.order['produto'] == 1}"
+										styleClass="dr-table-header-sort-img"
+										value="/a4j/g/3_3_1.GAorg.richfaces.renderkit.html.iconimages.DataTableIconSortAsc/DATB/eAFjYGD4!!8!AAYAAv4_.jsf" />
+									<h:graphicImage
+										rendered="#{agendaMB.order['produto'] == 2}"
+										styleClass="dr-table-header-sort-img"
+										value="/a4j/g/3_3_1.GAorg.richfaces.renderkit.html.iconimages.DataTableIconSortDesc/DATB/eAFjYGD4!!8!AAYAAv4_.jsf" />
+								</a4j:commandLink>
+							</f:facet>
+							<h:outputText
+								value="#{row.produto.codigoFormatado}"
+								title="#{row.produto.noProduto}"
+								style="color:#38599C" />
+						</rich:column>
+						<rich:column
+							id="colContratoAgenda"
+							style="text-align:left;"
+							width="170">
+							<f:facet name="header">
+								<a4j:commandLink
+									value="#{msgsAgenda['contrato']}"
+									styleClass="rotulos"
+									status="sts"
+									style="color: #002884 !important;"
+									actionListener="#{agendaMB.sortContrato}"
+									reRender="panelLista">
+									<h:graphicImage
+										rendered="#{empty agendaMB.order['contrato']}"
+										styleClass="dr-table-header-sort-img"
+										value="/a4j/g/3_3_1.GAorg.richfaces.renderkit.html.iconimages.DataTableIconSortNone/DATB/eAFjYGD4!!8!AAYAAv4_.jsf" />
+									<h:graphicImage
+										rendered="#{agendaMB.order['contrato'] == 1}"
+										styleClass="dr-table-header-sort-img"
+										value="/a4j/g/3_3_1.GAorg.richfaces.renderkit.html.iconimages.DataTableIconSortAsc/DATB/eAFjYGD4!!8!AAYAAv4_.jsf" />
+									<h:graphicImage
+										rendered="#{agendaMB.order['contrato'] == 2}"
+										styleClass="dr-table-header-sort-img"
+										value="/a4j/g/3_3_1.GAorg.richfaces.renderkit.html.iconimages.DataTableIconSortDesc/DATB/eAFjYGD4!!8!AAYAAv4_.jsf" />
+								</a4j:commandLink>
+							</f:facet>
+							<h:outputText
+								value="#{agendaMB.contrato}"
+								style="color:#38599C" />
+						</rich:column>
+						<rich:column
+							id="colClienteAgenda"
+							style="text-align:left;"
+							width="200">
+							<f:facet name="header">
+								<a4j:commandLink
+									value="#{msgsAgenda['cliente']}"
+									styleClass="rotulos"
+									status="sts"
+									style="color: #002884 !important;"
+									actionListener="#{agendaMB.sortNoCliente}"
+									reRender="panelLista">
+									<h:graphicImage
+										rendered="#{empty agendaMB.order['noCliente']}"
+										styleClass="dr-table-header-sort-img"
+										value="/a4j/g/3_3_1.GAorg.richfaces.renderkit.html.iconimages.DataTableIconSortNone/DATB/eAFjYGD4!!8!AAYAAv4_.jsf" />
+									<h:graphicImage
+										rendered="#{agendaMB.order['noCliente'] == 1}"
+										styleClass="dr-table-header-sort-img"
+										value="/a4j/g/3_3_1.GAorg.richfaces.renderkit.html.iconimages.DataTableIconSortAsc/DATB/eAFjYGD4!!8!AAYAAv4_.jsf" />
+									<h:graphicImage
+										rendered="#{agendaMB.order['noCliente'] == 2}"
+										styleClass="dr-table-header-sort-img"
+										value="/a4j/g/3_3_1.GAorg.richfaces.renderkit.html.iconimages.DataTableIconSortDesc/DATB/eAFjYGD4!!8!AAYAAv4_.jsf" />
+								</a4j:commandLink>
+							</f:facet>
+							<h:outputText
+								value="#{row.noCliente}"
+								style="color:#38599C" />
+						</rich:column>
+						<rich:column
+							id="colCpfCnpjAgenda"
+							style="text-align:left;"
+							width="130">
+							<f:facet name="header">
+								<a4j:commandLink
+									value="#{msgsAgenda['cpf_cnpj']}"
+									styleClass="rotulos"
+									status="sts"
+									style="color: #002884 !important;"
+									actionListener="#{agendaMB.sortCpfCnpj}"
+									reRender="panelLista">
+									<h:graphicImage
+										rendered="#{empty agendaMB.order['cpfCnpj']}"
+										styleClass="dr-table-header-sort-img"
+										value="/a4j/g/3_3_1.GAorg.richfaces.renderkit.html.iconimages.DataTableIconSortNone/DATB/eAFjYGD4!!8!AAYAAv4_.jsf" />
+									<h:graphicImage
+										rendered="#{agendaMB.order['cpfCnpj'] == 1}"
+										styleClass="dr-table-header-sort-img"
+										value="/a4j/g/3_3_1.GAorg.richfaces.renderkit.html.iconimages.DataTableIconSortAsc/DATB/eAFjYGD4!!8!AAYAAv4_.jsf" />
+									<h:graphicImage
+										rendered="#{agendaMB.order['cpfCnpj'] == 2}"
+										styleClass="dr-table-header-sort-img"
+										value="/a4j/g/3_3_1.GAorg.richfaces.renderkit.html.iconimages.DataTableIconSortDesc/DATB/eAFjYGD4!!8!AAYAAv4_.jsf" />
+								</a4j:commandLink>
+							</f:facet>
+							<h:outputText
+								value="#{agendaMB.formatIcPfPj}"
+								style="color:#38599C" />
+						</rich:column>
+						<rich:column
+							id="colValorAgenda"
+							style="text-align:left;"
+							width="100">
+							<f:facet name="header">
+								<a4j:commandLink
+									value="#{msgsAgenda['valor']}"
+									styleClass="rotulos"
+									status="sts"
+									style="color: #002884 !important;"
+									actionListener="#{agendaMB.sortValor}"
+									reRender="panelLista">
+									<h:graphicImage
+										rendered="#{empty agendaMB.order['valor']}"
+										styleClass="dr-table-header-sort-img"
+										value="/a4j/g/3_3_1.GAorg.richfaces.renderkit.html.iconimages.DataTableIconSortNone/DATB/eAFjYGD4!!8!AAYAAv4_.jsf" />
+									<h:graphicImage
+										rendered="#{agendaMB.order['valor'] == 1}"
+										styleClass="dr-table-header-sort-img"
+										value="/a4j/g/3_3_1.GAorg.richfaces.renderkit.html.iconimages.DataTableIconSortAsc/DATB/eAFjYGD4!!8!AAYAAv4_.jsf" />
+									<h:graphicImage
+										rendered="#{agendaMB.order['valor'] == 2}"
+										styleClass="dr-table-header-sort-img"
+										value="/a4j/g/3_3_1.GAorg.richfaces.renderkit.html.iconimages.DataTableIconSortDesc/DATB/eAFjYGD4!!8!AAYAAv4_.jsf" />
+								</a4j:commandLink>
+							</f:facet>
+							<h:outputText
+								value="#{row.vrNominalContrato}"
+								style="color:#38599C"
+								converter="#{converterMonetario}">
+							</h:outputText>
+						</rich:column>
+						<rich:column
+							headerClass="th-text-center"
+							id="colAcaoAgenda"
+							style="text-align:center;"
+							width="50">
+							<f:facet name="header">
+								<h:outputText
+									styleClass="rotulos"
+									value="#{msgsAgenda['acao']}" />
+							</f:facet>
+							<h:outputText
+								id="lblDetalhesVerificacaoAgenda"
+								rendered="#{agendaMB.showGeneratingLabel}"
+								value="#{msgsAgenda['LABEL.gerando_agenda']}" />
+							<h:commandLink
+								id="lnkDetalhesVerificacaoAgenda"
+								rendered="#{agendaMB.showActionButton}"
+								action="#{agendaMB.doDetalhesVerificacao}"
+								style="border-style:none;border-width:0;">
+								<h:graphicImage
+									id="imgDetalhesVerificacaoAgenda"
+									styleClass="action-icon"
+									alt="Detalhes da Verificação"
+									title="Detalhes da Verificação"
+									value="/images/icon_acao.gif"
+									style="vertical-align: text-bottom;" />
+							</h:commandLink>
+						</rich:column>
+						<rich:column
+							id="colVerificarcaoParcialAgenda"
+							style="text-align:left;"
+							width="20">
+							<f:facet name="header">
+							</f:facet>
+							<h:graphicImage
+								value="/images/icon_pend.gif"
+								rendered="#{agendaMB.showVerificacaoParcial}"
+								title="Verificação Parcial"
+								style="vertical-align: text-text-bottom;" />
+						</rich:column>
+						<f:facet name="footer">
+							<rich:datascroller
+								binding="#{agendaMB.datascroller}"
+								for="tableAgendaAgenda"
+								fastControls="false"
+								status="sts"
+								reRender="tableAgendaAgenda"
+								inactiveStyleClass="classe-datascroller classe-datascroller-unselected"
+								selectedStyleClass="classe-datascroller classe-datascroller-selected"
+								id="dataFooterAgenda"
+								renderIfSinglePage="false">
+								<f:facet name="first">
+									<h:graphicImage value="/images/tabela/seta_primeiro.gif" />
+								</f:facet>
+								<f:facet name="first_disabled">
+									<h:graphicImage value="/images/tabela/seta_primeiro.gif" />
+								</f:facet>
+								<f:facet name="last">
+									<h:graphicImage value="/images/tabela/seta_ultimo.gif" />
+								</f:facet>
+								<f:facet name="last_disabled">
+									<h:graphicImage value="/images/tabela/seta_ultimo.gif" />
+								</f:facet>
+								<f:facet name="previous">
+									<h:graphicImage value="/images/tabela/seta_anterior.gif" />
+								</f:facet>
+								<f:facet name="previous_disabled">
+									<h:graphicImage value="/images/tabela/seta_anterior.gif" />
+								</f:facet>
+								<f:facet name="next">
+									<h:graphicImage value="/images/tabela/seta_proximo.gif" />
+								</f:facet>
+								<f:facet name="next_disabled">
+									<h:graphicImage value="/images/tabela/seta_proximo.gif" />
+								</f:facet>
+							</rich:datascroller>
+						</f:facet>
+					</rich:dataTable>
+				</h:panelGroup>
+			</rich:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

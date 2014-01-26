@@ -1,0 +1,34 @@
+package br.gov.caixa.siiac.bo;
+
+import java.math.BigDecimal;
+import java.util.List;
+
+import br.gov.caixa.exceptions.DAOException;
+import br.gov.caixa.siiac.exception.SIIACException;
+import br.gov.caixa.siiac.model.domain.Contrato;
+import br.gov.caixa.siiac.model.domain.Garantia;
+
+public interface IGarantiaBO {
+	
+	public List<Garantia> getListFiltro(Garantia garantia, Boolean inclusiveExcluida, BigDecimal[] valor);
+	
+	public Garantia save(Garantia garantia);
+	
+	public void inativar(Garantia garantia);
+	
+	public boolean existGarantia(Integer coGarantia, Integer nuGarantia);
+	
+	/**
+	 * Registra log de crud na tabela garantia. (OBS. sempre que permitir a alteração de um novo campo, incluí-lo na trilha)
+	 * @param acao
+	 * @param garantia
+	 * @param ip
+	 * @param garantiaOld
+	 * @throws SIIACException
+	 */
+	public void addTrilhaGarantia(char acao, Garantia garantia, String ip, Garantia garantiaOld) throws SIIACException;
+	
+	List<Garantia> getAllGarantiasInContrato(Contrato contrato) throws DAOException;
+	
+	public List<Garantia> getListFiltroSimples(String pesquisaString, Boolean pesquisaMostraInativos);
+}

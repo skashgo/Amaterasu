@@ -1,0 +1,347 @@
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/gsgroup/!svn/ver/11369/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/persistence/dao/impl
+END
+PreferenciasUsuarioCategoriaProdutoDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/gsgroup/!svn/ver/10653/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/persistence/dao/impl/PreferenciasUsuarioCategoriaProdutoDAO.java
+END
+CategoriaProdutoDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/gsgroup/!svn/ver/10858/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/persistence/dao/impl/CategoriaProdutoDAO.java
+END
+VerificacaoPreventivaDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/gsgroup/!svn/ver/11226/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/persistence/dao/impl/VerificacaoPreventivaDAO.java
+END
+MatrizAbrangenciaDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/gsgroup/!svn/ver/11197/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/persistence/dao/impl/MatrizAbrangenciaDAO.java
+END
+ApontamentoChecklistProdutoDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/gsgroup/!svn/ver/7995/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/persistence/dao/impl/ApontamentoChecklistProdutoDAO.java
+END
+PropriedadesDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/gsgroup/!svn/ver/10180/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/persistence/dao/impl/PropriedadesDAO.java
+END
+AgendaDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/gsgroup/!svn/ver/11122/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/persistence/dao/impl/AgendaDAO.java
+END
+ServicoVerificacaoProdutoDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/gsgroup/!svn/ver/10594/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/persistence/dao/impl/ServicoVerificacaoProdutoDAO.java
+END
+TemplateParecerDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/gsgroup/!svn/ver/10755/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/persistence/dao/impl/TemplateParecerDAO.java
+END
+DetalhesContratoDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/gsgroup/!svn/ver/11055/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/persistence/dao/impl/DetalhesContratoDAO.java
+END
+BlocoChecklistDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/gsgroup/!svn/ver/7995/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/persistence/dao/impl/BlocoChecklistDAO.java
+END
+CanalComercialProdutoDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/gsgroup/!svn/ver/10594/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/persistence/dao/impl/CanalComercialProdutoDAO.java
+END
+EnviaNotificacaoDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/gsgroup/!svn/ver/10719/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/persistence/dao/impl/EnviaNotificacaoDAO.java
+END
+GenericDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/gsgroup/!svn/ver/9501/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/persistence/dao/impl/GenericDAO.java
+END
+ItemVerificacaoDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/gsgroup/!svn/ver/10594/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/persistence/dao/impl/ItemVerificacaoDAO.java
+END
+LogImportacaoDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/gsgroup/!svn/ver/10180/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/persistence/dao/impl/LogImportacaoDAO.java
+END
+ResultadoApontamentoProdutoParecerDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/gsgroup/!svn/ver/11240/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/persistence/dao/impl/ResultadoApontamentoProdutoParecerDAO.java
+END
+TipoUnidadeDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/gsgroup/!svn/ver/10764/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/persistence/dao/impl/TipoUnidadeDAO.java
+END
+ContratoDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/gsgroup/!svn/ver/11345/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/persistence/dao/impl/ContratoDAO.java
+END
+PreferenciasUsuarioDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/gsgroup/!svn/ver/11258/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/persistence/dao/impl/PreferenciasUsuarioDAO.java
+END
+GerenteUnidadeDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/gsgroup/!svn/ver/10771/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/persistence/dao/impl/GerenteUnidadeDAO.java
+END
+ResourcePropertiesDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/gsgroup/!svn/ver/8604/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/persistence/dao/impl/ResourcePropertiesDAO.java
+END
+PreferenciaUsuarioGerenteDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/gsgroup/!svn/ver/11258/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/persistence/dao/impl/PreferenciaUsuarioGerenteDAO.java
+END
+BlocoChecklistProdutoDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/gsgroup/!svn/ver/7995/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/persistence/dao/impl/BlocoChecklistProdutoDAO.java
+END
+RestricaoDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/gsgroup/!svn/ver/10594/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/persistence/dao/impl/RestricaoDAO.java
+END
+ChecklistDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/gsgroup/!svn/ver/10995/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/persistence/dao/impl/ChecklistDAO.java
+END
+VerificacaoContratoDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/gsgroup/!svn/ver/11306/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/persistence/dao/impl/VerificacaoContratoDAO.java
+END
+VerificacaoContratoParecerDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/gsgroup/!svn/ver/11297/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/persistence/dao/impl/VerificacaoContratoParecerDAO.java
+END
+GarantiaDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/gsgroup/!svn/ver/10785/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/persistence/dao/impl/GarantiaDAO.java
+END
+EnviaParecerDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/gsgroup/!svn/ver/10888/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/persistence/dao/impl/EnviaParecerDAO.java
+END
+ControleNumeroParecerDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/gsgroup/!svn/ver/9185/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/persistence/dao/impl/ControleNumeroParecerDAO.java
+END
+UnidadeNotificadaVerificacaoDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/gsgroup/!svn/ver/10225/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/persistence/dao/impl/UnidadeNotificadaVerificacaoDAO.java
+END
+ItemVerificacaoChecklistProdutoDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 150
+/gsgroup/!svn/ver/7995/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/persistence/dao/impl/ItemVerificacaoChecklistProdutoDAO.java
+END
+VinculacoesChecklistDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/gsgroup/!svn/ver/8916/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/persistence/dao/impl/VinculacoesChecklistDAO.java
+END
+ServicoVerificacaoDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/gsgroup/!svn/ver/10594/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/persistence/dao/impl/ServicoVerificacaoDAO.java
+END
+ParecerDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/gsgroup/!svn/ver/11093/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/persistence/dao/impl/ParecerDAO.java
+END
+VerificacaoContratoObservacaoParecerDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/gsgroup/!svn/ver/8448/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/persistence/dao/impl/VerificacaoContratoObservacaoParecerDAO.java
+END
+ArquivoImagemParecerDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/gsgroup/!svn/ver/11369/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/persistence/dao/impl/ArquivoImagemParecerDAO.java
+END
+UsuarioDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/gsgroup/!svn/ver/10998/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/persistence/dao/impl/UsuarioDAO.java
+END
+UnidadeDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/gsgroup/!svn/ver/11141/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/persistence/dao/impl/UnidadeDAO.java
+END
+EfetuaVerificacaoDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/gsgroup/!svn/ver/11294/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/persistence/dao/impl/EfetuaVerificacaoDAO.java
+END
+RestricaoApontamentoDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/gsgroup/!svn/ver/7995/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/persistence/dao/impl/RestricaoApontamentoDAO.java
+END
+ResultadoApontamentoProdutoDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/gsgroup/!svn/ver/11240/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/persistence/dao/impl/ResultadoApontamentoProdutoDAO.java
+END
+PreferenciaUsuarioServicoDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/gsgroup/!svn/ver/10594/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/persistence/dao/impl/PreferenciaUsuarioServicoDAO.java
+END
+ProdutoUsuarioDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/gsgroup/!svn/ver/10774/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/persistence/dao/impl/ProdutoUsuarioDAO.java
+END
+ApontamentoDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/gsgroup/!svn/ver/10594/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/persistence/dao/impl/ApontamentoDAO.java
+END
+TrilhaHistoricoDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/gsgroup/!svn/ver/7995/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/persistence/dao/impl/TrilhaHistoricoDAO.java
+END
+FeriadoDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/gsgroup/!svn/ver/11218/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/persistence/dao/impl/FeriadoDAO.java
+END
+ProdutoDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/gsgroup/!svn/ver/10997/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/persistence/dao/impl/ProdutoDAO.java
+END
+InformacaoDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/gsgroup/!svn/ver/10092/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/persistence/dao/impl/InformacaoDAO.java
+END
+GeraAgendaDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/gsgroup/!svn/ver/11320/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/persistence/dao/impl/GeraAgendaDAO.java
+END
+LogEnviaNotificacaoDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/gsgroup/!svn/ver/10225/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/persistence/dao/impl/LogEnviaNotificacaoDAO.java
+END
+AtualizaPrazoVerificacaoDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/gsgroup/!svn/ver/11117/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/persistence/dao/impl/AtualizaPrazoVerificacaoDAO.java
+END
+TipoGarantiaDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/gsgroup/!svn/ver/7995/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/persistence/dao/impl/TipoGarantiaDAO.java
+END
+LogEnvioParecerDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/gsgroup/!svn/ver/11369/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/persistence/dao/impl/LogEnvioParecerDAO.java
+END
+VerificacaoContratoObservacaoDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/gsgroup/!svn/ver/9185/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/persistence/dao/impl/VerificacaoContratoObservacaoDAO.java
+END
+TemplateNotificacaoDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/gsgroup/!svn/ver/10172/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/persistence/dao/impl/TemplateNotificacaoDAO.java
+END

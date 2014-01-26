@@ -1,0 +1,287 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+<ui:composition template="/jsp/include/template.xhtml">
+	<ui:define name="breadcrumb">
+		<h:panelGroup id="pnlBread">
+			<h:outputLabel value="#{msgsServicoVerificacao['bread']}" />
+		</h:panelGroup>
+	</ui:define>
+	<ui:define name="conteudo">
+		<div id="conteudo">
+			<a4j:keepAlive beanName="servicoVerificacaoMB" />
+			<a4j:form id="formServicoVerificacao">
+				<rich:panel
+					style="vertical-align: bottom; padding:0px 0px 0px 0px; text-align:left;"
+					rendered="#{servicoVerificacaoMB.showHeader}">
+					<br/>
+
+					<h:graphicImage value="/images/icon_estagiarios_.gif"
+						rendered="#{servicoVerificacaoMB.showTitleVisualizar}"
+						style="vertical-align: bottom;" />
+					<h:outputText value="#{msgsServicoVerificacao['TITLE.panelVisualizar']}"
+						rendered="#{servicoVerificacaoMB.showTitleVisualizar}"
+						styleClass="tituloPagina" />
+
+					<h:graphicImage value="/images/icon_dados.jpg"
+						rendered="#{servicoVerificacaoMB.showTitleIncluir || servicoVerificacaoMB.showTitleAlterar}"
+						style="vertical-align: bottom;" />
+					<h:outputText
+						id="lbl_titlePanelCadServicoVerificacaoCad"
+						value="#{msgsServicoVerificacao['TITLE.panelIncluir']}"
+						rendered="#{servicoVerificacaoMB.showTitleIncluir}"
+						styleClass="tituloPagina" />
+					<h:outputText
+						id="lbl_titlePanelAltServicoVerificacaoCad"
+						value="#{msgsServicoVerificacao['TITLE.panelAlterar']}"
+						rendered="#{servicoVerificacaoMB.showTitleAlterar}"
+						styleClass="tituloPagina" />
+					<rich:spacer height="10" />
+				</rich:panel>
+
+				<rich:panel id="painelPrincipal" styleClass="panel-externo"
+					rendered="#{servicoVerificacaoMB.showPanelPrincipal}">
+					<div class="span-23 clear last"
+						id="pnlGridFiltroServicoVerificacao"
+						style="padding:5px; margin-left: 16px; line-height: 2;">
+						<div class="span-3 clear">
+							<h:graphicImage
+								value="/images/icon_search.gif"
+								style="vertical-align: top;"/>
+							<h:outputText
+								style="margin-left: 4px;"
+								id="lblServicoVerificacaoFiltro"
+								value="#{msgsServicoVerificacao['LABEL.pesquisa']}"
+								styleClass="rotulos"/>
+						</div>
+						<div class="span-14">
+							<h:inputText
+									id="inputServicoVerificacaoNomeFiltro"
+									value="#{servicoVerificacaoMB.pesquisaString}"
+									styleClass="forms_input"
+									style=" width: 510px; horizontal-align: left; font-size: 13px;" />
+							<br/>
+							<div style="margin-top: 10px">
+								<h:selectBooleanCheckbox styleClass="rotulos"
+									id="inputServicoVerificacaoMostraInativosFiltro"
+									value="#{servicoVerificacaoMB.pesquisaMostraInativos}" />
+								<h:outputLabel value="#{msgsServicoVerificacao['LABEL.showInativos']}"
+									for="inputServicoVerificacaoMostraInativosFiltro"
+									class="rotulos"
+									style="margin-left: 5px;" />
+							</div>
+						</div>
+						<div class="span-3">
+							<a4j:commandButton
+								id="btnfiltrarServicoVerificacaoFiltro"
+								styleClass="rich-button"
+								value="#{msgsServicoVerificacao['ACTION.filtrar']}"
+								actionListener="#{servicoVerificacaoMB.doFiltrar}"
+								reRender="conteudo, CEFMessagePanel, tbServicosVerificacao, pnlBread"
+								status="sts" />
+						</div>		
+						<div class="span-3 last">
+							<a4j:commandButton
+								id="btnCadastrarServicoVerificacao"
+								styleClass="rich-button"
+								immediate="true"
+								rendered="#{servicoVerificacaoMB.showPanelButtonCadastrar}"
+								value="#{msgsServicoVerificacao['ACTION.cadastrar']}"
+								actionListener="#{servicoVerificacaoMB.doCadastrar}"
+								reRender="conteudo, pnlBread, formServicoVerificacao"
+								status="sts" />
+						</div>
+						<br/>
+					</div>
+					<br clear="all" />
+					<br clear="all" />
+				</rich:panel>
+				
+				<rich:spacer height="10px" />
+				<rich:panel id="panelAlteracaoResumo" styleClass="panel-externo"
+					rendered="#{servicoVerificacaoMB.altera_Resumo}">
+					<h:panelGrid columns="2" width="100%"
+							columnClasses="coltop, coltop">
+						<h:column>
+							<h:panelGroup
+								id="pnlDescricaoItemVerificacao"
+								layout="block"
+								style="width: 580px; margin: 0 20px 0 20px;">
+								<h:outputLabel value="#{msgsServicoVerificacao['LABEL.nome']}"
+									styleClass="rotulos" />
+								<h:outputText
+									value="#{servicoVerificacaoMB.servicoVerificacao.noServicoVerificacao}" />
+							</h:panelGroup>
+						</h:column>
+						<h:column>
+							<h:outputLabel value="#{msgsProdutoUsuario['LABEL.situacao']}"
+								styleClass="rotulos" style="text-transform: uppercase;" />
+							<h:panelGroup
+								rendered="#{servicoVerificacaoMB.showSituacaoAtivo}">
+								<h:graphicImage value="/images/icon_ativo.gif"
+									style="vertical-align: middle;" />
+								<h:outputText value=" - Ativo" />
+							</h:panelGroup>
+							<h:panelGroup
+								rendered="#{servicoVerificacaoMB.showSituacaoInativo}">
+								<h:graphicImage value="/images/icon_-delete.gif"
+									style="vertical-align: middle;" />
+								<h:outputText value=" - Inativo" />
+							</h:panelGroup>
+						</h:column>
+					</h:panelGrid>
+				</rich:panel>
+				<rich:panel id="panelDeAlteracao" styleClass="panel-externo"
+					rendered="#{servicoVerificacaoMB.altera}">
+					<h:panelGrid columns="2" style="padding: 5px;"
+							columnClasses="label-middle">
+						<h:outputLabel value="#{msgsServicoVerificacao['LABEL.nome']}"
+							styleClass="rotulos" />
+						<h:inputText
+							value="#{servicoVerificacaoMB.servicoVerificacao.noServicoVerificacao}"
+							styleClass="forms_input" maxlength="70"
+							style="width: 400px; padding-right: 15px" />
+					</h:panelGrid>
+				</rich:panel>
+				<rich:panel id="panelDeInclusao" styleClass="panel-externo"
+					rendered="#{servicoVerificacaoMB.cadastro}">
+					<h:panelGrid columns="2" style="padding: 5px;"
+							columnClasses="label-middle">
+						<h:outputLabel value="#{msgsServicoVerificacao['LABEL.nome']}"
+							styleClass="rotulos"
+							style="vertical-align: 50px;" />
+						<h:inputText
+							value="#{servicoVerificacaoMB.servicoVerificacao.noServicoVerificacao}"
+							styleClass="forms_input" maxlength="70"
+							style="width: 400px; padding-right: 15px" />
+					</h:panelGrid>
+				</rich:panel>
+				<rich:panel id="pnlDataTable"
+						rendered="#{servicoVerificacaoMB.showTable}">
+					<h:graphicImage 
+						value="/images/icon_estagiarios_.gif"
+						style="vertical-align: bottom;" 
+						rendered="#{servicoVerificacaoMB.showTable}"/>
+					<h:outputText id="lbl_titlePanelListServicoVerificacao"
+						value="#{msgsServicoVerificacao['TITLE.panelLista']}"
+						styleClass="tituloPagina"
+						rendered="#{servicoVerificacaoMB.showTable}" />
+					<br />
+					<rich:spacer height="10" />
+					<rich:dataTable id="tbServicosVerificacao" width="100%"
+						value="#{servicoVerificacaoMB.servicosVerificacao}"
+						rendered="#{servicoVerificacaoMB.showTable}"
+						var="servicoVerificacao"
+						rows="10" 
+						rowClasses="tabela-row-1, tabela-row-2"
+						onRowMouseOver="this.style.backgroundColor = '#A2B6E5'"
+						onRowMouseOut="this.style.backgroundColor = ''">
+						<rich:column sortBy="#{servicoVerificacao.noServicoVerificacao}">
+							<f:facet name="header">
+								<h:outputText value="#{msgsServicoVerificacao['COLUMN.nome']}" />
+							</f:facet>
+							<h:commandLink action="#{servicoVerificacaoMB.doAlteraResumo}" 
+										   value="#{servicoVerificacao.noServicoVerificacao}" />
+						</rich:column>
+						<rich:column style="text-align: center;" width="50px"
+							headerClass="th-text-center">
+							<f:facet name="header">
+								<h:outputText
+									value="#{msgsServicoVerificacao['ACTION.acao']}" />
+							</f:facet>
+							<h:commandLink rendered="#{servicoVerificacaoMB.showAlterar}"
+										   action="#{servicoVerificacaoMB.doAlterar}">
+								<h:graphicImage value="/images/icon_editar.gif"
+									styleClass="action-icon" />
+							</h:commandLink>
+							<a4j:commandLink
+								rendered="#{servicoVerificacaoMB.pesquisaMostraInativos}"
+								reRender="tbServicosVerificacao, CEFMessagePanel"
+								action="#{servicoVerificacaoMB.doAtivarGrid}"
+								onclick="if(!confirm('#{msgsCef['MA006']}')) {return false;}">
+								<h:graphicImage value="/images/icon_ativo.gif" alt="Ativar"
+									styleClass="action-icon"
+									title="Ativar" style="horizontal-align: center" />
+							</a4j:commandLink>
+							<a4j:commandLink
+								rendered="#{!servicoVerificacaoMB.pesquisaMostraInativos}"
+								reRender="tbServicosVerificacao, CEFMessagePanel"
+								action="#{servicoVerificacaoMB.doInativarGrid}"
+								onclick="if(!confirm('#{msgsCef['MA004']}')) {return false;}">
+								<h:graphicImage value="/images/icon_-delete.gif"
+									alt="Inativar" title="Inativar"
+									styleClass="action-icon"
+									style="horizontal-align: center" />
+							</a4j:commandLink>
+						</rich:column>
+						<f:facet name="footer">
+							<rich:datascroller fastControls="false"
+								inactiveStyleClass="classe-datascroller classe-datascroller-unselected"
+								selectedStyleClass="classe-datascroller classe-datascroller-selected"
+								id="dataFooterUsuario" renderIfSinglePage="false">
+								<f:facet name="first">
+									<h:graphicImage value="/images/tabela/seta_primeiro.gif" />
+								</f:facet>
+								<f:facet name="first_disabled">
+									<h:graphicImage value="/images/tabela/seta_primeiro.gif" />
+								</f:facet>
+								<f:facet name="last">
+									<h:graphicImage value="/images/tabela/seta_ultimo.gif" />
+								</f:facet>
+								<f:facet name="last_disabled">
+									<h:graphicImage value="/images/tabela/seta_ultimo.gif" />
+								</f:facet>
+								<f:facet name="previous">
+									<h:graphicImage value="/images/tabela/seta_anterior.gif" />
+								</f:facet>
+								<f:facet name="previous_disabled">
+									<h:graphicImage value="/images/tabela/seta_anterior.gif" />
+								</f:facet>
+								<f:facet name="next">
+									<h:graphicImage value="/images/tabela/seta_proximo.gif" />
+								</f:facet>
+								<f:facet name="next_disabled">
+									<h:graphicImage value="/images/tabela/seta_proximo.gif" />
+								</f:facet>
+							</rich:datascroller>
+						</f:facet>
+					</rich:dataTable>
+
+
+				</rich:panel>
+				
+				<div id="panelButtons" style="text-align: right;">
+					<h:commandButton action="#{servicoVerificacaoMB.doSalvar}"
+						value="#{msgsServicoVerificacao['ACTION.salvar']}"
+						rendered="#{servicoVerificacaoMB.showSalvar}"
+						styleClass="rich-button" style="margin-left: 10px;"
+						onclick="if(!confirm('#{msgsCef['MA002']}')) {return false;}" />
+
+					<h:commandButton action="#{servicoVerificacaoMB.doSalvar}"
+						value="#{msgsServicoVerificacao['ACTION.salvar']}"
+						rendered="#{servicoVerificacaoMB.showBtnAtualizar}"
+						styleClass="rich-button" style="margin-left: 10px;"
+						onclick="if(!confirm('#{msgsCef['MA003']}')) {return false;}" />
+
+					<h:commandButton action="#{servicoVerificacaoMB.doVoltar}"
+						value="#{msgsServicoVerificacao['ACTION.voltar']}"
+						rendered="#{servicoVerificacaoMB.showBtnVoltar}"
+						styleClass="rich-button-cinza rich-button"
+						style="margin-left: 10px;" />
+
+					<h:commandButton action="#{servicoVerificacaoMB.doCancelar}"
+						value="#{msgsServicoVerificacao['ACTION.cancelar']}"
+						rendered="#{servicoVerificacaoMB.showCancelar}"
+						styleClass="rich-button-cinza rich-button"
+						style="margin-left: 10px;" />
+				</div>
+			</a4j:form>
+		</div>
+	</ui:define>
+</ui:composition>
+</html>

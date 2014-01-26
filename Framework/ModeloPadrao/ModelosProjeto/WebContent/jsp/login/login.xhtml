@@ -1,0 +1,198 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<head>
+<title>${msgs['APPLICATION.nomeTituloBrowser']}</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="cache-control" content="NO-CACHE" />
+<meta http-equiv="PRAGMA" content="NO-CACHE" />
+<!-- Framework CSS -->
+<link rel="stylesheet" href="/SIIAC/css/base/screen.css" type="text/css" media="screen, projection" />
+<link rel="stylesheet" href="/SIIAC/css/base/print.css" type="text/css" media="print" />
+<!--[if lt IE 8]>
+<link rel="stylesheet" href="/SIIAC/css/base/ie.css" type="text/css" media="screen, projection"/>
+<![endif]-->
+<link rel="stylesheet" href="/SIIAC/css/base/cef.css" type="text/css" media="screen, projection" />
+<link rel="stylesheet" href="/SIIAC/css/estilos.css" type="text/css" media="screen, projection" />
+<link rel="stylesheet" href="/SIIAC/css/superfish.css" type="text/css" media="screen, projection" />
+<a4j:loadScript src="/js/caixa.js" />
+<a4j:loadScript src="/js/masktype.js" />
+<a4j:loadScript src="/js/jquery.maskedinput-1.3.js" />
+<a4j:loadScript src="/js/jquery-ui-1.7.3.custom.min.js" />
+<link href="${applicationMB.contexto}/images/favicon.ico" type="image/x-icon" rel="shortcut icon"></link>
+		<style type="text/css">
+			.dr-stglpnl-h{background:none !important;border-style: none !important;} 
+			.rich-stglpanel-header{background:none !important;}
+			.dr-stglpnl{background:none !important;} 
+			.rich-stglpanel{background:none !important;}
+			.dr-mpnl-pnl {overflow:auto!important}
+		</style>	
+</head>
+<body class="showgrid"
+	onload="document.getElementById('j_username').focus();">
+	<f:view>
+		<div class="container cabecalho">
+			<div id="tituloSistema" class="container titulo">
+				<ui:insert name="titulo">
+					<div class="span-6">
+						<h1 class="logo">
+							<a href="#">Caixa Ecônomica Federal </a>
+						</h1>
+					</div>
+					<div class="span-18 last">
+						<h2 class="logo">
+							<a href="#">Caixa Ecônomica Federal </a>
+						</h2>
+					</div>
+				</ui:insert>
+			</div>
+			<div class="container saudacao">
+				<span class="span-9"> <span class="esquerda-10"> </span> </span> <span
+					class="span-5"> </span> <span class="span-7"> </span> <span
+					class="span-1"> </span> <span class="span-2 last"> </span>
+			</div>
+			
+				<center>
+					<rich:spacer width="1" height="26" />
+					<div class="panel-login">
+						<center  style="padding: 15px 15px 15px 5px; float: left;">
+							<br />
+							<table>
+								<tr>
+									<td>
+							<h:panelGroup>
+							<form method="post" action="j_security_check" id="formLogin">
+							<h:panelGrid columns="2">
+								<h:column />
+								<h:outputText value="#{msgsLogin['LABEL.LOGIN.description']}" styleClass="panel-login-description" />						
+								<h:outputLabel for="j_username" value="#{msgsLogin['LABEL.LOGIN.usuario']}" styleClass="panel-login-label" />
+								<h:inputText tabindex="1" id="j_username" styleClass="input_form input-login input-login-usuario" 
+											 onfocus="type_masktype(false)">
+											 <rich:jQuery
+												id="mascaraUnidade"
+												selector="#j_username"
+												query="mask('a999999')"
+												timing="onload" />
+											<rich:jQuery 
+												selector="#lblFiltroMatriculaUsuario" 
+												timing="onload" 
+												query="focus()" /> 
+								</h:inputText>
+								
+								<h:outputLabel for="j_password" value="#{msgsLogin['LABEL.LOGIN.senha']}" styleClass="panel-login-label" />
+								<h:inputSecret tabindex="2" id="j_password" styleClass="input_form input-login input-login-senha" />
+								
+								<h:column />
+								<br/>
+								
+								<h:column />
+								<input tabindex="3" id="botaoLogin" value="#{msgsLogin['LABEL.LOGIN.entrar']}" type="submit"
+											class="panel-login-button" style="margin-top: 36px; *margin-top: 5px; float: right;" /> 
+							</h:panelGrid>
+							</form>
+							</h:panelGroup>									
+									</td>
+									<td style="vertical-align:top;">
+							<h:panelGroup>
+							<h:form>
+							<h:panelGroup id="pnlInformacoes" layout="block" style="margin-left:25px; margin-top: 1px; margin-bottom: 12px; *margin-bottom: -2px; width: 300px;">
+				<rich:dataTable 
+					id="tableInformacao"
+					value="#{informacaoMB.listLogin}" 
+					var="row" 
+					rows="5"
+					width="100%" 
+					cellspacing="0" 
+					cellpadding="0" 
+					border="1"
+					rowClasses="tabela-row-1, tabela-row-2"
+					onRowMouseOver="this.style.backgroundColor = '#A2B6E5'"
+					onRowMouseOut="this.style.backgroundColor = ''">
+					<rich:column 
+						id="colAssuntoInformacao"
+						style="text-align:left;" >
+						<f:facet name="header">
+							<h:outputText 
+								value="INFORMAÇÕES"
+								styleClass="rotulos"
+								style="margin-left: 95px;"/>
+						</f:facet>
+									<a4j:commandLink 
+										id="lblnoInformacao"
+										actionListener="#{informacaoMB.doTextoDesc}" 
+										oncomplete="Richfaces.showModalPanel('modal-info');"
+										value="#{informacaoMB.pegaValorText}"
+										reRender="modal-info"
+										title="#{row.noInformacao}" />
+					</rich:column>
+					<f:facet name="footer">
+						<rich:datascroller fastControls="false"
+							inactiveStyleClass="classe-datascroller classe-datascroller-unselected"
+							selectedStyleClass="classe-datascroller classe-datascroller-selected"
+							id="dataFooterTipoGarantia" renderIfSinglePage="false">
+						<f:facet name="first">
+							<h:graphicImage value="/images/tabela/seta_primeiro.gif" />
+						</f:facet>
+						<f:facet name="first_disabled">
+							<h:graphicImage value="/images/tabela/seta_primeiro.gif" />
+						</f:facet>
+						<f:facet name="last">
+							<h:graphicImage value="/images/tabela/seta_ultimo.gif" />
+						</f:facet>
+						<f:facet name="last_disabled">
+							<h:graphicImage value="/images/tabela/seta_ultimo.gif" />
+						</f:facet>
+						<f:facet name="previous">
+							<h:graphicImage value="/images/tabela/seta_anterior.gif" />
+						</f:facet>
+						<f:facet name="previous_disabled">
+							<h:graphicImage value="/images/tabela/seta_anterior.gif" />
+						</f:facet>
+						<f:facet name="next">
+							<h:graphicImage value="/images/tabela/seta_proximo.gif" />
+						</f:facet>
+						<f:facet name="next_disabled">
+							<h:graphicImage value="/images/tabela/seta_proximo.gif" />
+						</f:facet>
+						</rich:datascroller>
+					</f:facet>					
+				</rich:dataTable>
+			</h:panelGroup>
+			<rich:modalPanel 
+				id="modal-info" 
+				width="750">
+				<h:panelGroup layout="block">
+					<h:outputText 
+						value="#{informacaoMB.textoDescricao}" 
+						escape="false"/>
+				</h:panelGroup>
+				<h:panelGroup 
+					id="btnFechar" 
+					layout="block" 
+					style="text-align: center;">
+					<h:commandButton 
+						value="FECHAR" 
+						onclick="Richfaces.hideModalPanel('modal-info');" 
+						styleClass="rich-button-cinza rich-button"/>
+				</h:panelGroup>
+		    </rich:modalPanel>	
+			</h:form>
+			</h:panelGroup>									
+									</td>
+								</tr>
+							</table>							
+			<rich:spacer width="3px"/>
+			<h:panelGroup id="pnlVersao" layout="block">
+							<h:outputText style="color:#002884; font-size: 10px; font-weight: normal; margin-top:5px;" value="Versão: #{version['version']}" />
+							</h:panelGroup>
+						</center>
+					</div>
+				</center>
+		</div>
+	</f:view>
+</body>
+</html>

@@ -1,0 +1,892 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	<ui:composition template="/jsp/include/template.xhtml">
+		<ui:define name="breadcrumb">
+			<h:panelGroup id="pnlBread">
+				<h:outputLabel
+					value="#{msgsTemplateNotificacao['BREAD']}" />
+			</h:panelGroup>
+		</ui:define>
+		<ui:define name="conteudo">
+		<script type="text/javascript">
+
+		function dataTableSelectOneRadio(radio) {
+			var id = radio.name.substring(radio.name.lastIndexOf(':'));
+			var el = jQuery('input[type=radio]');
+			for ( var i = 0; i &lt; el.length; i++) {
+				if (el[i].name.substring(el[i].name.lastIndexOf(':')) == id) {
+					el[i].checked = false;
+				}
+			}
+			radio.checked = true;	
+		}
+		
+			jQuery.fn.enterSubmit = function(){
+				jQuery(this).live("keypress", function(e) {
+			        /* ENTER PRESSED*/
+			        if (e.keyCode == 13) {
+				        this.value = this.value.replace(/_/g, "");
+			        	jQuery(".btn-consultar").click();
+			        	return false;
+			        }
+			        return true;
+			    });
+			};
+
+			function noAtSign(e)
+			{
+				var keynum;
+				var keychar;
+				var numcheck;
+
+				if(window.event) // IE8 and earlier
+				{
+					keynum = e.keyCode;
+				}
+				else if(e.which) // IE9/Firefox/Chrome/Opera/Safari
+				{
+					keynum = e.which;
+				}
+				keychar = String.fromCharCode(keynum);
+				numcheck = /@/;
+				return !numcheck.test(keychar);
+			}
+	
+
+			function checkForConfirmation(valido) {
+				if(valido)
+				{
+					if(!confirm('#{msgsCef['MA013']}')) 
+					{
+						jsChamaAlteracao();
+					} else 
+					{
+						jsMostraReplicaDados();
+					}
+				}
+				else 
+				{
+					renderizaPainel();
+				}
+			};
+
+
+			function iniciaCampoTexto()
+			{
+				tinyMCE.init({theme : "advanced", 
+					  mode : "textareas", 
+					  //add paste plugin
+					  plugins : 'paste',
+					  language : "pt",
+					  theme_advanced_buttons2 : "bullist,numlist,|,undo,redo,|,link,unlink,anchor,cleanup,help",
+					  //Keeps Paste Text feature active until user deselects the Paste as Text button
+					  paste_text_sticky : true,
+					  //select pasteAsPlainText on startup
+					  setup : function(ed) {
+					      ed.onInit.add(function(ed) {
+					          ed.pasteAsPlainText = true;
+					      });
+					  }
+				});
+			};
+
+			tinyMCE.init({theme : "advanced", 
+				  mode : "textareas", 
+				  //add paste plugin
+				  plugins : 'paste',
+				  language : "pt",
+				  theme_advanced_buttons2 : "bullist,numlist,|,undo,redo,|,link,unlink,anchor,image,cleanup,help",
+				  //Keeps Paste Text feature active until user deselects the Paste as Text button
+				  paste_text_sticky : true,
+				  //select pasteAsPlainText on startup
+				  setup : function(ed) {
+				      ed.onInit.add(function(ed) {
+				          ed.pasteAsPlainText = true;
+				      });
+				  }
+			});
+			
+	
+			function insertTag()
+			{
+				var sV=document.getElementById('idFormTemplateNotificacao:selectTags').value;
+				var listAllTags=document.getElementById('idFormTemplateNotificacao:idAllTags').value;
+		
+				var tags=new Array();
+				tags=listAllTags.split('#');
+		
+				if (tags==null || sV==null)
+				{
+					alert('Não existe lista de tags ou uma tag não foi selecionada');
+					return;
+				}
+		
+		
+				for (i=0;tags[i]!=null;i++)
+				{
+					var tagAux = new Array();
+					tagAux = tags[i].split(';');
+					
+					if (tagAux[0] == sV)
+					{
+						var v=tags[i].split(';');
+		
+						if (v==null)
+						{
+							alert('A tag selecionada esta mal formada.');
+							return;
+						}
+						
+						tinyMCE.execCommand('mceInsertContent',false,v[1]);
+						return;					
+					}	
+				} 
+		
+				return;
+			};	
+			
+		</script>
+
+		<div id="conteudo">
+				<a4j:keepAlive beanName="templateNotificacaoMB" />
+				<h:form id="idFormTemplateNotificacao">
+					<h:inputHidden id="idAllTags" value="#{templateNotificacaoMB.listAllTagstoString}" />
+				<rich:panel id="pnlConteudo">
+					<rich:spacer height="20" />
+					<rich:panel styleClass="panel-externo" id="pnlConsultarSimples"
+						rendered="#{templateNotificacaoMB.showConsultarSimples}">
+						<div class="span-23 clear last" id="pnlGridFiltroTemplateParecer"
+							style="padding: 5px; margin-left: 16px; line-height: 2;">
+							<div class="span-3 clear">
+								<h:graphicImage value="/images/icon_search.gif"
+									style="vertical-align: top;" />
+								<h:outputText style="margin-left: 4px;"
+									id="lblTemplateParecerFiltro"
+									value="#{msgsTemplateParecer['LABEL.pesquisa']}"
+									styleClass="rotulos" />
+							</div>
+							<div class="span-14">
+								<h:inputText id="inputTemplateParecerNomeFiltro"
+									value="#{templateNotificacaoMB.pesquisaSimples}"
+									styleClass="forms_input"
+									maxlength="70"
+									style=" width: 510px; horizontal-align: left; font-size: 13px;">
+									<rich:jQuery selector="#inputParecerMBNomeFiltro"
+										query="enterSubmit()" timing="onload" />
+								</h:inputText>
+							</div>
+							<div class="span-3">
+								<a4j:commandButton id="btnfiltrarTemplateFiltro"
+									styleClass="rich-button btn-consultar"
+									value="#{msgsTemplateNotificacao['ACTION.filtrar']}"
+									actionListener="#{templateNotificacaoMB.doConsultarClick}"
+									reRender="conteudo, CEFMessagePanel, idTableTamplateNotificacao, pnlBread"
+									status="sts" />
+							</div>
+							<div class="span-3 last">
+								<a4j:commandButton id="btnCadastrarTemplateNotificacaoMB"
+									styleClass="rich-button" immediate="true"
+									value="#{msgsTemplateNotificacao['ACTION.cadastrar']}"
+									actionListener="#{templateNotificacaoMB.doCadastrar}"
+									reRender="conteudo, pnlBread, idFormTemplateNotificacao, pnlCadastro"
+									oncomplete="iniciaCampoTexto();" status="sts" />
+							</div>
+							
+							<div class="span-6 last"  style="float: right;">
+								<div style="margin-top: 10px">
+									<h:graphicImage value="/images/icon_plus.gif" />
+									<a4j:commandLink
+										actionListener="#{templateNotificacaoMB.doConsultarAvancado}"
+										value="#{msgsChecklist['LABEL.filtroAvancado']}"
+										styleClass="rotulos" reRender="pnlConteudo"
+										style="margin-left: 3px;" />
+								</div>
+							</div>
+						</div>
+						<br clear="all" />
+						<br clear="all" />
+					</rich:panel>
+					<rich:panel id="pnlConsultarAvancado" styleClass="panel-externo"
+						rendered="#{templateNotificacaoMB.showConsultarAvancado}">
+						<table cellpadding="0" cellspacing="0" id="tabelaConsulta"
+							border="1" class="estiloTabelaPadrao">
+							<tr>
+								<td>
+									<h:outputLabel id="lblPesqTipoUnidade"
+										styleClass="rotulosPro"
+										value="#{msgsTemplateNotificacao['COLUMN.tipoUnidade']} " />
+								</td>
+								<td width="250px">
+									<h:selectOneMenu
+										value="#{templateNotificacaoMB.pesquisaCodTipoUnidade}" id="selectTipoUnidade"
+										tabindex="1" styleClass="forms_input pressEnter"
+										style=" width : 230px;">
+										<f:selectItems id="selectItemsTipoUnidade"
+											value="#{templateNotificacaoMB.listTipoUnidade}" />
+										<rich:jQuery selector="#selectTipoUnidade" query="enterSubmit()"
+											timing="onload" />
+									</h:selectOneMenu>									
+								</td>
+								<td>
+									<h:outputLabel id="lblPesqTipoNotificacao"
+										styleClass="rotulosPro"
+										value="#{msgsTemplateNotificacao['COLUMN.tipoNotificacao']} " />
+								</td>
+								<td colspan="2">
+									<h:selectOneMenu
+										value="#{templateNotificacaoMB.pesquisaCodTipoNotificacao}" id="selectTipoNotificacao"
+										tabindex="2" styleClass="forms_input pressEnter"
+										style=" width : 230px;">
+										<f:selectItems id="selectItemsTipoNotificacao"
+											value="#{templateNotificacaoMB.listTipoNotificacao}" />
+										<rich:jQuery selector="#selectTipoNotificacao" query="enterSubmit()"
+											timing="onload" />
+									</h:selectOneMenu>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<h:outputLabel id="lblPesqAsunto"
+										styleClass="rotulosPro"
+										value="#{msgsTemplateNotificacao['COLUMN.assunto']} " />
+								</td>
+								<td colspan="4">
+									<h:inputText id="inputTemplateNotificacaoAssunto"
+										value="#{templateNotificacaoMB.pesquisaAssunto}"
+										styleClass="forms_input"
+										tabindex="3"
+										maxlength="70"
+										style=" width: 652px; horizontal-align: left; font-size: 13px;">
+										<rich:jQuery selector="#inputTemplateNotificacaoAssunto"
+											query="enterSubmit()" timing="onload" />
+									</h:inputText>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2"></td>
+								<td colspan="3" style="text-align: right;">
+									<h:graphicImage
+										value="/images/icon_minus.gif" /> 
+									<a4j:commandLink
+										actionListener="#{templateNotificacaoMB.doConsultarSimples}"
+										value="#{msgsTemplateNotificacao['LABEL.filtroSimples']}"
+										styleClass="rotulos" reRender="pnlConteudo"
+										style="margin-left: 3px;" />
+									<rich:spacer width="30"></rich:spacer> 
+									<a4j:commandButton
+										id="btnfiltrarTemplateParecerFiltroAvancado"
+										styleClass="rich-button btn-consultar"
+										value="#{msgsTemplateNotificacao['ACTION.filtrar']}"
+										actionListener="#{templateNotificacaoMB.doConsultarClick}"
+										reRender="conteudo, CEFMessagePanel, idTableTamplateNotificacao, pnlBread"
+										status="sts" /> 
+									
+									<rich:spacer width="30"></rich:spacer> 
+									<a4j:commandButton
+										id="btnCadastrarTemplateNotificacaoAvancado"
+										styleClass="rich-button" immediate="true"
+										value="#{msgsTemplateNotificacao['ACTION.cadastrar']}"
+										actionListener="#{templateNotificacaoMB.doCadastrar}"
+										reRender="conteudo, pnlBread, idFormTemplateNotificacao, pnlCadastro"
+										oncomplete="iniciaCampoTexto();"
+										status="sts" />
+										
+									<rich:spacer width="30"></rich:spacer> 
+									<a4j:commandButton
+										id="btnLimparFiltro"
+										styleClass="rich-button-cinza rich-button"
+										value="#{msgsTemplateNotificacao['ACTION.limpar']}"
+										actionListener="#{templateNotificacaoMB.doLimpar}"
+										reRender="pnlConsultarAvancado"
+										status="sts" />
+								</td>								
+							</tr>
+						</table>
+					</rich:panel>
+
+					<rich:spacer height="10" />
+					<rich:panel id="pnlTitleGrid"
+						style="vertical-align: bottom; padding:6px 0px; text-align:left;"
+						rendered="#{templateNotificacaoMB.showDataTable}">
+						<h:graphicImage value="/images/icon_estagiarios_.gif"
+							style="vertical-align: bottom;" />
+						<h:outputText value="#{msgsProduto['TITLE.panelLista']}"
+							styleClass="tituloPagina" />
+					</rich:panel>
+					<rich:dataTable id="idTableTamplateNotificacao"
+						value="#{templateNotificacaoMB.listTemplateNotificacao}"
+						rendered="#{templateNotificacaoMB.showDataTable}" var="row" rows="10"
+						width="100%" cellspacing="0" cellpadding="0" border="1"
+						rowClasses="tabela-row-1, tabela-row-2"
+						onRowMouseOver="this.style.backgroundColor = '#A2B6E5'"
+						onRowMouseOut="this.style.backgroundColor = ''">
+
+						<rich:column id="colunaAssunto" style="text-align:left;" width="30%"
+							sortBy="#{row.noAssuntoNotificacao}">
+							<f:facet name="header">
+								<h:outputText id="lblAssunto" styleClass="rotulosPro"
+									value="#{msgsTemplateNotificacao['COLUMN.assunto']}" />
+							</f:facet>
+
+							<h:commandLink action="#{templateNotificacaoMB.doVisualizaClick}"
+								id="lnkAssunto" value="#{row.noAssuntoNotificacao}">
+
+								<f:setPropertyActionListener
+									target="#{templateNotificacaoMB.templateNotificacao.nuTemplateNotificacao}"
+									value="#{row.nuTemplateNotificacao}" />
+							</h:commandLink>
+
+						</rich:column>
+
+						<rich:column id="colunaTipoUnidade" style="text-align:left;"
+							width="30%"
+							sortBy="#{row.nuTipoUnidadeNotificada}">
+							<f:facet name="header">
+								<h:outputText id="lblTipoUnidade" styleClass="rotulosPro"
+									value="#{msgsTemplateNotificacao['COLUMN.tipoUnidade']}" />
+							</f:facet>
+
+							<h:commandLink action="#{templateNotificacaoMB.doVisualizaClick}"
+								id="lblCoTipoUnidade"
+								value="#{templateNotificacaoMB.tipoUnidade}">
+
+								<f:setPropertyActionListener
+									target="#{templateNotificacaoMB.templateNotificacao.nuTemplateNotificacao}"
+									value="#{row.nuTemplateNotificacao}" />
+							</h:commandLink>
+
+						</rich:column>
+
+						<rich:column id="idTipoNotificacao" style="text-align:left;"
+							width="10%" sortBy="#{row.nuTemplateNotificacao}">
+							<f:facet name="header">
+								<h:outputText id="lblIdTipoNotificacao" styleClass="rotulosPro"
+									value="#{msgsTemplateNotificacao['COLUMN.tipoNotificacao']}" />
+							</f:facet>
+
+							<h:commandLink action="#{templateNotificacaoMB.doVisualizaClick}"
+								id="lnkIdTipoNotificacao" value="#{templateNotificacaoMB.tipoNotificacao}">
+
+								<f:setPropertyActionListener
+									target="#{templateNotificacaoMB.templateNotificacao.nuTemplateNotificacao}"
+									value="#{row.nuTemplateNotificacao}" />
+							</h:commandLink>
+
+
+						</rich:column>
+
+						<rich:column id="colAcaoTemplate" width="5%"
+							headerClass="th-text-center" styleClass="iconesCentro">
+							<f:facet name="header">
+								<h:outputText id="lblAcaoTemplate" styleClass="rotulosTabela"
+									value="#{msgsTemplateParecer['ACTION.acao']}" />
+							</f:facet>
+							<h:commandLink id="lnkUpdateTemplate"
+								action="#{templateNotificacaoMB.doAtualizar}" tabindex="14"
+								reRender="pnlConteudo, CEFMessagePanel, idTableTamplateNotificacao"
+								style="border-style:none;border-width:0;">
+								<f:setPropertyActionListener
+									target="#{templateNotificacaoMB.templateNotificacao.nuTemplateNotificacao}"
+									value="#{row.nuTemplateNotificacao}" />
+								<h:graphicImage id="imgAlterarOnTemplate"
+									styleClass="action-icon" alt="Alterar" title="Alterar"
+									value="/images/icon_editar.gif" />
+							</h:commandLink>
+							<h:commandLink
+								id="lnkDeleteTemplateNotificacao"
+								onclick="if(!confirm('#{msgsCef['MA005']}')) {return false;}"
+								action="#{templateNotificacaoMB.doDelete}"
+								style="border-style:none;border-width:0;"
+								reRender="pnlConteudo, CEFMessagePanel, idTableTamplateNotificacao"
+								tabindex="15" status="sts">
+								<f:setPropertyActionListener
+									target="#{templateNotificacaoMB.templateNotificacao.nuTemplateNotificacao}"
+									value="#{row.nuTemplateNotificacao}" />
+								<h:graphicImage id="imgInativarOnUsuario"
+									styleClass="action-icon" alt="Excluir" title="Excluir"
+									value="/images/icon_-delete.gif" />
+							</h:commandLink>
+						</rich:column>
+						<f:facet name="footer">
+								<rich:datascroller
+									fastControls="false"
+									inactiveStyleClass="classe-datascroller classe-datascroller-unselected"
+									selectedStyleClass="classe-datascroller classe-datascroller-selected"
+									id="dataFooterUsuario"
+									renderIfSinglePage="false">
+									<f:facet name="first">
+										<h:graphicImage value="/images/tabela/seta_primeiro.gif" />
+									</f:facet>
+									<f:facet name="first_disabled">
+										<h:graphicImage value="/images/tabela/seta_primeiro.gif" />
+									</f:facet>
+									<f:facet name="last">
+										<h:graphicImage value="/images/tabela/seta_ultimo.gif" />
+									</f:facet>
+									<f:facet name="last_disabled">
+										<h:graphicImage value="/images/tabela/seta_ultimo.gif" />
+									</f:facet>
+									<f:facet name="previous">
+										<h:graphicImage value="/images/tabela/seta_anterior.gif" />
+									</f:facet>
+									<f:facet name="previous_disabled">
+										<h:graphicImage value="/images/tabela/seta_anterior.gif" />
+									</f:facet>
+									<f:facet name="next">
+										<h:graphicImage value="/images/tabela/seta_proximo.gif" />
+									</f:facet>
+									<f:facet name="next_disabled">
+										<h:graphicImage value="/images/tabela/seta_proximo.gif" />
+									</f:facet>
+								</rich:datascroller>
+							</f:facet>
+					</rich:dataTable>
+				</rich:panel>
+				<!--  Fim do Painel Consulta -->
+		   			
+	   			<!--  Início Painel Cadastro -->
+	   			<rich:panel 
+					id="pnlTituloCadastro"
+					style="vertical-align: bottom; padding:6px 0px; text-align:left;"
+					rendered="#{templateNotificacaoMB.showNovo}">
+					<h:graphicImage
+						value="/images/icon_dados.jpg"
+						style="vertical-align: bottom;" />
+					<h:outputText
+						value="#{msgsTemplateNotificacao['TITLE.panelIncluir']}"
+						styleClass="tituloPagina" rendered="#{!templateNotificacaoMB.modoAlteracao}"/>
+					<a4j:commandButton
+						rendered="#{!templateNotificacaoMB.modoAlteracao}"
+						id="botaoImportarDados"
+						tabindex="6"
+						action="#{templateNotificacaoMB.doMostraImportarDados}"
+						value="#{msgsTemplateNotificacao['LABEL.importarDados']}"
+						styleClass="rich-button"
+						reRender="conteudo, CEFMessagePanel, pnlBread, idTableTamplateNotificacao, formModalImportarDados, modalImportarDados"
+						oncomplete="Richfaces.showModalPanel('modalImportarDados')"
+						style="margin-right:6px; *margin-right:10px; margin-left: 15px; width: 215px;"/>	
+					<h:outputText
+						value="#{msgsTemplateNotificacao['TITLE.panelAlterar']}"
+						styleClass="tituloPagina" rendered="#{templateNotificacaoMB.modoAlteracao}"/>
+				</rich:panel>
+				<rich:panel
+					id="pnlCadastro"
+					styleClass="panel-externo"
+					rendered="#{templateNotificacaoMB.showNovo}">
+					
+					<!--  Table de Cadastro -->
+					<table	cellpadding="0" 
+ 							cellspacing="0"							 
+							id="tabelaCadastro"
+							class="estiloTabelaPadrao">
+							<tr>
+								<td>
+									<h:outputLabel
+										id="lblCadCaixaPostalOrigem"
+										styleClass="rotulosPro"
+										value="#{msgsTemplateNotificacao['LABEL.caixaPostal']}: " />
+								</td>
+								<td width="14%">
+									<h:inputText
+										value="#{templateNotificacaoMB.templateNotificacao.coCxPostalSaida}"
+										styleClass="forms_input pressEnter"
+										style="width: 120px;"
+										id="lblCadCampoCaixaPostalOrigem"
+										maxlength="10"
+										tabindex="1"
+										onkeypress="return noAtSign(event);"
+										size="8" >
+									</h:inputText>
+								</td>
+								<td width="13%">
+									<h:outputLabel id="lblCadTipoUnidade"
+										styleClass="rotulosPro"
+										value="#{msgsTemplateNotificacao['COLUMN.tipoUnidade']}: " />
+								</td>
+								<td>
+									<h:selectOneMenu
+										value="#{templateNotificacaoMB.codTipoUnidade}" id="selectCadTipoUnidade"
+										tabindex="2" styleClass="forms_input pressEnter"
+										style=" width : 150px;">
+										<f:selectItems id="selectCadItemsTipoUnidade"
+											value="#{templateNotificacaoMB.listTipoUnidade}" />
+										<rich:jQuery selector="#selectCadTipoUnidade" query="enterSubmit()"
+											timing="onload" />
+									</h:selectOneMenu>									
+								</td>
+								<td width="15%">
+									<h:outputLabel id="lblCadTipoNotificacao"
+										styleClass="rotulosPro"
+										value="#{msgsTemplateNotificacao['COLUMN.tipoNotificacao']}: " />
+								</td>
+								<td>
+									<h:selectOneMenu
+										value="#{templateNotificacaoMB.codTipoNotificacao}" id="selectCadTipoNotificacao"
+										tabindex="3" styleClass="forms_input pressEnter"
+										style=" width : 160px;">
+										<f:selectItems id="selectCadItemsTipoNotificacao"
+											value="#{templateNotificacaoMB.listTipoNotificacao}" />
+										<rich:jQuery selector="#selectCadTipoNotificacao" query="enterSubmit()"
+											timing="onload" />
+									</h:selectOneMenu>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<h:outputLabel id="lblCadAsunto"
+										styleClass="rotulosPro"
+										value="#{msgsTemplateNotificacao['COLUMN.assunto']}: " />
+								</td>
+								<td colspan="3">
+									<h:inputText id="inputCadTemplateNotificacaoAssunto"
+										value="#{templateNotificacaoMB.templateNotificacao.noAssuntoNotificacao}"
+										styleClass="forms_input"
+										tabindex="4"
+										maxlength="70"
+										style=" width: 408px; horizontal-align: left; font-size: 13px;">
+										<rich:jQuery selector="#inputCadTemplateNotificacaoAssunto"
+											query="enterSubmit()" timing="onload" />
+									</h:inputText>
+								</td>
+								<td>
+									<h:outputLabel id="lblCadReferncia"	styleClass="rotulosPro"
+										value="#{msgsTemplateNotificacao['LABEL.referencia']}: " />
+								</td>
+								<td>
+									<h:inputText
+										value="#{templateNotificacaoMB.templateNotificacao.noReferenciaNotificacao}"
+										styleClass="forms_input pressEnter"
+										style="width: 158px;"
+										maxlength="70"
+										tabindex="5"
+										id="txtCadReferencia" />
+								</td>
+							</tr>
+							<tr>
+								<td colspan="6">
+									<table>
+										<tr>
+											<td width="12%" style="vertical-align: top;">
+												<h:outputLabel id="lblCadTexto"	styleClass="rotulosPro"
+													value="#{msgsTemplateNotificacao['LABEL.texto']}: " />
+											</td>
+											<td>
+												<h:inputTextarea id="textAreaTextoNotificacao" value="#{templateNotificacaoMB.textoNotificacao}" cols="99" rows="20" style="width:800px;" tabindex="6" />
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<h:outputLabel id="lblCadCamposSelecionaveis"	styleClass="rotulosPro"
+										value="#{msgsTemplateNotificacao['LABEL.camposSelecionaveis']}: " />
+								</td>
+								<td colspan="5">
+									<select id="selectTags"	jsfc="h:selectOneMenu" class="forms_select100" style="width: 650px;" tabindex="7">
+										<f:selectItems id="selectItemTags"
+											value="#{templateNotificacaoMB.listTags}"
+											style="text-transform: uppercase; " />
+									</select>
+									<input id="inclui" onclick="insertTag();" name="button"
+										type="button" class="rich-button" value="#{msgsTemplateNotificacao['ACTION.incluir']}" />
+								</td>
+	
+							</tr>
+							<tr style="height: 10px">
+								<td></td>
+							</tr>
+						</table>
+												
+				</rich:panel>
+				<br/>
+				
+					<h:panelGroup id="pnlActionCad" layout="block"
+						rendered="#{templateNotificacaoMB.showNovo}"
+						style="text-align:right">
+						<h:commandButton
+							id="botaoVisualizar"
+							tabindex="6"
+							action="#{templateNotificacaoMB.doVisualizaBotao}"
+							value="#{msgsTemplateNotificacao['ACTION.visualizar']}"
+							styleClass="rich-button"
+							style="margin-right:6px; *margin-right:10px; margin-left: 15px; "
+							reRender="conteudo, CEFMessagePanel, pnlBread, idTableTamplateNotificacao"/>	
+							
+						<h:commandButton
+							rendered="#{!templateNotificacaoMB.modoAlteracao}"
+							id="botaoAlterarTemplateNotificacao"
+							tabindex="6"
+							onclick="if(!confirm('#{msgsCef['MA002']}')) {return false;}"
+							actionListener="#{templateNotificacaoMB.doSalvar}"
+							value="#{msgsTemplateNotificacao['ACTION.salvar']}"
+							styleClass="rich-button"
+							style="margin-right:6px; *margin-right:10px; margin-left: 15px; "
+							reRender="conteudo, CEFMessagePanel, pnlBread, idTableTamplateNotificacao"/>
+							
+						<a4j:commandButton
+							id="botaoCadastrarTemplateNotificacao"
+							rendered="#{templateNotificacaoMB.modoAlteracao}"
+							tabindex="6"
+							onclick="tinyMCE.triggerSave(true,true); if(!confirm('#{msgsCef['MA003']}')) {return false;} else {jsValidaTemplateNotificacao();}"
+							value="#{msgsTemplateNotificacao['ACTION.salvar']}"
+							styleClass="rich-button"
+							status="sts"
+							style="margin-right:6px; *margin-right:10px; margin-left: 15px; "
+							reRender="conteudo, CEFMessagePanel, pnlBread, idTableTamplateNotificacao">
+							</a4j:commandButton>
+					
+						<a4j:jsFunction name="jsChamaAlteracao"
+							actionListener="#{templateNotificacaoMB.doAlterarSimples}"
+							reRender="CEFMessagePanel">
+						</a4j:jsFunction>
+						
+						<a4j:jsFunction name="jsValidaTemplateNotificacao"	
+							actionListener="#{templateNotificacaoMB.doValidaTemplate}"
+							data="#{templateNotificacaoMB.valido}"
+							oncomplete="checkForConfirmation(data)"	 />
+
+						<a4j:jsFunction 
+							name="renderizaPainel"
+							action="#{templateNotificacaoMB.doImprimeMensagem}"
+							reRender="CEFMessagePanel">
+						</a4j:jsFunction>
+						
+						<a4j:jsFunction 
+							name="jsMostraReplicaDados"
+							actionListener="#{templateNotificacaoMB.doMostraReplicaDados}"
+							oncomplete="Richfaces.showModalPanel('modalReplicarDados');">
+						</a4j:jsFunction>
+														
+						<h:commandButton
+							id="btnCancelarNotificacaoCad"
+							styleClass="rich-button-cinza rich-button"
+							value="#{msgsTemplateNotificacao['ACTION.cancelar']}"
+							action="#{templateNotificacaoMB.doCancelar}"
+							reRender="conteudo, CEFMessagePanel, pnlBread, idTableTamplateNotificacao"
+							style="margin-left: 15px;"
+							immediate="true"
+							status="sts" />
+					</h:panelGroup>
+			
+				</h:form>
+				
+				
+				<rich:modalPanel id="modalImportarDados" width="700"
+						onshow="jQuery('.cef-message-panel').css('z-index', 101);"
+						resizeable="true" height="460" showWhenRendered="#{templateNotificacaoMB.modalImportaDados}">
+					<f:facet name="header">
+						<h:outputText
+							value="#{msgsTemplateNotificacao['TITLE.importarDados']}" />
+					</f:facet>
+					<h:form id="formImportaDados">
+						<rich:dataTable id="idTableTamplateNotificacaoImportacao"
+							value="#{templateNotificacaoMB.listTemplateNotificacaoImportacao}"
+							var="row" rows="10"
+							width="100%" cellspacing="0" cellpadding="0" border="1"
+							rowClasses="tabela-row-1, tabela-row-2"
+							onRowMouseOver="this.style.backgroundColor = '#A2B6E5'"
+							onRowMouseOut="this.style.backgroundColor = ''">
+							
+							<rich:column id="colunaEscolhaImportacao" style="text-align:center;"
+								width="10%">
+								<f:facet name="header">
+									<h:outputText id="lblEscolhaImportacao" styleClass="rotulosPro"
+										value="" />
+								</f:facet>
+	
+								<h:selectOneRadio
+									id="cbSelecionaImportacao"
+									onclick="dataTableSelectOneRadio(this);">
+									<f:selectItem itemValue="null" />
+									<a4j:support event="onchange" >
+										<f:setPropertyActionListener
+											target="#{templateNotificacaoMB.templateNotificacao.nuTemplateNotificacao}"
+											value="#{row.nuTemplateNotificacao}" />
+									</a4j:support>
+								</h:selectOneRadio>
+	
+							</rich:column>
+							
+							<rich:column id="colunaAssuntoImportacao" style="text-align:left;" width="90%"
+								sortBy="#{row.noAssuntoNotificacao}">
+								<f:facet name="header">
+									<h:outputText id="lblAssuntoImportacao" styleClass="rotulosPro"
+										value="#{msgsTemplateNotificacao['COLUMN.assunto']}" />
+								</f:facet>
+								
+								<h:outputText id="lblTxtAssuntoImportacao" styleClass="rotulosPro"
+										value="#{row.noAssuntoNotificacao}" />
+							</rich:column>
+	
+							
+	
+							<f:facet name="footer">
+									<rich:datascroller
+										fastControls="false"
+										inactiveStyleClass="classe-datascroller classe-datascroller-unselected"
+										selectedStyleClass="classe-datascroller classe-datascroller-selected"
+										id="dataFooterUsuario"
+										renderIfSinglePage="false">
+										<f:facet name="first">
+											<h:graphicImage value="/images/tabela/seta_primeiro.gif" />
+										</f:facet>
+										<f:facet name="first_disabled">
+											<h:graphicImage value="/images/tabela/seta_primeiro.gif" />
+										</f:facet>
+										<f:facet name="last">
+											<h:graphicImage value="/images/tabela/seta_ultimo.gif" />
+										</f:facet>
+										<f:facet name="last_disabled">
+											<h:graphicImage value="/images/tabela/seta_ultimo.gif" />
+										</f:facet>
+										<f:facet name="previous">
+											<h:graphicImage value="/images/tabela/seta_anterior.gif" />
+										</f:facet>
+										<f:facet name="previous_disabled">
+											<h:graphicImage value="/images/tabela/seta_anterior.gif" />
+										</f:facet>
+										<f:facet name="next">
+											<h:graphicImage value="/images/tabela/seta_proximo.gif" />
+										</f:facet>
+										<f:facet name="next_disabled">
+											<h:graphicImage value="/images/tabela/seta_proximo.gif" />
+										</f:facet>
+									</rich:datascroller>
+								</f:facet>
+						</rich:dataTable>
+						
+						<div style="width: 100%; text-align: right;">
+							<h:commandButton
+								id="btnCancelarNotificacaoImportar"
+								styleClass="rich-button-cinza rich-button"
+								value="#{msgsTemplateNotificacao['ACTION.cancelar']}"
+								actionListener="#{templateNotificacaoMB.doCancelarImportaDados}"
+								onclick="Richfaces.hideModalPanel('modalImportarDados')"
+								style="margin-left: 15px;"
+								immediate="true"
+								status="sts" />
+							
+							<h:commandButton
+								id="botaoCarregarImportacaoDados"
+								tabindex="6"
+								action="#{templateNotificacaoMB.doCarregar}"
+								value="#{msgsTemplateNotificacao['ACTION.carregar']}"
+								styleClass="rich-button"
+								style="margin-right:6px; *margin-right:10px; margin-left: 15px; "
+								reRender="CEFMessagePanel, modalImportarDados, pnlCadastro"/>	
+						</div>
+					</h:form>
+				</rich:modalPanel>
+				
+				<rich:modalPanel id="modalReplicarDados" width="700"
+						onshow="jQuery('.cef-message-panel').css('z-index', 101);"
+						resizeable="true" height="460" showWhenRendered="#{templateNotificacaoMB.modalReplicaDados}">
+					<f:facet name="header">
+						<h:outputText
+							value="#{msgsTemplateNotificacao['TITLE.replicarDados']}" />
+					</f:facet>
+					<h:form id="formReplicarDados">
+						<rich:dataTable id="idTableTamplateNotificacaoReplicacao"
+							value="#{templateNotificacaoMB.listTemplateNotificacaoVO}"
+							var="row" rows="10"
+							width="100%" cellspacing="0" cellpadding="0" border="1"
+							rowClasses="tabela-row-1, tabela-row-2"
+							onRowMouseOver="this.style.backgroundColor = '#A2B6E5'"
+							onRowMouseOut="this.style.backgroundColor = ''">
+							
+							<rich:column id="colunaEscolhaReplicacao" style="text-align:center;"
+								width="10%">
+								<f:facet name="header">
+									<h:outputText id="lblEscolhaReplicacao" styleClass="rotulosPro"
+										value="" />
+								</f:facet>
+	
+								<h:selectBooleanCheckbox value="#{row.replicado}" >
+									<a4j:support event="onclick" actionListener="#{templateNotificacaoMB.doFazNada}"/>
+								</h:selectBooleanCheckbox>
+										
+	
+							</rich:column>
+							
+							<rich:column id="colunaAssuntoReplicacao" style="text-align:left;" width="90%"
+								sortBy="#{row.noAssuntoNotificacao}">
+								<f:facet name="header">
+									<h:outputText id="lblAssuntoReplicacao" styleClass="rotulosPro"
+										value="#{msgsTemplateNotificacao['COLUMN.assunto']}" />
+								</f:facet>
+								
+								<h:outputText id="lblTxtAssuntoReplicacao" styleClass="rotulosPro"
+										value="#{row.noAssuntoNotificacao}" />
+							</rich:column>
+	
+							
+	
+							<f:facet name="footer">
+									<rich:datascroller
+										fastControls="false"
+										inactiveStyleClass="classe-datascroller classe-datascroller-unselected"
+										selectedStyleClass="classe-datascroller classe-datascroller-selected"
+										id="dataFooterUsuario"
+										renderIfSinglePage="false">
+										<f:facet name="first">
+											<h:graphicImage value="/images/tabela/seta_primeiro.gif" />
+										</f:facet>
+										<f:facet name="first_disabled">
+											<h:graphicImage value="/images/tabela/seta_primeiro.gif" />
+										</f:facet>
+										<f:facet name="last">
+											<h:graphicImage value="/images/tabela/seta_ultimo.gif" />
+										</f:facet>
+										<f:facet name="last_disabled">
+											<h:graphicImage value="/images/tabela/seta_ultimo.gif" />
+										</f:facet>
+										<f:facet name="previous">
+											<h:graphicImage value="/images/tabela/seta_anterior.gif" />
+										</f:facet>
+										<f:facet name="previous_disabled">
+											<h:graphicImage value="/images/tabela/seta_anterior.gif" />
+										</f:facet>
+										<f:facet name="next">
+											<h:graphicImage value="/images/tabela/seta_proximo.gif" />
+										</f:facet>
+										<f:facet name="next_disabled">
+											<h:graphicImage value="/images/tabela/seta_proximo.gif" />
+										</f:facet>
+									</rich:datascroller>
+								</f:facet>
+						</rich:dataTable>
+						
+						<div style="width: 100%; text-align: right;">
+							<h:commandButton
+								id="btnCancelarNotificacaoReplicar"
+								styleClass="rich-button-cinza rich-button"
+								value="#{msgsTemplateNotificacao['ACTION.cancelar']}"
+								onclick="Richfaces.hideModalPanel('modalReplicarDados')"
+								actionListener="#{templateNotificacaoMB.doCancelarReplicaDados}"
+								style="margin-left: 15px;"
+								immediate="true"
+								status="sts" />
+							
+							<h:commandButton
+								id="botaoCarregarReplicarDados"
+								tabindex="6"
+								actionListener="#{templateNotificacaoMB.doReplicar}"
+								value="#{msgsTemplateNotificacao['ACTION.replicar']}"
+								styleClass="rich-button"
+								style="margin-right:6px; *margin-right:10px; margin-left: 15px; "
+								reRender="CEFMessagePanel, modalReplicarDados, pnlCadastro"/>	
+						</div>
+					</h:form>
+				</rich:modalPanel>
+				
+   			</div>
+		</ui:define>
+	</ui:composition>
+</html>

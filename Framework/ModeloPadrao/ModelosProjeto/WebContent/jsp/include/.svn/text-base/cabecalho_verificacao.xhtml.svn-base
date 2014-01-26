@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+		
+		<h:graphicImage value="/images/icon_marcacao.gif" />
+		<h:outputLabel value="#{cabecalhoDetalhesVerificacaoMB.contrato.produto.noProduto}
+			  - #{cabecalhoDetalhesVerificacaoMB.contratoPreventiva} - #{cabecalhoDetalhesVerificacaoMB.contrato.coContrato}"
+			  	style="font-size: 14.3px; font-weight: bold; color: #003366" />
+		<h:form id="formPrincipalCabecalho">
+			<script type="text/javascript">
+				function oculta() {
+					document.getElementById('linhaOculta1').style.display = 'none';
+					document.getElementById('linhaOculta2').style.display = 'none';
+					document.getElementById('linhaOculta3').style.display = 'none';
+					document.getElementById('linhaOculta4').style.display = 'none';
+					document.getElementById('linhaOculta5').style.display = 'none';
+					document.getElementById('linhaOculta6').style.display = 'none';
+					document.getElementById('linhaOculta7').style.display = 'none';
+					document.getElementById('formPrincipalCabecalho:btnFecharInfo').style.display = 'none';
+					if(navigator.appName == "Microsoft Internet Explorer") {
+						document.getElementById('formPrincipalCabecalho:btnExibirInfo').style.display = 'block';
+					} else {
+						document.getElementById('formPrincipalCabecalho:btnExibirInfo').style.display = 'table-row';
+					}
+					
+				}
+		
+				function exibe() {
+					if(navigator.appName == "Microsoft Internet Explorer") {
+						document.getElementById('linhaOculta1').style.display = 'block';
+						document.getElementById('linhaOculta2').style.display = 'block';
+						document.getElementById('linhaOculta3').style.display = 'block';
+						document.getElementById('linhaOculta4').style.display = 'block';
+						document.getElementById('linhaOculta5').style.display = 'block';
+						document.getElementById('linhaOculta6').style.display = 'block';
+						document.getElementById('linhaOculta7').style.display = 'block';
+						document.getElementById('formPrincipalCabecalho:btnFecharInfo').style.display = 'block';
+					} else {
+						document.getElementById('linhaOculta1').style.display = 'table-row';
+						document.getElementById('linhaOculta2').style.display = 'table-row';
+						document.getElementById('linhaOculta3').style.display = 'table-row';
+						document.getElementById('linhaOculta4').style.display = 'table-row';
+						document.getElementById('linhaOculta5').style.display = 'table-row';
+						document.getElementById('linhaOculta6').style.display = 'table-row';
+						document.getElementById('linhaOculta7').style.display = 'table-row';
+						document.getElementById('formPrincipalCabecalho:btnFecharInfo').style.display = 'table-row';
+					}
+					document.getElementById('formPrincipalCabecalho:btnExibirInfo').style.display = 'none';
+				}
+			</script>		
+		
+			<a4j:keepAlive beanName="cabecalhoDetalhesVerificacaoMB" />
+			<br />
+			<h:graphicImage
+				value="/images/icon_estagiarios_.gif"
+				style="vertical-align: bottom;" />
+			<h:outputText
+				value="#{msgCabecalhoDetalhesVerificacao['TITLE.panelDetalhesContratoVerificacao']}"
+				styleClass="tituloPagina" />
+			<br />
+			<rich:panel id="pnlDetalhesContrato" styleClass="panel-externo">
+				<table
+					id="tbDadosContato" 
+					cellpadding="0"
+					cellspacing="0"
+					class="estiloTabelaPadrao">
+					<tr class="distanciaLinha">
+						<td width="125px">
+							<h:outputLabel value="#{msgCabecalhoDetalhesVerificacao['LABEL.unidade']}:"
+								class="rotulos" />
+						</td>
+						<td width="140px">
+							<h:outputText value="#{cabecalhoDetalhesVerificacaoMB.nomeUnidade}" />
+						</td>
+						<td width="116px">
+							<h:outputLabel value="#{msgCabecalhoDetalhesVerificacao['LABEL.produto']}:" 
+								class="rotulos" />
+						</td>
+						<td width="260px">
+							<h:outputText value="#{cabecalhoDetalhesVerificacaoMB.contrato.produto.coProduto} - " />
+							<h:outputText value="#{cabecalhoDetalhesVerificacaoMB.contrato.produto.noProduto}" />
+						</td>
+						<td width="130px">
+							<h:outputLabel value="#{msgCabecalhoDetalhesVerificacao['LABEL.contrato']}:" 
+								class="rotulos" />
+						</td>
+						<td>
+							<h:outputText value="#{cabecalhoDetalhesVerificacaoMB.contrato.coContrato}" rendered="#{!cabecalhoDetalhesVerificacaoMB.ehVerificacaoPreventiva}"/>
+							<h:outputText value="#{msgCabecalhoDetalhesVerificacao['LABEL.preventiva']}" rendered="#{cabecalhoDetalhesVerificacaoMB.ehVerificacaoPreventiva}"/>
+						</td>
+					</tr>
+					<tr class="distanciaLinha">
+						<td>
+							<h:outputLabel value="#{msgCabecalhoDetalhesVerificacao['LABEL.idCliente']}:"
+								class="rotulos" />
+						</td>
+						<td>
+							<h:outputText value="#{cabecalhoDetalhesVerificacaoMB.idClienteFormatado}" />
+						</td>
+						<td>
+							<h:outputLabel value="#{msgCabecalhoDetalhesVerificacao['LABEL.cliente']}:"
+								class="rotulos" />
+						</td>
+						<td>
+							<h:outputText value="#{cabecalhoDetalhesVerificacaoMB.contrato.noCliente}" />
+						</td>
+						<td width="120px">
+							<h:outputLabel value="#{msgCabecalhoDetalhesVerificacao['LABEL.codCliente']}:"
+								class="rotulos" />
+						</td>
+						<td>
+							<h:outputText value="#{cabecalhoDetalhesVerificacaoMB.contrato.coCliente}" />
+						</td>						
+					</tr>
+					<tr class="distanciaLinha">
+						<td>
+							<h:outputLabel value="#{msgCabecalhoDetalhesVerificacao['LABEL.dtContrato']}:"
+								class="rotulos" rendered="#{!cabecalhoDetalhesVerificacaoMB.ehVerificacaoPreventiva}"/>
+								
+							<h:outputLabel value="#{msgCabecalhoDetalhesVerificacao['LABEL.origem']}:"
+								class="rotulos" rendered="#{cabecalhoDetalhesVerificacaoMB.ehVerificacaoPreventiva}"/>
+						</td>
+						<td>
+							<h:outputText value="#{cabecalhoDetalhesVerificacaoMB.contrato.dtContrato}" rendered="#{!cabecalhoDetalhesVerificacaoMB.ehVerificacaoPreventiva}">
+								<f:convertDateTime pattern="dd/MM/yyyy"/>
+							</h:outputText>
+							
+							<h:outputText value="#{cabecalhoDetalhesVerificacaoMB.contrato.produto.sgSistemaOrigem}" rendered="#{cabecalhoDetalhesVerificacaoMB.ehVerificacaoPreventiva}"/>
+						</td>
+						<td>
+							<h:outputLabel value="#{msgCabecalhoDetalhesVerificacao['LABEL.avalSiric']}:"
+								class="rotulos" />
+						</td>
+						<td>
+							<h:outputText value="#{cabecalhoDetalhesVerificacaoMB.contrato.coAvaliacaoSiric}" />
+						</td>
+						<td width="120px">
+							<h:outputLabel value="#{msgCabecalhoDetalhesVerificacao['LABEL.valorContrato']}:"
+							  class="rotulos" />
+						</td>
+						<td>
+							<h:outputText value="#{cabecalhoDetalhesVerificacaoMB.contrato.vrNominalContrato}" converter="#{converterMonetario}">
+							</h:outputText>
+						</td>
+					</tr>
+					
+					<!--  Linhas Ocultas -->
+					<tr class="distanciaLinha" id="linhaOculta1" style="display: none;">
+						<td>
+							<h:outputLabel value="#{msgCabecalhoDetalhesVerificacao['LABEL.avaliacaoTomador']}:"
+								class="rotulos" />
+						</td>
+						<td>
+							<h:outputText value="#{cabecalhoDetalhesVerificacaoMB.contrato.coAvaliacaoSiricTomador}"/>
+						</td>
+						<td>
+							<h:outputLabel value="#{msgCabecalhoDetalhesVerificacao['LABEL.dataValidadeAvalTomador']}:"
+								class="rotulos" />
+						</td>
+						<td>
+							<h:outputText value="#{cabecalhoDetalhesVerificacaoMB.contrato.detalhesContrato.dtValidadeAvaliacaoTomador}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
+						</td>
+						<td>
+							<h:outputLabel value="#{msgCabecalhoDetalhesVerificacao['LABEL.dataValidadeAvalOperacao']}:"
+								class="rotulos" />
+						</td>
+						<td>
+							<h:outputText value="#{cabecalhoDetalhesVerificacaoMB.contrato.detalhesContrato.dtValidadeAvaliacaoSiric}">
+								<f:convertDateTime pattern="dd/MM/yyyy"/>	
+							</h:outputText>
+						</td>
+					</tr>
+					<tr class="distanciaLinha" id="linhaOculta2" style="display: none;">
+						<td>
+							<h:outputLabel value="#{msgCabecalhoDetalhesVerificacao['LABEL.conveniado']}:"
+								class="rotulos" />
+						</td>
+						<td colspan="2">
+							<h:outputText value="#{cabecalhoDetalhesVerificacaoMB.contrato.detalhesContrato.nuConveniado} - "/>
+							<h:outputText value="#{cabecalhoDetalhesVerificacaoMB.nomeConveniado}"/>
+						</td>
+					</tr>
+					<tr class="distanciaLinha" id="linhaOculta3" style="display: none;">
+						<td>
+							<h:outputLabel value="#{msgCabecalhoDetalhesVerificacao['LABEL.empreendimento']}:"
+								class="rotulos" />
+						</td>
+						<td colspan="2">
+							<h:outputText value="#{cabecalhoDetalhesVerificacaoMB.contrato.detalhesContrato.nuIdentificadorEmpreendimento} - "/>
+							<h:outputText value="#{cabecalhoDetalhesVerificacaoMB.contrato.detalhesContrato.noEmpreendimento}"/>
+						</td>
+					</tr>
+					<tr class="distanciaLinha" id="linhaOculta4" style="display: none;">
+						<td>
+							<h:outputLabel value="#{msgCabecalhoDetalhesVerificacao['LABEL.vendedor']}:"
+								class="rotulos" />
+						</td>
+						<td colspan="2">
+							<h:outputText value="#{cabecalhoDetalhesVerificacaoMB.contrato.detalhesContrato.nuIdentificadorVendedor} - "/>
+							<h:outputText value="#{cabecalhoDetalhesVerificacaoMB.contrato.detalhesContrato.noVendedor}"/>
+						</td>
+					</tr>
+					<tr class="distanciaLinha" id="linhaOculta5" style="display: none;">
+						<td>
+							<h:outputLabel value="#{msgCabecalhoDetalhesVerificacao['LABEL.primeiroCoObrigado']}:"
+								class="rotulos" />
+						</td>
+						<td colspan="2">
+							<h:outputText value="#{cabecalhoDetalhesVerificacaoMB.contrato.detalhesContrato.noCampoLivre5} - "/>
+							<h:outputText value="#{cabecalhoDetalhesVerificacaoMB.contrato.detalhesContrato.noCampoLivre4}"/>
+						</td>
+					</tr>
+					<tr class="distanciaLinha" id="linhaOculta6" style="display: none;">
+						<td>
+							<h:outputLabel value="#{msgCabecalhoDetalhesVerificacao['LABEL.segundoCoObrigado']}:"
+								class="rotulos" />
+						</td>
+						<td colspan="2">
+							<h:outputText value="#{cabecalhoDetalhesVerificacaoMB.contrato.detalhesContrato.noCampoLivre7} - "/>
+							<h:outputText value="#{cabecalhoDetalhesVerificacaoMB.contrato.detalhesContrato.noCampoLivre6}"/>
+						</td>
+					</tr>
+					<tr class="distanciaLinha" id="linhaOculta7" style="display: none;">
+						<td>
+							<h:outputLabel value="#{msgCabecalhoDetalhesVerificacao['LABEL.numeroDamp']}:"
+								class="rotulos" />
+						</td>
+						<td>
+							<h:outputText value="#{cabecalhoDetalhesVerificacaoMB.contrato.detalhesContrato.noCampoLivre1}"/>
+						</td>
+						<td>
+							<h:outputLabel value="#{msgCabecalhoDetalhesVerificacao['LABEL.dataDamp']}:"
+								class="rotulos" />
+						</td>
+						<td>
+							<h:outputText value="#{cabecalhoDetalhesVerificacaoMB.contrato.detalhesContrato.noCampoLivre2}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
+						</td>
+						<td>
+							<h:outputLabel value="#{msgCabecalhoDetalhesVerificacao['LABEL.valorRessarcimento']}:"
+								class="rotulos" />
+						</td>
+						<td>
+							<h:outputText value="#{cabecalhoDetalhesVerificacaoMB.valorRessarcimento}" converter="#{converterMonetario}">
+							</h:outputText>
+						</td>
+					</tr>
+					<!--  Fim Linhas Ocultas -->
+					
+					<tr class="distanciaLinha">
+						<td>
+							<h:outputLabel value="#{msgCabecalhoDetalhesVerificacao['LABEL.origem']}:"
+								class="rotulos" rendered="#{!cabecalhoDetalhesVerificacaoMB.ehVerificacaoPreventiva}"/>
+						</td>
+						<td>
+							<h:outputText value="#{cabecalhoDetalhesVerificacaoMB.contrato.produto.sgSistemaOrigem}" rendered="#{!cabecalhoDetalhesVerificacaoMB.ehVerificacaoPreventiva}"/>
+						</td>
+						<td>
+							<h:outputLabel value="#{msgCabecalhoDetalhesVerificacao['LABEL.situacao']}:"
+								class="rotulos" />
+						</td>
+						<td>
+							<h:graphicImage value="#{cabecalhoDetalhesVerificacaoMB.iconeSituacao}"
+											rendered="#{cabecalhoDetalhesVerificacaoMB.showIconeSituacao}" />
+							<h:outputText style="margin-left: 4px" value="#{cabecalhoDetalhesVerificacaoMB.situacaoContrato}" />
+						</td>
+						<td colspan="2">
+							<a4j:commandButton id="btnFecharInfo" value="#{msgCabecalhoDetalhesVerificacao['ACAO.fechar']}"
+								onclick="oculta()" 
+								style="display: none; float: right;" styleClass="rich-button-cinza rich-button"/>
+							<a4j:commandLink id="btnExibirInfo" onclick="exibe()" style="float: right;">
+								<h:graphicImage height="14" width="16" border="0" value="/images/lupa2.gif" 
+									title="#{msgCabecalhoDetalhesVerificacao['HINT.detalhesContratoConta']}" />
+							</a4j:commandLink>
+						</td>
+					</tr>
+				</table>
+			</rich:panel>
+			<br />
+			<br />
+			<h:panelGroup rendered="#{cabecalhoDetalhesVerificacaoMB.possuiGarantias}">
+				<h:graphicImage
+					value="/images/icon_estagiarios_.gif"
+					style="vertical-align: bottom;" />
+				<h:outputText
+					value="#{msgCabecalhoDetalhesVerificacao['TITLE.panelDetalhesGarantiaVerificacao']}"
+					styleClass="tituloPagina" />
+			</h:panelGroup>
+				<rich:spacer height="10" />
+				<rich:dataTable
+					id="tableGarantia"
+					value="#{cabecalhoDetalhesVerificacaoMB.listGarantias}"
+					var="row"
+					rows="10"
+					width="100%"
+					cellspacing="0"
+					cellpadding="0"
+					border="1"
+					rendered="#{cabecalhoDetalhesVerificacaoMB.possuiGarantias}"
+					rowClasses="tabela-row-1, tabela-row-2"
+					onRowMouseOver="this.style.backgroundColor = '#A2B6E5'"
+					onRowMouseOut="this.style.backgroundColor = ''">
+					<rich:column
+						id="colGarantianuTipoGarantiaProduto"
+						sortBy="#{row.tipoGarantia.noTipoGarantia}">
+						<f:facet name="header">
+							<h:outputText value="#{msgCabecalhoDetalhesVerificacao['COLUMN.tipoGarantia']}" />
+						</f:facet>
+						<h:outputText
+							id="lblnuTipoGarantiaProduto"
+							value="#{row.tipoGarantia.noTipoGarantia}"
+							title="#{row.tipoGarantia.noTipoGarantia}" />
+					</rich:column>
+					<rich:column
+						id="colGarantiacoGarantia"
+						style="text-align:center; white-space: nowrap; width: 100px"
+						sortBy="#{row.vrGarantia}">
+						<f:facet name="header">
+							<h:outputText value="#{msgCabecalhoDetalhesVerificacao['COLUMN.valorGarantia']}" />
+						</f:facet>
+						<h:outputText
+							id="lblcoGarantia"
+							value="#{row.vrGarantia}"
+							converter="#{converterMonetario}"
+							>
+						</h:outputText>
+					</rich:column>
+					<rich:column
+						id="colGarantiaView"
+						headerClass="th-text-center"
+						style="text-align:center;"
+						width="80">
+						<f:facet name="header">
+							<h:outputText
+								style="text-align:center"
+								value="#{msgGarantia['COLUMN.acao']}" />
+						</f:facet>
+						<a4j:commandLink
+							id="lnkDetalhes"
+							actionListener="#{cabecalhoDetalhesVerificacaoMB.doVisualizarGarantia}"
+							reRender="PanelModal"
+							oncomplete="#{rich:component('PanelModal')}.show()" 
+							style="border-style:none;border-width:0;">
+							<h:graphicImage
+								id="imgDetalhes"
+								height="14" width="16" border="0"
+								title="#{msgCabecalhoDetalhesVerificacao['HINT.detalhesGarantia']}"
+								value="/images/lupa2.gif" />
+						</a4j:commandLink>
+					</rich:column>
+					<f:facet name="footer">
+						<rich:datascroller
+							fastControls="false"
+							inactiveStyleClass="classe-datascroller classe-datascroller-unselected"
+							selectedStyleClass="classe-datascroller classe-datascroller-selected"
+							id="dataFooterGarantia"
+							renderIfSinglePage="false">
+							<f:facet name="first">
+								<h:graphicImage value="/images/tabela/seta_primeiro.gif" />
+							</f:facet>
+							<f:facet name="first_disabled">
+								<h:graphicImage value="/images/tabela/seta_primeiro.gif" />
+							</f:facet>
+							<f:facet name="last">
+								<h:graphicImage value="/images/tabela/seta_ultimo.gif" />
+							</f:facet>
+							<f:facet name="last_disabled">
+								<h:graphicImage value="/images/tabela/seta_ultimo.gif" />
+							</f:facet>
+							<f:facet name="previous">
+								<h:graphicImage value="/images/tabela/seta_anterior.gif" />
+							</f:facet>
+							<f:facet name="previous_disabled">
+								<h:graphicImage value="/images/tabela/seta_anterior.gif" />
+							</f:facet>
+							<f:facet name="next">
+								<h:graphicImage value="/images/tabela/seta_proximo.gif" />
+							</f:facet>
+							<f:facet name="next_disabled">
+								<h:graphicImage value="/images/tabela/seta_proximo.gif" />
+							</f:facet>
+						</rich:datascroller>
+					</f:facet>
+				</rich:dataTable>
+		</h:form>
+		<h:form id="formModalCabecalho">
+			<rich:modalPanel
+				id="PanelModal"
+				resizeable="false"
+				autosized="true"
+				style="width: 837px; height: 240px; overflow-x: hidden; overflow-y: auto;"
+				moveable="true">
+		        <rich:panel styleClass="panel-externo" style="width: 99%;"> 
+					<table
+						cellpadding="0"
+						cellspacing="0" 
+						class="estiloTabelaPadrao"
+						style="width: 810px">
+						<tr>
+							<td width="85px">
+								<h:outputLabel value="#{msgCabecalhoDetalhesVerificacao['LABEL.tipoGarantia']}:"
+									class="rotulos" />
+							</td>
+							<td width="95px">
+								<h:outputText value="#{cabecalhoDetalhesVerificacaoMB.garantiaVisualizada.tipoGarantia.noTipoGarantia}" />
+							</td>
+							<td width="100px">
+								<h:outputLabel value="#{msgCabecalhoDetalhesVerificacao['LABEL.valorGarantia']}:" 
+									class="rotulos" />
+							</td>
+							<td width="105px">
+								<h:outputText value="#{cabecalhoDetalhesVerificacaoMB.garantiaVisualizada.vrGarantia}"
+								converter="#{converterMonetario}"
+								>
+								</h:outputText>							
+							</td>
+							<td width="105px">
+								<h:outputLabel value="#{msgCabecalhoDetalhesVerificacao['LABEL.codGarantiaSisOrigem']}:" 
+									class="rotulos" />
+							</td>
+							<td width="105px">
+								<h:outputText value="#{cabecalhoDetalhesVerificacaoMB.garantiaVisualizada.coGarantia}" />	
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<h:outputLabel value="#{msgCabecalhoDetalhesVerificacao['LABEL.descricao']}:"
+									class="rotulos" />
+							</td>
+							<td colspan="5">
+								<h:outputText value="#{cabecalhoDetalhesVerificacaoMB.garantiaVisualizada.deGarantia}" />	
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<h:outputLabel value="#{msgCabecalhoDetalhesVerificacao['LABEL.dtUltimaLocalizacao']}:"
+									class="rotulos" />
+							</td>
+							<td>
+								<h:outputText value="#{cabecalhoDetalhesVerificacaoMB.garantiaVisualizada.dtUltimaLocalizacao}">
+									<f:convertDateTime pattern="dd/MM/yyyy"/>
+								</h:outputText>
+							</td>
+							<td>
+								<h:outputLabel value="#{msgCabecalhoDetalhesVerificacao['LABEL.ultimaLocalizacao']}:"
+									class="rotulos" />
+							</td>
+							<td>
+								<h:outputText value="#{cabecalhoDetalhesVerificacaoMB.icUltimaLocalizacaoFormatada}" />
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<h:outputLabel value="#{msgCabecalhoDetalhesVerificacao['LABEL.dtUltimoInventario']}:"
+									class="rotulos" />
+							</td>
+							<td>
+								<h:outputText value="#{cabecalhoDetalhesVerificacaoMB.garantiaVisualizada.dtUltimoInventarioGarantia}">
+									<f:convertDateTime pattern="dd/MM/yyyy"/>
+								</h:outputText>
+							</td>
+							<td>
+								<h:outputLabel value="#{msgCabecalhoDetalhesVerificacao['LABEL.locUltimoInventario']}:"
+									class="rotulos" />
+							</td>
+							<td>
+								<h:outputText value="#{cabecalhoDetalhesVerificacaoMB.icLocalizacaoUltimoInventarioFormatada}" />
+							</td>
+							<td>
+								<h:outputLabel value="#{msgCabecalhoDetalhesVerificacao['LABEL.respUltimoInventario']}:"
+									class="rotulos" />
+							</td>
+							<td>
+								<h:outputText value="#{cabecalhoDetalhesVerificacaoMB.garantiaVisualizada.coResponsavelInventario}" />
+							</td>
+						</tr>
+					</table>
+				</rich:panel>
+				<br />
+				<rich:panel style="text-align:center">
+					<a4j:commandButton
+						id="btnFecharDetalhesGarantia"
+						value="#{msgCabecalhoDetalhesVerificacao['ACAO.fechar']}"
+						styleClass="rich-button-cinza rich-button"
+						onclick="#{rich:component('PanelModal')}.hide()" />
+				</rich:panel>
+			</rich:modalPanel>
+		</h:form>
+</html>

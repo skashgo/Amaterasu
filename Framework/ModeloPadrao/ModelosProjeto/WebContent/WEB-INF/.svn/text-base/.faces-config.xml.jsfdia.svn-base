@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:" SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::0" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="toLogin::#jsp#login#login.xhtml"
+    NAME="output" PATH="/jsp/login/login.xhtml"
+    TARGET="rules:#jsp#login#login.xhtml" TITLE="toLogin" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::1" SHAPE="32,129,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::1" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="toIndex::#jsp#index.xhtml" NAME="output"
+    PATH="/jsp/index.xhtml" TARGET="rules:#jsp#index.xhtml"
+    TITLE="toIndex" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::2" SHAPE="32,241,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::2" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="toPreferenciaUsuario::#jsp#preferencia_usuario#preferencia_usuario.xhtml"
+    NAME="output"
+    PATH="/jsp/preferencia_usuario/preferencia_usuario.xhtml"
+    TARGET="rules:#jsp#preferencia_usuario#preferencia_usuario.xhtml"
+    TITLE="toPreferenciaUsuario" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::3" SHAPE="32,353,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::3" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="toUsuario::#jsp#usuario#usuario.xhtml"
+    NAME="output" PATH="/jsp/usuario/usuario.xhtml"
+    TARGET="rules:#jsp#usuario#usuario.xhtml" TITLE="toUsuario" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::4" SHAPE="32,465,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::4" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="toProdutoUsuario::#jsp#produto_usuario#produto_usuario.xhtml"
+    NAME="output" PATH="/jsp/produto_usuario/produto_usuario.xhtml"
+    TARGET="rules:#jsp#produto_usuario#produto_usuario.xhtml"
+    TITLE="toProdutoUsuario" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::5" SHAPE="32,577,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::5" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="toProduto::#jsp#produto#produto.xhtml"
+    NAME="output" PATH="/jsp/produto/produto.xhtml"
+    TARGET="rules:#jsp#produto#produto.xhtml" TITLE="toProduto" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::6" SHAPE="32,689,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::6" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="toServicoVerificacao::#jsp#servico_verificacao#servico_verificacao.xhtml"
+    NAME="output"
+    PATH="/jsp/servico_verificacao/servico_verificacao.xhtml"
+    TARGET="rules:#jsp#servico_verificacao#servico_verificacao.xhtml"
+    TITLE="toServicoVerificacao" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::7" SHAPE="32,801,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::7" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="toTipoGarantia::#jsp#tipo_garantia#tipogarantia.xhtml"
+    NAME="output" PATH="/jsp/tipo_garantia/tipogarantia.xhtml"
+    TARGET="rules:#jsp#tipo_garantia#tipogarantia.xhtml"
+    TITLE="toTipoGarantia" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::8" SHAPE="32,913,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::8" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="toBlocoChecklist::#jsp#bloco_checklist#blocochecklist.xhtml"
+    NAME="output" PATH="/jsp/bloco_checklist/blocochecklist.xhtml"
+    TARGET="rules:#jsp#bloco_checklist#blocochecklist.xhtml"
+    TITLE="toBlocoChecklist" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::9" SHAPE="32,1025,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::9" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="toChecklist::#jsp#checklist_produto#checklist_produto.xhtml"
+    NAME="output" PATH="/jsp/checklist_produto/checklist_produto.xhtml"
+    TARGET="rules:#jsp#checklist_produto#checklist_produto.xhtml"
+    TITLE="toChecklist" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::10" SHAPE="32,1137,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::10" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="toChecklistAltera::#jsp#checklist_produto#checklist_produto_altera.xhtml"
+    NAME="output"
+    PATH="/jsp/checklist_produto/checklist_produto_altera.xhtml"
+    TARGET="rules:#jsp#checklist_produto#checklist_produto_altera.xhtml"
+    TITLE="toChecklistAltera" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#jsp#index.xhtml" PATH="/jsp/index.xhtml"
+  SHAPE="240,145,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#jsp#usuario#usuario.xhtml"
+  PATH="/jsp/usuario/usuario.xhtml" SHAPE="240,369,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#jsp#login#login.xhtml"
+  PATH="/jsp/login/login.xhtml" SHAPE="240,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#jsp#preferencia_usuario#preferencia_usuario.xhtml"
+  PATH="/jsp/preferencia_usuario/preferencia_usuario.xhtml"
+  SHAPE="240,257,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#jsp#produto_usuario#produto_usuario.xhtml"
+  PATH="/jsp/produto_usuario/produto_usuario.xhtml" SHAPE="240,481,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#jsp#item_verificacao#item_verificacao.xhtml"
+  PATH="/jsp/item_verificacao/item_verificacao.xhtml"
+  SHAPE="240,1153,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#jsp#restricao#restricao.xhtml"
+  PATH="/jsp/restricao/restricao.xhtml" SHAPE="240,1041,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#jsp#servico_verificacao#servico_verificacao.xhtml"
+  PATH="/jsp/servico_verificacao/servico_verificacao.xhtml"
+  SHAPE="240,705,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#jsp#produto#produto.xhtml"
+  PATH="/jsp/produto/produto.xhtml" SHAPE="240,593,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#jsp#apontamento#apontamento.xhtml"
+  PATH="/jsp/apontamento/apontamento.xhtml" SHAPE="240,929,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#jsp#bloco_checklist#blocochecklist.xhtml"
+  PATH="/jsp/bloco_checklist/blocochecklist.xhtml" SHAPE="240,817,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules::11" SHAPE="32,1249,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::11" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="toApontamento::#jsp#apontamento#apontamento.xhtml" NAME="output"
+    PATH="/jsp/apontamento/apontamento.xhtml"
+    TARGET="rules:#jsp#apontamento#apontamento.xhtml"
+    TITLE="toApontamento" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#jsp#servico_produto#servico_produto.xhtml"
+  PATH="/jsp/servico_produto/servico_produto.xhtml" SHAPE="240,1265,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules::12" SHAPE="32,1361,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::12" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="toRestricao::#jsp#restricao#restricao.xhtml"
+    NAME="output" PATH="/jsp/restricao/restricao.xhtml"
+    TARGET="rules:#jsp#restricao#restricao.xhtml" TITLE="toRestricao" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#jsp#tipo_garantia#tipogarantia.xhtml"
+  PATH="/jsp/tipo_garantia/tipogarantia.xhtml" SHAPE="240,1377,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules::13" SHAPE="32,1473,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::13" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="toItemVerificacao::#jsp#item_verificacao#item_verificacao.xhtml"
+    NAME="output" PATH="/jsp/item_verificacao/item_verificacao.xhtml"
+    TARGET="rules:#jsp#item_verificacao#item_verificacao.xhtml"
+    TITLE="toItemVerificacao" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::14" SHAPE="32,1585,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::14" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="toServicoProduto::#jsp#servico_produto#servico_produto.xhtml"
+    NAME="output" PATH="/jsp/servico_produto/servico_produto.xhtml"
+    TARGET="rules:#jsp#servico_produto#servico_produto.xhtml"
+    TITLE="toServicoProduto" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM
+  NAME="rules:#jsp#checklist_produto#checklist_produto.xhtml"
+  PATH="/jsp/checklist_produto/checklist_produto.xhtml"
+  SHAPE="240,1489,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules::15" SHAPE="32,1697,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::15" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="toChecklistProdutoAltera::#jsp#checklist_produto#checklist_produto_altera.xhtml"
+    NAME="output"
+    PATH="/jsp/checklist_produto/checklist_produto_altera.xhtml"
+    TARGET="rules:#jsp#checklist_produto#checklist_produto_altera.xhtml"
+    TITLE="toChecklistProdutoAltera" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM
+  NAME="rules:#jsp#checklist_produto#checklist_produto_altera.xhtml"
+  PATH="/jsp/checklist_produto/checklist_produto_altera.xhtml"
+  SHAPE="240,1601,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules::16" SHAPE="32,1809,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::16" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="toTipogarantia::#jsp#tipo_garantia#tipogarantia.xhtml"
+    NAME="output" PATH="/jsp/tipo_garantia/tipogarantia.xhtml"
+    TARGET="rules:#jsp#tipo_garantia#tipogarantia.xhtml"
+    TITLE="toTipogarantia" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::17" SHAPE="32,1697,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::17" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="toGarantia::#jsp#garantia#garantia.xhtml"
+    NAME="output" PATH="/jsp/garantia/garantia.xhtml"
+    TARGET="rules:#jsp#garantia#garantia.xhtml" TITLE="toGarantia" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::18" SHAPE="32,1809,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::18" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="toContrato::#jsp#contrato#contrato.xhtml"
+    NAME="output" PATH="/jsp/contrato/contrato.xhtml"
+    TARGET="rules:#jsp#contrato#contrato.xhtml" TITLE="toContrato" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::19" SHAPE="32,1921,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::19" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="toAgenda::#jsp#agenda#agenda.xhtml"
+    NAME="output" PATH="/jsp/agenda/agenda.xhtml"
+    TARGET="rules:#jsp#agenda#agenda.xhtml" TITLE="toAgenda" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::20" SHAPE="32,2033,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::20" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="toEfetuaVerificacao::#jsp#verificacao#efetua_verificacao.xhtml"
+    NAME="output" PATH="/jsp/verificacao/efetua_verificacao.xhtml"
+    TARGET="rules:#jsp#verificacao#efetua_verificacao.xhtml"
+    TITLE="toEfetuaVerificacao" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::21" SHAPE="32,2145,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::21" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="toEscolheVerificacao::#jsp#verificacao#escolhe_verificacao.xhtml"
+    NAME="output" PATH="/jsp/verificacao/escolhe_verificacao.xhtml"
+    TARGET="rules:#jsp#verificacao#escolhe_verificacao.xhtml"
+    TITLE="toEscolheVerificacao" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::22" SHAPE="32,2257,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::22" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="toVerificacaoPreventiva::#jsp#verificacao_preventiva#verificacao_preventiva.xhtml"
+    NAME="output"
+    PATH="/jsp/verificacao_preventiva/verificacao_preventiva.xhtml"
+    TARGET="rules:#jsp#verificacao_preventiva#verificacao_preventiva.xhtml"
+    TITLE="toVerificacaoPreventiva" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::23" SHAPE="32,2369,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::23" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="toTemplateParecer::#jsp#template_parecer#template_parecer.xhtml"
+    NAME="output" PATH="/jsp/template_parecer/template_parecer.xhtml"
+    TARGET="rules:#jsp#template_parecer#template_parecer.xhtml"
+    TITLE="toTemplateParecer" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::24" SHAPE="32,2481,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::24" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="toTemplateParecerVisualizacao::#jsp#template_parecer#template_parecer_visualizacao.xhtml"
+    NAME="output"
+    PATH="/jsp/template_parecer/template_parecer_visualizacao.xhtml"
+    TARGET="rules:#jsp#template_parecer#template_parecer_visualizacao.xhtml"
+    TITLE="toTemplateParecerVisualizacao" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#jsp#garantia#garantia.xhtml"
+  PATH="/jsp/garantia/garantia.xhtml" SHAPE="240,1713,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#jsp#template_parecer#template_parecer_lista.xhtml"
+  PATH="/jsp/template_parecer/template_parecer_lista.xhtml"
+  SHAPE="240,2497,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#jsp#verificacao#efetua_verificacao.xhtml"
+  PATH="/jsp/verificacao/efetua_verificacao.xhtml" SHAPE="240,2049,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#jsp#template_parecer#template_parecer_visualizacao.xhtml"
+  PATH="/jsp/template_parecer/template_parecer_visualizacao.xhtml"
+  SHAPE="240,2385,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#jsp#agenda#agenda.xhtml"
+  PATH="/jsp/agenda/agenda.xhtml" SHAPE="240,1937,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#jsp#contrato#contrato.xhtml"
+  PATH="/jsp/contrato/contrato.xhtml" SHAPE="240,1825,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#jsp#verificacao#escolhe_verificacao.xhtml"
+  PATH="/jsp/verificacao/escolhe_verificacao.xhtml" SHAPE="240,2161,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#jsp#template_parecer#template_parecer.xhtml"
+  PATH="/jsp/template_parecer/template_parecer.xhtml"
+  SHAPE="240,2273,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules::25" SHAPE="32,2593,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::25" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="toTemplateParecerLista::#jsp#template_parecer#template_parecer_lista.xhtml"
+    NAME="output"
+    PATH="/jsp/template_parecer/template_parecer_lista.xhtml"
+    TARGET="rules:#jsp#template_parecer#template_parecer_lista.xhtml"
+    TITLE="toTemplateParecerLista" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM
+  NAME="rules:#jsp#verificacao_preventiva#verificacao_preventiva.xhtml"
+  PATH="/jsp/verificacao_preventiva/verificacao_preventiva.xhtml"
+  SHAPE="240,2609,0,0" model-entity="JSFProcessGroup"/>
+</PROCESS>

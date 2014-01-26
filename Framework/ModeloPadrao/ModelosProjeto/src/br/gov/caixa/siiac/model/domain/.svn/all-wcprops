@@ -1,0 +1,449 @@
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/gsgroup/!svn/ver/11369/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain
+END
+RestricaoApontamento.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/gsgroup/!svn/ver/9211/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/RestricaoApontamento.java
+END
+Usuario.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/gsgroup/!svn/ver/10998/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/Usuario.java
+END
+PreferenciaUsuarioServicoId.java
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/gsgroup/!svn/ver/7995/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/PreferenciaUsuarioServicoId.java
+END
+Unidade.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/gsgroup/!svn/ver/10954/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/Unidade.java
+END
+VerificacaoContratoObservacoes.java
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/gsgroup/!svn/ver/9411/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/VerificacaoContratoObservacoes.java
+END
+Parecer.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/gsgroup/!svn/ver/10753/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/Parecer.java
+END
+TemplateParecerDestinatariosId.java
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/gsgroup/!svn/ver/10716/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/TemplateParecerDestinatariosId.java
+END
+ApontamentoChecklistProduto.java
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/gsgroup/!svn/ver/9211/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/ApontamentoChecklistProduto.java
+END
+UnidadeNotificadaVerificacao.java
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/gsgroup/!svn/ver/10225/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/UnidadeNotificadaVerificacao.java
+END
+ControleNumeroParecer.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/gsgroup/!svn/ver/9185/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/ControleNumeroParecer.java
+END
+VerificacaoContratoParecer.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/gsgroup/!svn/ver/9311/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/VerificacaoContratoParecer.java
+END
+VerificacaoContrato.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/gsgroup/!svn/ver/11226/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/VerificacaoContrato.java
+END
+PreferenciaUsuarioGerente.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/gsgroup/!svn/ver/11258/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/PreferenciaUsuarioGerente.java
+END
+GerenteUnidade.java
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/gsgroup/!svn/ver/8965/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/GerenteUnidade.java
+END
+ContaAbertaLote.java
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/gsgroup/!svn/ver/7995/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/ContaAbertaLote.java
+END
+LogEnvioParecer.java
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/gsgroup/!svn/ver/11369/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/LogEnvioParecer.java
+END
+Contrato.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/gsgroup/!svn/ver/10674/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/Contrato.java
+END
+VinculacaoUnidadeId.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/gsgroup/!svn/ver/7995/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/VinculacaoUnidadeId.java
+END
+Informacao.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/gsgroup/!svn/ver/10006/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/Informacao.java
+END
+Produto.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/gsgroup/!svn/ver/10651/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/Produto.java
+END
+LogEnviaNotificacao.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/gsgroup/!svn/ver/10225/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/LogEnviaNotificacao.java
+END
+CaixaAqui.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/gsgroup/!svn/ver/10515/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/CaixaAqui.java
+END
+DetalhesContrato.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/gsgroup/!svn/ver/10473/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/DetalhesContrato.java
+END
+PreferenciaUsuarioServico.java
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/gsgroup/!svn/ver/7995/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/PreferenciaUsuarioServico.java
+END
+TemplateParecer.java
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/gsgroup/!svn/ver/10755/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/TemplateParecer.java
+END
+ResponsavelUnidade.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/gsgroup/!svn/ver/7995/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/ResponsavelUnidade.java
+END
+CaixaPostalUnidadeId.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/gsgroup/!svn/ver/7995/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/CaixaPostalUnidadeId.java
+END
+UnidadeId.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/gsgroup/!svn/ver/7995/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/UnidadeId.java
+END
+Garantia.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/gsgroup/!svn/ver/9211/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/Garantia.java
+END
+ParecerId.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/gsgroup/!svn/ver/7995/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/ParecerId.java
+END
+CategoriaProduto.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/gsgroup/!svn/ver/10478/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/CategoriaProduto.java
+END
+ControleNumeroParecerId.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/gsgroup/!svn/ver/9185/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/ControleNumeroParecerId.java
+END
+TemplateNotificacao.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/gsgroup/!svn/ver/10172/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/TemplateNotificacao.java
+END
+VinculacaoUnidade.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/gsgroup/!svn/ver/7995/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/VinculacaoUnidade.java
+END
+PreferenciaUsuarioGerenteId.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/gsgroup/!svn/ver/11258/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/PreferenciaUsuarioGerenteId.java
+END
+LogImportacao.java
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/gsgroup/!svn/ver/10180/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/LogImportacao.java
+END
+ContaAbertaLoteId.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/gsgroup/!svn/ver/7995/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/ContaAbertaLoteId.java
+END
+Apontamento.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/gsgroup/!svn/ver/9211/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/Apontamento.java
+END
+BlocoChecklist.java
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/gsgroup/!svn/ver/11093/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/BlocoChecklist.java
+END
+EmpregadoCaixa.java
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/gsgroup/!svn/ver/7995/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/EmpregadoCaixa.java
+END
+ParagrafoTemplateParecer.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/gsgroup/!svn/ver/8433/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/ParagrafoTemplateParecer.java
+END
+CaixaAquiId.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/gsgroup/!svn/ver/10515/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/CaixaAquiId.java
+END
+ResultadoApontamentoProduto.java
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/gsgroup/!svn/ver/9211/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/ResultadoApontamentoProduto.java
+END
+CaixaPostalUnidade.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/gsgroup/!svn/ver/7995/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/CaixaPostalUnidade.java
+END
+PreferenciaUsuarioCategoriaProdutoId.java
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/gsgroup/!svn/ver/10405/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/PreferenciaUsuarioCategoriaProdutoId.java
+END
+ItemVerificacaoChecklistProduto.java
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/gsgroup/!svn/ver/9211/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/ItemVerificacaoChecklistProduto.java
+END
+ResponsavelUnidadeId.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/gsgroup/!svn/ver/7995/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/ResponsavelUnidadeId.java
+END
+ArquivoImagemParecerId.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/gsgroup/!svn/ver/7995/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/ArquivoImagemParecerId.java
+END
+Restricao.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/gsgroup/!svn/ver/9211/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/Restricao.java
+END
+BlocoChecklistProduto.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/gsgroup/!svn/ver/11067/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/BlocoChecklistProduto.java
+END
+PreferenciasUsuarioCategoriaProduto.java
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/gsgroup/!svn/ver/10405/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/PreferenciasUsuarioCategoriaProduto.java
+END
+ParagrafoTemplateNotificacao.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/gsgroup/!svn/ver/8433/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/ParagrafoTemplateNotificacao.java
+END
+VerificacaoContratoObservacoesParecer.java
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/gsgroup/!svn/ver/9056/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/VerificacaoContratoObservacoesParecer.java
+END
+TipoGarantia.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/gsgroup/!svn/ver/9211/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/TipoGarantia.java
+END
+ResultadoApontamentoProdutoParecer.java
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/gsgroup/!svn/ver/8433/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/ResultadoApontamentoProdutoParecer.java
+END
+TipoUnidade.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/gsgroup/!svn/ver/8989/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/TipoUnidade.java
+END
+PreferenciasUsuarioId.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/gsgroup/!svn/ver/7995/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/PreferenciasUsuarioId.java
+END
+ProdutoUsuario.java
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/gsgroup/!svn/ver/9211/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/ProdutoUsuario.java
+END
+TemplateParecerDestinatarios.java
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/gsgroup/!svn/ver/10758/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/TemplateParecerDestinatarios.java
+END
+EmpregadoCaixaId.java
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/gsgroup/!svn/ver/7995/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/EmpregadoCaixaId.java
+END
+ServicoVerificacaoProduto.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/gsgroup/!svn/ver/10409/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/ServicoVerificacaoProduto.java
+END
+ArquivoImagemParecer.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/gsgroup/!svn/ver/11369/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/ArquivoImagemParecer.java
+END
+Perfil.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/gsgroup/!svn/ver/10455/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/Perfil.java
+END
+ServicoVerificacao.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/gsgroup/!svn/ver/9211/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/ServicoVerificacao.java
+END
+Propriedades.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/gsgroup/!svn/ver/7995/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/Propriedades.java
+END
+ChecklistServicoVerificacaoProduto.java
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/gsgroup/!svn/ver/9211/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/ChecklistServicoVerificacaoProduto.java
+END
+PreferenciasUsuario.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/gsgroup/!svn/ver/7995/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/PreferenciasUsuario.java
+END
+LogArquivoRetorno.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/gsgroup/!svn/ver/7995/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/LogArquivoRetorno.java
+END
+LogEnvioParecerId.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/gsgroup/!svn/ver/11369/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/LogEnvioParecerId.java
+END
+ItemVerificacao.java
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/gsgroup/!svn/ver/11093/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/ItemVerificacao.java
+END
+TrilhaHistorico.java
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/gsgroup/!svn/ver/9211/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/TrilhaHistorico.java
+END
+Feriado.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/gsgroup/!svn/ver/10477/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/Feriado.java
+END
+CanalComercializacaoProduto.java
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/gsgroup/!svn/ver/7995/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/CanalComercializacaoProduto.java
+END
+LogEnviaNotificacaoId.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/gsgroup/!svn/ver/10225/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/model/domain/LogEnviaNotificacaoId.java
+END

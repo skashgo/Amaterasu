@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/gsgroup/!svn/ver/11258/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/facade
+END
+IPreferenciaUsuarioFacade.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/gsgroup/!svn/ver/11258/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/facade/IPreferenciaUsuarioFacade.java
+END
+IVinculacoesChecklistFacade.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/gsgroup/!svn/ver/7995/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/facade/IVinculacoesChecklistFacade.java
+END
+IProdutoUsuarioFacade.java
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/gsgroup/!svn/ver/10594/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/br/gov/caixa/siiac/facade/IProdutoUsuarioFacade.java
+END

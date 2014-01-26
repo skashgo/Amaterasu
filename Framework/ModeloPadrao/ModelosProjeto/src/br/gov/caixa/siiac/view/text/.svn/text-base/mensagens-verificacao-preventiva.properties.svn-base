@@ -1,0 +1,87 @@
+BREAD=Verifica\u00E7\u00E3o
+BREAD-RELATORIO=Relat\u00F3rio Verifica\u00E7\u00E3o
+ACTION.gerar=GERAR
+ACTION.geraRel=GERAR PLANILHA
+ACTION.exportar=EXPORTAR PDF
+
+TITLE.panelIncluir=Inclus\u00E3o
+TITLE.panelAltera=Altera\u00E7\u00E3o
+TITLE.panelDetalhes=Detalhes
+TITLE.panelFiltro=Filtros para Pesquisa de Verifica\u00E7\u00E3o Preventiva
+TITLE.panelLista=Verifica\u00E7\u00F5es
+
+ACTION.cancelar=Cancelar
+ACTION.voltar=Voltar
+ACTION.gravar=Salvar
+ACTION.excluir=Excluir
+ACTION.desabilitar=Inativar
+ACTION.habilitar=Ativar
+ACTION.atualizar=Alterar
+ACTION.cadastrar=Novo
+ACTION.filtrar=Pesquisar
+ACTION.acao=A\u00C7\u00C3O
+ACTION.carregarContrato=CARREGAR CONTRATO
+ACTION.limpar=LIMPAR
+
+
+
+COLUMN.produto = PRODUTO
+COLUMN.unidade=UNID
+COLUMN.contrato=CONTRATO
+COLUMN.cliente=CLIENTE
+COLUMN.acao=A\u00C7\u00C3O
+COLUMN.cpfcnpj=CPF/CNPJ
+COLUMN.data=DATA
+COLUMN.situacao=SITUA\u00C7\u00C3O
+
+
+LABEL.unidade = UNIDADE
+LABEL.produto = PRODUTO
+LABEL.documentos = CPF/CNPJ/NIS
+LABEL.avaliacaoSiric = AVALIA\u00C7\u00C3O OPERA\u00C7\u00C3O
+LABEL.contrato = CONTRATO
+LABEL.avaliacaoCliente = AVALIA\u00C7\u00C3O TOMADOR
+LABEL.pesquisaAvancada = Pesquisa Avan\u00C7ada
+LABEL.pesquisaSimples = Pesquisa Simples
+LABEL.servico = SERVI\u00C7O DE VERIFICA\u00C7\u00C3O
+LABEL.situacao = SITUA\u00C7\u00C3O
+LABEL.operacao = OPERA\u00C7\u00C3O
+LABEL.pesquisa = Pesquisa
+LABEL.usuarioResp = USU\u00C1RIO RESPONS\u00C1VEL
+LABEL.periodoInclusao = PER\u00CDODO DE INCLUS\u00C3O
+LABEL.periodoVerificacao = PER\u00CDODO DE VERIFICA\u00C7\u00C3O
+LABEL.somenteSuspensas = SOMENTE AS SUSPENSAS?
+LABEL.a = A
+LABEL.anterior = ANTERIOR
+LABEL.inconforme = Inconforme
+LABEL.conforme = Conforme
+LABEL.valor = VALOR
+LABEL.valorDe = VALOR DE
+LABEL.valorNominal = VALOR NOMINAL
+LABEL.codigoCliente = C\u00D3DIGO CLIENTE
+LABEL.codigoConveniado = C\u00D3DIGO CONVENIADO
+LABEL.codigoEmpreendimento = C\u00D3DIGO EMPREEND.
+LABEL.codigoVendedor = C\u00D3DIGO VENDEDOR
+LABEL.nomeConveniado = NOME CONVENIADO
+LABEL.nomeEmpreendimento= NOME EMPREENDIMENTO
+LABEL.nomeVendedor= NOME VENDEDOR
+LABEL.cliente = CLIENTE
+LABEL.pfpj = PF/PJ
+LABEL.dataContrato = DATA CONTRATO
+LABEL.tipoIdentificador = TIPO IDENTIFICADOR
+LABEL.identificacaoCliente = IDENTIFICA\u00C7\u00C3O CLIENTE
+LABEL.verificacaoParcial = Verifica\u00E7\u00E3o Parcial
+LABEL.parcialmenteInconforme = Parcialmente Inconforme
+LABEL.produtosPreferenciais = Filtrar Produtos Preferenciais
+LABEL.identificacao1coobrigado = IDENTIFICA\u00C7\u00C3O 1\u00BA CO-OBRIGADO
+LABEL.nome1coobrigado = NOME 1º CO-OBRIGADO
+LABEL.identificacao2coobrigado = IDENTIFICA\u00C7\u00C3O 2\u00BA CO-OBRIGADO
+LABEL.nome2coobrigado = NOME 2º CO-OBRIGADO
+LABEL.numeroDamp = N\u00DAMERO DAMP
+LABEL.dataDamp = DATA RESSARCIMENTO
+LABEL.valorRessarcimento = VALOR RESSARCIMENTO
+LABEL.dataAvaliacaoSiric = DATA VALIDADE AVALIA\u00C7\u00C3O OPERA\u00C7\u00C3O
+LABEL.dataAvaliacaoCliente = DATA VALIDADE AVALIA\u00C7\u00C3O TOMADOR
+LABEL.categoria = CATEGORIA
+LABEL.canal = CANAL DE COMERCIALIZA\u00C7\u00C3O
+LABEL.contratoConta = CONTRATO/CONTA

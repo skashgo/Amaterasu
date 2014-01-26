@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/gsgroup/!svn/ver/10822/SIIAC/trunk/implementacao/fontes/java/SIIAC/src
+END
+hibernate.reveng.xml
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/gsgroup/!svn/ver/7995/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/hibernate.reveng.xml
+END
+hibernate.cfg.xml
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/gsgroup/!svn/ver/10819/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/hibernate.cfg.xml
+END
+log4j.properties
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/gsgroup/!svn/ver/7995/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/log4j.properties
+END
+skin-cef.skin.properties
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/gsgroup/!svn/ver/7995/SIIAC/trunk/implementacao/fontes/java/SIIAC/src/skin-cef.skin.properties
+END

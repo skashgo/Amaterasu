@@ -1,0 +1,527 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/jsp/include/template.xhtml">
+	<ui:define name="breadcrumb">
+		<h:panelGroup id="pnlBread">
+			<h:outputLabel value="#{msgInformacao['BREAD']}" />
+		</h:panelGroup>
+	</ui:define>
+	<ui:define name="head">
+		<style type="text/css">
+			.dr-stglpnl-h{background:none !important;border-style: none !important;} 
+			.rich-stglpanel-header{background:none !important;}
+			.dr-stglpnl{background:none !important;} 
+			.rich-stglpanel{background:none !important;}
+			.dr-mpnl-pnl {overflow:auto!important}
+		</style>	
+	</ui:define>
+	<ui:define name="conteudo">
+		<a4j:form id="formPrincipal">
+			<a4j:keepAlive beanName="informacaoMB" />
+			<rich:panel id="conteudo">
+			<script type="text/javascript">
+			tinyMCE.init({theme : "advanced", 
+				  mode : "textareas", 
+				  //add paste plugin
+				  plugins : 'paste',
+				  language : "pt",
+				  theme_advanced_buttons2 : "bullist,numlist,|,undo,redo,|,link,unlink,anchor,image,cleanup,help",
+				  //Keeps Paste Text feature active until user deselects the Paste as Text button
+				  paste_text_sticky : true,
+				  //select pasteAsPlainText on startup
+				  setup : function(ed) {
+				      ed.onInit.add(function(ed) {
+				          ed.pasteAsPlainText = true;
+				      });
+				  }
+			});
+			</script>
+				<h:panelGroup 
+					id= "pnlCadastro"
+					rendered="#{informacaoMB.showPanelCadastro}">
+					<br />
+					<rich:spacer height="10" />
+					<h:graphicImage value="/images/icon_dados.jpg"
+						style="vertical-align: bottom;" rendered="#{informacaoMB.showTitleIncluir}" />
+						<h:outputText 
+							id="lblIncluiInformacao"
+							value="#{msgInformacao['TITLE.panelIncluir']}"
+							rendered="#{informacaoMB.showTitleIncluir}"
+							styleClass="tituloPagina"/>
+						<h:outputText 
+							id="lblAlteraInformacao"
+							value="#{msgInformacao['TITLE.panelAlterar']}"
+							rendered="#{informacaoMB.showTitleAlterar}"
+							styleClass="tituloPagina"/>
+						<br/>
+						<rich:spacer height="10"/>
+						<rich:panel
+							id="pnlCadInformacao"
+							styleClass="panel-externo">
+							<rich:jQuery id="mskDateCad" selector=".maskDate" timing="onload" query="mask('99/99/9999')" />
+							<h:panelGrid
+								id="pnlGriCadInformacao"
+								columns="4"
+								style="padding: 8px;">
+								<h:outputText 
+									id="lblAssuntoInformacao"
+									value="#{msgInformacao['LABEL.assunto']}:"
+									styleClass="rotulos" />
+								<h:inputText 
+									id="txtAssuntoInformacao"
+									value="#{informacaoMB.informacao.noInformacao}"
+									styleClass="forms_input"
+									maxlength="70"
+									size="70" />
+								<h:outputText 
+									id="lblDataInicio"
+									value="#{msgInformacao['LABEL.dtInicio']}:"
+									styleClass="rotulos" style="margin-left: 140px;"/>
+								<rich:calendar
+									id="calendDataIni"
+									enableManualInput="true"
+									oninputblur="validaData(this)"
+									tabindex="3"
+									inputClass="forms_input maskDate"
+									datePattern="dd/MM/yyyy"
+									inputSize="10"
+									firstWeekDay="0"
+									value="#{informacaoMB.informacao.dtInicio}"> 									
+								</rich:calendar>
+								<h:column/>
+								<h:column/>
+								<h:outputText
+									id="lblDataFim" 
+									value="#{msgInformacao['LABEL.dtFim']}:"
+									styleClass="rotulos" style="margin-left: 140px;"/>
+								<rich:calendar
+									id="calendDataFim"
+									enableManualInput="true"
+									oninputblur="validaData(this)"										
+									tabindex="3"
+									inputClass="forms_input maskDate"
+									datePattern="dd/MM/yyyy"
+									inputSize="10"
+									firstWeekDay="0"
+									value="#{informacaoMB.informacao.dtFim}">
+								</rich:calendar>
+							</h:panelGrid>
+							<h:panelGroup
+								id="pnlTextInfo" layout="block">
+								<h:panelGrid
+									id="pnlGridTextInfo"
+									style="paddinga: 8px;"
+									columns="3">
+									<rich:column style="border: 0px;">
+										<rich:spacer width="13px"/>
+									</rich:column>
+									<rich:column style="vertical-align: top; border: 0px;">
+										<h:outputLabel 
+											id="lblCadTextoInformacao"
+											styleClass="rotulosPro"
+											value="#{msgInformacao['LABEL.texto']}:" />
+										</rich:column>
+										<rich:column style="border: medium none; ">
+											<textarea 
+												id="textAreaTextoParecer" 
+												jsfc="h:inputTextarea" 
+												value="#{informacaoMB.informacao.deInformacao}" 
+												cols="99" 
+												rows="20" 
+												style="width:800px;" >
+											</textarea>										
+										</rich:column>									
+								</h:panelGrid>						
+							</h:panelGroup>
+						</rich:panel>
+						<br />
+						<h:panelGroup
+							id="pnlFinalizaCadInformacao"
+							layout="block"
+							style="text-align: right;">		
+							<a4j:commandButton 
+								id="btnVizualizar"
+								value="#{msgInformacao['ACTION.visualizar']}"
+								styleClass="rich-button"
+								actionListener="#{informacaoMB.doVisualizaModal}"
+								oncomplete="Richfaces.showModalPanel('modal-info');"
+								onclick="tinyMCE.triggerSave(true,true);"
+								reRender="modal-info"/>
+							<rich:spacer width="15"/>
+							<a4j:commandButton 
+								id="btnSalvar"
+								value="#{msgInformacao['ACTION.salvar']}"
+								styleClass="rich-button"
+								actionListener="#{informacaoMB.doGravar}"
+								reRender="conteudo, CEFMessagePanel, pnlBread" status="sts"
+								onclick="if(!confirm('#{informacaoMB.labelConfirm}')) {return false;} else {tinyMCE.triggerSave(true,true);}" />
+							<rich:spacer width="15"/>
+							<a4j:commandButton 
+								id="btnCancelar"
+								value="#{msgInformacao['ACTION.cancelar']}"
+								styleClass="rich-button-cinza rich-button"
+								actionListener="#{informacaoMB.doCancelar}"
+								reRender="conteudo, CEFMessagePanel, pnlBread" status="sts"/>									
+						</h:panelGroup>									
+				</h:panelGroup>
+				<h:panelGroup
+					id="panelFiltro"
+					rendered="#{informacaoMB.showPanelFiltro}">			
+					<rich:spacer height="10" />
+					<rich:panel
+						styleClass="panel-externo"
+						id="pnlConsultarSimples"
+						rendered="#{informacaoMB.showConsultarSimples}">
+						<div class="span-23 clear last"
+							id="pnlGridFiltroContrato"
+							style="padding:5px; margin-left: 16px; line-height: 2;">
+							<div class="span-3 clear">
+								<h:graphicImage
+									value="/images/icon_search.gif"
+									style="vertical-align: top;"/>
+								<h:outputText
+									style="margin-left: 4px;"
+									id="lblContratoFiltro"
+									value="#{msgsContrato['LABEL.pesquisa']}"
+									styleClass="rotulos"/>
+							</div>
+							<div class="span-14">
+								<h:inputText
+										id="inputAssuntoInformacao"
+										value="#{informacaoMB.pesquisaSimples}"
+										styleClass="forms_input"
+										style=" width: 510px; horizontal-align: left; font-size: 13px; margin-top: 8px;" >
+									<rich:jQuery
+										selector="#inputAssuntoInformacao"
+										query="enterSubmit()"
+										timing="onload" />
+								</h:inputText>
+							</div>
+							<div class="span-3">
+								<a4j:commandButton
+									id="btnPesqInfo"
+									styleClass="rich-button btn-consultar"
+									style="margin-top: 8px;"
+									value="#{msgInformacao['TITLE.panelFiltro']}"
+									actionListener="#{informacaoMB.doConsultarClick}"
+									reRender="conteudo, CEFMessagePanel, pnlBread, tableInformacao"
+									status="sts" />
+							</div>		
+							<div class="span-3 last">
+								<a4j:commandButton
+									id="btnCadInfo"
+									styleClass="rich-button"
+									immediate="true"
+									style="margin-top: 8px;"
+									rendered="#{informacaoMB.showButtonNovo}"
+									value="#{msgInformacao['ACTION.cadastrar']}"
+									actionListener="#{informacaoMB.doCadastrar}"
+									reRender="conteudo, pnlBread, formPrincipal"
+									status="sts" />
+							</div>
+							<h:panelGrid columns="2">
+								<h:column>
+								</h:column>
+								<h:column>
+									<div class="span-6 last">
+										<div style="margin-top: 10px">
+											<h:graphicImage value="/images/icon_plus.gif" />
+											<a4j:commandLink												
+												value="#{msgInformacao['LABEL.filtroAvancado']}"
+												actionListener="#{informacaoMB.doConsultarAvancado}"
+												styleClass="rotulos" reRender="panelFiltro"
+												style="margin-left: 3px;" />
+										</div>
+									</div>
+								</h:column>
+							</h:panelGrid>
+						</div>
+						<br clear="all" />					
+						<br clear="all" />					
+					</rich:panel>					
+					<rich:panel							
+						id="pnlPesquisaInformacao"
+						styleClass="panel-externo"
+						rendered="#{informacaoMB.showConsultarAvancado}">
+						<rich:jQuery id="mskDatePesquisa" selector=".maskDate" timing="onload" query="mask('99/99/9999')" />
+						<h:panelGrid
+							id="pnlGridPesquisaInformacao"
+							columns="4"
+							style="padding: 8px;">
+								<h:outputText 
+									id="lblAssuntoPesq"
+									value="#{msgInformacao['LABEL.assunto']}:"
+									styleClass="rotulos" />
+								<h:inputText 
+									id="txtAssuntoPesq"
+									value="#{informacaoMB.pesquisaAssunto}"
+									maxlength="70"
+									size="70"
+									styleClass="forms_input" />
+								<h:outputText style="margin-left: 60px;"
+									id="lblDtInicio"
+									value="#{msgInformacao['LABEL.dtInicio']}:"
+									styleClass="rotulos"/>
+									
+								<rich:calendar
+									id="calDataIni"
+									tabindex="3"
+									enableManualInput="true"
+									oninputblur="validaData(this)"										
+									inputClass="forms_input maskDate"
+									datePattern="dd/MM/yyyy"
+									inputSize="10"
+									firstWeekDay="0"
+									value="#{informacaoMB.pesquisaDtInicio}">
+								</rich:calendar>
+								<h:column />
+								<h:column />
+								<h:outputText 
+									id="lblDtFim" style="margin-left: 60px;"
+									value="#{msgInformacao['LABEL.dtFim']}:"
+									styleClass="rotulos" />
+								<rich:calendar
+									id="calDataFim"
+									tabindex="3"
+									enableManualInput="true"
+									oninputblur="validaData(this)"										
+									inputClass="forms_input maskDate"
+									datePattern="dd/MM/yyyy"
+									inputSize="10"
+									firstWeekDay="0"
+									value="#{informacaoMB.pesquisaDtFim}">
+								</rich:calendar>
+						</h:panelGrid>
+						<h:panelGroup
+							id="pnlPesqInformacao" style="float: right;">
+								<h:graphicImage value="/images/icon_minus.gif" style="margin-left: 8px"/>
+								<a4j:commandLink 
+									actionListener="#{informacaoMB.doConsultarSimples}" 
+									value="#{msgInformacao['LABEL.filtroSimples']}"
+									styleClass="rotulos" reRender="panelFiltro"
+									style="margin-left: 3px;" />
+								<rich:spacer width="30px;"></rich:spacer>
+								<a4j:commandButton 
+									id="btnConsultar"
+									value="#{msgInformacao['TITLE.panelFiltro']}"
+									styleClass="rich-button" 
+									actionListener="#{informacaoMB.doConsultarClick}"
+									reRender="conteudo, CEFMessagePanel, pnlBread, tableInformacao"
+									status="sts"/>	
+								
+								<rich:spacer width="30px;"></rich:spacer>	
+								<a4j:commandButton
+									id="btnCadInfoAv"
+									styleClass="rich-button"
+									immediate="true"
+									rendered="#{informacaoMB.showButtonNovoAvancado}"
+									value="#{msgInformacao['ACTION.cadastrar']}"
+									actionListener="#{informacaoMB.doCadastrar}"
+									reRender="conteudo, pnlBread, formPrincipal"
+									status="sts" />	
+									
+								<rich:spacer width="30px;"></rich:spacer>
+								<a4j:commandButton
+									tabindex="17"
+									id="btnLimparFiltro"
+									styleClass="rich-button-cinza rich-button"
+									value="#{msgInformacao['ACTION.limpar']}"
+									actionListener="#{informacaoMB.doLimpar}"
+									reRender="pnlPesquisaInformacao"
+									status="sts" />						
+							</h:panelGroup>
+							<br/><br/>
+					</rich:panel>											
+				</h:panelGroup>
+				<br/>
+				<rich:spacer height="10" />
+				<rich:panel
+					id="pnlGridInformacao"
+					rendered="#{informacaoMB.showPanelLista}">
+					<h:graphicImage 
+						value="/images/icon_estagiarios_.gif"
+						style="vertical-align: bottom;" />
+					<h:outputText 
+						id="lblResult"
+						value="#{msgInformacao['TITLE.panelLista']}"
+						styleClass="tituloPagina" />
+					<br/>
+					<rich:spacer height="10" />
+					<rich:dataTable 
+						id="tableInformacao"
+						value="#{informacaoMB.listInformacao}" 
+						var="row" 
+						rows="10"
+						width="100%" 
+						cellspacing="0" 
+						cellpadding="0" 
+						border="1"
+						rowClasses="tabela-row-1, tabela-row-2"
+						onRowMouseOver="this.style.backgroundColor = '#A2B6E5'"
+						onRowMouseOut="this.style.backgroundColor = ''">
+							<rich:column 
+								id="colAssuntoInformacao"
+								style="text-align:left;"
+								width="50%"
+								sortBy="#{row.noInformacao}">
+									<f:facet name="header">
+										<h:outputText 
+											value="#{msgInformacao['LABEL.assunto']}"
+											styleClass="rotulos" />
+									</f:facet>
+									<a4j:commandLink 
+										id="lblnoInformacao"
+										actionListener="#{informacaoMB.doTextoDesc}" 
+										oncomplete="Richfaces.showModalPanel('modal-info');"
+										value="#{row.noInformacao}"
+										reRender="modal-info" />
+							</rich:column>
+							<rich:column
+								id="tipoDtInicio"
+								style="text-align: center;"
+								sortBy="#{row.dtInicio}"
+								width="10%">
+								<f:facet name="header">
+									<h:outputText 
+										value="#{msgInformacao['LABEL.dtInicio']}"
+										styleClass="rotulos"/>
+								</f:facet>
+								<a4j:commandLink 
+										id="lblDtInicioInformacao"
+										actionListener="#{informacaoMB.doTextoDesc}" 
+										oncomplete="Richfaces.showModalPanel('modal-info');"
+										value="#{informacaoMB.dataInicioFormat}"
+										reRender="modal-info" />
+							</rich:column>
+							<rich:column
+								id="tipoDtFim"
+								style="text-align: center;"
+								sortBy="#{row.dtFim}"
+								width="10">
+								 <f:facet name="header">
+								 	<h:outputText 
+								 		value="#{msgInformacao['LABEL.dtFim']}"
+								 		styleClass="rotulos"/>
+								 </f:facet>
+								 <a4j:commandLink 
+										id="lblDtFim"
+										actionListener="#{informacaoMB.doTextoDesc}" 
+										oncomplete="Richfaces.showModalPanel('modal-info');"
+										value="#{informacaoMB.dataFimFormat}"
+										reRender="modal-info" />
+							</rich:column>
+							<rich:column
+								id="lblUsuario"
+								style="text-align: center;" width="100px"
+								sortBy="#{row.coUsuarioResponsavel}">
+								<f:facet name="header">
+									<h:outputText 
+										value="#{msgInformacao['LABEL.usuario']}"
+										styleClass="rotulos" />
+								</f:facet>
+								<a4j:commandLink 
+										id="lblUsuarioResp"
+										actionListener="#{informacaoMB.doTextoDesc}" 
+										oncomplete="Richfaces.showModalPanel('modal-info');"
+										value="#{row.coUsuarioResponsavel}"
+										reRender="modal-info" />
+							</rich:column>
+							<rich:column
+								id="lblAcaoInfo"
+								style="text-align:center;"
+								headerClass="th-text-center">
+								<f:facet name="header">
+									<h:outputText 
+										value="#{msgInformacao['ACTION.acao']}"
+										styleClass="rotulos" />	
+								</f:facet>
+								<h:commandLink 
+									id="lnkUpdate"
+									actionListener="#{informacaoMB.doAtualizar}"
+									rendered="#{informacaoMB.showButtonAltera}"
+									style="border-style:none; border-width:0;"
+									onclick="if('#{informacaoMB.labelAlt}' != ''){if(!confirm('#{informacaoMB.labelAlt}')){return false;}}">
+										<h:graphicImage 
+											id="imgUpdate" 
+											alt="Alterar" 
+											rendered="#{informacaoMB.showButtonAltera}"
+											title="Alterar"
+											styleClass="action-icon"
+											value="/images/icon_editar.gif" />
+								</h:commandLink>
+								<h:commandLink 
+									id="lnkDisable"
+									actionListener="#{informacaoMB.doDesabilitar}"
+									rendered="#{informacaoMB.showButtonExclui}"
+									style="border-style:none;border-width:0;"
+									onclick="if(!confirm('#{informacaoMB.labelExcluir}')) {return false;}">
+									
+									<h:graphicImage 
+										id="imgDisable" 
+										alt="Excluir" 
+										title="Excluir"
+										rendered="#{informacaoMB.showButtonExclui}"
+										styleClass="action-icon"
+										value="/images/icon_-delete.gif" />
+							</h:commandLink>
+							</rich:column>
+						<f:facet name="footer">
+							<rich:datascroller fastControls="false"
+								inactiveStyleClass="classe-datascroller classe-datascroller-unselected"
+								selectedStyleClass="classe-datascroller classe-datascroller-selected"
+								id="dataFooterTipoGarantia" renderIfSinglePage="false">
+								<f:facet name="first">
+									<h:graphicImage value="/images/tabela/seta_primeiro.gif" />
+								</f:facet>
+								<f:facet name="first_disabled">
+									<h:graphicImage value="/images/tabela/seta_primeiro.gif" />
+								</f:facet>
+								<f:facet name="last">
+									<h:graphicImage value="/images/tabela/seta_ultimo.gif" />
+								</f:facet>
+								<f:facet name="last_disabled">
+									<h:graphicImage value="/images/tabela/seta_ultimo.gif" />
+								</f:facet>
+								<f:facet name="previous">
+									<h:graphicImage value="/images/tabela/seta_anterior.gif" />
+								</f:facet>
+								<f:facet name="previous_disabled">
+									<h:graphicImage value="/images/tabela/seta_anterior.gif" />
+								</f:facet>
+								<f:facet name="next">
+									<h:graphicImage value="/images/tabela/seta_proximo.gif" />
+								</f:facet>
+								<f:facet name="next_disabled">
+									<h:graphicImage value="/images/tabela/seta_proximo.gif" />
+								</f:facet>
+							</rich:datascroller>
+						</f:facet>							
+					</rich:dataTable>
+				</rich:panel>
+			</rich:panel>
+				<rich:modalPanel id="modal-info" width="750" resizeable="true">
+					<h:panelGroup layout="block">
+						<h:outputText 
+							value="#{informacaoMB.textoDescricao}" 
+							escape="false"/>
+					</h:panelGroup>
+					<br/>
+					<h:panelGroup 
+						id="btnFechar" 
+						layout="block" 
+						style="text-align: center;">
+						<h:commandButton 
+							value="FECHAR" 
+							onclick="Richfaces.hideModalPanel('modal-info');" 
+							styleClass="rich-button-cinza rich-button"/>
+					</h:panelGroup>
+		    </rich:modalPanel>			
+		</a4j:form>
+	</ui:define>
+</ui:composition>
+</html>
