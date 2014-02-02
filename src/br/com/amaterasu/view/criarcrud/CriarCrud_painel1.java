@@ -97,6 +97,8 @@ public class CriarCrud_painel1 extends javax.swing.JPanel implements IPainel {
 
         jLabel3.setText(bundle.getString("NOME_CASO_USO")); // NOI18N
 
+        jTFNomeCasoUso.setEditable(false);
+
         jCBCadastro.setText(bundle.getString("CADASTRO")); // NOI18N
 
         jCBAlteracao.setText(bundle.getString("ALTERACAO")); // NOI18N

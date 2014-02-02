@@ -4,6 +4,7 @@
  */
 package br.com.amaterasu.gerador;
 
+import br.com.amaterasu.model.Component;
 import br.com.amaterasu.model.CriarCRUDBean;
 import br.com.amaterasu.model.CriarProjetoBean;
 import br.com.amaterasu.util.AmaterasuClassLoader;
@@ -128,7 +129,6 @@ public class GerarCrud {
                     line = showLine(line);
                     //----------------substitui as variaveis do arquivo--------------------//
 
-
                     for (java.lang.reflect.Field field : CriarProjetoBean.class
                             .getFields()) {
                         String value = field.get(CriarProjetoBean.i()) != null ? field.get(CriarProjetoBean.i()).toString() : "";
@@ -136,7 +136,6 @@ public class GerarCrud {
                         line = line.toString().replace("@{UC-" + field.getName() + "}", Format.maiuscula1(value));
                         line = line.toString().replace("@{LC-" + field.getName() + "}", Format.minuscula1(value));
                     }
-
 
                     for (java.lang.reflect.Field field : CriarCRUDBean.class
                             .getFields()) {
@@ -185,13 +184,11 @@ public class GerarCrud {
     private static String showLine(String line) throws IllegalArgumentException, IllegalAccessException {
         show = null;
 
-
         for (java.lang.reflect.Field field : CriarProjetoBean.class
                 .getFields()) {
             line = showLineEE(line, field, CriarProjetoBean.i());
             line = showLineOR(line, field, CriarProjetoBean.i());
         }
-
 
         for (java.lang.reflect.Field field : CriarCRUDBean.class
                 .getFields()) {
@@ -243,7 +240,6 @@ public class GerarCrud {
         File file = new File(PathFramework.pathFrameworkComponentes(CriarProjetoBean.i().getModelo(), CriarCRUDBean.i().getNomeModelo()) + ff.getComponente() + ".txt");
         if (file.exists()) {
             str = ManterTXT.readFile(file).toString();
-
 
             if (!str.equals("")) {
                 for (java.lang.reflect.Field fieldField : Field.class
@@ -318,7 +314,7 @@ public class GerarCrud {
                 f.setNome(line.split(" ")[1]);
                 f.setTipo(line.split(" ")[0]);
                 if (f.getTipo().equalsIgnoreCase("Boolean")) {
-                    f.setComponente("CheckBox");
+                    f.setComponente(Component.CHECKBOX);
                     for (String s : listLinhasArquivoBean) {
                         if (s.contains("is" + Format.maiuscula1(f.getNome()))) {
                             f.setMetodoIS(true);
@@ -326,9 +322,38 @@ public class GerarCrud {
                         }
                     }
                 } else if (f.getTipo().equals("Date")) {
-                    f.setComponente("Data");
+                    f.setComponente(Component.DATA);
+                } else if (f.getTipo().equalsIgnoreCase("Double")
+                        || f.getTipo().equalsIgnoreCase("Float")
+                        || f.getTipo().equalsIgnoreCase("String")
+                        || f.getTipo().equalsIgnoreCase("Integer")
+                        || f.getTipo().equalsIgnoreCase("int")
+                        || f.getTipo().equalsIgnoreCase("Decimal")
+                        || f.getTipo().equalsIgnoreCase("Byte")
+                        || f.getTipo().equalsIgnoreCase("Long")
+                        || f.getTipo().equalsIgnoreCase("Short")
+                        || f.getTipo().equalsIgnoreCase("char")
+                        || f.getTipo().equalsIgnoreCase("Character")) {
+                    f.setComponente(Component.INPUT);
+                } else if (f.getTipo().contains("<")) {
+                    for (String t : file.getParentFile().list()) {
+                        String tipo = f.getTipo();
+                        tipo = tipo.substring(tipo.indexOf("<") + 1, tipo.indexOf(">"));
+                        f.setComponente(Component.TABLE);
+                        if (t.replace(".java", "").equalsIgnoreCase(tipo)) {
+                            f.setBean(true);
+                            break;
+                        }
+                    }
                 } else {
-                    f.setComponente("Input");
+                    for (String t : file.getParentFile().list()) {
+                        String tipo = f.getTipo();
+                        if (t.replace(".java", "").equalsIgnoreCase(tipo)) {
+                            f.setComponente(Component.COMBOBOX);
+                            f.setBean(true);
+                            break;
+                        }
+                    }
                 }
                 f.setLabel(Format.maiuscula1(f.getNome()));
                 list.add(f);

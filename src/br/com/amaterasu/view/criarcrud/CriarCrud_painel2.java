@@ -5,6 +5,8 @@
 package br.com.amaterasu.view.criarcrud;
 
 import br.com.amaterasu.gerador.GerarCrud;
+import br.com.amaterasu.gerador.ManterLog;
+import br.com.amaterasu.model.Component;
 import br.com.amaterasu.model.CriarCRUDBean;
 import br.com.amaterasu.util.AmaterasuException;
 import br.com.amaterasu.util.Field;
@@ -13,6 +15,8 @@ import br.com.amaterasu.util.IPainel;
 import br.com.amaterasu.util.Table;
 import java.io.File;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
@@ -32,6 +36,8 @@ public class CriarCrud_painel2 extends javax.swing.JPanel implements IPainel {
     private static final Integer COMP = 7;
     private static final Integer LABEL = 8;
     private static final Integer LOCAL = 9;
+
+    private boolean next = true;
 
     public CriarCrud_painel2() {
         initComponents();
@@ -234,6 +240,9 @@ public class CriarCrud_painel2 extends javax.swing.JPanel implements IPainel {
             try {
                 binding();
                 CriarCRUDBean.i().getListFields().remove(jTable1.getSelectedRow());
+                next = false;
+                binding();
+                next = true;
                 updateTables();
             } catch (AmaterasuException ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage());
@@ -273,10 +282,18 @@ public class CriarCrud_painel2 extends javax.swing.JPanel implements IPainel {
 
     private void jBAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAdicionarActionPerformed
         if (!jTFTipo.getText().isEmpty() && !jTFVariavel.getText().isEmpty()) {
-            addField();
-            updateTables();
-            jTFTipo.setText("");
-            jTFVariavel.setText("");
+            try {
+                addField();
+                next = false;
+                binding();
+                updateTables();
+                next = true;
+                jTFTipo.setText("");
+                jTFVariavel.setText("");
+            } catch (AmaterasuException ex) {
+                ManterLog.write(ex);
+                JOptionPane.showMessageDialog(null, ex.getMessage());
+            }
         }
     }//GEN-LAST:event_jBAdicionarActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -301,14 +318,16 @@ public class CriarCrud_painel2 extends javax.swing.JPanel implements IPainel {
     @Override
     public void binding() throws AmaterasuException {
         boolean valid = false;
-        for (int i = 0; i < jTable1.getRowCount(); i++) {
-            if ((jTable1.getValueAt(i, CAD) != null && (Boolean) jTable1.getValueAt(i, CAD)) || (jTable1.getValueAt(i, ALT) != null && (Boolean) jTable1.getValueAt(i, ALT)) || (jTable1.getValueAt(i, GRID) != null && (Boolean) jTable1.getValueAt(i, GRID)) || (jTable1.getValueAt(i, FILT) != null && (Boolean) jTable1.getValueAt(i, FILT)) || (jTable1.getValueAt(i, VIEW) != null && (Boolean) jTable1.getValueAt(i, VIEW))) {
-                valid = true;
-                break;
+        if (next) {
+            for (int i = 0; i < jTable1.getRowCount(); i++) {
+                if ((jTable1.getValueAt(i, CAD) != null && (Boolean) jTable1.getValueAt(i, CAD)) || (jTable1.getValueAt(i, ALT) != null && (Boolean) jTable1.getValueAt(i, ALT)) || (jTable1.getValueAt(i, GRID) != null && (Boolean) jTable1.getValueAt(i, GRID)) || (jTable1.getValueAt(i, FILT) != null && (Boolean) jTable1.getValueAt(i, FILT)) || (jTable1.getValueAt(i, VIEW) != null && (Boolean) jTable1.getValueAt(i, VIEW))) {
+                    valid = true;
+                    break;
+                }
             }
-        }
-        if (!valid) {
-            JOptionPane.showMessageDialog(null, "Nenhum campo foi marcado para ser exibido.");
+            if (!valid) {
+                JOptionPane.showMessageDialog(null, "Nenhum campo foi marcado para ser exibido.");
+            }
         }
 
         Boolean expandirTabela = false;
@@ -340,28 +359,30 @@ public class CriarCrud_painel2 extends javax.swing.JPanel implements IPainel {
                         try {
                             //faz a leitura dos atributos da classe (Bean) e retorna a lista de campos (fields)
                             List<Field> listField = GerarCrud.getFieldsBean(fileBean);
-                            //se o campo for combobox ou radiobox, selecionar id e label
-                            if (field.getComponente().equals("ComboBox") || field.getComponente().equals("RadioBox")) {
-                                Object[] opcao = new Object[listField.size()];
-                                int j = 0;
-                                for (Field f : listField) {
-                                    opcao[j] = f.getNome();
-                                    j++;
-                                }
-                                field.setIdCombo((String) JOptionPane.showInputDialog(null, "Escolha o atributo de ID do combobox para o objeto " + field.getTipo(), "Escolha Id", JOptionPane.PLAIN_MESSAGE, null, opcao, opcao[0]));
-                                field.setDescCombo((String) JOptionPane.showInputDialog(null, "Escolha o atributo de DESCRIÇÃO do combobox para o objeto " + field.getTipo(), "Escolha Descrição", JOptionPane.PLAIN_MESSAGE, null, opcao, opcao[0]));
-                            }
-
-                            //se for expadir objeto abrir novamente a tabela com os campos do novo bean
-                            if (field.getComponente().equals("Expadir Objeto")) {
-                                for (Field f : listField) {
-                                    f.setNome(field.getNome().concat(".").concat(f.getNome()));
-                                    if (field.isLocal()) {
-                                        f.setLocal(true);
+                            if (next) {
+                                //se o campo for combobox ou radiobox, selecionar id e label
+                                if (field.getComponente().equals(Component.COMBOBOX) || field.getComponente().equals(Component.RADIOBOX)) {
+                                    Object[] opcao = new Object[listField.size()];
+                                    int j = 0;
+                                    for (Field f : listField) {
+                                        opcao[j] = f.getNome();
+                                        j++;
                                     }
+                                    field.setIdCombo((String) JOptionPane.showInputDialog(null, "Escolha o atributo de ID do combobox para o objeto " + field.getTipo(), "Escolha Id", JOptionPane.PLAIN_MESSAGE, null, opcao, opcao[0]));
+                                    field.setDescCombo((String) JOptionPane.showInputDialog(null, "Escolha o atributo de DESCRIÇÃO do combobox para o objeto " + field.getTipo(), "Escolha Descrição", JOptionPane.PLAIN_MESSAGE, null, opcao, opcao[0]));
                                 }
-                                CriarCRUDBean.i().getListFields().addAll(listField);
-                                expandirTabela = true;
+
+                                //se for expadir objeto abrir novamente a tabela com os campos do novo bean
+                                if (field.getComponente().equals("Expadir Objeto")) {
+                                    for (Field f : listField) {
+                                        f.setNome(field.getNome().concat(".").concat(f.getNome()));
+                                        if (field.isLocal()) {
+                                            f.setLocal(true);
+                                        }
+                                    }
+                                    CriarCRUDBean.i().getListFields().addAll(listField);
+                                    expandirTabela = true;
+                                }
                             }
                         } catch (Exception ex) {
                             JOptionPane.showMessageDialog(null, "Erro ao setar valores dos atributos. (bean não esta formatado) \n\n" + ex.getMessage());
@@ -380,15 +401,9 @@ public class CriarCrud_painel2 extends javax.swing.JPanel implements IPainel {
 
     private void updateTables() {
         JComboBox cb = new JComboBox();
-        cb.addItem("Input");
-        cb.addItem("Output");
-        cb.addItem("CheckBox");
-        cb.addItem("RadioBox");
-        cb.addItem("ComboBox");
-        cb.addItem("TextArea");
-        cb.addItem("Data");
-        cb.addItem("Table");
-        cb.addItem("Expadir Objeto");
+        for (String cc : Component.getComponent()) {
+            cb.addItem(cc);
+        }
         Table table = new Table();
         table.addColumn("Cadastro", Boolean.class, CriarCRUDBean.i().isModoCadastro());
         table.addColumn("Altera", Boolean.class, CriarCRUDBean.i().isModoAlteracao());
@@ -402,8 +417,10 @@ public class CriarCrud_painel2 extends javax.swing.JPanel implements IPainel {
         table.addColumn("Local", Boolean.class, false);
 
         for (Field f : CriarCRUDBean.i().getListFields()) {
-            if (!f.getComponente().equals("Expadir Objeto")) {
-                table.addLineValue(f.isShowCadastro(), f.isShowAlteracao(), f.isShowGrid(), f.isShowFiltro(), f.isShowVisualizacao(), f.getTipo(), f.getNome(), f.getComponente(), f.getLabel(), f.isLocal());
+            if (f.getComponente() != null && !f.getComponente().equals("Expadir Objeto")) {
+                table.addLineValue(CriarCRUDBean.i().isModoCadastro() ? f.isShowCadastro() : false, CriarCRUDBean.i().isModoAlteracao() ? f.isShowAlteracao() : false, CriarCRUDBean.i().isModoGrid() ? f.isShowGrid() : false, CriarCRUDBean.i().isModoFiltro() ? f.isShowFiltro() : false, CriarCRUDBean.i().isModoVisualizacao() ? f.isShowVisualizacao() : false, f.getTipo(), f.getNome(), f.getComponente(), f.getLabel(), f.isLocal());
+            } else if (f.getComponente() == null) {
+                table.addLineValue(CriarCRUDBean.i().isModoCadastro() ? f.isShowCadastro() : false, CriarCRUDBean.i().isModoAlteracao() ? f.isShowAlteracao() : false, CriarCRUDBean.i().isModoGrid() ? f.isShowGrid() : false, CriarCRUDBean.i().isModoFiltro() ? f.isShowFiltro() : false, CriarCRUDBean.i().isModoVisualizacao() ? f.isShowVisualizacao() : false, f.getTipo(), f.getNome(), f.getComponente(), f.getLabel(), f.isLocal());
             }
         }
         table.createTable(jTable1);
@@ -422,11 +439,11 @@ public class CriarCrud_painel2 extends javax.swing.JPanel implements IPainel {
         f.setTipo(jTFTipo.getText());
         f.setBean(verificaIsBean(f));
         if (f.getTipo().equals("Boolean") || f.getTipo().equals("boolean")) {
-            f.setComponente("CheckBox");
+            f.setComponente(Component.CHECKBOX);
         } else if (f.getTipo().equals("Date")) {
-            f.setComponente("Data");
+            f.setComponente(Component.DATA);
         } else {
-            f.setComponente("Input");
+            f.setComponente(Component.INPUT);
         }
         f.setLabel(Format.maiuscula1(f.getNome()));
         CriarCRUDBean.i().getListFields().add(f);
