@@ -1,5 +1,5 @@
-/*
- * To change this template, choose Tools | Templates
+/*//GEN-FIRST:event_jCkAlteraActionPerformed
+ * To change this template, choose Tools | Templates//GEN-LAST:event_jCkAlteraActionPerformed
  * and open the template in the editor.
  */
 package br.com.amaterasu.view.criarcrud;
@@ -7,16 +7,14 @@ package br.com.amaterasu.view.criarcrud;
 import br.com.amaterasu.gerador.GerarCrud;
 import br.com.amaterasu.gerador.ManterLog;
 import br.com.amaterasu.model.Component;
-import br.com.amaterasu.model.CriarCRUDBean;
+import br.com.amaterasu.model.Field;
+import br.com.amaterasu.model.ModelCrud;
 import br.com.amaterasu.util.AmaterasuException;
-import br.com.amaterasu.util.Field;
 import br.com.amaterasu.util.Format;
 import br.com.amaterasu.util.IPainel;
 import br.com.amaterasu.util.Table;
 import java.io.File;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
@@ -44,7 +42,7 @@ public class CriarCrud_painel2 extends javax.swing.JPanel implements IPainel {
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
         jLabel3 = new javax.swing.JLabel();
@@ -67,26 +65,26 @@ public class CriarCrud_painel2 extends javax.swing.JPanel implements IPainel {
         jLabel3.setText("Adicionar novo campo:");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "", "Tipo", "Variavel", "Componente", "Label"
-            }
+                new Object[][]{
+                    {null, null, null, null, null}
+                },
+                new String[]{
+                    "", "Tipo", "Variavel", "Componente", "Label"
+                }
         ) {
-            Class[] types = new Class [] {
+            Class[] types = new Class[]{
                 java.lang.Boolean.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
-            boolean[] canEdit = new boolean [] {
+            boolean[] canEdit = new boolean[]{
                 true, false, false, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
+                return types[columnIndex];
             }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+                return canEdit[columnIndex];
             }
         });
         jScrollPane1.setViewportView(jTable1);
@@ -145,33 +143,33 @@ public class CriarCrud_painel2 extends javax.swing.JPanel implements IPainel {
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCkVisualiza)
-                    .addComponent(jCkFiltro)
-                    .addComponent(jCkGrid)
-                    .addComponent(jCkAltera)
-                    .addComponent(jCkCadastro)
-                    .addComponent(jLabel2))
-                .addContainerGap(22, Short.MAX_VALUE))
+                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jCkVisualiza)
+                                .addComponent(jCkFiltro)
+                                .addComponent(jCkGrid)
+                                .addComponent(jCkAltera)
+                                .addComponent(jCkCadastro)
+                                .addComponent(jLabel2))
+                        .addContainerGap(22, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCkCadastro)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCkAltera)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCkGrid)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCkFiltro)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCkVisualiza)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCkCadastro)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCkAltera)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCkGrid)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCkFiltro)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCkVisualiza)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jBAdicionar.setText("Adicionar");
@@ -184,62 +182,62 @@ public class CriarCrud_painel2 extends javax.swing.JPanel implements IPainel {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTFTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel5)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTFVariavel, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jBAdicionar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jBExcluirCampo)))
-                .addContainerGap())
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 705, Short.MAX_VALUE)
-                    .addContainerGap()))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel3)
+                                .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel4)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jTFTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel5)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jTFVariavel, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jBAdicionar)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jBExcluirCampo)))
+                        .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 705, Short.MAX_VALUE)
+                                .addContainerGap()))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(245, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(245, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel3)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                .addComponent(jLabel4)
+                                                .addComponent(jTFTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jLabel5)
+                                                .addComponent(jTFVariavel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jBAdicionar)
+                                                .addComponent(jBExcluirCampo)))
+                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(jTFTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5)
-                            .addComponent(jTFVariavel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jBAdicionar)
-                            .addComponent(jBExcluirCampo)))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(161, Short.MAX_VALUE)))
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(161, Short.MAX_VALUE)))
         );
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
-    private void jBExcluirCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBExcluirCampoActionPerformed
+    private void jBExcluirCampoActionPerformed(java.awt.event.ActionEvent evt) {
         if (jTable1.getSelectedRow() != -1) {
             try {
                 binding();
-                CriarCRUDBean.i().getListFields().remove(jTable1.getSelectedRow());
+                ModelCrud.i().getListFields().remove(jTable1.getSelectedRow());
                 next = false;
                 binding();
                 next = true;
@@ -248,39 +246,39 @@ public class CriarCrud_painel2 extends javax.swing.JPanel implements IPainel {
                 JOptionPane.showMessageDialog(null, ex.getMessage());
             }
         }
-    }//GEN-LAST:event_jBExcluirCampoActionPerformed
+    }
 
-    private void jCkCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCkCadastroActionPerformed
+    private void jCkCadastroActionPerformed(java.awt.event.ActionEvent evt) {
         for (int i = 0; i < jTable1.getRowCount(); i++) {
             jTable1.setValueAt(jCkCadastro.isSelected(), i, CAD);
         }
-    }//GEN-LAST:event_jCkCadastroActionPerformed
+    }
 
-    private void jCkGridActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCkGridActionPerformed
+    private void jCkGridActionPerformed(java.awt.event.ActionEvent evt) {
         for (int i = 0; i < jTable1.getRowCount(); i++) {
             jTable1.setValueAt(jCkGrid.isSelected(), i, GRID);
         }
-    }//GEN-LAST:event_jCkGridActionPerformed
+    }
 
-    private void jCkFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCkFiltroActionPerformed
+    private void jCkFiltroActionPerformed(java.awt.event.ActionEvent evt) {
         for (int i = 0; i < jTable1.getRowCount(); i++) {
             jTable1.setValueAt(jCkFiltro.isSelected(), i, FILT);
         }
-    }//GEN-LAST:event_jCkFiltroActionPerformed
+    }
 
-    private void jCkVisualizaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCkVisualizaActionPerformed
+    private void jCkVisualizaActionPerformed(java.awt.event.ActionEvent evt) {
         for (int i = 0; i < jTable1.getRowCount(); i++) {
             jTable1.setValueAt(jCkVisualiza.isSelected(), i, VIEW);
         }
-    }//GEN-LAST:event_jCkVisualizaActionPerformed
+    }
 
-    private void jCkAlteraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCkAlteraActionPerformed
+    private void jCkAlteraActionPerformed(java.awt.event.ActionEvent evt) {
         for (int i = 0; i < jTable1.getRowCount(); i++) {
             jTable1.setValueAt(jCkAltera.isSelected(), i, ALT);
         }
-    }//GEN-LAST:event_jCkAlteraActionPerformed
+    }
 
-    private void jBAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAdicionarActionPerformed
+    private void jBAdicionarActionPerformed(java.awt.event.ActionEvent evt) {
         if (!jTFTipo.getText().isEmpty() && !jTFVariavel.getText().isEmpty()) {
             try {
                 addField();
@@ -295,8 +293,8 @@ public class CriarCrud_painel2 extends javax.swing.JPanel implements IPainel {
                 JOptionPane.showMessageDialog(null, ex.getMessage());
             }
         }
-    }//GEN-LAST:event_jBAdicionarActionPerformed
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    }
+    // Variables declaration - do not modify                     
     private javax.swing.JButton jBAdicionar;
     private javax.swing.JButton jBExcluirCampo;
     private javax.swing.JCheckBox jCkAltera;
@@ -313,7 +311,7 @@ public class CriarCrud_painel2 extends javax.swing.JPanel implements IPainel {
     private javax.swing.JTextField jTFTipo;
     private javax.swing.JTextField jTFVariavel;
     private javax.swing.JTable jTable1;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 
     @Override
     public void binding() throws AmaterasuException {
@@ -332,13 +330,13 @@ public class CriarCrud_painel2 extends javax.swing.JPanel implements IPainel {
 
         Boolean expandirTabela = false;
         //dirBeans = diretorio de beans
-        File dirBeans = new File(CriarCRUDBean.i().getCaminhoClasseBean()).getParentFile();
+        File dirBeans = new File(ModelCrud.i().getCaminhoClasseBean()).getParentFile();
         //percorre todos as linhas da tabela para preencher os objetos com as informações das linhas
         for (int i = 0; i < jTable1.getRowCount(); i++) {
             //se ao menos uma opção de check (estado) estiver checked add objeto
             //valida campos obrigatorios
 
-            Field field = CriarCRUDBean.i().getListFields().get(i);
+            Field field = ModelCrud.i().getListFields().get(i);
             field.setShowCadastro((Boolean) jTable1.getValueAt(i, CAD));
             field.setShowAlteracao((Boolean) jTable1.getValueAt(i, ALT));
             field.setShowGrid((Boolean) jTable1.getValueAt(i, GRID));
@@ -380,7 +378,7 @@ public class CriarCrud_painel2 extends javax.swing.JPanel implements IPainel {
                                             f.setLocal(true);
                                         }
                                     }
-                                    CriarCRUDBean.i().getListFields().addAll(listField);
+                                    ModelCrud.i().getListFields().addAll(listField);
                                     expandirTabela = true;
                                 }
                             }
@@ -391,7 +389,7 @@ public class CriarCrud_painel2 extends javax.swing.JPanel implements IPainel {
                 }
             }
             //add o campo na lista
-            CriarCRUDBean.i().getListFields().set(i, field);
+            ModelCrud.i().getListFields().set(i, field);
         }
         if (expandirTabela) {
             updateTables();
@@ -405,22 +403,22 @@ public class CriarCrud_painel2 extends javax.swing.JPanel implements IPainel {
             cb.addItem(cc);
         }
         Table table = new Table();
-        table.addColumn("Cadastro", Boolean.class, CriarCRUDBean.i().isModoCadastro());
-        table.addColumn("Altera", Boolean.class, CriarCRUDBean.i().isModoAlteracao());
-        table.addColumn("Grid", Boolean.class, CriarCRUDBean.i().isModoGrid());
-        table.addColumn("Filtro", Boolean.class, CriarCRUDBean.i().isModoFiltro());
-        table.addColumn("Visualiza", Boolean.class, CriarCRUDBean.i().isModoVisualizacao());
+        table.addColumn("Cadastro", Boolean.class, ModelCrud.i().isModoCadastro());
+        table.addColumn("Altera", Boolean.class, ModelCrud.i().isModoAlteracao());
+        table.addColumn("Grid", Boolean.class, ModelCrud.i().isModoGrid());
+        table.addColumn("Filtro", Boolean.class, ModelCrud.i().isModoFiltro());
+        table.addColumn("Visualiza", Boolean.class, ModelCrud.i().isModoVisualizacao());
         table.addColumn("Tipo", String.class, false);
         table.addColumn("Variável", String.class, false);
         table.addColumn("Componente", JComboBox.class, cb, true);
         table.addColumn("Label", String.class, true);
         table.addColumn("Local", Boolean.class, false);
 
-        for (Field f : CriarCRUDBean.i().getListFields()) {
+        for (Field f : ModelCrud.i().getListFields()) {
             if (f.getComponente() != null && !f.getComponente().equals("Expadir Objeto")) {
-                table.addLineValue(CriarCRUDBean.i().isModoCadastro() ? f.isShowCadastro() : false, CriarCRUDBean.i().isModoAlteracao() ? f.isShowAlteracao() : false, CriarCRUDBean.i().isModoGrid() ? f.isShowGrid() : false, CriarCRUDBean.i().isModoFiltro() ? f.isShowFiltro() : false, CriarCRUDBean.i().isModoVisualizacao() ? f.isShowVisualizacao() : false, f.getTipo(), f.getNome(), f.getComponente(), f.getLabel(), f.isLocal());
+                table.addLineValue(ModelCrud.i().isModoCadastro() ? f.isShowCadastro() : false, ModelCrud.i().isModoAlteracao() ? f.isShowAlteracao() : false, ModelCrud.i().isModoGrid() ? f.isShowGrid() : false, ModelCrud.i().isModoFiltro() ? f.isShowFiltro() : false, ModelCrud.i().isModoVisualizacao() ? f.isShowVisualizacao() : false, f.getTipo(), f.getNome(), f.getComponente(), f.getLabel(), f.isLocal());
             } else if (f.getComponente() == null) {
-                table.addLineValue(CriarCRUDBean.i().isModoCadastro() ? f.isShowCadastro() : false, CriarCRUDBean.i().isModoAlteracao() ? f.isShowAlteracao() : false, CriarCRUDBean.i().isModoGrid() ? f.isShowGrid() : false, CriarCRUDBean.i().isModoFiltro() ? f.isShowFiltro() : false, CriarCRUDBean.i().isModoVisualizacao() ? f.isShowVisualizacao() : false, f.getTipo(), f.getNome(), f.getComponente(), f.getLabel(), f.isLocal());
+                table.addLineValue(ModelCrud.i().isModoCadastro() ? f.isShowCadastro() : false, ModelCrud.i().isModoAlteracao() ? f.isShowAlteracao() : false, ModelCrud.i().isModoGrid() ? f.isShowGrid() : false, ModelCrud.i().isModoFiltro() ? f.isShowFiltro() : false, ModelCrud.i().isModoVisualizacao() ? f.isShowVisualizacao() : false, f.getTipo(), f.getNome(), f.getComponente(), f.getLabel(), f.isLocal());
             }
         }
         table.createTable(jTable1);
@@ -446,11 +444,11 @@ public class CriarCrud_painel2 extends javax.swing.JPanel implements IPainel {
             f.setComponente(Component.INPUT);
         }
         f.setLabel(Format.maiuscula1(f.getNome()));
-        CriarCRUDBean.i().getListFields().add(f);
+        ModelCrud.i().getListFields().add(f);
     }
 
     private boolean verificaIsBean(Field field) {
-        File dirBeans = new File(CriarCRUDBean.i().getCaminhoClasseBean()).getParentFile();
+        File dirBeans = new File(ModelCrud.i().getCaminhoClasseBean()).getParentFile();
         //verifica se o tipo começa com letra maiuscula
         if (Character.isUpperCase(field.getTipo().charAt(0))) {
             //percorre a lista de arquivos beans
@@ -467,10 +465,10 @@ public class CriarCrud_painel2 extends javax.swing.JPanel implements IPainel {
     @Override
     public void atualizaPainel() {
         updateTables();
-        jCkAltera.setEnabled(CriarCRUDBean.i().isModoAlteracao());
-        jCkCadastro.setEnabled(CriarCRUDBean.i().isModoCadastro());
-        jCkFiltro.setEnabled(CriarCRUDBean.i().isModoFiltro());
-        jCkGrid.setEnabled(CriarCRUDBean.i().isModoGrid());
-        jCkVisualiza.setEnabled(CriarCRUDBean.i().isModoVisualizacao());
+        jCkAltera.setEnabled(ModelCrud.i().isModoAlteracao());
+        jCkCadastro.setEnabled(ModelCrud.i().isModoCadastro());
+        jCkFiltro.setEnabled(ModelCrud.i().isModoFiltro());
+        jCkGrid.setEnabled(ModelCrud.i().isModoGrid());
+        jCkVisualiza.setEnabled(ModelCrud.i().isModoVisualizacao());
     }
 }

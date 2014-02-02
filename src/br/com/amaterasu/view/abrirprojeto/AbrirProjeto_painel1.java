@@ -4,10 +4,10 @@
  */
 package br.com.amaterasu.view.abrirprojeto;
 
-import br.com.amaterasu.model.CriarProjetoBean;
+import br.com.amaterasu.model.ModelProjeto;
 import br.com.amaterasu.model.HistoricoProjetoBean;
 import br.com.amaterasu.util.AmaterasuException;
-import br.com.amaterasu.util.HistoricoProjeto;
+import br.com.amaterasu.model.HistoricoProjeto;
 import br.com.amaterasu.util.IPainel;
 import java.util.ArrayList;
 import java.util.List;
@@ -165,8 +165,8 @@ public class AbrirProjeto_painel1 extends javax.swing.JPanel implements IPainel 
         if (jTFCaminhoProjeto.getText().equals("") || jTFCaminhoProjetoAmaterasu.getText().equals("")) {
             throw new AmaterasuException("Campo Obrigatorio: \n*Caminho Projeto \n*Caminho Projeto Amaterasu", false);
         }
-        CriarProjetoBean.i().setCaminhoAmaterasu(jTFCaminhoProjetoAmaterasu.getText());
-        CriarProjetoBean.i().setCaminho(jTFCaminhoProjeto.getText());
+        ModelProjeto.i().setCaminhoAmaterasu(jTFCaminhoProjetoAmaterasu.getText());
+        ModelProjeto.i().setCaminho(jTFCaminhoProjeto.getText());
     }
 
     @Override

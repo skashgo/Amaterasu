@@ -4,7 +4,7 @@
  */
 package br.com.amaterasu.gerador;
 
-import br.com.amaterasu.model.CriarProjetoBean;
+import br.com.amaterasu.model.ModelProjeto;
 import br.com.amaterasu.util.IConstants;
 import java.io.File;
 import org.junit.After;
@@ -45,15 +45,15 @@ public class GerarProjetoTest {
     @Test
     public void testGerar() throws Exception {
         System.out.println("gerar");
-        CriarProjetoBean.i().setCaminho("D://Teste/ProjetoAmaterasu_Teste/");
-        CriarProjetoBean.i().setPacotePadrao("br.com.amaterasu");
-        CriarProjetoBean.i().setNomeProjeto("Amaterasu");
-        CriarProjetoBean.i().setCaminhoServidor("D:\\Projetos\\Aplicativos\\jboss-4.2.3.GA");
-        CriarProjetoBean.i().setModelo(IConstants.MODELO_PADRAO);
-        CriarProjetoBean.i().setCliente("GIS");
-        CriarProjetoBean.i().setCaminhoAmaterasu("D://Teste/ProjetoAmaterasu_Teste_Amaterasu/");
-        CriarProjetoBean.i().setNomeCompleto("Amaterasu v 1.0 Framework/Tools");
-        CriarProjetoBean.i().setCopyright("/**"
+        ModelProjeto.i().setCaminho("D://Teste/ProjetoAmaterasu_Teste/");
+        ModelProjeto.i().setPacotePadrao("br.com.amaterasu");
+        ModelProjeto.i().setNomeProjeto("Amaterasu");
+        ModelProjeto.i().setCaminhoServidor("D:\\Projetos\\Aplicativos\\jboss-4.2.3.GA");
+        ModelProjeto.i().setModelo(IConstants.MODELO_PADRAO);
+        ModelProjeto.i().setCliente("GIS");
+        ModelProjeto.i().setCaminhoAmaterasu("D://Teste/ProjetoAmaterasu_Teste_Amaterasu/");
+        ModelProjeto.i().setNomeCompleto("Amaterasu v 1.0 Framework/Tools");
+        ModelProjeto.i().setCopyright("/**"
                 + "\n* Copyright (c) 2009-2011 Caixa Econômica Federal. Todos os direitos"
                 + "\n* reservados."
                 + "\n* "
@@ -79,7 +79,7 @@ public class GerarProjetoTest {
                 + "\n* HeadURL: "
                 + "\n* "
                 + "\n*/");
-        File file = new File(CriarProjetoBean.i().getCaminho());
+        File file = new File(ModelProjeto.i().getCaminho());
         ManterDiretorio.deleteDir(file);
         GerarProjeto.gerar();
         assertTrue("Erro ao gerar projeto.", file.exists());

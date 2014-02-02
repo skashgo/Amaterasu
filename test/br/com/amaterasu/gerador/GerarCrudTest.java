@@ -4,8 +4,8 @@
  */
 package br.com.amaterasu.gerador;
 
-import br.com.amaterasu.model.CriarCRUDBean;
-import br.com.amaterasu.model.CriarProjetoBean;
+import br.com.amaterasu.model.ModelCrud;
+import br.com.amaterasu.model.ModelProjeto;
 import br.com.amaterasu.util.IConstants;
 import br.com.amaterasu.util.PathFramework;
 import java.io.File;
@@ -36,15 +36,15 @@ public class GerarCrudTest {
 
     @Before
     public void setUp() {
-        CriarProjetoBean.i().setCaminho("D://Teste/ProjetoAmaterasu_Teste");
-        CriarProjetoBean.i().setPacotePadrao("br.com.amaterasu");
-        CriarProjetoBean.i().setNomeProjeto("Amaterasu");
-        CriarProjetoBean.i().setCaminhoServidor("D:\\Projetos\\Aplicativos\\jboss-4.2.3.GA");
-        CriarProjetoBean.i().setModelo(IConstants.MODELO_PADRAO);
-        CriarProjetoBean.i().setCliente("GIS");
-        CriarProjetoBean.i().setCaminhoAmaterasu("D://Teste/ProjetoAmaterasu_Teste_Amaterasu");
-        CriarProjetoBean.i().setNomeCompleto("Amaterasu v 1.0 Framework/Tools");
-        CriarProjetoBean.i().setCopyright("/**"
+        ModelProjeto.i().setCaminho("D://Teste/ProjetoAmaterasu_Teste");
+        ModelProjeto.i().setPacotePadrao("br.com.amaterasu");
+        ModelProjeto.i().setNomeProjeto("Amaterasu");
+        ModelProjeto.i().setCaminhoServidor("D:\\Projetos\\Aplicativos\\jboss-4.2.3.GA");
+        ModelProjeto.i().setModelo(IConstants.MODELO_PADRAO);
+        ModelProjeto.i().setCliente("GIS");
+        ModelProjeto.i().setCaminhoAmaterasu("D://Teste/ProjetoAmaterasu_Teste_Amaterasu");
+        ModelProjeto.i().setNomeCompleto("Amaterasu v 1.0 Framework/Tools");
+        ModelProjeto.i().setCopyright("/**"
                 + "\n* Copyright (c) 2009-2011 Caixa Econômica Federal. Todos os direitos"
                 + "\n* reservados."
                 + "\n* "
@@ -70,12 +70,12 @@ public class GerarCrudTest {
                 + "\n* HeadURL: "
                 + "\n* "
                 + "\n*/");
-        CriarCRUDBean.i().setCaminhoClasseBean("D:\\Projetos\\Projetos Eclipse\\workspace Ganymede\\SIIAC\\src\\br\\gov\\caixa\\siiac\\model\\domain\\Apontamento.java");
-        CriarCRUDBean.i().setNomeCasoUso("Apontamento");
-        CriarCRUDBean.i().setNomeModelo("Amaterasu-Model-1.0.jar");
-//        CriarCRUDBean.i().setModoFiltro(true);
-        CriarCRUDBean.i().setModoGrid(true);
-//        CriarCRUDBean.i().setModoCadastro(true);
+        ModelCrud.i().setCaminhoClasseBean("D:\\Projetos\\Projetos Eclipse\\workspace Ganymede\\SIIAC\\src\\br\\gov\\caixa\\siiac\\model\\domain\\Apontamento.java");
+        ModelCrud.i().setNomeCasoUso("Apontamento");
+        ModelCrud.i().setNomeModelo("Amaterasu-Model-1.0.jar");
+//        ModelCrud.i().setModoFiltro(true);
+        ModelCrud.i().setModoGrid(true);
+//        ModelCrud.i().setModoCadastro(true);
     }
 
     @After
@@ -97,7 +97,7 @@ public class GerarCrudTest {
     @Test
     public void testGetFieldsBean() throws Exception {
         System.out.println("getFieldsBean");
-        File file = new File(CriarCRUDBean.i().getCaminhoClasseBean());
+        File file = new File(ModelCrud.i().getCaminhoClasseBean());
         int expResult = 4;
         List result = GerarCrud.getFieldsBean(file);
         assertEquals(expResult, result.size());
@@ -109,8 +109,8 @@ public class GerarCrudTest {
     @Test
     public void testGerar() throws Exception {
         System.out.println("gerar");
-        CriarCRUDBean.i().getListFields().get(1).setShowFiltro(true);
-        CriarCRUDBean.i().getListFields().get(3).setShowFiltro(true);
-        GerarCrud.gerar(PathFramework.pathFrameworkModelosCRUD(CriarProjetoBean.i().getModelo()) + CriarCRUDBean.i().getNomeModelo());
+        ModelCrud.i().getListFields().get(1).setShowFiltro(true);
+        ModelCrud.i().getListFields().get(3).setShowFiltro(true);
+        GerarCrud.gerar(PathFramework.pathFrameworkModelosCRUD(ModelProjeto.i().getModelo()) + ModelCrud.i().getNomeModelo());
     }
 }

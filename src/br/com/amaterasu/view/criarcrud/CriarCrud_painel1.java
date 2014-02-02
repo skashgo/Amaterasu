@@ -6,10 +6,10 @@ package br.com.amaterasu.view.criarcrud;
 
 import br.com.amaterasu.gerador.ManterLog;
 import br.com.amaterasu.gerador.ManterXML;
-import br.com.amaterasu.model.CriarCRUDBean;
-import br.com.amaterasu.model.CriarProjetoBean;
+import br.com.amaterasu.model.ModelCrud;
+import br.com.amaterasu.model.ModelProjeto;
 import br.com.amaterasu.util.AmaterasuException;
-import br.com.amaterasu.util.Field;
+import br.com.amaterasu.model.Field;
 import br.com.amaterasu.util.IConstants;
 import br.com.amaterasu.util.IPainel;
 import br.com.amaterasu.util.PathFramework;
@@ -31,11 +31,11 @@ public class CriarCrud_painel1 extends javax.swing.JPanel implements IPainel {
 
     private List<Field> listFieldsBoolean = new ArrayList<Field>();
     private String[] historico;
-    private String cruds = CriarProjetoBean.i().getCaminhoAmaterasu() + IConstants.barra + "CRUDs";
+    private String cruds = ModelProjeto.i().getCaminhoAmaterasu() + IConstants.barra + "CRUDs";
 
     public CriarCrud_painel1() {
         initComponents();
-        String[] modelosCRUD = new File(PathFramework.pathFrameworkModelosCRUD(CriarProjetoBean.i().getModelo())).list();
+        String[] modelosCRUD = new File(PathFramework.pathFrameworkModelosCRUD(ModelProjeto.i().getModelo())).list();
         if (modelosCRUD != null) {
             jCBModeloCrud.setModel(new DefaultComboBoxModel(modelosCRUD));
         }
@@ -283,7 +283,7 @@ public class CriarCrud_painel1 extends javax.swing.JPanel implements IPainel {
 
     private void jBAddCaminhoClasseBeanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAddCaminhoClasseBeanActionPerformed
         limpar();
-        File file = new File(CriarProjetoBean.i().getCaminhoAmaterasu() + IConstants.barra + "Geral" + IConstants.barra + "caminhoBean.xml");
+        File file = new File(ModelProjeto.i().getCaminhoAmaterasu() + IConstants.barra + "Geral" + IConstants.barra + "caminhoBean.xml");
         String path = "";
         try {
             if (file.exists()) {
@@ -296,7 +296,7 @@ public class CriarCrud_painel1 extends javax.swing.JPanel implements IPainel {
             path = jTFCaminhoClasseBean.getText();
         }
         if (path.equals("")) {
-            path = CriarProjetoBean.i().getCaminho();
+            path = ModelProjeto.i().getCaminho();
         }
         JFileChooser chooser = new JFileChooser(path);
         chooser.setDialogTitle("Selecione a classe BEAN.");
@@ -306,10 +306,10 @@ public class CriarCrud_painel1 extends javax.swing.JPanel implements IPainel {
         if (chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
             jTFCaminhoClasseBean.setText(chooser.getSelectedFile().getAbsolutePath());
             try {
-                CriarCRUDBean.i().setCaminhoClasseBean(jTFCaminhoClasseBean.getText());
-                CriarCRUDBean.i().readBean();
+                ModelCrud.i().setCaminhoClasseBean(jTFCaminhoClasseBean.getText());
+                ModelCrud.i().readBean();
                 jCBGrid.setEnabled(true);
-                for (Field f : CriarCRUDBean.i().getListFields()) {
+                for (Field f : ModelCrud.i().getListFields()) {
                     if (f.getTipo().equals("Boolean") || f.getTipo().equals("boolean")) {
                         listFieldsBoolean.add(f);
                     }
@@ -344,29 +344,29 @@ public class CriarCrud_painel1 extends javax.swing.JPanel implements IPainel {
             return;
         }
         try {
-            CriarCRUDBean.i().set((CriarCRUDBean) ManterXML.readXML(new File(cruds + IConstants.barra + historico[jCBHistorico.getSelectedIndex() - 1])));
+            ModelCrud.i().set((ModelCrud) ManterXML.readXML(new File(cruds + IConstants.barra + historico[jCBHistorico.getSelectedIndex() - 1])));
             listFieldsBoolean.clear();
-            for (Field f : CriarCRUDBean.i().getListFields()) {
+            for (Field f : ModelCrud.i().getListFields()) {
                 if (f.getTipo().equals("Boolean") || f.getTipo().equals("boolean")) {
                     listFieldsBoolean.add(f);
                 }
             }
             jCBCampoExclusaoLogica.setModel(new DefaultComboBoxModel(listFieldsBoolean.toArray()));
 
-            jCBModeloCrud.setSelectedItem(CriarCRUDBean.i().getNomeModelo());
-            jTFCaminhoClasseBean.setText(CriarCRUDBean.i().getCaminhoClasseBean());
-            jTFNomeCasoUso.setText(CriarCRUDBean.i().getNomeCasoUso());
-            jCBAlteracao.setSelected(CriarCRUDBean.i().isModoAlteracao());
-            jCBCadastro.setSelected(CriarCRUDBean.i().isModoCadastro());
-            jCBExclusaoFisica.setSelected(CriarCRUDBean.i().isModoExclusaoFisica());
-            jCBExclusaoLogica.setSelected(CriarCRUDBean.i().isModoExclusaoLogica());
-            jCBFiltro.setSelected(CriarCRUDBean.i().isModoFiltro());
-            jCBVisualizacao.setSelected(CriarCRUDBean.i().isModoVisualizacao());
-            jCBGrid.setSelected(CriarCRUDBean.i().isModoGrid());
-            jRGrid.setSelected(CriarCRUDBean.i().isLayoutGrid());
-            jRLivre.setSelected(!CriarCRUDBean.i().isLayoutGrid());
+            jCBModeloCrud.setSelectedItem(ModelCrud.i().getNomeModelo());
+            jTFCaminhoClasseBean.setText(ModelCrud.i().getCaminhoClasseBean());
+            jTFNomeCasoUso.setText(ModelCrud.i().getNomeCasoUso());
+            jCBAlteracao.setSelected(ModelCrud.i().isModoAlteracao());
+            jCBCadastro.setSelected(ModelCrud.i().isModoCadastro());
+            jCBExclusaoFisica.setSelected(ModelCrud.i().isModoExclusaoFisica());
+            jCBExclusaoLogica.setSelected(ModelCrud.i().isModoExclusaoLogica());
+            jCBFiltro.setSelected(ModelCrud.i().isModoFiltro());
+            jCBVisualizacao.setSelected(ModelCrud.i().isModoVisualizacao());
+            jCBGrid.setSelected(ModelCrud.i().isModoGrid());
+            jRGrid.setSelected(ModelCrud.i().isLayoutGrid());
+            jRLivre.setSelected(!ModelCrud.i().isLayoutGrid());
             if (jCBExclusaoLogica.isSelected()) {
-                jCBCampoExclusaoLogica.setSelectedItem(CriarCRUDBean.i().getCampoExclusaoLogica());
+                jCBCampoExclusaoLogica.setSelectedItem(ModelCrud.i().getCampoExclusaoLogica());
                 jCBCampoExclusaoLogica.setEnabled(true);
             } else {
                 jCBCampoExclusaoLogica.setEnabled(false);
@@ -380,8 +380,8 @@ public class CriarCrud_painel1 extends javax.swing.JPanel implements IPainel {
 
     private void jBInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBInfoActionPerformed
         try {
-            CriarCRUDBean.i().setNomeModelo(jCBModeloCrud.getSelectedItem().toString());
-            JOptionPane.showMessageDialog(null, CriarCRUDBean.i().info());
+            ModelCrud.i().setNomeModelo(jCBModeloCrud.getSelectedItem().toString());
+            JOptionPane.showMessageDialog(null, ModelCrud.i().info());
         } catch (AmaterasuException ex) {
             Logger.getLogger(CriarCrud_painel1.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -426,20 +426,20 @@ public class CriarCrud_painel1 extends javax.swing.JPanel implements IPainel {
         if (jCBExclusaoLogica.isSelected() && jCBCampoExclusaoLogica.getSelectedIndex() == -1) {
             throw new AmaterasuException("Para exclusão lógica é obrigatorio selecionar um Campo para Exclusão Lógica.", false);
         }
-        CriarCRUDBean.i().setNomeModelo(jCBModeloCrud.getSelectedItem().toString());
-        CriarCRUDBean.i().setCaminhoClasseBean(jTFCaminhoClasseBean.getText());
-        CriarCRUDBean.i().setNomeBean(jTFCaminhoClasseBean.getText().substring(jTFCaminhoClasseBean.getText().lastIndexOf(IConstants.barra)).replace(".java", ""));
-        CriarCRUDBean.i().setNomeCasoUso(jTFNomeCasoUso.getText());
-        CriarCRUDBean.i().setModoAlteracao(jCBAlteracao.isSelected());
-        CriarCRUDBean.i().setModoCadastro(jCBCadastro.isSelected());
-        CriarCRUDBean.i().setModoExclusaoFisica(jCBExclusaoFisica.isSelected());
-        CriarCRUDBean.i().setModoExclusaoLogica(jCBExclusaoLogica.isSelected());
-        CriarCRUDBean.i().setModoFiltro(jCBFiltro.isSelected());
-        CriarCRUDBean.i().setModoVisualizacao(jCBVisualizacao.isSelected());
-        CriarCRUDBean.i().setModoGrid(jCBGrid.isSelected());
-        CriarCRUDBean.i().setLayoutGrid(jRGrid.isSelected());
+        ModelCrud.i().setNomeModelo(jCBModeloCrud.getSelectedItem().toString());
+        ModelCrud.i().setCaminhoClasseBean(jTFCaminhoClasseBean.getText());
+        ModelCrud.i().setNomeBean(jTFCaminhoClasseBean.getText().substring(jTFCaminhoClasseBean.getText().lastIndexOf(IConstants.barra)).replace(".java", ""));
+        ModelCrud.i().setNomeCasoUso(jTFNomeCasoUso.getText());
+        ModelCrud.i().setModoAlteracao(jCBAlteracao.isSelected());
+        ModelCrud.i().setModoCadastro(jCBCadastro.isSelected());
+        ModelCrud.i().setModoExclusaoFisica(jCBExclusaoFisica.isSelected());
+        ModelCrud.i().setModoExclusaoLogica(jCBExclusaoLogica.isSelected());
+        ModelCrud.i().setModoFiltro(jCBFiltro.isSelected());
+        ModelCrud.i().setModoVisualizacao(jCBVisualizacao.isSelected());
+        ModelCrud.i().setModoGrid(jCBGrid.isSelected());
+        ModelCrud.i().setLayoutGrid(jRGrid.isSelected());
         if (jCBExclusaoLogica.isSelected()) {
-            CriarCRUDBean.i().setCampoExclusaoLogica(listFieldsBoolean.get(jCBCampoExclusaoLogica.getSelectedIndex()));
+            ModelCrud.i().setCampoExclusaoLogica(listFieldsBoolean.get(jCBCampoExclusaoLogica.getSelectedIndex()));
         }
     }
 

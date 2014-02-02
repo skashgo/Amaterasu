@@ -6,7 +6,6 @@ package br.com.amaterasu.model;
 
 import br.com.amaterasu.gerador.ManterXML;
 import br.com.amaterasu.util.AmaterasuException;
-import br.com.amaterasu.util.HistoricoProjeto;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;

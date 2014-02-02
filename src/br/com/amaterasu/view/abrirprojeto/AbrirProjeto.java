@@ -4,7 +4,7 @@
  */
 package br.com.amaterasu.view.abrirprojeto;
 
-import br.com.amaterasu.model.CriarProjetoBean;
+import br.com.amaterasu.model.ModelProjeto;
 import br.com.amaterasu.util.AmaterasuException;
 import br.com.amaterasu.util.IConstants;
 import br.com.amaterasu.util.IPainel;
@@ -111,7 +111,7 @@ public class AbrirProjeto extends javax.swing.JFrame implements IPainelRodape {
     public void doFinalizar() {
         try {
             painelRodape1.setPainel(paineis.get(painelRodape1.getJanelaAtual()));
-            CriarProjetoBean.i().get();
+            ModelProjeto.i().get();
             observerActionPrincipal.setAction(IConstants.OPEN_PROJECT);
             dispose();
         } catch (AmaterasuException ex) {

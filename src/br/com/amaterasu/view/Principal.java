@@ -4,13 +4,11 @@
  */
 package br.com.amaterasu.view;
 
-import br.com.amaterasu.model.CriarProjetoBean;
+import br.com.amaterasu.model.ModelProjeto;
 import br.com.amaterasu.util.IConstants;
 import br.com.amaterasu.util.ObserverAction;
 import br.com.amaterasu.view.abrirprojeto.AbrirProjeto;
 import br.com.amaterasu.view.criarcrud.CriarCrud;
-import br.com.amaterasu.view.criarmodelo.CriarModelo;
-import br.com.amaterasu.view.criarmodelocrud.CriarModeloCrud;
 import br.com.amaterasu.view.criarprojeto.CriarProjeto;
 import java.io.IOException;
 import java.util.Observable;
@@ -70,9 +68,6 @@ public class Principal extends javax.swing.JFrame implements Observer {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMNovo = new javax.swing.JMenu();
         jMICriarProjeto = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMICriarLoginModule = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jMIManterPerfil = new javax.swing.JMenuItem();
         jMICadUsuario = new javax.swing.JMenuItem();
@@ -318,26 +313,6 @@ public class Principal extends javax.swing.JFrame implements Observer {
             }
         });
         jMNovo.add(jMICriarProjeto);
-
-        jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem3.setText(bundle1.getString("CRIAR_MODELO_PROJETO")); // NOI18N
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
-            }
-        });
-        jMNovo.add(jMenuItem3);
-
-        jMenuItem4.setText(bundle1.getString("CRIAR_MODELO_CRUD")); // NOI18N
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
-            }
-        });
-        jMNovo.add(jMenuItem4);
-
-        jMICriarLoginModule.setText(bundle1.getString("CRIAR_LOGIN_MODULE")); // NOI18N
-        jMNovo.add(jMICriarLoginModule);
         jMNovo.add(jSeparator1);
 
         jMIManterPerfil.setText(bundle1.getString("MANTER_PERFIS")); // NOI18N
@@ -438,10 +413,6 @@ public class Principal extends javax.swing.JFrame implements Observer {
         new CriarProjeto().setVisible(true);
     }//GEN-LAST:event_jMICriarProjetoActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        new CriarModelo().setVisible(true);
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
-
     private void jMIAbrirProjetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIAbrirProjetoActionPerformed
         AbrirProjeto abrirProjeto = new AbrirProjeto();
         observerAction = new ObserverAction();
@@ -452,7 +423,7 @@ public class Principal extends javax.swing.JFrame implements Observer {
 
     private void jBAbrirServidorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAbrirServidorActionPerformed
         try {
-            String path = CriarProjetoBean.i().getCaminhoServidor();
+            String path = ModelProjeto.i().getCaminhoServidor();
             if (!path.equals("")) {
                 Runtime.getRuntime().exec("explorer " + path);
             }
@@ -463,7 +434,7 @@ public class Principal extends javax.swing.JFrame implements Observer {
 
     private void jBAbrirProjetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAbrirProjetoActionPerformed
         try {
-            String path = CriarProjetoBean.i().getCaminho();
+            String path = ModelProjeto.i().getCaminho();
             if (!path.equals("")) {
                 Runtime.getRuntime().exec("explorer " + path);
             }
@@ -474,7 +445,7 @@ public class Principal extends javax.swing.JFrame implements Observer {
 
     private void jBAbrirAmaterasuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAbrirAmaterasuActionPerformed
         try {
-            String path = CriarProjetoBean.i().getCaminhoAmaterasu();
+            String path = ModelProjeto.i().getCaminhoAmaterasu();
             if (!path.equals("")) {
                 Runtime.getRuntime().exec("explorer " + path);
             }
@@ -491,12 +462,8 @@ public class Principal extends javax.swing.JFrame implements Observer {
         limparInfoProjeto();
         jPPrincipal.setVisible(false);
         jBFecharProjeto.setVisible(false);
-        CriarProjetoBean.fechar();
+        ModelProjeto.fechar();
     }//GEN-LAST:event_jBFecharProjetoActionPerformed
-
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        new CriarModeloCrud().setVisible(true);
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMCriarRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMCriarRelatorioActionPerformed
         // TODO add your handling code here:
@@ -530,7 +497,6 @@ public class Principal extends javax.swing.JFrame implements Observer {
     private javax.swing.JMenuItem jMIAjuda;
     private javax.swing.JMenuItem jMICadUsuario;
     private javax.swing.JMenuItem jMICriarCRUD;
-    private javax.swing.JMenuItem jMICriarLoginModule;
     private javax.swing.JMenuItem jMICriarProjeto;
     private javax.swing.JMenuItem jMIJboss;
     private javax.swing.JMenuItem jMIManterPerfil;
@@ -540,8 +506,6 @@ public class Principal extends javax.swing.JFrame implements Observer {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPanel jPFooter;
     private javax.swing.JPanel jPPrincipal;
     private javax.swing.JScrollPane jScrollPane1;
@@ -572,24 +536,24 @@ public class Principal extends javax.swing.JFrame implements Observer {
     }
 
     private void preencherInfoProjeto() {
-        jTFNomeProjeto.setText(CriarProjetoBean.i().getNomeProjeto());
-        jTFCliente.setText(CriarProjetoBean.i().getCliente());
-        jTFDataCriacao.setText(CriarProjetoBean.i().getDataCriacao());
-        jTFDataUltimaAlteracao.setText(CriarProjetoBean.i().getDataUltimaAlteracao());
-        jTFPackage.setText(CriarProjetoBean.i().getPacotePadrao());
-        jCBApachePOI.setSelected(CriarProjetoBean.i().isApachePOI());
-        jCBJasperReport.setSelected(CriarProjetoBean.i().isJasperReport());
-        jCBPentaho.setSelected(CriarProjetoBean.i().isPentaho());
+        jTFNomeProjeto.setText(ModelProjeto.i().getNomeProjeto());
+        jTFCliente.setText(ModelProjeto.i().getCliente());
+        jTFDataCriacao.setText(ModelProjeto.i().getDataCriacao());
+        jTFDataUltimaAlteracao.setText(ModelProjeto.i().getDataUltimaAlteracao());
+        jTFPackage.setText(ModelProjeto.i().getPacotePadrao());
+        jCBApachePOI.setSelected(ModelProjeto.i().isApachePOI());
+        jCBJasperReport.setSelected(ModelProjeto.i().isJasperReport());
+        jCBPentaho.setSelected(ModelProjeto.i().isPentaho());
         DefaultListModel model = new DefaultListModel();
-        for (String s : CriarProjetoBean.i().getTecnologia()) {
+        for (String s : ModelProjeto.i().getTecnologia()) {
             model.addElement(s);
         }
         jLTecnologias.setModel(model);
-        jTFNomeCompleto.setText(CriarProjetoBean.i().getNomeCompleto());
-        jTFModelo.setText(CriarProjetoBean.i().getModelo());
-        jTFServidor.setText(CriarProjetoBean.i().getServidor());
-        jTFPathProjeto.setText(CriarProjetoBean.i().getCaminho());
-        jTFPathAmaterasu.setText(CriarProjetoBean.i().getCaminhoAmaterasu());
+        jTFNomeCompleto.setText(ModelProjeto.i().getNomeCompleto());
+        jTFModelo.setText(ModelProjeto.i().getModelo());
+        jTFServidor.setText(ModelProjeto.i().getServidor());
+        jTFPathProjeto.setText(ModelProjeto.i().getCaminho());
+        jTFPathAmaterasu.setText(ModelProjeto.i().getCaminhoAmaterasu());
     }
 
     private void limparInfoProjeto() {

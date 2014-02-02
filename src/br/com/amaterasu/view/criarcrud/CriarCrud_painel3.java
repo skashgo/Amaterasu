@@ -4,9 +4,9 @@
  */
 package br.com.amaterasu.view.criarcrud;
 
-import br.com.amaterasu.model.CriarCRUDBean;
+import br.com.amaterasu.model.ModelCrud;
 import br.com.amaterasu.util.AmaterasuException;
-import br.com.amaterasu.util.Field;
+import br.com.amaterasu.model.Field;
 import br.com.amaterasu.util.IPainel;
 import br.com.amaterasu.util.Table;
 import java.util.ArrayList;
@@ -150,7 +150,7 @@ public class CriarCrud_painel3 extends javax.swing.JPanel implements IPainel {
     public void binding() throws AmaterasuException {
         List<Field> listFieldTemp = new ArrayList<Field>();
 
-        for (Field f : CriarCRUDBean.i().getListFields()) {
+        for (Field f : ModelCrud.i().getListFields()) {
             for (int i = 0; i < jTable1.getRowCount(); i++) {
                 if (jTable1.getValueAt(i, VAR).equals(f.getNome()) && jTable1.getValueAt(i, COMP).equals(f.getComponente())) {
                     f.setTamanho((Integer) jTable1.getValueAt(i, MAX));
@@ -167,7 +167,7 @@ public class CriarCrud_painel3 extends javax.swing.JPanel implements IPainel {
             }
         }
         Collections.sort(listFieldTemp);
-        CriarCRUDBean.i().setListFields(listFieldTemp);
+        ModelCrud.i().setListFields(listFieldTemp);
     }
 
     private void updateTables() {
@@ -182,7 +182,7 @@ public class CriarCrud_painel3 extends javax.swing.JPanel implements IPainel {
         table.addColumn("Mascara", String.class, true);
         table.addColumn("Focus", Boolean.class, true);
         table.addColumn("Ordenar", Integer.class, true);
-        for (Field f : CriarCRUDBean.i().getListFields()) {
+        for (Field f : ModelCrud.i().getListFields()) {
             table.addLineValue(f.getNome(), f.getComponente(), f.getTamanho(), f.isObrigatorio(), f.isShow(), f.isDisabled(), f.isFormatter(), f.getMascara(), f.isFocus(), f.getOrdem());
         }
         table.createTable(jTable1);

@@ -4,7 +4,7 @@
  */
 package br.com.amaterasu.view.criarprojeto;
 
-import br.com.amaterasu.model.CriarProjetoBean;
+import br.com.amaterasu.model.ModelProjeto;
 import br.com.amaterasu.util.AmaterasuException;
 import br.com.amaterasu.util.IConstants;
 import br.com.amaterasu.util.IPainel;
@@ -229,15 +229,15 @@ public class CriarProjeto_painel1 extends javax.swing.JPanel implements IPainel 
         if (JTFNomeProjeto.getText().equals("") || JTFCaminhoProjetoAmaterasu.getText().equals("") || jTFCaminho.getText().equals("")) {
             throw new AmaterasuException("Campos Obrigatorios: \n*Nome do Projeto\n*Caminho Projeto\n*Caminho Projeto Amaterasu", false);
         }
-        CriarProjetoBean.i().setNomeProjeto(JTFNomeProjeto.getText());
-        CriarProjetoBean.i().setNomeCompleto(jTFNomeCompleto.getText());
-        CriarProjetoBean.i().setCaminho(jTFCaminho.getText() + IConstants.barra + JTFNomeProjeto.getText() + IConstants.barra);
-        CriarProjetoBean.i().setCaminhoAmaterasu(JTFCaminhoProjetoAmaterasu.getText() + IConstants.barra + JTFNomeProjeto.getText() + "_AMATERASU" + IConstants.barra);
-        CriarProjetoBean.i().setCliente(jTFCliente.getText());
-        CriarProjetoBean.i().setPacotePadrao(jTFPacotePadrao.getText());
-        CriarProjetoBean.i().setServidor(jCBServidor.getSelectedItem().toString());
-        CriarProjetoBean.i().setCaminhoServidor(jTFCaminhoServidor.getText());
-        CriarProjetoBean.i().setDataCriacao(new SimpleDateFormat("dd-MM-yyyy").format(new Date()));
+        ModelProjeto.i().setNomeProjeto(JTFNomeProjeto.getText());
+        ModelProjeto.i().setNomeCompleto(jTFNomeCompleto.getText());
+        ModelProjeto.i().setCaminho(jTFCaminho.getText() + IConstants.barra + JTFNomeProjeto.getText() + IConstants.barra);
+        ModelProjeto.i().setCaminhoAmaterasu(JTFCaminhoProjetoAmaterasu.getText() + IConstants.barra + JTFNomeProjeto.getText() + "_AMATERASU" + IConstants.barra);
+        ModelProjeto.i().setCliente(jTFCliente.getText());
+        ModelProjeto.i().setPacotePadrao(jTFPacotePadrao.getText());
+        ModelProjeto.i().setServidor(jCBServidor.getSelectedItem().toString());
+        ModelProjeto.i().setCaminhoServidor(jTFCaminhoServidor.getText());
+        ModelProjeto.i().setDataCriacao(new SimpleDateFormat("dd-MM-yyyy").format(new Date()));
     }
 
     @Override

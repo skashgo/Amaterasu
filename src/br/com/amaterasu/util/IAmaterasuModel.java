@@ -4,6 +4,7 @@
  */
 package br.com.amaterasu.util;
 
+import br.com.amaterasu.model.Model;
 import java.util.List;
 
 /**

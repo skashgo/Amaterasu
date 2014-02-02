@@ -5,7 +5,7 @@
 package br.com.amaterasu.view.criarprojeto;
 
 import br.com.amaterasu.gerador.ManterTXT;
-import br.com.amaterasu.model.CriarProjetoBean;
+import br.com.amaterasu.model.ModelProjeto;
 import br.com.amaterasu.util.IPainel;
 import br.com.amaterasu.util.PathFramework;
 import java.io.File;
@@ -140,12 +140,12 @@ public class CriarProjeto_painel2 extends javax.swing.JPanel implements IPainel 
 
     @Override
     public void binding() {
-        CriarProjetoBean.i().setModelo(jCBModeloProjeto.getSelectedItem().toString());
-        CriarProjetoBean.i().setJasperReport(jCBJasperReport.isSelected());
-        CriarProjetoBean.i().setPentaho(jCBPentaho.isSelected());
-        CriarProjetoBean.i().setApachePOI(jCBApachePOI.isSelected());
+        ModelProjeto.i().setModelo(jCBModeloProjeto.getSelectedItem().toString());
+        ModelProjeto.i().setJasperReport(jCBJasperReport.isSelected());
+        ModelProjeto.i().setPentaho(jCBPentaho.isSelected());
+        ModelProjeto.i().setApachePOI(jCBApachePOI.isSelected());
         if (!tecnologias.isEmpty()) {
-            CriarProjetoBean.i().setTecnologia(tecnologias);
+            ModelProjeto.i().setTecnologia(tecnologias);
         }
     }
 
@@ -153,8 +153,8 @@ public class CriarProjeto_painel2 extends javax.swing.JPanel implements IPainel 
     public void atualizaPainel() {
         DefaultComboBoxModel model = new DefaultComboBoxModel(new File(PathFramework.pathFramework()).list());
         jCBModeloProjeto.setModel(model);
-        if (CriarProjetoBean.i().getModelo() != null && !CriarProjetoBean.i().getModelo().equals("")) {
-            jCBModeloProjeto.setSelectedItem(CriarProjetoBean.i().getModelo());
+        if (ModelProjeto.i().getModelo() != null && !ModelProjeto.i().getModelo().equals("")) {
+            jCBModeloProjeto.setSelectedItem(ModelProjeto.i().getModelo());
         }
         try {
             tecnologias = ManterTXT.readListLine(new File(PathFramework.pathFrameworkEspecificacao(jCBModeloProjeto.getSelectedItem().toString())));

@@ -4,7 +4,7 @@
  */
 package br.com.amaterasu.view.criarcrud;
 
-import br.com.amaterasu.model.CriarCRUDBean;
+import br.com.amaterasu.model.ModelCrud;
 import br.com.amaterasu.util.AmaterasuException;
 import br.com.amaterasu.util.IConstants;
 import br.com.amaterasu.util.IPainel;
@@ -111,7 +111,7 @@ public class CriarCrud extends javax.swing.JFrame implements IPainelRodape {
     public void doFinalizar() {
         try {
             painelRodape1.setPainel(paineis.get(painelRodape1.getJanelaAtual()));
-            CriarCRUDBean.i().save();
+            ModelCrud.i().save();
             JOptionPane.showMessageDialog(null, "CRUD criado com sucesso!");
             dispose();
         } catch (AmaterasuException ex) {

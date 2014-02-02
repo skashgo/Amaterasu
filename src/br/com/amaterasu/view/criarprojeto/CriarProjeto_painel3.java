@@ -4,7 +4,7 @@
  */
 package br.com.amaterasu.view.criarprojeto;
 
-import br.com.amaterasu.model.CriarProjetoBean;
+import br.com.amaterasu.model.ModelProjeto;
 import br.com.amaterasu.util.AmaterasuException;
 import br.com.amaterasu.util.IPainel;
 
@@ -64,7 +64,7 @@ public class CriarProjeto_painel3 extends javax.swing.JPanel implements IPainel 
 
     @Override
     public void binding() throws AmaterasuException {
-        CriarProjetoBean.i().setCopyright(jTACopyright.getText());
+        ModelProjeto.i().setCopyright(jTACopyright.getText());
     }
 
     @Override
