@@ -4,7 +4,9 @@
  */
 package br.com.amaterasu.view;
 
+import br.com.amaterasu.model.ModelArchetype;
 import br.com.amaterasu.model.ModelProjeto;
+import br.com.amaterasu.util.AmaterasuException;
 import br.com.amaterasu.util.IConstants;
 import br.com.amaterasu.util.ObserverAction;
 import br.com.amaterasu.view.abrirprojeto.AbrirProjeto;
@@ -16,6 +18,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -31,6 +35,11 @@ public class Principal extends javax.swing.JFrame implements Observer {
         jBFecharProjeto.setVisible(false);
         if (!new File(IConstants.DIR_CRUD).exists()) {
             new File(IConstants.DIR_CRUD).mkdirs();
+        }
+        try {
+            ModelArchetype.i().get();
+        } catch (AmaterasuException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
