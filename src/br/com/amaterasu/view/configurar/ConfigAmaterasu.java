@@ -2,9 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.amaterasu.view.criarprojeto;
+package br.com.amaterasu.view.configurar;
 
-import br.com.amaterasu.model.ModelProjeto;
+import br.com.amaterasu.model.Config;
 import br.com.amaterasu.util.AmaterasuException;
 import br.com.amaterasu.util.IConstants;
 import br.com.amaterasu.util.IPainel;
@@ -22,27 +22,25 @@ import javax.swing.JPanel;
  *
  * @author Maykon
  */
-public class CriarProjeto extends javax.swing.JFrame implements IPainelRodape {
+public class ConfigAmaterasu extends javax.swing.JFrame implements IPainelRodape {
 
     private ObserverAction observerAction;
     private List<IPainel> paineis = new ArrayList<IPainel>();
 
-    public CriarProjeto() {
+    public ConfigAmaterasu() {
         initComponents();
         //------------configuração de cabeçalho e rodapé-------------------//
         painelCabecalho1.setTitulo(Txt.getTxt(this.getClass().getSimpleName(), "TITULO_CABECALHO"));
         painelCabecalho1.setDescricao(Txt.getTxt(this.getClass().getSimpleName(), "DESCRICAO_CABECALHO"));
         //------------configuração de lista de paineis-------------------//
-        paineis.add(new CriarProjeto_painel1());
-        paineis.add(new CriarProjeto_painel2());
-        paineis.add(new CriarProjeto_painel3());
+        paineis.add(new Config_painel1());
         //------------configuração de ações do rodapé-------------------//
         observerAction = new ObserverAction();
         observerAction.addObserver(this);
         painelRodape1.setObserverAction(observerAction);
         painelRodape1.setQuantidadeJanela(paineis.size());
         painelRodape1.setPainel(paineis.get(painelRodape1.getJanelaAtual()));
-        painelRodape1.setJanelaFinalizavel(2, 3);
+//        painelRodape1.setJanelaFinalizavel(2, 3);
         //------------apresentando o primeiro painel-------------------//
         jPConteudo.setLayout(new BorderLayout());
         jPConteudo.add((JPanel) paineis.get(painelRodape1.getJanelaAtual()), BorderLayout.NORTH);
@@ -68,14 +66,14 @@ public class CriarProjeto extends javax.swing.JFrame implements IPainelRodape {
         );
         jPConteudoLayout.setVerticalGroup(
             jPConteudoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 225, Short.MAX_VALUE)
+            .addGap(0, 273, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(painelRodape1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(painelRodape1, javax.swing.GroupLayout.DEFAULT_SIZE, 812, Short.MAX_VALUE)
             .addComponent(painelCabecalho1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPConteudo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -84,13 +82,14 @@ public class CriarProjeto extends javax.swing.JFrame implements IPainelRodape {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(painelCabecalho1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPConteudo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPConteudo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(painelRodape1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPConteudo;
     private br.com.amaterasu.view.PainelCabecalho painelCabecalho1;
@@ -111,11 +110,13 @@ public class CriarProjeto extends javax.swing.JFrame implements IPainelRodape {
     public void doFinalizar() {
         try {
             painelRodape1.setPainel(paineis.get(painelRodape1.getJanelaAtual()));
-            ModelProjeto.i().save();
+            Config.i().save();
+            JOptionPane.showMessageDialog(null, "Gravado com Sucesso");
             dispose();
         } catch (AmaterasuException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
+
     }
 
     @Override

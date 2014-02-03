@@ -1,4 +1,0 @@
-#1 Estrutura basica do projeto
-src/main/java/br/com/amaterasu/main
-src/main/java/br/com/amaterasu/model
-src/main/java/br/com/amaterasu/util

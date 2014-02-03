@@ -8,12 +8,14 @@ import br.com.amaterasu.model.ModelProjeto;
 import br.com.amaterasu.util.IConstants;
 import br.com.amaterasu.util.ObserverAction;
 import br.com.amaterasu.view.abrirprojeto.AbrirProjeto;
+import br.com.amaterasu.view.archetype.ArchetypeForm;
+import br.com.amaterasu.view.configurar.ConfigAmaterasu;
 import br.com.amaterasu.view.criarcrud.CriarCrud;
 import br.com.amaterasu.view.criarprojeto.CriarProjeto;
+import java.io.File;
 import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
-import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -27,6 +29,9 @@ public class Principal extends javax.swing.JFrame implements Observer {
     public Principal() {
         initComponents();
         jBFecharProjeto.setVisible(false);
+        if (!new File(IConstants.DIR_CRUD).exists()) {
+            new File(IConstants.DIR_CRUD).mkdirs();
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -47,8 +52,6 @@ public class Principal extends javax.swing.JFrame implements Observer {
         jCBJasperReport = new javax.swing.JCheckBox();
         jLabel6 = new javax.swing.JLabel();
         jTFDataUltimaAlteracao = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jLTecnologias = new javax.swing.JList();
         jCBApachePOI = new javax.swing.JCheckBox();
         jLabel7 = new javax.swing.JLabel();
         jTFNomeCompleto = new javax.swing.JTextField();
@@ -63,11 +66,14 @@ public class Principal extends javax.swing.JFrame implements Observer {
         jTFPathAmaterasu = new javax.swing.JTextField();
         jBAbrirProjeto = new javax.swing.JButton();
         jBAbrirAmaterasu = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTFDescricao = new javax.swing.JTextArea();
         jPFooter = new javax.swing.JPanel();
         jBFecharProjeto = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMNovo = new javax.swing.JMenu();
         jMICriarProjeto = new javax.swing.JMenuItem();
+        jMIAdicionarArchetype = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jMIManterPerfil = new javax.swing.JMenuItem();
         jMICadUsuario = new javax.swing.JMenuItem();
@@ -120,9 +126,6 @@ public class Principal extends javax.swing.JFrame implements Observer {
 
         jTFDataUltimaAlteracao.setEditable(false);
 
-        jLTecnologias.setEnabled(false);
-        jScrollPane1.setViewportView(jLTecnologias);
-
         jCBApachePOI.setText("Apache POI");
         jCBApachePOI.setEnabled(false);
 
@@ -167,6 +170,12 @@ public class Principal extends javax.swing.JFrame implements Observer {
             }
         });
 
+        jTFDescricao.setEditable(false);
+        jTFDescricao.setColumns(20);
+        jTFDescricao.setLineWrap(true);
+        jTFDescricao.setRows(5);
+        jScrollPane2.setViewportView(jTFDescricao);
+
         javax.swing.GroupLayout jPPrincipalLayout = new javax.swing.GroupLayout(jPPrincipal);
         jPPrincipal.setLayout(jPPrincipalLayout);
         jPPrincipalLayout.setHorizontalGroup(
@@ -191,8 +200,8 @@ public class Principal extends javax.swing.JFrame implements Observer {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel6))
                     .addGroup(jPPrincipalLayout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel8)
@@ -240,7 +249,7 @@ public class Principal extends javax.swing.JFrame implements Observer {
                     .addComponent(jLabel6)
                     .addComponent(jTFDataUltimaAlteracao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPPrincipalLayout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addGap(18, 18, 18)
@@ -273,7 +282,7 @@ public class Principal extends javax.swing.JFrame implements Observer {
                                 .addComponent(jTFPathAmaterasu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jBAbrirAmaterasu))
                             .addComponent(jLabel11)))
-                    .addComponent(jScrollPane1))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(72, 72, 72))
         );
 
@@ -313,6 +322,14 @@ public class Principal extends javax.swing.JFrame implements Observer {
             }
         });
         jMNovo.add(jMICriarProjeto);
+
+        jMIAdicionarArchetype.setText("Adicionar Archetype");
+        jMIAdicionarArchetype.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMIAdicionarArchetypeActionPerformed(evt);
+            }
+        });
+        jMNovo.add(jMIAdicionarArchetype);
         jMNovo.add(jSeparator1);
 
         jMIManterPerfil.setText(bundle1.getString("MANTER_PERFIS")); // NOI18N
@@ -369,6 +386,11 @@ public class Principal extends javax.swing.JFrame implements Observer {
         jMConfigurar.add(jMenuItem2);
 
         jMIParametrizacao.setText(bundle1.getString("PARAMETRIZACAO")); // NOI18N
+        jMIParametrizacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMIParametrizacaoActionPerformed(evt);
+            }
+        });
         jMConfigurar.add(jMIParametrizacao);
 
         jMenuBar1.add(jMConfigurar);
@@ -469,6 +491,14 @@ public class Principal extends javax.swing.JFrame implements Observer {
         // TODO add your handling code here:
     }//GEN-LAST:event_jMCriarRelatorioActionPerformed
 
+    private void jMIAdicionarArchetypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIAdicionarArchetypeActionPerformed
+        new ArchetypeForm().setVisible(true);
+    }//GEN-LAST:event_jMIAdicionarArchetypeActionPerformed
+
+    private void jMIParametrizacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIParametrizacaoActionPerformed
+        new ConfigAmaterasu().setVisible(true);
+    }//GEN-LAST:event_jMIParametrizacaoActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBAbrirAmaterasu;
     private javax.swing.JButton jBAbrirProjeto;
@@ -477,7 +507,6 @@ public class Principal extends javax.swing.JFrame implements Observer {
     private javax.swing.JCheckBox jCBApachePOI;
     private javax.swing.JCheckBox jCBJasperReport;
     private javax.swing.JCheckBox jCBPentaho;
-    private javax.swing.JList jLTecnologias;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -494,6 +523,7 @@ public class Principal extends javax.swing.JFrame implements Observer {
     private javax.swing.JMenu jMConfigurar;
     private javax.swing.JMenuItem jMCriarRelatorio;
     private javax.swing.JMenuItem jMIAbrirProjeto;
+    private javax.swing.JMenuItem jMIAdicionarArchetype;
     private javax.swing.JMenuItem jMIAjuda;
     private javax.swing.JMenuItem jMICadUsuario;
     private javax.swing.JMenuItem jMICriarCRUD;
@@ -508,11 +538,12 @@ public class Principal extends javax.swing.JFrame implements Observer {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPFooter;
     private javax.swing.JPanel jPPrincipal;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JTextField jTFCliente;
     private javax.swing.JTextField jTFDataCriacao;
     private javax.swing.JTextField jTFDataUltimaAlteracao;
+    private javax.swing.JTextArea jTFDescricao;
     private javax.swing.JTextField jTFModelo;
     private javax.swing.JTextField jTFNomeCompleto;
     private javax.swing.JTextField jTFNomeProjeto;
@@ -544,16 +575,12 @@ public class Principal extends javax.swing.JFrame implements Observer {
         jCBApachePOI.setSelected(ModelProjeto.i().isApachePOI());
         jCBJasperReport.setSelected(ModelProjeto.i().isJasperReport());
         jCBPentaho.setSelected(ModelProjeto.i().isPentaho());
-        DefaultListModel model = new DefaultListModel();
-        for (String s : ModelProjeto.i().getTecnologia()) {
-            model.addElement(s);
-        }
-        jLTecnologias.setModel(model);
         jTFNomeCompleto.setText(ModelProjeto.i().getNomeCompleto());
-        jTFModelo.setText(ModelProjeto.i().getModelo());
+        jTFModelo.setText(ModelProjeto.i().getArchetype().getArchetypeArtifactId());
         jTFServidor.setText(ModelProjeto.i().getServidor());
         jTFPathProjeto.setText(ModelProjeto.i().getCaminho());
         jTFPathAmaterasu.setText(ModelProjeto.i().getCaminhoAmaterasu());
+        jTFDescricao.setText(ModelProjeto.i().getArchetype().getArchetypeDescription());
     }
 
     private void limparInfoProjeto() {
@@ -565,8 +592,7 @@ public class Principal extends javax.swing.JFrame implements Observer {
         jCBApachePOI.setSelected(false);
         jCBJasperReport.setSelected(false);
         jCBPentaho.setSelected(false);
-        DefaultListModel model = new DefaultListModel();
-        jLTecnologias.setModel(model);
+        jTFDescricao.setText("");
         jTFNomeCompleto.setText("");
         jTFModelo.setText("");
         jTFServidor.setText("");

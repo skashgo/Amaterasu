@@ -9,8 +9,6 @@ import br.com.amaterasu.gerador.ManterXML;
 import br.com.amaterasu.util.AmaterasuException;
 import br.com.amaterasu.util.IConstants;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -27,11 +25,10 @@ public class ModelProjeto {
     public String caminhoAmaterasu;
     public String servidor;
     public String caminhoServidor;
-    private String modelo;
+    private Archetype archetype;
     public String copyright;
     private String dataCriacao;
     private String dataUltimaAlteracao;
-    private List<String> tecnologia = new ArrayList<String>();
     private boolean jasperReport;
     private boolean pentaho;
     private boolean apachePOI;
@@ -155,12 +152,12 @@ public class ModelProjeto {
         this.servidor = servidor;
     }
 
-    public String getModelo() {
-        return modelo;
+    public Archetype getArchetype() {
+        return archetype;
     }
 
-    public void setModelo(String modelo) {
-        this.modelo = modelo;
+    public void setArchetype(Archetype archetype) {
+        this.archetype = archetype;
     }
 
     public String getCaminhoServidor() {
@@ -223,11 +220,4 @@ public class ModelProjeto {
         this.copyright = copyright;
     }
 
-    public List<String> getTecnologia() {
-        return tecnologia;
-    }
-
-    public void setTecnologia(List<String> tecnologia) {
-        this.tecnologia = tecnologia;
-    }
 }

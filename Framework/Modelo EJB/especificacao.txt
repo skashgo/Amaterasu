@@ -1,6 +1,0 @@
-JSF 2.x
-Hibernate 3.3
-PrimeFaces
-EJB 3.5 (CDI, Transaction)
-JUnit 4.0
-MAVEN 3.3

@@ -4,10 +4,10 @@
  */
 package br.com.amaterasu.gerador;
 
+import br.com.amaterasu.model.Archetype;
 import br.com.amaterasu.model.ModelCrud;
 import br.com.amaterasu.model.ModelProjeto;
 import br.com.amaterasu.util.IConstants;
-import br.com.amaterasu.util.PathFramework;
 import java.io.File;
 import java.util.List;
 import org.junit.After;
@@ -40,7 +40,9 @@ public class GerarCrudTest {
         ModelProjeto.i().setPacotePadrao("br.com.amaterasu");
         ModelProjeto.i().setNomeProjeto("Amaterasu");
         ModelProjeto.i().setCaminhoServidor("D:\\Projetos\\Aplicativos\\jboss-4.2.3.GA");
-        ModelProjeto.i().setModelo(IConstants.MODELO_PADRAO);
+        Archetype archetype = new Archetype();
+
+        ModelProjeto.i().setArchetype(archetype);
         ModelProjeto.i().setCliente("GIS");
         ModelProjeto.i().setCaminhoAmaterasu("D://Teste/ProjetoAmaterasu_Teste_Amaterasu");
         ModelProjeto.i().setNomeCompleto("Amaterasu v 1.0 Framework/Tools");
@@ -111,6 +113,6 @@ public class GerarCrudTest {
         System.out.println("gerar");
         ModelCrud.i().getListFields().get(1).setShowFiltro(true);
         ModelCrud.i().getListFields().get(3).setShowFiltro(true);
-        GerarCrud.gerar(PathFramework.pathFrameworkModelosCRUD(ModelProjeto.i().getModelo()) + ModelCrud.i().getNomeModelo());
+        GerarCrud.gerar(IConstants.DIR_CRUD + IConstants.barra + ModelProjeto.i().getArchetype().getArchetypeArtifactId() + ModelCrud.i().getNomeModelo());
     }
 }

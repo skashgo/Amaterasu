@@ -12,7 +12,6 @@ import br.com.amaterasu.util.AmaterasuException;
 import br.com.amaterasu.model.Field;
 import br.com.amaterasu.util.IConstants;
 import br.com.amaterasu.util.IPainel;
-import br.com.amaterasu.util.PathFramework;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +34,7 @@ public class CriarCrud_painel1 extends javax.swing.JPanel implements IPainel {
 
     public CriarCrud_painel1() {
         initComponents();
-        String[] modelosCRUD = new File(PathFramework.pathFrameworkModelosCRUD(ModelProjeto.i().getModelo())).list();
+        String[] modelosCRUD = new File(IConstants.DIR_CRUD + IConstants.barra + ModelProjeto.i().getArchetype().getArchetypeArtifactId()).list();
         if (modelosCRUD != null) {
             jCBModeloCrud.setModel(new DefaultComboBoxModel(modelosCRUD));
         }

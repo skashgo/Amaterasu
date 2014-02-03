@@ -8,7 +8,6 @@ import br.com.amaterasu.gerador.GerarCrud;
 import br.com.amaterasu.gerador.ManterXML;
 import br.com.amaterasu.util.AmaterasuException;
 import br.com.amaterasu.util.IConstants;
-import br.com.amaterasu.util.PathFramework;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -43,22 +42,22 @@ public class ModelCrud {
     }
 
     public void set(ModelCrud i) {
-        this.i = i;
+        ModelCrud.i = i;
     }
 
     public void save() throws AmaterasuException {
         File file = new File(ModelProjeto.i().getCaminhoAmaterasu() + IConstants.barra + "CRUDs" + IConstants.barra + i().getNomeCasoUso() + ".xml");
         ManterXML.writeXML(file, i());
-        GerarCrud.gerar(PathFramework.pathFrameworkModelosCRUD(ModelProjeto.i().getModelo()) + getNomeModelo());
+        GerarCrud.gerar(IConstants.DIR_CRUD + IConstants.barra + ModelProjeto.i().getArchetype().getArchetypeArtifactId() + IConstants.barra + getNomeModelo());
         i = null;
     }
-    
-    public String info() throws AmaterasuException{
-        return GerarCrud.getInfo(PathFramework.pathFrameworkModelosCRUD(ModelProjeto.i().getModelo()) + getNomeModelo());
+
+    public String info() throws AmaterasuException {
+        return GerarCrud.getInfo(IConstants.DIR_CRUD + IConstants.barra + ModelProjeto.i().getArchetype().getArchetypeArtifactId() + IConstants.barra + getNomeModelo());
     }
 
     public void get() throws AmaterasuException {
-        File file = new File("");
+        File file = new File(ModelProjeto.i().getCaminhoAmaterasu() + IConstants.barra + "CRUDs" + IConstants.barra + i().getNomeCasoUso() + ".xml");
         i = (ModelCrud) ManterXML.readXML(file);
     }
 
@@ -89,7 +88,7 @@ public class ModelCrud {
     public String getNomeCasoUso() {
         if (nomeCasoUso != null) {
             return nomeCasoUso.trim().replace(" ", "").replace("-", "");
-        }else{
+        } else {
             return nomeCasoUso;
         }
     }
@@ -185,5 +184,5 @@ public class ModelCrud {
     public void setNomeBean(String nomeBean) {
         this.nomeBean = nomeBean;
     }
-    
+
 }

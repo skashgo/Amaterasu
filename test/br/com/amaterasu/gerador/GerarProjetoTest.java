@@ -4,12 +4,14 @@
  */
 package br.com.amaterasu.gerador;
 
+import br.com.amaterasu.model.Archetype;
+import br.com.amaterasu.model.Config;
 import br.com.amaterasu.model.ModelProjeto;
-import br.com.amaterasu.util.IConstants;
+import java.io.BufferedReader;
 import java.io.File;
 import org.junit.After;
 import org.junit.AfterClass;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -19,6 +21,9 @@ import org.junit.Test;
  * @author Maykon
  */
 public class GerarProjetoTest {
+
+    static String line;
+    static BufferedReader input;
 
     public GerarProjetoTest() {
     }
@@ -45,45 +50,32 @@ public class GerarProjetoTest {
     @Test
     public void testGerar() throws Exception {
         System.out.println("gerar");
-        ModelProjeto.i().setCaminho("D://Teste/ProjetoAmaterasu_Teste/");
+        
+        Config.i().setCaminhoCatalogMaven("D:\\Maykon\\Plataforma Amaterasu\\Core\\apache-maven-3.0.4");
+        Config.i().setCaminhoMaven("D:\\Maykon\\Plataforma Amaterasu\\Core\\apache-maven-3.0.4\\bin");
+        Config.i().setCaminhoRepoMaven("D:\\Maykon\\Plataforma Amaterasu\\Core\\apache-maven-3.0.4\\repository");
+        
+        ModelProjeto.i().setCaminho("D:\\TESTE");
         ModelProjeto.i().setPacotePadrao("br.com.amaterasu");
         ModelProjeto.i().setNomeProjeto("Amaterasu");
         ModelProjeto.i().setCaminhoServidor("D:\\Projetos\\Aplicativos\\jboss-4.2.3.GA");
-        ModelProjeto.i().setModelo(IConstants.MODELO_PADRAO);
+        Archetype archetype=new Archetype();
+        archetype.setArchetypeArtifactId("ModeloJEE6-archetype");
+        archetype.setArchetypeGroupId("br.com.modelo");
+        archetype.setArchetypeVersion("0.0.1");
+        ModelProjeto.i().setArchetype(archetype);
         ModelProjeto.i().setCliente("GIS");
-        ModelProjeto.i().setCaminhoAmaterasu("D://Teste/ProjetoAmaterasu_Teste_Amaterasu/");
+        ModelProjeto.i().setCaminhoAmaterasu("D:\\TESTE");
         ModelProjeto.i().setNomeCompleto("Amaterasu v 1.0 Framework/Tools");
         ModelProjeto.i().setCopyright("/**"
-                + "\n* Copyright (c) 2009-2011 Caixa Econômica Federal. Todos os direitos"
-                + "\n* reservados."
-                + "\n* "
-                + "\n* Caixa Econômica Federal - SIIAC - Sistema Integrado de Acompanhamento da Conformidade"
-                + "\n* "
-                + "\n* Este programa de computador foi desenvolvido sob demanda da CAIXA e está"
-                + "\n* protegido por leis de direitos autorais e tratados internacionais. As"
-                + "\n* condições de cópia e utilização do todo ou partes dependem de autorização da"
-                + "\n* empresa. Cópias não são permitidas sem expressa autorização. Não pode ser"
-                + "\n* comercializado ou utilizado para propósitos particulares."
-                + "\n* "
-                + "\n* Uso exclusivo da Caixa Econômica Federal. A reprodução ou distribuição não"
-                + "\n* autorizada deste programa ou de parte dele, resultará em punições civis e"
-                + "\n* criminais e os infratores incorrem em sanções previstas na legislação em"
-                + "\n* vigor."
-                + "\n* "
-                + "\n* Histórico do Subversion:"
-                + "\n* "
-                + "\n* LastChangedRevision:  "
-                + "\n* LastChangedBy:  "
-                + "\n* LastChangedDate: "
-                + "\n* "
-                + "\n* HeadURL: "
-                + "\n* "
+                + "\n* TODOS OS DIREITOS RESERVADOS"
                 + "\n*/");
         File file = new File(ModelProjeto.i().getCaminho());
         ManterDiretorio.deleteDir(file);
         GerarProjeto.gerar();
         assertTrue("Erro ao gerar projeto.", file.exists());
-//        ManterDiretorio.deleteDir(file);
+        ManterDiretorio.deleteDir(file);
 
     }
+
 }

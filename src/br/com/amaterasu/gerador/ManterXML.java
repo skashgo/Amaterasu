@@ -34,9 +34,9 @@ public class ManterXML {
             encoder.writeObject(classe);
             encoder.close();
         } catch (FileNotFoundException ex) {
-            System.out.println("Erro ao criar xml. ");
+            System.out.println("Erro ao criar xml. (" + file.getName() + ")");
             ManterLog.write(ex);
-            throw new AmaterasuException("Erro ao criar xml.", true);
+            throw new AmaterasuException("Erro ao criar xml.(" + file.getName() + ")", true);
         }
     }
 
@@ -51,16 +51,16 @@ public class ManterXML {
             writer.write(doc);
             writer.close();
         } catch (IOException ex) {
-            System.out.println("Erro ao criar xml. ");
+            System.out.println("Erro ao criar xml. (" + file.getName() + ")");
             ManterLog.write(ex);
-            throw new AmaterasuException("Erro ao criar xml.", true);
+            throw new AmaterasuException("Erro ao criar xml.(" + file.getName() + ")", true);
         } finally {
             try {
                 out.close();
             } catch (IOException ex) {
-                System.out.println("Erro ao criar xml. ");
+                System.out.println("Erro ao criar xml. (" + file.getName() + ")");
                 ManterLog.write(ex);
-                throw new AmaterasuException("Erro ao criar xml.", true);
+                throw new AmaterasuException("Erro ao criar xml.(" + file.getName() + ")", true);
             }
         }
     }
@@ -74,9 +74,9 @@ public class ManterXML {
                 decoder.close();
             }
         } catch (FileNotFoundException ex) {
-            System.out.println("Erro ao ler xml");
+            System.out.println("Erro ao ler xml(" + file.getName() + ")");
             ManterLog.write(ex);
-            throw new AmaterasuException("Erro ao ler xml.", true);
+            throw new AmaterasuException("Erro ao ler xml. (" + file.getName() + ")", true);
         }
         return classe;
     }
