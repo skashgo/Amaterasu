@@ -231,7 +231,7 @@ public class CriarProjeto_painel1 extends javax.swing.JPanel implements IPainel 
         }
         ModelProjeto.i().setNomeProjeto(JTFNomeProjeto.getText());
         ModelProjeto.i().setNomeCompleto(jTFNomeCompleto.getText());
-        ModelProjeto.i().setCaminho(jTFCaminho.getText() + IConstants.barra + JTFNomeProjeto.getText() + IConstants.barra);
+        ModelProjeto.i().setCaminho(jTFCaminho.getText() + IConstants.barra);
         ModelProjeto.i().setCaminhoAmaterasu(JTFCaminhoProjetoAmaterasu.getText() + IConstants.barra + JTFNomeProjeto.getText() + "_AMATERASU" + IConstants.barra);
         ModelProjeto.i().setCliente(jTFCliente.getText());
         ModelProjeto.i().setPacotePadrao(jTFPacotePadrao.getText());

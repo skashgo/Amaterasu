@@ -126,6 +126,21 @@ public class CriarCrud extends javax.swing.JFrame implements IPainelRodape {
 
     @Override
     public void doAjuda() {
+        switch (painelRodape1.getJanelaAtual()) {
+            case 0:
+                JOptionPane.showMessageDialog(null, "Selecione o Modelo do CRUD e uma classe BEAN para que o sistema Amaterasu\n"
+                        + "possa criar o CRUD referenciando os campos da classe.\n"
+                        + "No painel funcionalidade, selecione quais você deseja que seja utilizado."
+                        , "Criação de CRUD", JOptionPane.INFORMATION_MESSAGE);
+                break;
+            case 1:
+                JOptionPane.showMessageDialog(null, "Selecione os campos que serão criados em cada funcionalidade\n"
+                        + "Selecione os componentes de interface que serão criados para cada atributo da classe\n"
+                        + "Altere os nome das labels(Rotulos) e adicione nos campos caso necessário.");
+                break;
+            case 2:
+                JOptionPane.showMessageDialog(null, "Informe as configurações de cada campo");
+        }
     }
 
     @Override

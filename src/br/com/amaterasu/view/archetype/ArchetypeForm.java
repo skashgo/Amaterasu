@@ -126,6 +126,11 @@ public class ArchetypeForm extends javax.swing.JFrame implements IPainelRodape {
 
     @Override
     public void doAjuda() {
+        switch (painelRodape1.getJanelaAtual()) {
+            case 0:
+                JOptionPane.showMessageDialog(null, "Informe os dados para adicionar um novo archetype\npossibilitando que o sistema Amaterasu crie novos tipos de projeto.");
+                break;
+        }
     }
 
     @Override

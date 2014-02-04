@@ -126,6 +126,11 @@ public class ConfigAmaterasu extends javax.swing.JFrame implements IPainelRodape
 
     @Override
     public void doAjuda() {
+        switch (painelRodape1.getJanelaAtual()) {
+            case 0:
+                JOptionPane.showMessageDialog(null, "Informe as configuração de acesso ao Maven. Estes dados são necessários para a criação de projeto.");
+                break;
+        }
     }
 
     @Override

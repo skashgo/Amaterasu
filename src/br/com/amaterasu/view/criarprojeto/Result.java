@@ -19,6 +19,7 @@ public class Result extends javax.swing.JFrame {
     public Result(String log) {
         initComponents();
         this.log.setText(log);
+        jBFechar.requestFocus();
     }
 
     /**

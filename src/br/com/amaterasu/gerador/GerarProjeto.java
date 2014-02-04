@@ -46,12 +46,13 @@ public class GerarProjeto {
             command.append("ECHO INICIANDO!!!\n");
             command.append("ECHO.\n");
             command.append("ECHO ################### AMATERASU ########################\n");
-            command.append("ECHO ########## Este processo utiliza a ferramenta MAVEN \n");
-            command.append("ECHO ##########com a funcionalidade de archetype         \n");
+            command.append("ECHO ########     Este processo utiliza a ferramenta MAVEN \n");
+            command.append("ECHO ########     com a funcionalidade de archetype         \n");
             command.append("ECHO ######################################################\n");
             command.append("ECHO.\n");
+            command.append("@ECHO ON\n");
             if (Config.i().getSo().equals(Config.SO.WIN)) {
-                command.append(ModelProjeto.i().getCaminho().substring(0, 1)).append("\n");
+                command.append(ModelProjeto.i().getCaminho().substring(0, 1)).append(":\n");
             }
             command.append("cd \"").append(ModelProjeto.i().getCaminho()).append("\"\n");
             if (Config.i().getSo().equals(Config.SO.WIN)) {
@@ -59,7 +60,6 @@ public class GerarProjeto {
             } else {
                 command.append("env MAVEN_OPTS=-Dmaven.repo.local=\"").append(Config.i().getCaminhoRepoMaven()).append("\" \n");
             }
-            command.append("@ECHO ON\n");
             command.append("\"").append(Config.i().getCaminhoMaven()).append(IConstants.barra)
                     .append("mvn\" archetype:generate")
                     .append(" -DarchetypeCatalog=\"file:///").append(Config.i().getCaminhoCatalogMaven()).append(IConstants.barra).append("archetype-catalog.xml\"")

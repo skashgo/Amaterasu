@@ -69,10 +69,6 @@ public class ModelProjeto {
         if (i == null) {
             throw new AmaterasuException("O arquivo projeto.xml do Projeto Amaterasu está incompleto e o projeto não poderá ser aberto.", false);
         }
-        if (!new File(caminhoProj).getName().equals(i().getNomeProjeto())) {
-            i = null;
-            throw new AmaterasuException("O Caminho do Projeto informado está incorreto.", false);
-        }
         i().setCaminho(caminhoProj);
         i().setCaminhoAmaterasu(caminhoAmat);
         HistoricoProjeto histTemp = null;

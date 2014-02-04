@@ -53,27 +53,30 @@ public class Config_painel1 extends javax.swing.JPanel implements IPainel {
         jBtCaminhoCatalogMaven = new javax.swing.JButton();
         jBtCaminhoRepoMaven = new javax.swing.JButton();
 
-        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("br/com/amaterasu/view/text/AbrirProjeto_painel1"); // NOI18N
-        jLabel1.setText(bundle.getString("CAMINHO_PROJETO_AMATERASU")); // NOI18N
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("br/com/amaterasu/view/text/Config_painel1"); // NOI18N
+        jLabel1.setText(bundle.getString("CAMINHO_CATALOG_MAVEN")); // NOI18N
 
         jTFCaminhoCatalogMaven.setToolTipText("ex.: D:\\\\Plataforma Amaterasu\\\\Core\\\\apache-maven-3.0.4");
 
-        jLabel2.setText(bundle.getString("CAMINHO_PROJETO")); // NOI18N
+        jLabel2.setText(bundle.getString("CAMINHO_MAVEN")); // NOI18N
 
         jTFCaminhoMaven.setToolTipText("ex.: C:\\\\Plataforma Amaterasu\\\\Core\\\\apache-maven-3.0.4\\\\bin");
 
-        jLabel3.setText("Caminho Repo Maven:");
+        jLabel3.setText(bundle.getString("CAMINHO_REPO_MAVEN")); // NOI18N
 
         jTFCaminhoRepoMaven.setToolTipText("ex.: D:\\\\Plataforma Amaterasu\\\\Core\\\\apache-maven-3.0.4\\\\repository");
 
-        jLabel5.setText("Sistema Operacional:");
+        jLabel5.setText(bundle.getString("SISTEMA_OPERACIONAL")); // NOI18N
+        jLabel5.setToolTipText("Informe o Sistema Operacional que o Amaterasu está sendo executado.");
 
         buttonGroup1.add(jRBWin);
         jRBWin.setSelected(true);
         jRBWin.setText("WINDOWS");
+        jRBWin.setToolTipText("Informe o Sistema Operacional que o Amaterasu está sendo executado.");
 
         buttonGroup1.add(jRBLinux);
         jRBLinux.setText("LINUX");
+        jRBLinux.setToolTipText("Informe o Sistema Operacional que o Amaterasu está sendo executado.");
 
         java.util.ResourceBundle bundle1 = java.util.ResourceBundle.getBundle("br/com/amaterasu/view/text/Principal"); // NOI18N
         jBtCaminhoMaven.setText(bundle1.getString("ABRIR")); // NOI18N
@@ -124,7 +127,7 @@ public class Config_painel1 extends javax.swing.JPanel implements IPainel {
                             .addComponent(jBtCaminhoMaven)
                             .addComponent(jBtCaminhoCatalogMaven)
                             .addComponent(jBtCaminhoRepoMaven))))
-                .addContainerGap(248, Short.MAX_VALUE))
+                .addContainerGap(285, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

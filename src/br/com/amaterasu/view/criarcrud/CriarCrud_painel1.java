@@ -133,11 +133,11 @@ public class CriarCrud_painel1 extends javax.swing.JPanel implements IPainel {
         jLabel6.setText(bundle.getString("LAYOUT")); // NOI18N
 
         buttonGroup1.add(jRLivre);
+        jRLivre.setSelected(true);
         jRLivre.setText(bundle.getString("LIVRE")); // NOI18N
         jRLivre.setToolTipText(bundle.getString("DESCRICAO_LIVRE")); // NOI18N
 
         buttonGroup1.add(jRGrid);
-        jRGrid.setSelected(true);
         jRGrid.setText(bundle.getString("GRID")); // NOI18N
         jRGrid.setToolTipText(bundle.getString("DESCRICAO_GRID")); // NOI18N
 
@@ -417,7 +417,7 @@ public class CriarCrud_painel1 extends javax.swing.JPanel implements IPainel {
     @Override
     public void binding() throws AmaterasuException {
         if (jCBModeloCrud.getSelectedIndex() == -1 || (jTFCaminhoClasseBean.getText().equals("") && jCBHistorico.getSelectedIndex() == 0) || jTFNomeCasoUso.getText().equals("")) {
-            throw new AmaterasuException("Campo Obrigatorio: \n*Modelo do CRUD \n*Classe Bean \n*Nome do Caso de Uso", false);
+            throw new AmaterasuException("Campo Obrigatorio: \n*Modelo do CRUD \n*Classe Bean", false);
         }
         if (!new File(jTFCaminhoClasseBean.getText()).exists() && jCBHistorico.getSelectedIndex() == 0) {
             throw new AmaterasuException("O caminho da Classe Bean informado é invalido.", false);

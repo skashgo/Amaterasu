@@ -126,6 +126,11 @@ public class AbrirProjeto extends javax.swing.JFrame implements IPainelRodape {
 
     @Override
     public void doAjuda() {
+        switch (painelRodape1.getJanelaAtual()) {
+            case 0:
+                JOptionPane.showMessageDialog(null, "Informe o caminho onde foi criado o Projeto que deseja abrir\ne Informe o caminho do Projeto Amaterasu correspondente ao projeto");
+                break;
+        }
     }
 
     @Override

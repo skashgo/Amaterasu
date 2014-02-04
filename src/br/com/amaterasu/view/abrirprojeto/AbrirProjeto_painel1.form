@@ -33,7 +33,7 @@
                   <Component id="jBAddCaminhoProjeto" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jScrollPane1" pref="202" max="32767" attributes="0"/>
+              <Component id="jScrollPane1" pref="155" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>

@@ -17,7 +17,7 @@ public class PainelCabecalho extends javax.swing.JPanel {
     }
 
     public void setTitulo(String titulo) {
-        jLTitulo.setText(Txt.getTxt("Geral", "NOME_PROJETO") + titulo);
+        jLTitulo.setText(Txt.getTxt("Geral", "NOME_PROJETO") + " " + titulo);
     }
 
     public void setDescricao(String descricao) {

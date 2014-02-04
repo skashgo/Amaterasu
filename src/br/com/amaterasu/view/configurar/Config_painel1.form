@@ -49,7 +49,7 @@
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="248" max="32767" attributes="0"/>
+              <EmptySpace pref="285" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -89,7 +89,7 @@
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-          <ResourceString bundle="br/com/amaterasu/view/text/AbrirProjeto_painel1.properties" key="CAMINHO_PROJETO_AMATERASU" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+          <ResourceString bundle="br/com/amaterasu/view/text/Config_painel1.properties" key="CAMINHO_CATALOG_MAVEN" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
         </Property>
       </Properties>
     </Component>
@@ -101,7 +101,7 @@
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-          <ResourceString bundle="br/com/amaterasu/view/text/AbrirProjeto_painel1.properties" key="CAMINHO_PROJETO" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+          <ResourceString bundle="br/com/amaterasu/view/text/Config_painel1.properties" key="CAMINHO_MAVEN" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
         </Property>
       </Properties>
     </Component>
@@ -112,7 +112,9 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Caminho Repo Maven:"/>
+        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+          <ResourceString bundle="br/com/amaterasu/view/text/Config_painel1.properties" key="CAMINHO_REPO_MAVEN" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+        </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTFCaminhoRepoMaven">
@@ -122,7 +124,10 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Sistema Operacional:"/>
+        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+          <ResourceString bundle="br/com/amaterasu/view/text/Config_painel1.properties" key="SISTEMA_OPERACIONAL" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+        </Property>
+        <Property name="toolTipText" type="java.lang.String" value="Informe o Sistema Operacional que o Amaterasu est&#xe1; sendo executado."/>
       </Properties>
     </Component>
     <Component class="javax.swing.JRadioButton" name="jRBWin">
@@ -132,6 +137,7 @@
         </Property>
         <Property name="selected" type="boolean" value="true"/>
         <Property name="text" type="java.lang.String" value="WINDOWS"/>
+        <Property name="toolTipText" type="java.lang.String" value="Informe o Sistema Operacional que o Amaterasu est&#xe1; sendo executado."/>
       </Properties>
     </Component>
     <Component class="javax.swing.JRadioButton" name="jRBLinux">
@@ -140,6 +146,7 @@
           <ComponentRef name="buttonGroup1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="LINUX"/>
+        <Property name="toolTipText" type="java.lang.String" value="Informe o Sistema Operacional que o Amaterasu est&#xe1; sendo executado."/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jBtCaminhoMaven">

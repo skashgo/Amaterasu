@@ -52,18 +52,18 @@ public class Archetype_painel1 extends javax.swing.JPanel implements IPainel {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTFDescricao = new javax.swing.JTextArea();
 
-        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("br/com/amaterasu/view/text/AbrirProjeto_painel1"); // NOI18N
-        jLabel1.setText(bundle.getString("CAMINHO_PROJETO_AMATERASU")); // NOI18N
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("br/com/amaterasu/view/text/Archetype_painel1"); // NOI18N
+        jLabel1.setText(bundle.getString("ARCHETYPE_GROUP_ID")); // NOI18N
 
-        jLabel2.setText(bundle.getString("CAMINHO_PROJETO")); // NOI18N
+        jLabel2.setText(bundle.getString("ARCHETYPE_ARTIFACT_ID")); // NOI18N
 
         jList1.setBorder(javax.swing.BorderFactory.createTitledBorder("Archetypes"));
-        jList1.setToolTipText(bundle.getString("ULTIMO_PROJETO_ABERTO")); // NOI18N
+        jList1.setToolTipText(bundle.getString("ARCHETYPE_CADASTRADOS")); // NOI18N
         jScrollPane1.setViewportView(jList1);
 
-        jLabel3.setText("Archetype Version:");
+        jLabel3.setText(bundle.getString("ARCHETYPE_VERSION")); // NOI18N
 
-        jLabel4.setText("Archetype Description:");
+        jLabel4.setText(bundle.getString("ARCHETYPE_DESCRIPTION")); // NOI18N
 
         jTFDescricao.setColumns(20);
         jTFDescricao.setLineWrap(true);

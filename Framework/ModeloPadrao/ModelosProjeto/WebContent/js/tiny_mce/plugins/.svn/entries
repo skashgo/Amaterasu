@@ -1,145 +1,0 @@
-10
-
-dir
-11246
-http://madri/gsgroup/SIIAC/trunk/implementacao/fontes/java/SIIAC/WebContent/js/tiny_mce/plugins
-http://madri/gsgroup
-
-
-
-2012-05-22T17:38:10.900962Z
-8826
-thiagocunha
-
-
-svn:special svn:externals svn:needs-lock
-
-
-
-
-
-
-
-
-
-
-
-4b1a2820-ec89-403f-9427-d52d087892d3
-
-advhr
-dir
-
-advimage
-dir
-
-advlink
-dir
-
-advlist
-dir
-
-autolink
-dir
-
-autoresize
-dir
-
-autosave
-dir
-
-bbcode
-dir
-
-contextmenu
-dir
-
-directionality
-dir
-
-emotions
-dir
-
-example
-dir
-
-example_dependency
-dir
-
-fullpage
-dir
-
-fullscreen
-dir
-
-iespell
-dir
-
-inlinepopups
-dir
-
-insertdatetime
-dir
-
-layer
-dir
-
-legacyoutput
-dir
-
-lists
-dir
-
-media
-dir
-
-nonbreaking
-dir
-
-noneditable
-dir
-
-pagebreak
-dir
-
-paste
-dir
-
-preview
-dir
-
-print
-dir
-
-save
-dir
-
-searchreplace
-dir
-
-spellchecker
-dir
-
-style
-dir
-
-tabfocus
-dir
-
-table
-dir
-
-template
-dir
-
-visualblocks
-dir
-
-visualchars
-dir
-
-wordcount
-dir
-
-xhtmlxtras
-dir
-

@@ -98,7 +98,7 @@ public class AbrirProjeto_painel1 extends javax.swing.JPanel implements IPainel 
                     .addComponent(jBAddCaminhoProjetoAmaterasu)
                     .addComponent(jBAddCaminhoProjeto))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
