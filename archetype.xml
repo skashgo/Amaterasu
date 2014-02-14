@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.8.0-ea" class="java.beans.XMLDecoder">
+ <object class="br.com.amaterasu.model.ModelArchetype" id="ModelArchetype0">
+  <void property="list">
+   <void method="add">
+    <object class="br.com.amaterasu.model.Archetype">
+     <void property="archetypeArtifactId">
+      <string>Projeto Existente</string>
+     </void>
+     <void property="archetypeDescription">
+      <string>Archetype utilizado para projeto já existente. Não será gerado nenhum artefato. Seu propósito é servir para configurar um projeto já existe no sistema Amateraso permitindo assim a utilização dos recursos de geração de crud e outros.</string>
+     </void>
+     <void property="projetoExistente">
+      <boolean>true</boolean>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="br.com.amaterasu.model.Archetype">
+     <void property="archetypeArtifactId">
+      <string>ModeloJEE6-archetype</string>
+     </void>
+     <void property="archetypeDescription">
+      <string>Arquetipo para a cricao de projeto JEE6.</string>
+     </void>
+     <void property="archetypeGroupId">
+      <string>br.com.modelo</string>
+     </void>
+     <void property="archetypeVersion">
+      <string>0.0.1</string>
+     </void>
+    </object>
+   </void>
+  </void>
+ </object>
+</java>

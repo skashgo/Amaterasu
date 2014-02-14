@@ -92,7 +92,7 @@ public class Principal extends javax.swing.JFrame implements Observer {
         jMIAbrirProjeto = new javax.swing.JMenuItem();
         jMConfigurar = new javax.swing.JMenu();
         jMIJboss = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        jMIDataSouce = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMIParametrizacao = new javax.swing.JMenuItem();
         jMAjuda = new javax.swing.JMenu();
@@ -386,12 +386,15 @@ public class Principal extends javax.swing.JFrame implements Observer {
         jMConfigurar.setText(bundle1.getString("CONFIGURAR")); // NOI18N
 
         jMIJboss.setText(bundle1.getString("SERVIDOR")); // NOI18N
+        jMIJboss.setEnabled(false);
         jMConfigurar.add(jMIJboss);
 
-        jMenuItem1.setText(bundle1.getString("DATA_SOURCE")); // NOI18N
-        jMConfigurar.add(jMenuItem1);
+        jMIDataSouce.setText(bundle1.getString("DATA_SOURCE")); // NOI18N
+        jMIDataSouce.setEnabled(false);
+        jMConfigurar.add(jMIDataSouce);
 
         jMenuItem2.setText(bundle1.getString("LOGIN_CONFIG")); // NOI18N
+        jMenuItem2.setEnabled(false);
         jMConfigurar.add(jMenuItem2);
 
         jMIParametrizacao.setText(bundle1.getString("PARAMETRIZACAO")); // NOI18N
@@ -537,13 +540,13 @@ public class Principal extends javax.swing.JFrame implements Observer {
     private javax.swing.JMenuItem jMICadUsuario;
     private javax.swing.JMenuItem jMICriarCRUD;
     private javax.swing.JMenuItem jMICriarProjeto;
+    private javax.swing.JMenuItem jMIDataSouce;
     private javax.swing.JMenuItem jMIJboss;
     private javax.swing.JMenuItem jMIManterPerfil;
     private javax.swing.JMenuItem jMIParametrizacao;
     private javax.swing.JMenuItem jMISobre;
     private javax.swing.JMenu jMNovo;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPFooter;
     private javax.swing.JPanel jPPrincipal;
@@ -566,9 +569,10 @@ public class Principal extends javax.swing.JFrame implements Observer {
     public void update(Observable o, Object arg) {
         if (arg.equals(IConstants.OPEN_PROJECT)) {
             jMICriarCRUD.setEnabled(true);
-            jMICadUsuario.setEnabled(true);
-            jMCriarRelatorio.setEnabled(true);
-            jMIManterPerfil.setEnabled(true);
+//            jMICadUsuario.setEnabled(true);
+//            jMCriarRelatorio.setEnabled(true);
+//            jMIManterPerfil.setEnabled(true);
+//            jMIDataSouce.setEnabled(true);
             preencherInfoProjeto();
             jPPrincipal.setVisible(true);
             jBFecharProjeto.setVisible(true);

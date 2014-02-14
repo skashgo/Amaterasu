@@ -46,7 +46,7 @@ public class ModelCrud {
     }
 
     public void save() throws AmaterasuException {
-        File file = new File(ModelProjeto.i().getCaminhoAmaterasu() + IConstants.barra + "CRUDs" + IConstants.barra + i().getNomeCasoUso() + ".xml");
+        File file = new File(ModelProjeto.i().getCaminhoAmaterasu() + IConstants.barra + "CRUDs" + IConstants.barra + i().getNomeBean()+ ".xml");
         ManterXML.writeXML(file, i());
         GerarCrud.gerar(IConstants.DIR_CRUD + IConstants.barra + ModelProjeto.i().getArchetype().getArchetypeArtifactId() + IConstants.barra + getNomeModelo());
         i = null;
@@ -57,7 +57,7 @@ public class ModelCrud {
     }
 
     public void get() throws AmaterasuException {
-        File file = new File(ModelProjeto.i().getCaminhoAmaterasu() + IConstants.barra + "CRUDs" + IConstants.barra + i().getNomeCasoUso() + ".xml");
+        File file = new File(ModelProjeto.i().getCaminhoAmaterasu() + IConstants.barra + "CRUDs" + IConstants.barra + i().getNomeBean()+ ".xml");
         i = (ModelCrud) ManterXML.readXML(file);
     }
 
@@ -86,11 +86,7 @@ public class ModelCrud {
     }
 
     public String getNomeCasoUso() {
-        if (nomeCasoUso != null) {
-            return nomeCasoUso.trim().replace(" ", "").replace("-", "");
-        } else {
-            return nomeCasoUso;
-        }
+        return nomeCasoUso;
     }
 
     public void setNomeCasoUso(String nomeCasoUso) {

@@ -96,8 +96,6 @@ public class CriarCrud_painel1 extends javax.swing.JPanel implements IPainel {
 
         jLabel3.setText(bundle.getString("NOME_CASO_USO")); // NOI18N
 
-        jTFNomeCasoUso.setEditable(false);
-
         jCBCadastro.setText(bundle.getString("CADASTRO")); // NOI18N
 
         jCBAlteracao.setText(bundle.getString("ALTERACAO")); // NOI18N
@@ -427,7 +425,7 @@ public class CriarCrud_painel1 extends javax.swing.JPanel implements IPainel {
         }
         ModelCrud.i().setNomeModelo(jCBModeloCrud.getSelectedItem().toString());
         ModelCrud.i().setCaminhoClasseBean(jTFCaminhoClasseBean.getText());
-        ModelCrud.i().setNomeBean(jTFCaminhoClasseBean.getText().substring(jTFCaminhoClasseBean.getText().lastIndexOf(IConstants.barra)).replace(".java", ""));
+        ModelCrud.i().setNomeBean(jTFCaminhoClasseBean.getText().substring(jTFCaminhoClasseBean.getText().lastIndexOf(IConstants.barra) + 1).replace(".java", ""));
         ModelCrud.i().setNomeCasoUso(jTFNomeCasoUso.getText());
         ModelCrud.i().setModoAlteracao(jCBAlteracao.isSelected());
         ModelCrud.i().setModoCadastro(jCBCadastro.isSelected());
