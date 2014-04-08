@@ -20,6 +20,7 @@ public class Component {
     public static final String RADIOBOX = "RadioBox";
     public static final String COMBOBOX = "ComboBox";
     public static final String TEXTAREA = "TextArea";
+    public static final String IMAGE = "Image";
     public static final String DATA = "Data";
     public static final String TABLE = "Table";
     public static final String EXPANDIR_OBJETO = "Expandir Objeto";
@@ -32,6 +33,7 @@ public class Component {
         list.add(RADIOBOX);
         list.add(COMBOBOX);
         list.add(TEXTAREA);
+        list.add(IMAGE);
         list.add(DATA);
         list.add(TABLE);
         list.add(EXPANDIR_OBJETO);

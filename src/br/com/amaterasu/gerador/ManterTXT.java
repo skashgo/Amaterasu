@@ -100,9 +100,10 @@ public class ManterTXT {
         if (arquivo.getParentFile() != null && !arquivo.getParentFile().exists()) {
             arquivo.getParentFile().mkdirs();
         }
-        if (!arquivo.exists()) {
-            arquivo.createNewFile();
+        if (arquivo.exists()) {
+            arquivo.delete();
         }
+            arquivo.createNewFile();
         Writer out;
         if (arquivo.getName().contains("properties")) {
             out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(arquivo), "ISO-8859-1"));
