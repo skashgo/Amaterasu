@@ -23,6 +23,7 @@ public class Config_painel1 extends javax.swing.JPanel implements IPainel {
             jTFCaminhoCatalogMaven.setText(Config.i().getCaminhoCatalogMaven());
             jTFCaminhoMaven.setText(Config.i().getCaminhoMaven());
             jTFCaminhoRepoMaven.setText(Config.i().getCaminhoRepoMaven());
+            jTFCaminhoJava.setText(Config.i().getCaminhoJava());
             if (Config.i().getSo().equals(Config.SO.WIN)) {
                 jRBWin.setSelected(true);
             }
@@ -52,6 +53,9 @@ public class Config_painel1 extends javax.swing.JPanel implements IPainel {
         jBtCaminhoMaven = new javax.swing.JButton();
         jBtCaminhoCatalogMaven = new javax.swing.JButton();
         jBtCaminhoRepoMaven = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jTFCaminhoJava = new javax.swing.JTextField();
+        jBtCaminhoJava = new javax.swing.JButton();
 
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("br/com/amaterasu/view/text/Config_painel1"); // NOI18N
         jLabel1.setText(bundle.getString("CAMINHO_CATALOG_MAVEN")); // NOI18N
@@ -100,6 +104,17 @@ public class Config_painel1 extends javax.swing.JPanel implements IPainel {
             }
         });
 
+        jLabel4.setText("Java:");
+
+        jTFCaminhoJava.setToolTipText("ex.: D:\\\\Plataforma Amaterasu\\\\Core\\\\jdk1.6.0_35");
+
+        jBtCaminhoJava.setText(bundle1.getString("ABRIR")); // NOI18N
+        jBtCaminhoJava.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtCaminhoJavaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -110,24 +125,27 @@ public class Config_painel1 extends javax.swing.JPanel implements IPainel {
                     .addComponent(jLabel1)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel5))
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel4))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jTFCaminhoJava)
+                            .addComponent(jTFCaminhoCatalogMaven, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTFCaminhoMaven, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)
+                            .addComponent(jTFCaminhoRepoMaven, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jBtCaminhoMaven, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jBtCaminhoCatalogMaven, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jBtCaminhoRepoMaven, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jBtCaminhoJava, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jRBWin)
                         .addGap(18, 18, 18)
-                        .addComponent(jRBLinux))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTFCaminhoCatalogMaven)
-                            .addComponent(jTFCaminhoMaven, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)
-                            .addComponent(jTFCaminhoRepoMaven))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jBtCaminhoMaven)
-                            .addComponent(jBtCaminhoCatalogMaven)
-                            .addComponent(jBtCaminhoRepoMaven))))
-                .addContainerGap(285, Short.MAX_VALUE))
+                        .addComponent(jRBLinux)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -147,12 +165,17 @@ public class Config_painel1 extends javax.swing.JPanel implements IPainel {
                     .addComponent(jLabel3)
                     .addComponent(jTFCaminhoRepoMaven, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBtCaminhoRepoMaven))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTFCaminhoJava, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBtCaminhoJava)
+                    .addComponent(jLabel4))
+                .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jRBWin)
                     .addComponent(jRBLinux))
-                .addContainerGap(111, Short.MAX_VALUE))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -183,18 +206,30 @@ public class Config_painel1 extends javax.swing.JPanel implements IPainel {
         }
     }//GEN-LAST:event_jBtCaminhoRepoMavenActionPerformed
 
+    private void jBtCaminhoJavaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtCaminhoJavaActionPerformed
+        JFileChooser chooser = new JFileChooser(jTFCaminhoJava.getText());
+        chooser.setDialogTitle("Selecione o diretório repository do programa Java");
+        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        if (chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+            jTFCaminhoJava.setText(chooser.getSelectedFile().getAbsolutePath());
+        }
+    }//GEN-LAST:event_jBtCaminhoJavaActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jBtCaminhoCatalogMaven;
+    private javax.swing.JButton jBtCaminhoJava;
     private javax.swing.JButton jBtCaminhoMaven;
     private javax.swing.JButton jBtCaminhoRepoMaven;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JRadioButton jRBLinux;
     private javax.swing.JRadioButton jRBWin;
     private javax.swing.JTextField jTFCaminhoCatalogMaven;
+    private javax.swing.JTextField jTFCaminhoJava;
     private javax.swing.JTextField jTFCaminhoMaven;
     private javax.swing.JTextField jTFCaminhoRepoMaven;
     // End of variables declaration//GEN-END:variables
@@ -204,6 +239,7 @@ public class Config_painel1 extends javax.swing.JPanel implements IPainel {
         Config.i().setCaminhoCatalogMaven(jTFCaminhoCatalogMaven.getText());
         Config.i().setCaminhoMaven(jTFCaminhoMaven.getText());
         Config.i().setCaminhoRepoMaven(jTFCaminhoRepoMaven.getText());
+        Config.i().setCaminhoJava(jTFCaminhoJava.getText());
         if (jRBLinux.isSelected()) {
             Config.i().setSo(Config.SO.LINUX);
         }

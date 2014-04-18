@@ -20,6 +20,7 @@ public class Config {
     private String caminhoRepoMaven;
     private String caminhoMaven;
     private String caminhoCatalogMaven;
+    private String caminhoJava;
     private SO so;
 
     public static Config i() {
@@ -72,6 +73,14 @@ public class Config {
 
     public void setCaminhoCatalogMaven(String caminhoCatalogMaven) {
         this.caminhoCatalogMaven = caminhoCatalogMaven;
+    }
+
+    public String getCaminhoJava() {
+        return caminhoJava;
+    }
+
+    public void setCaminhoJava(String caminhoJava) {
+        this.caminhoJava = caminhoJava;
     }
 
     public SO getSo() {

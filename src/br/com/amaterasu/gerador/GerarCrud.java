@@ -94,7 +94,28 @@ public class GerarCrud {
             if (!file.exists()) {
                 throw new AmaterasuException("O caminho informado está incorreto.\n" + file.getAbsolutePath(), false);
             }
-            ModelCrud.i().setListFields(getFieldsBean(file));
+            
+            //Neste bloco de codigo abaixo, estou verificando se o modelo ainda esta no historico e se todos dos campos se mantem
+            List<Field> listFieldsDoBean = getFieldsBean(file);
+            List<Field> listFieldsDoHistorico = ModelCrud.i().getListFields();
+            List<Field> listResultado = new ArrayList<Field>();
+
+            for (Field fieldBean : listFieldsDoBean) {
+                boolean novoField = true;
+                for (Field fieldHistorico : listFieldsDoHistorico) {
+                    if (fieldBean.getNome().equals(fieldHistorico.getNome())) {
+                        fieldHistorico.setTipo(fieldBean.getTipo());
+                        listResultado.add(fieldHistorico);
+                        novoField = false;
+                        break;
+                    }
+                }
+                if (novoField) {
+                    listResultado.add(fieldBean);
+                }
+            }
+
+            ModelCrud.i().setListFields(listResultado);
         } catch (FileNotFoundException ex) {
             ManterLog.write(ex);
             throw new AmaterasuException("Erro ao ler classe Bean.", true);

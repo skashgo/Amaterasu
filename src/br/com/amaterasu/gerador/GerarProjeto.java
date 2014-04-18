@@ -56,9 +56,15 @@ public class GerarProjeto {
             }
             command.append("cd \"").append(ModelProjeto.i().getCaminho()).append("\"\n");
             if (Config.i().getSo().equals(Config.SO.WIN)) {
-                command.append("set MAVEN_OPTS=-Dmaven.repo.local=\"").append(Config.i().getCaminhoRepoMaven()).append("\" \n");
+                command.append("set JAVA_HOME=").append(Config.i().getCaminhoJava()).append("\n");
+                command.append("set M2_HOME=").append(Config.i().getCaminhoMaven().substring(0, Config.i().getCaminhoMaven().length() - 4)).append("\n");
+                command.append("set M2=%M2_HOME%").append(IConstants.barra).append("bin\n");
+                command.append("set MAVEN_OPTS=-Dmaven.repo.local=\"").append(Config.i().getCaminhoRepoMaven()).append("\"\n");
             } else {
-                command.append("env MAVEN_OPTS=-Dmaven.repo.local=\"").append(Config.i().getCaminhoRepoMaven()).append("\" \n");
+                command.append("env JAVA_HOME=").append(Config.i().getCaminhoJava()).append("\n");
+                command.append("env M2_HOME=").append(Config.i().getCaminhoMaven().substring(0, Config.i().getCaminhoMaven().length() - 4)).append("\n");
+                command.append("env M2=%M2_HOME%").append(IConstants.barra).append("bin\n");
+                command.append("env MAVEN_OPTS=-Dmaven.repo.local=\"").append(Config.i().getCaminhoRepoMaven()).append("\"\n");
             }
             command.append("\"").append(Config.i().getCaminhoMaven()).append(IConstants.barra)
                     .append("mvn\" archetype:generate")

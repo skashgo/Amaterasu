@@ -27,11 +27,11 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * @author Maykon
  */
 public class CriarCrud_painel1 extends javax.swing.JPanel implements IPainel {
-
+    
     private List<Field> listFieldsBoolean = new ArrayList<Field>();
     private String[] historico;
     private String cruds = ModelProjeto.i().getCaminhoAmaterasu() + IConstants.barra + "CRUDs";
-
+    
     public CriarCrud_painel1() {
         initComponents();
         String[] modelosCRUD = new File(IConstants.DIR_CRUD + IConstants.barra + ModelProjeto.i().getArchetype().getArchetypeArtifactId()).list();
@@ -48,7 +48,7 @@ public class CriarCrud_painel1 extends javax.swing.JPanel implements IPainel {
             jCBHistorico.setModel(model);
         }
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -303,6 +303,7 @@ public class CriarCrud_painel1 extends javax.swing.JPanel implements IPainel {
         if (chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
             jTFCaminhoClasseBean.setText(chooser.getSelectedFile().getAbsolutePath());
             try {
+                ModelCrud.i().set(new ModelCrud());
                 ModelCrud.i().setCaminhoClasseBean(jTFCaminhoClasseBean.getText());
                 ModelCrud.i().readBean();
                 jCBGrid.setEnabled(true);
@@ -342,6 +343,7 @@ public class CriarCrud_painel1 extends javax.swing.JPanel implements IPainel {
         }
         try {
             ModelCrud.i().set((ModelCrud) ManterXML.readXML(new File(cruds + IConstants.barra + historico[jCBHistorico.getSelectedIndex() - 1])));
+            ModelCrud.i().readBean();
             listFieldsBoolean.clear();
             for (Field f : ModelCrud.i().getListFields()) {
                 if (f.getTipo().equals("Boolean") || f.getTipo().equals("boolean")) {
@@ -349,7 +351,7 @@ public class CriarCrud_painel1 extends javax.swing.JPanel implements IPainel {
                 }
             }
             jCBCampoExclusaoLogica.setModel(new DefaultComboBoxModel(listFieldsBoolean.toArray()));
-
+            
             jCBModeloCrud.setSelectedItem(ModelCrud.i().getNomeModelo());
             jTFCaminhoClasseBean.setText(ModelCrud.i().getCaminhoClasseBean());
             jTFNomeCasoUso.setText(ModelCrud.i().getNomeCasoUso());
@@ -368,7 +370,7 @@ public class CriarCrud_painel1 extends javax.swing.JPanel implements IPainel {
             } else {
                 jCBCampoExclusaoLogica.setEnabled(false);
             }
-
+            
         } catch (AmaterasuException ex) {
             ManterLog.write(ex);
             JOptionPane.showMessageDialog(null, ex.getMessage());
@@ -439,14 +441,14 @@ public class CriarCrud_painel1 extends javax.swing.JPanel implements IPainel {
             ModelCrud.i().setCampoExclusaoLogica(listFieldsBoolean.get(jCBCampoExclusaoLogica.getSelectedIndex()));
         }
     }
-
+    
     @Override
     public void atualizaPainel() {
     }
-
+    
     private void limpar() {
         jCBCampoExclusaoLogica.setModel(new DefaultComboBoxModel());
-
+        
         jCBModeloCrud.setSelectedItem("");
         jTFCaminhoClasseBean.setText("");
         jTFNomeCasoUso.setText("");
