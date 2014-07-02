@@ -136,7 +136,7 @@ public class CriarCrud extends javax.swing.JFrame implements IPainelRodape {
             case 1:
                 JOptionPane.showMessageDialog(null, "Selecione os campos que serão criados em cada funcionalidade\n"
                         + "Selecione os componentes de interface que serão criados para cada atributo da classe\n"
-                        + "Altere os nome das labels(Rotulos) e adicione nos campos caso necessário.");
+                        + "Altere os nome das labels(Rotulos) e adicione novos campos caso necessário.");
                 break;
             case 2:
                 JOptionPane.showMessageDialog(null, "Informe as configurações de cada campo");

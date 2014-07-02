@@ -32,6 +32,8 @@ public class Principal extends javax.swing.JFrame implements Observer {
 
     public Principal() {
         initComponents();
+        jMIManterPerfil.setVisible(false);
+        jMICriarRelatorio.setVisible(false);
         jBFecharProjeto.setVisible(false);
         if (!new File(IConstants.DIR_CRUD).exists()) {
             new File(IConstants.DIR_CRUD).mkdirs();
@@ -85,16 +87,14 @@ public class Principal extends javax.swing.JFrame implements Observer {
         jMIAdicionarArchetype = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jMIManterPerfil = new javax.swing.JMenuItem();
-        jMICadUsuario = new javax.swing.JMenuItem();
-        jMCriarRelatorio = new javax.swing.JMenuItem();
+        jMICriarRelatorio = new javax.swing.JMenuItem();
         jMICriarCRUD = new javax.swing.JMenuItem();
         jMAbrir = new javax.swing.JMenu();
         jMIAbrirProjeto = new javax.swing.JMenuItem();
         jMConfigurar = new javax.swing.JMenu();
-        jMIJboss = new javax.swing.JMenuItem();
         jMIDataSouce = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMIParametrizacao = new javax.swing.JMenuItem();
+        jMIMaven = new javax.swing.JMenuItem();
         jMAjuda = new javax.swing.JMenu();
         jMIAjuda = new javax.swing.JMenuItem();
         jMISobre = new javax.swing.JMenuItem();
@@ -343,20 +343,21 @@ public class Principal extends javax.swing.JFrame implements Observer {
 
         jMIManterPerfil.setText(bundle1.getString("MANTER_PERFIS")); // NOI18N
         jMIManterPerfil.setEnabled(false);
-        jMNovo.add(jMIManterPerfil);
-
-        jMICadUsuario.setText(bundle1.getString("CADASTRO_USUARIO")); // NOI18N
-        jMICadUsuario.setEnabled(false);
-        jMNovo.add(jMICadUsuario);
-
-        jMCriarRelatorio.setText("Criar Relatório");
-        jMCriarRelatorio.setEnabled(false);
-        jMCriarRelatorio.addActionListener(new java.awt.event.ActionListener() {
+        jMIManterPerfil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMCriarRelatorioActionPerformed(evt);
+                jMIManterPerfilActionPerformed(evt);
             }
         });
-        jMNovo.add(jMCriarRelatorio);
+        jMNovo.add(jMIManterPerfil);
+
+        jMICriarRelatorio.setText("Criar Relatório");
+        jMICriarRelatorio.setEnabled(false);
+        jMICriarRelatorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMICriarRelatorioActionPerformed(evt);
+            }
+        });
+        jMNovo.add(jMICriarRelatorio);
 
         jMICriarCRUD.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
         jMICriarCRUD.setText(bundle1.getString("CRIAR_CRUD")); // NOI18N
@@ -385,10 +386,6 @@ public class Principal extends javax.swing.JFrame implements Observer {
 
         jMConfigurar.setText(bundle1.getString("CONFIGURAR")); // NOI18N
 
-        jMIJboss.setText(bundle1.getString("SERVIDOR")); // NOI18N
-        jMIJboss.setEnabled(false);
-        jMConfigurar.add(jMIJboss);
-
         jMIDataSouce.setText(bundle1.getString("DATA_SOURCE")); // NOI18N
         jMIDataSouce.setEnabled(false);
         jMConfigurar.add(jMIDataSouce);
@@ -397,13 +394,13 @@ public class Principal extends javax.swing.JFrame implements Observer {
         jMenuItem2.setEnabled(false);
         jMConfigurar.add(jMenuItem2);
 
-        jMIParametrizacao.setText(bundle1.getString("PARAMETRIZACAO")); // NOI18N
-        jMIParametrizacao.addActionListener(new java.awt.event.ActionListener() {
+        jMIMaven.setText(bundle1.getString("PARAMETRIZACAO")); // NOI18N
+        jMIMaven.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMIParametrizacaoActionPerformed(evt);
+                jMIMavenActionPerformed(evt);
             }
         });
-        jMConfigurar.add(jMIParametrizacao);
+        jMConfigurar.add(jMIMaven);
 
         jMenuBar1.add(jMConfigurar);
 
@@ -490,26 +487,29 @@ public class Principal extends javax.swing.JFrame implements Observer {
 
     private void jBFecharProjetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBFecharProjetoActionPerformed
         jMICriarCRUD.setEnabled(false);
-        jMICadUsuario.setEnabled(false);
         jMIManterPerfil.setEnabled(false);
-        jMCriarRelatorio.setEnabled(false);
+        jMICriarRelatorio.setEnabled(false);
         limparInfoProjeto();
         jPPrincipal.setVisible(false);
         jBFecharProjeto.setVisible(false);
         ModelProjeto.fechar();
     }//GEN-LAST:event_jBFecharProjetoActionPerformed
 
-    private void jMCriarRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMCriarRelatorioActionPerformed
+    private void jMICriarRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMICriarRelatorioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMCriarRelatorioActionPerformed
+    }//GEN-LAST:event_jMICriarRelatorioActionPerformed
 
     private void jMIAdicionarArchetypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIAdicionarArchetypeActionPerformed
         new ArchetypeForm().setVisible(true);
     }//GEN-LAST:event_jMIAdicionarArchetypeActionPerformed
 
-    private void jMIParametrizacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIParametrizacaoActionPerformed
+    private void jMIMavenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIMavenActionPerformed
         new ConfigAmaterasu().setVisible(true);
-    }//GEN-LAST:event_jMIParametrizacaoActionPerformed
+    }//GEN-LAST:event_jMIMavenActionPerformed
+
+    private void jMIManterPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIManterPerfilActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMIManterPerfilActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBAbrirAmaterasu;
@@ -533,17 +533,15 @@ public class Principal extends javax.swing.JFrame implements Observer {
     private javax.swing.JMenu jMAbrir;
     private javax.swing.JMenu jMAjuda;
     private javax.swing.JMenu jMConfigurar;
-    private javax.swing.JMenuItem jMCriarRelatorio;
     private javax.swing.JMenuItem jMIAbrirProjeto;
     private javax.swing.JMenuItem jMIAdicionarArchetype;
     private javax.swing.JMenuItem jMIAjuda;
-    private javax.swing.JMenuItem jMICadUsuario;
     private javax.swing.JMenuItem jMICriarCRUD;
     private javax.swing.JMenuItem jMICriarProjeto;
+    private javax.swing.JMenuItem jMICriarRelatorio;
     private javax.swing.JMenuItem jMIDataSouce;
-    private javax.swing.JMenuItem jMIJboss;
     private javax.swing.JMenuItem jMIManterPerfil;
-    private javax.swing.JMenuItem jMIParametrizacao;
+    private javax.swing.JMenuItem jMIMaven;
     private javax.swing.JMenuItem jMISobre;
     private javax.swing.JMenu jMNovo;
     private javax.swing.JMenuBar jMenuBar1;

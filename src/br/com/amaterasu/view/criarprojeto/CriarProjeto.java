@@ -130,7 +130,7 @@ public class CriarProjeto extends javax.swing.JFrame implements IPainelRodape {
                 JOptionPane.showMessageDialog(null, "Informe os dados para a criação de um novo projeto.\n"
                         + "Importante: o Nome do Projeto deve ser informado sem espaço ou caracter especial.\n"
                         + "O caminho do projeto deve ser informado sem o nome do projeto, \n"
-                        + "pois quando o gerador de projeto for cria-lo, concatenado o (caminho do projeto + o nome do projeto)\n"
+                        + "pois quando o gerador de projeto for cria-lo, será concatenado o (caminho do projeto + o nome do projeto)\n"
                         + "O mesmo vale para o caminho do Projeto Amaterasu.\n"
                         + "O caminho do projeto Amaterasu é uma pasta onde será gravado informações do proprio Amaterasu na manipulação do seu projeto."
                         , "Criação de Projeto", JOptionPane.INFORMATION_MESSAGE);

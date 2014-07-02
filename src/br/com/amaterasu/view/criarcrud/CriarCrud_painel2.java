@@ -238,10 +238,10 @@ public class CriarCrud_painel2 extends javax.swing.JPanel implements IPainel {
             try {
                 binding();
                 ModelCrud.i().getListFields().remove(jTable1.getSelectedRow());
+                updateTables();
                 next = false;
                 binding();
                 next = true;
-                updateTables();
             } catch (AmaterasuException ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage());
             }

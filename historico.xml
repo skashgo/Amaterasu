@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<java version="1.8.0-ea" class="java.beans.XMLDecoder">
- <object class="br.com.amaterasu.model.HistoricoProjetoBean" id="HistoricoProjetoBean0">
+<java version="1.7.0_55" class="java.beans.XMLDecoder">
+ <object class="br.com.amaterasu.model.HistoricoProjetoBean">
   <void property="list">
    <void method="add">
     <object class="br.com.amaterasu.model.HistoricoProjeto">
@@ -12,6 +12,19 @@
      </void>
      <void property="projeto">
       <string>ProjetoJEE6</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="br.com.amaterasu.model.HistoricoProjeto">
+     <void property="caminhoProjeto">
+      <string>D:\Maykon\Plataforma Amaterasu\workspace\Biblioteca</string>
+     </void>
+     <void property="caminhoProjetoAmaterasu">
+      <string>D:\Maykon\Plataforma Amaterasu\workspace\Biblioteca_AMATERASU</string>
+     </void>
+     <void property="projeto">
+      <string>Biblioteca</string>
      </void>
     </object>
    </void>
